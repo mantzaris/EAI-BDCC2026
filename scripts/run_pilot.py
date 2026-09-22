@@ -18,7 +18,7 @@ from threadpoolctl import threadpool_limits
 from traffic_risk_twins.conditional_history import GaussianHistory
 from traffic_risk_twins.scenarios import make_scenarios
 from traffic_risk_twins.graph_dynamics import rollout,rollout_torch
-from traffic_risk_twins.graph_enclosures import Partition,enclose,labels_from_bounds
+from traffic_risk_twins.graph_enclosures import Partition,enclose,labels_from_bounds,coarse_rollout
 from traffic_risk_twins.event_functionals import event
 from traffic_risk_twins.scenario_estimators import bernoulli_summary,two_level,allocate_two_level
 from traffic_risk_twins.data_access import sha256,save_json
@@ -108,13 +108,13 @@ def run(args):
         origin=int(arrays['origins'][i])
         for fraction in config['retained_fractions']:
             for N in config['scenario_counts']:
-                before=time.perf_counter()
+                pipeline_start=before=time.perf_counter()
                 initial,forcing,info=sample(i,fraction,N)
                 generation=time.perf_counter()-before
                 fine,tf=backend.fine(initial,forcing)
                 e0=time.perf_counter(); labels=event(fine,threshold); event_seconds=time.perf_counter()-e0
-                fine_total=generation+tf['fine_seconds']+tf['transfer_seconds']+event_seconds
                 summary=bernoulli_summary(labels)
+                fine_total=time.perf_counter()-pipeline_start
                 raw=arrays['future'][i]; mask=arrays['future_mask'][i]
                 speeds=arrays['free']*(1-__import__('scipy').special.expit(fine)).mean(axis=0)
                 row=dict(origin=origin,retention=fraction,N=N,method='fine_mc',device=args.device,
@@ -147,7 +147,7 @@ def run(args):
                     else:
                         recon_rows.append(dict(origin=origin,retention=fraction,hidden_count=0,rmse=None,coverage_50=None,coverage_80=None,coverage_95=None))
                 # Coarse computation includes reductions of initial states and forcing.
-                before=time.perf_counter(); center,radius=enclose(initial,forcing,partition,coefficients)
+                selective_start=before=time.perf_counter(); center,radius=enclose(initial,forcing,partition,coefficients)
                 low,high=labels_from_bounds(center,radius,partition,threshold)
                 enclosure_time=time.perf_counter()-before
                 before=time.perf_counter(); unresolved=np.flatnonzero(low != high)
@@ -158,17 +158,19 @@ def run(args):
                     refined,rt=backend.fine(xi,ff)
                     empirical[unresolved]=event(refined,threshold)
                     refine_time=rt['fine_seconds']; refine_transfer=rt['transfer_seconds']
+                empirical_summary=bernoulli_summary(empirical)
+                empirical_total=generation+time.perf_counter()-selective_start
                 if not np.array_equal(empirical,labels):
                     raise ArithmeticError('Empirical selective labels disagree with coupled fine labels')
                 violation=float(np.max(np.abs(fine-center[...,blocks])-radius[...,blocks]))
                 if violation > 1e-10:
                     raise ArithmeticError('Enclosure violation: disable claim')
                 coarse=event(center,threshold,partition.sizes)
-                empirical_total=generation+enclosure_time+compaction+refine_time+refine_transfer
                 # Certified mode: every numerical certificate is unverified, so all samples refine.
                 # Actually execute this full fallback separately, not a synthetic speed estimate.
                 before=time.perf_counter(); fallback,fbt=backend.fine(initial,forcing)
                 fallback_labels=event(fallback,threshold)
+                bernoulli_summary(fallback_labels)
                 fallback_wall=time.perf_counter()-before
                 assert np.array_equal(fallback_labels,labels)
                 certified_total=generation+enclosure_time+fallback_wall
@@ -190,12 +192,13 @@ def run(args):
                 cpu_generation=time.perf_counter()-before
                 cfine,ct=cpu.fine(ci,cf)
                 e0=time.perf_counter(); cpu_labels=event(cfine,threshold); cpu_event=time.perf_counter()-e0
+                ci0=time.perf_counter(); bernoulli_summary(cpu_labels); cpu_interval=time.perf_counter()-ci0
                 if not np.array_equal(ci,initial) or not np.array_equal(cf,forcing):
                     raise AssertionError('Scenario identity changed across backends')
                 if not np.array_equal(cpu_labels,labels):
                     raise ArithmeticError('CPU/GPU FP64 label mismatch')
                 timing_rows.append(dict(origin=origin,retention=fraction,N=N,method='fine_mc',device='cpu',
-                    **cinfo['timings'],**ct,event_seconds=cpu_event,total_seconds=cpu_generation+ct['fine_seconds']+cpu_event))
+                    **cinfo['timings'],**ct,event_seconds=cpu_event,total_seconds=cpu_generation+ct['fine_seconds']+cpu_event+cpu_interval))
                 # A small prespecified precision audit: first eight time-selected origins.
                 if i < 8 and N == 256:
                     fp32,pt=backend.fine(initial,forcing,'float32')
@@ -208,7 +211,7 @@ def run(args):
                     # 64 independent allocation draws; not reused in either estimation set.
                     before=time.perf_counter(); ax,af,_=sample(i,fraction,64,stream=10+N)
                     ag=time.perf_counter()-before
-                    before=time.perf_counter(); az,_=enclose(ax,af,partition,coefficients)
+                    before=time.perf_counter(); az=coarse_rollout(ax,af,partition,coefficients)
                     ac=event(az,threshold,partition.sizes); cheap_time=ag+time.perf_counter()-before
                     fa,at=backend.fine(ax,af); al=event(fa,threshold)
                     costs=np.array([cheap_time/64,(cheap_time+at['fine_seconds']+at['transfer_seconds'])/64])
@@ -220,9 +223,9 @@ def run(args):
                     n0,n1=min(int(n0),2*N),min(int(n1),2*N)
                     before=time.perf_counter()
                     x0,f0,_=sample(i,fraction,n0,stream=20+N)
-                    z0,_=enclose(x0,f0,partition,coefficients); c0=event(z0,threshold,partition.sizes)
+                    z0=coarse_rollout(x0,f0,partition,coefficients); c0=event(z0,threshold,partition.sizes)
                     x1,f1,_=sample(i,fraction,n1,stream=30+N)
-                    z1,_=enclose(x1,f1,partition,coefficients); c1=event(z1,threshold,partition.sizes)
+                    z1=coarse_rollout(x1,f1,partition,coefficients); c1=event(z1,threshold,partition.sizes)
                     y1,_=backend.fine(x1,f1); fine1=event(y1,threshold)
                     result=two_level(c0,c1,fine1)
                     elapsed=time.perf_counter()-before

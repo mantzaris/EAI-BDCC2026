@@ -7,7 +7,7 @@ from traffic_risk_twins.cell_transmission import two_cell, step
 from traffic_risk_twins.conditional_history import GaussianHistory, remove_redundant_rows
 from traffic_risk_twins.retained_information import retain, independent_constraints
 from traffic_risk_twins.graph_dynamics import rollout
-from traffic_risk_twins.graph_enclosures import Partition, enclose, selective
+from traffic_risk_twins.graph_enclosures import Partition, enclose, selective, coarse_rollout
 from traffic_risk_twins.event_functionals import event, observed_bounds
 from traffic_risk_twins.scenario_estimators import bernoulli_summary, two_level, allocate_two_level
 
@@ -193,3 +193,21 @@ def test_scenario_prefix_invariance_across_sample_counts_and_batches():
     rng=np.random.default_rng(10)
     batched=np.concatenate([model.sample(A,[.4],7,rng),model.sample(A,[.4],12,rng)])
     assert np.allclose(large,batched,rtol=0,atol=1e-15)
+
+
+def test_coarse_only_path_matches_enclosure_center():
+    rng=np.random.default_rng(999)
+    W=rng.uniform(size=(9,9)); W/=W.sum(axis=1,keepdims=True)
+    p=Partition.build(W,np.repeat(np.arange(3),3))
+    initial=rng.normal(size=(17,2,9));forcing=rng.normal(size=(17,6,9));coef=[.5,.1,.2,.1]
+    center,_=enclose(initial,forcing,p,coef)
+    assert np.array_equal(center,coarse_rollout(initial,forcing,p,coef))
+
+
+def test_full_observation_degenerate_law_does_not_consume_randomness():
+    model=GaussianHistory(np.zeros(3),np.ones((3,1)),np.ones(3))
+    A=sparse.csr_matrix([[0,1,0],[0,0,2],[1,0,0]])
+    rng=np.random.default_rng(99);expected=np.random.default_rng(99).normal()
+    draws=model.sample(A,[2,6,1],8,rng)
+    assert np.array_equal(draws,np.tile([1,2,3],(8,1)))
+    assert rng.normal() == expected

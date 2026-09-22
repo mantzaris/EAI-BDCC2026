@@ -34,6 +34,14 @@ class Partition:
         radii = np.stack([np.abs(x[..., self.labels == b]-means[..., b, None]).max(axis=-1) for b in range(len(self.sizes))], axis=-1)
         return means, radii
 
+    def centers(self, x):
+        return np.stack([x[..., self.labels == b].mean(axis=-1) for b in range(len(self.sizes))],axis=-1)
+
+
+def coarse_rollout(initial, forcing, partition, coefficients, theta=0.):
+    """Cheap two-level path: no unused radius construction."""
+    return rollout(partition.centers(initial[:,-2:]),partition.centers(forcing),partition.quotient,coefficients,theta)
+
 
 def enclose(initial, forcing, partition, coefficients, theta=0.):
     z, r = partition.reduce(initial[:, -2:])

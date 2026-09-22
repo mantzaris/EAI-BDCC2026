@@ -77,6 +77,14 @@ class GaussianHistory:
 
     def sample(self, A, values, count, rng, mean=None):
         mean = self.mean if mean is None else np.asarray(mean)
+        A = sparse.csr_matrix(A)
+        if (A.shape == (len(mean),len(mean)) and A.nnz == len(mean)
+                and np.all(np.diff(A.indptr) == 1) and np.all(np.diff(A.tocsc().indptr) == 1)):
+            # Full-rank coordinate observations determine the state. No random draw
+            # or covariance work is necessary; this is the degenerate conditional law.
+            exact = np.empty(len(mean))
+            exact[A.indices] = np.asarray(values)/A.data
+            return np.broadcast_to(exact,(count,len(mean))).copy()
         factor = self.factor(A)
         # Independent standard normals; no MCMC and no sensor shuffling.
         noise = rng.standard_normal((count, self.U.shape[1]+len(mean)))
