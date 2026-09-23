@@ -107,11 +107,16 @@ def delivery():
     old=read('manifests/closeout/starting_state.json')
     changed=[p for p,d in old['files'].items() if hashlib.sha256(Path(p).read_bytes()).hexdigest()!=d]
     assert changed==['README.md'] or changed==[]
+    output=Path('results/closeout/delivery_verification.json')
+    local_targets=[]
     for path in [Path('README.md'),Path('reports/CAMPAIGN_CLOSEOUT.md'),Path('reports/RESEARCH_RESET.md'),
                  Path('reports/RESET_NOVELTY_AND_PROVENANCE.md')]:
         for link in re.findall(r'\]\(([^)]+)\)',path.read_text()):
             if '://' not in link and not link.startswith('#'):
-                assert (path.parent/link.split('#')[0]).exists(),(str(path),link)
+                target=path.parent/link.split('#')[0]
+                local_targets.append(target)
+                # This report may link to the verification being created now.
+                assert target.exists() or target.resolve()==output.resolve(),(str(path),link)
     assert not Path('reports/RESTART_PROTOCOL.md').exists()
     assert read('configs/research_closeout.json')['max_new_gpu_seconds']==0
     assert 'selective_refinement_enabled: false' in Path('configs/stage2_diagnosis.yaml').read_text()
@@ -124,22 +129,29 @@ def delivery():
     assert starts==set(ends) and all(r['returncode']==0 for r in ends.values())
     seconds=sum(r['elapsed_seconds'] for r in ends.values());assert seconds<300
     assert all(r.get('gpu_seconds',0)==0 for r in ledger)
-    save('results/closeout/delivery_verification.json',dict(passed=True,historical_files=len(old['files']),
+    save(output,dict(passed=True,historical_files=len(old['files']),
         historical_files_unchanged_except_status=changed,preserved_artifacts=len(old['files'])-len(changed),
         required_local_links_valid=True,numerical_transcription_valid=True,synthetic_cpu_job_seconds=seconds,
         new_gpu_seconds=0,cumulative_gpu_seconds=read('results/closeout/evidence_audit.json')['cumulative_gpu_seconds'],
-        source_sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),test_access=False))
+        source_sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+        audit_script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),test_access=False))
+    assert all(target.exists() for target in local_targets)
 
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('mode',choices=('snapshot','evidence','delivery'))
     mode=parser.parse_args().mode;start=time.perf_counter()
-    globals()[mode]()
-    elapsed=time.perf_counter()-start
-    directory=Path('results/closeout');directory.mkdir(parents=True,exist_ok=True)
-    with (directory/'artifact_audit_ledger.jsonl').open('a') as stream:
-        stream.write(json.dumps(dict(mode=mode,elapsed_seconds=elapsed,gpu_seconds=0,
-            utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),measurement_files_read=0))+'\n')
+    success=False
+    try:
+        globals()[mode]()
+        success=True
+    finally:
+        elapsed=time.perf_counter()-start
+        directory=Path('results/closeout');directory.mkdir(parents=True,exist_ok=True)
+        with (directory/'artifact_audit_ledger.jsonl').open('a') as stream:
+            stream.write(json.dumps(dict(mode=mode,elapsed_seconds=elapsed,gpu_seconds=0,
+                utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                success=success,measurement_files_read=0))+'\n')
     print(mode,'completed in',round(elapsed,6),'seconds; no measurement data opened.')
 
 

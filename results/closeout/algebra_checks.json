@@ -1,0 +1,150 @@
+{
+  "questions_record": "configs/research_closeout.json",
+  "seed": null,
+  "arithmetic": "fractions.Fraction; hand-specified, no random sampling",
+  "exact_mean_counterexample": {
+    "W": [
+      [
+        "15/16",
+        "1/16"
+      ],
+      [
+        "1/16",
+        "15/16"
+      ]
+    ],
+    "dynamics": "x_next = (1/2) W x; zero forcing; one block",
+    "D": "0",
+    "x_initial": [
+      "-2",
+      "4"
+    ],
+    "y_initial": [
+      "1",
+      "1"
+    ],
+    "threshold_count": 2,
+    "sustained_frames": 3,
+    "horizon_frames": 6,
+    "trajectory": [
+      {
+        "h": 1,
+        "x": [
+          "-13/16",
+          "29/16"
+        ],
+        "y": [
+          "1/2",
+          "1/2"
+        ],
+        "equal_mean": "1/2",
+        "count_x": 1,
+        "count_y": 2
+      },
+      {
+        "h": 2,
+        "x": [
+          "-83/256",
+          "211/256"
+        ],
+        "y": [
+          "1/4",
+          "1/4"
+        ],
+        "equal_mean": "1/4",
+        "count_x": 1,
+        "count_y": 2
+      },
+      {
+        "h": 3,
+        "x": [
+          "-517/4096",
+          "1541/4096"
+        ],
+        "y": [
+          "1/8",
+          "1/8"
+        ],
+        "equal_mean": "1/8",
+        "count_x": 1,
+        "count_y": 2
+      },
+      {
+        "h": 4,
+        "x": [
+          "-3107/65536",
+          "11299/65536"
+        ],
+        "y": [
+          "1/16",
+          "1/16"
+        ],
+        "equal_mean": "1/16",
+        "count_x": 1,
+        "count_y": 2
+      },
+      {
+        "h": 5,
+        "x": [
+          "-17653/1048576",
+          "83189/1048576"
+        ],
+        "y": [
+          "1/32",
+          "1/32"
+        ],
+        "equal_mean": "1/32",
+        "count_x": 1,
+        "count_y": 2
+      },
+      {
+        "h": 6,
+        "x": [
+          "-90803/16777216",
+          "615091/16777216"
+        ],
+        "y": [
+          "1/64",
+          "1/64"
+        ],
+        "equal_mean": "1/64",
+        "count_x": 1,
+        "count_y": 2
+      }
+    ],
+    "event_labels": [
+      0,
+      1
+    ],
+    "conclusion": "Exact mean closure and D=0 do not determine a sensor-count event"
+  },
+  "selection_counterexample": {
+    "law": "Independent fair bits; Y=X1 AND X2",
+    "bayes_risks": {
+      "none": "3/16",
+      "first": "1/8",
+      "second": "1/8",
+      "both": "0"
+    },
+    "first_gain": "1/16",
+    "gain_after_other_sensor": "1/8",
+    "submodular": false,
+    "conclusion": "Monotone task and independent measurements do not imply submodular Brier benefit"
+  },
+  "posterior_quantization": {
+    "bits": 8,
+    "grid_points": 256,
+    "maximum_error": "1/510",
+    "true_posterior_excess_brier_bound": "1/260100",
+    "decimal_bound": 3.844675124951942e-06,
+    "arbitrary_fitted_probability_absolute_loss_change_bound": "1/255",
+    "qualification": "Expectation bound assumes true posterior; fitted risks need separate error/calibration accounting; packet overhead excluded"
+  },
+  "gpu_seconds": 0,
+  "cuda_seconds": 0,
+  "measurements_loaded": false,
+  "test_access": false,
+  "cpu_seconds": 0.0010061409999999986,
+  "internal_wall_seconds": 0.0010096409969264641,
+  "general_theorem_proved_by_numerics": false
+}

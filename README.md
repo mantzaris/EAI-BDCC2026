@@ -3,23 +3,54 @@
 This project studies whether retaining local traffic histories improves sustained
 low-speed forecasts more than increasing Monte Carlo samples. The preserved
 [research plan](research_plan/EAI_BDCC_2026_Research_Plan.md) defines the task.
-The current handoff is [reports/STAGE2_REPORT.md](reports/STAGE2_REPORT.md).
-The historical [Stage 1 handoff](reports/STAGE1_REPORT.md) and its results remain
-unchanged.
+The current handoff is the [campaign closeout](reports/CAMPAIGN_CLOSEOUT.md) and
+[research reset assessment](reports/RESEARCH_RESET.md), dated 23 September 2026.
+It recommends **C: defer a restart**. Neither task-specific aggregation
+sufficiency nor budgeted telemetry yet has a concrete new contribution,
+established independent event support and a documented deployment/data-use path.
+The [source and provenance audit](reports/RESET_NOVELTY_AND_PROVENANCE.md)
+records the closest work and unresolved evidence.
+
+The historical [Stage 1 handoff](reports/STAGE1_REPORT.md),
+[Stage 2 handoff](reports/STAGE2_REPORT.md) and all their results remain unchanged.
 
 Stage 2 recommends stopping the current method campaign: adding local histories
 did not improve the matched classifier, the single residual repair remained
 outside the simulator adequacy gate, and tighter enclosures still cost more than
 fine simulation. These are exploratory validation findings. Test outcomes remain
 untouched. Stage 2 used no GPU time; cumulative GPU-job usage is 668.62 seconds.
-No Stage 3 is scheduled or authorized.
+The closeout also used zero GPU time. One hand-specified synthetic algebra job
+took 0.0324 seconds of wall time; no models were fit and no measurement files
+were opened. No Stage 3 or restart pilot is scheduled or authorized.
 
 This is a small recorded-speed predictive model. Its event is not an observed
 incident or a causal traffic cascade. The graph enclosure is an exact-arithmetic
 result; floating-point bounds are empirical. `certified` mode conservatively
 evaluates every scenario on the fine graph. No acceleration claim is implied.
 
-## Setup
+## Review the closeout
+
+Read the reports above and `results/closeout/evidence_audit.json`. The new
+`configs/research_closeout.json` freezes the zero-GPU/no-experiment scope.
+`results/closeout/compute_ledger.jsonl` records the single completed synthetic
+job; `artifact_audit_ledger.jsonl` separately records saved-table, preservation
+and link checks. `scripts/closeout_algebra.py` and its saved rational outputs
+document the counterexamples; `scripts/closeout_budget.py` refuses to overwrite
+them. The checks are elementary synthetic evidence, not traffic experiments or
+new general proofs.
+
+To verify the delivered closeout using committed artifacts only:
+
+```bash
+python3 scripts/audit_closeout.py delivery
+```
+
+This writes a new verification record and appends to the closeout artifact
+ledger. Preserve those records before a deliberate replay. The remaining
+commands document historical reproduction workflows; they are not part of the
+closeout and do not authorize new fits or experiments.
+
+## Historical setup and reproduction
 
 Python 3.8+ is supported; GPU verification uses Python 3.12 and the environment
 recorded in `manifests/gpu_environment.json`. The installation uses the Pod's

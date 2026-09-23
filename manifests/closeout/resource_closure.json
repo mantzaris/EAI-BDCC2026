@@ -1,0 +1,32 @@
+{
+  "checked_utc": "2026-09-23T04:47:54Z",
+  "local_process_check": "ps -eo pid,comm; only the Codex service and the inspection process were visible",
+  "pod_check": "Read-only SSH: nvidia-smi GPU identity and compute-process queries, and ps pid/comm; no process arguments collected",
+  "gpu_identity": "NVIDIA RTX 6000 Ada Generation",
+  "gpu_total_mib": 49140,
+  "gpu_used_mib": 2,
+  "driver": "570.124.06",
+  "gpu_compute_processes": [],
+  "pod_process_names": [
+    "docker-init",
+    "start.sh",
+    "nginx",
+    "nginx",
+    "sshd",
+    "start.sh",
+    "jupyter-lab",
+    "sleep",
+    "sshd",
+    "ps"
+  ],
+  "interpretation": "Existing container services and Jupyter remain; no model/experiment worker or GPU compute application is running. The inspection started no CUDA job.",
+  "new_experiments_running": false,
+  "new_gpu_jobs": 0,
+  "services_stopped": [],
+  "measurement_files_read": 0,
+  "test_access": false,
+  "source_check_exit_code": 0,
+  "local_python": "3.8.10",
+  "local_platform": "Linux x86_64 kernel 5.4.0-216-generic",
+  "synthetic_dependencies": "Python standard library only"
+}
