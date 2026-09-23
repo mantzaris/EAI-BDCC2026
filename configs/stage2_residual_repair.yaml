@@ -1,0 +1,18 @@
+repair: current_severity_conditional_residual_location
+selection_evidence: results/stage2/inner_model_diagnosis.json
+calendar_regime: weekday_weekend_times_hour_div_8
+severity_groups: [current_state_below_zero, current_state_at_least_zero]
+minimum_group_positions: 100
+small_group_fallback: regime_mean
+fit_source: whole_multivariate_training_oof_residual_sequences
+preserve_full_sequences: true
+inner_relative_brier_improvement: 0.05
+maximum_inner_30min_mae_relative_increase: 0.02
+scenario_count: 256
+inner_diagnosis_origins: saved_128
+inner_calibration_origins: uniform_128_final_training_day_block
+outer_origins: stage1_saved_128
+retention: 1.0
+device: cpu
+second_repair: none
+numerical_claim: inherited_exact_arithmetic_only_for_identical_realized_forcing

@@ -177,3 +177,23 @@ pathwise theorem permits arbitrary coupled initial states and forcing; it does n
 require their independence. It still applies only when the coarse/fine runs reuse
 that same repaired forcing, including its actual block deviations. No new theorem
 or floating-point guarantee follows. Default prediction remains fine MC.
+
+### D2: one algebraic enclosure tightening, before evaluating it
+
+The 16-origin, 256-scenario CPU decomposition shows real amplification in the
+implemented radius, not a trajectory escape: at full retention the mean radius
+grows from 7.55 to 58.07 while actual mean error stays near 1.1. At step six its
+initial/structural/forcing contributions are 17.04/19.37/21.66. Summing independent
+entrywise maxima in Wbar+D discards the row-stochastic constraint. Likewise
+D|z| discards cancellation in E z; E times the constant vector is zero.
+
+Attempt the one allowed tightening, retaining the same partition and center:
+for i in block a, form g_i = sum_b w_ib*r_b + |sum_b E_ib*z_b| and use
+e_a = max_{i in a} g_i in the radius recurrence. Both retained terms bound the
+same node's neighbor discrepancy by the triangle inequality. This is no larger
+than the original e_a and is still valid for every state in the rectangle.
+It costs O(N*n*k) per step; account for actual reductions and products. No fine
+trajectory is needed, no nonzero error term is deleted, and no originality or
+floating-point-certification claim is made. Use the same saved 16 origins,
+N=256, three retention fractions, and five alternating paired complete CPU
+timings at 15%. Stop after this single attempt irrespective of the result.

@@ -68,6 +68,7 @@ class LogisticCalibration:
         return self
 
     def predict(self, probability):
+        probability = np.asarray(probability, float)
         if self.constant is not None:
             return np.full(len(probability), self.constant)
         return self.model.predict_proba(logit(np.clip(probability, 1e-5, 1-1e-5))[:, None])[:, 1]
