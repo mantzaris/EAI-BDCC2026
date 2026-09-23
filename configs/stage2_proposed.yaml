@@ -1,0 +1,43 @@
+stage: 2
+seed: 20260923
+dataset: pems_bay
+history_frames: 12
+horizon_frames: 6
+cadence_minutes: 5
+embargo_minutes: 90
+split_fractions:
+- 0.6
+- 0.2
+- 0.2
+epsilon: 0.001
+reference_speed_quantile: 0.85
+local_state_threshold: 0.0
+sustained_frames: 3
+severity_quantile: 0.9
+severity_minimum: 0.1
+minimum_future_coverage: 0.95
+observation_blocks: 16
+computational_blocks: 16
+retained_fractions:
+- 0.0
+- 0.15
+- 1.0
+factor_rank: 16
+stability_cap: 0.98
+relaxed_stability_cap: 1.05
+max_validation_origins: 128
+pilot_origins: 128
+origin_rule: uniformly_spaced_indices_in_eligible_validation_origins_no_outcome_filter
+scenario_counts:
+- 1024
+- 4096
+max_gpu_seconds: 1800
+max_allocated_vram_bytes: 32000000000
+max_download_bytes: 12000000000
+max_processed_bytes: 20000000000
+cpu_threads: 4
+gpu_compile: false
+numerical_guarantee: empirical_fp64_force_fine_for_certified_mode
+test_access: index_and_split_integrity_only
+authorization: PROPOSAL ONLY; not executed; requires new user authorization and CPU/data/theory
+  gates

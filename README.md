@@ -20,7 +20,8 @@ banks are deliberately excluded from Git.
 ```bash
 python3 -m venv --system-site-packages .venv
 source .venv/bin/activate
-pip install -e '.[test]'
+pip install -r environment.cpu.lock  # Tested Python 3.8 environment; see GPU record for Python 3.12
+pip install -e '.[test]' --no-deps
 python -m pytest -q
 python scripts/probe_sources.py
 PYTHONPATH=src python scripts/fetch_pems.py
@@ -63,6 +64,27 @@ each correction uses the same fine/coarse initial state and forcing. Its raw
 estimate and bounded-variable uncertainty are saved before separately labeled
 clipping for predictive scores. Allocation budgets are targets, not proven
 equal wall times; measured complete runtime determines that comparison.
+
+The final GPU-tested core is commit
+`128f8f15257c51677e197ec2493ddc4c0d098820`. The initial pilot at
+`a2cc0400b71a71f06a6fde17270de8aa777a0f3e` is preserved under
+`results/stage1_pilot_initial/`; both runs are charged to the same ledger.
+The later delivery adds CPU analysis, figures, and reports without changing the
+GPU-tested core. `environment.gpu.lock` records the tested direct GPU dependencies;
+`manifests/pod_freeze.txt` records the complete installed Pod environment including
+unrelated preinstalled notebook packages, and is not a portable pip requirements file.
+
+Rebuild the saved-result summaries and figures locally:
+
+```bash
+PYTHONPATH=src python scripts/summarize_pilot.py
+python scripts/build_pilot_figures.py
+```
+
+The summary's matched speed baselines need the private raw file; figures use only
+committed tables. `scripts/reconstruction_diagnostics.py` and
+`scripts/benchmark_cpu_reference.py` provide the CPU-only dependence and dense/CSR
+audits. The latter ran on the same Pod after GPU experiments had ended.
 
 ## Package layout
 
