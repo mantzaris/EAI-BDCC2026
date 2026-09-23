@@ -52,7 +52,9 @@ def main():
     result['independence_qualification'] = 'Merged positive-target groups are counting units, not statistically proven independent episodes; uncertainty clusters whole days.'
     result['cpu_seconds'] = time.perf_counter()-start
     save_json(out/'development_support.json', result)
-    classifier = pd.read_csv(out/'matched_predictions.csv'); simulator = pd.read_csv(out/'simulator_predictions.csv')
+    # nextafter thresholds encode strict tie handling; preserve their last bit.
+    classifier = pd.read_csv(out/'matched_predictions.csv', float_precision='round_trip')
+    simulator = pd.read_csv(out/'simulator_predictions.csv', float_precision='round_trip')
     outer = classifier[classifier.split == 'validation'].copy()
     simulator['model'] = 'simulator_'+simulator.model
     merged = pd.concat([outer, simulator], ignore_index=True)

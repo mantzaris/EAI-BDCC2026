@@ -197,3 +197,34 @@ trajectory is needed, no nonzero error term is deleted, and no originality or
 floating-point-certification claim is made. Use the same saved 16 origins,
 N=256, three retention fractions, and five alternating paired complete CPU
 timings at 15%. Stop after this single attempt irrespective of the result.
+
+### D3: close Stage 2 after the bounded CPU evidence
+
+The matched A/B/C comparison fails the local-improvement point gate; its paired
+intervals do not support a broad harm or benefit conclusion. The one residual
+repair passes its inner gate but fails outer adequacy (raw Brier .03359661 versus
+A .02645607). The single valid tightening reduces widths but leaves all scenarios
+unresolved and costs 21.9–26.1% more than fine computation in five paired repeats.
+No remaining question justifies GPU validation, a second repair, more simulation
+samples or another partition. Stage 2 closes with zero GPU-job/kernel seconds.
+Recommend stopping the current method campaign; do not schedule Stage 3.
+
+The CPU-only choices narrow the authorized maximum workload rather than replacing
+RTX 6000 Ada results with another GPU. CPU timings are explicitly local host
+measurements. One full committed-source CPU replay verifies reproducibility; the
+same source and data produce exactly the saved predictions and radii.
+
+Two reporting corrections were made without altering model fitting or predictions.
+First, the initial repair timer starts after RNG selection; a separately timed
+complete service audit supersedes it and includes every preparation step. Second,
+default CSV parsing can round a `nextafter` alarm threshold. Round-trip parsing
+preserves strict tie handling. Re-executing the affected summaries changes Brier
+by at most 1.05e-17 and leaves every confusion count and paired detection result
+unchanged. The historical prediction files remain intact. Neither is a second
+model repair, and the original timers/check hashes are retained.
+
+Document provenance counts unsuccessful reads as well as archived bytes: a
+capped Caltrans PDF and an invalid/truncated author PDF did not yield complete
+full-text reviews. Total Stage 2 direct document reads are 13,501,007 bytes, with
+no measurement downloads. Data quality/rights and two full-text novelty questions
+remain unresolved; they are not removed by the negative numerical outcome.
