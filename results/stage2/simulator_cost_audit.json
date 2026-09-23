@@ -1,0 +1,20 @@
+{
+  "cpu_seconds": 4.831813472999784,
+  "gpu_seconds": 0,
+  "warmup_seconds": 0.1407583190011792,
+  "bank_preparation_seconds": 0.09413095600029919,
+  "origins": 16,
+  "repeats": 5,
+  "N": 256,
+  "maximum_saved_probability_difference": 0.0,
+  "means": {
+    "location_repair": 0.025777796475358626,
+    "original": 0.024022517849789437
+  },
+  "p95": {
+    "location_repair": 0.06535002555210666,
+    "original": 0.07348551614741154
+  },
+  "complete_scope": "Regime lookup, RNG, retained summaries/masks, exact conditioning, bank gathering, location repair, rollout, labels, binomial interval. Resident transformed inputs and fitted banks; archival IO and bank preparation are job/offline costs.",
+  "supersedes": "The complete_seconds field in simulator_predictions.csv excludes RNG selection for the new repair and is not a complete service cost; use this audit instead."
+}
