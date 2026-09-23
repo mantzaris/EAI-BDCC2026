@@ -1,0 +1,91 @@
+{
+  "prior_gpu_job_seconds": 997.8225433584303,
+  "new_gpu_job_seconds": 35.503392711281776,
+  "cumulative_gpu_job_seconds": 1033.325936069712,
+  "new_cap_seconds": 1800,
+  "project_cap_seconds": 86400,
+  "open_jobs": [],
+  "failed_jobs": [],
+  "jobs": [
+    {
+      "event": "start",
+      "job_id": "017ee9cd1dbf488b81c0f65fc5617f7b",
+      "phase": "verification",
+      "utc": "2026-09-23T23:25:01.663054+00:00",
+      "reserved_seconds": 180,
+      "prior_new_seconds": 0,
+      "prior_project_seconds": 997.8225433584303,
+      "source_sha": "c1d33c8b6f435fa04b29bda8739de65027b4e6e6",
+      "command": [
+        "/workspace/EAI-BDCC2026-stage1/.venv/bin/python",
+        "scripts/run_final_test.py",
+        "preflight",
+        "--protocol-commit",
+        "c1d33c8b6f435fa04b29bda8739de65027b4e6e6"
+      ]
+    },
+    {
+      "event": "finish",
+      "job_id": "017ee9cd1dbf488b81c0f65fc5617f7b",
+      "phase": "verification",
+      "utc": "2026-09-23T23:25:11.796436+00:00",
+      "elapsed_seconds": 10.131780631840229,
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "event": "start",
+      "job_id": "ac9f68e394734158a2ae97742fee4065",
+      "phase": "evaluation",
+      "utc": "2026-09-23T23:26:39.116866+00:00",
+      "reserved_seconds": 600,
+      "prior_new_seconds": 10.131780631840229,
+      "prior_project_seconds": 1007.9543239902705,
+      "source_sha": "ceb99eaa23d70a37b82f8d4148505a4d13f2b908",
+      "command": [
+        "/workspace/EAI-BDCC2026-stage1/.venv/bin/python",
+        "scripts/run_final_test.py",
+        "evaluate",
+        "--protocol-commit",
+        "ceb99eaa23d70a37b82f8d4148505a4d13f2b908"
+      ]
+    },
+    {
+      "event": "finish",
+      "job_id": "ac9f68e394734158a2ae97742fee4065",
+      "phase": "evaluation",
+      "utc": "2026-09-23T23:26:52.203139+00:00",
+      "elapsed_seconds": 13.08506727591157,
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "event": "start",
+      "job_id": "cc5b6993c72f46c18aa7508f21ce32a2",
+      "phase": "replay",
+      "utc": "2026-09-23T23:27:28.877853+00:00",
+      "reserved_seconds": 180,
+      "prior_new_seconds": 23.2168479077518,
+      "prior_project_seconds": 1021.0393912661821,
+      "source_sha": "ceb99eaa23d70a37b82f8d4148505a4d13f2b908",
+      "command": [
+        "/workspace/EAI-BDCC2026-stage1/.venv/bin/python",
+        "scripts/run_final_test.py",
+        "replay",
+        "--protocol-commit",
+        "ceb99eaa23d70a37b82f8d4148505a4d13f2b908"
+      ]
+    },
+    {
+      "event": "finish",
+      "job_id": "cc5b6993c72f46c18aa7508f21ce32a2",
+      "phase": "replay",
+      "utc": "2026-09-23T23:27:41.164878+00:00",
+      "elapsed_seconds": 12.286544803529978,
+      "returncode": 0,
+      "error": null
+    }
+  ],
+  "cuda_event_span_seconds": 27.850404296875002,
+  "cuda_scope": "Event spans include host gaps; not active-kernel totals"
+}

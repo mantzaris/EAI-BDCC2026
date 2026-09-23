@@ -1,6 +1,18 @@
-# When Averages Hide Congestion
+# Current status: frozen final evaluation and comparative draft
 
-The current handoff is the [exploratory onset/graph study](reports/ONSET_GRAPH_STUDY_REPORT.md),
+The authorized final test evaluation is complete. Test data have now been evaluated, with no retraining or test-driven selection. [FINAL_TEST_REPORT.md](reports/FINAL_TEST_REPORT.md) is the current handoff; the [compiled comparative manuscript](manuscript/graph_representations_draft.pdf) is an anonymous draft for review. All historical results and reports below retain their original scope and exposure status.
+
+C remains worse than aggregate correction B. Favorable graph point estimates are uncertain under the primary three-day multiplicity adjustment. E beats both trained rewired controls in secondary test comparisons but raises false alarms. R_union is the strongest main-family point predictor. See the report for full scores, uncertainty and qualifications.
+
+The final stage used 35.503393 GPU-job seconds, bringing cumulative usage to 1,033.325936 seconds. No experiment remains running or scheduled. Review the science and unresolved measurement-use/publication provenance before submission; do not retune using the now-exposed test period.
+
+Reproduction and rendering instructions: [frozen protocol](reports/FINAL_TEST_PROTOCOL.md), [manifest](configs/final_test_manifest.json), [manuscript commands](manuscript/README.md). Selective refinement remains disabled.
+
+---
+
+# Historical handoff before final evaluation
+
+The preceding handoff was the [exploratory onset/graph study](reports/ONSET_GRAPH_STUDY_REPORT.md),
 completed 23 September 2026. The authorized study implemented all six local/regional
 graph representations, stronger aggregate controls, chronological evaluations and
 matched trained graph nulls on CUDA. Historical reports and results are preserved.
@@ -14,11 +26,11 @@ Neither D nor E consistently beat both trained rewired nulls. F's tiny increment
 over B was uncertain. Every validation day was already exposed: these remain
 exploratory findings, not confirmation or proof of zero local information value.
 
-The recommended next authorized experiment is a narrow chronological comparison
+That handoff recommended a narrow chronological comparison
 of aggregate refitting R_union versus aggregate correction B with stronger alarm
 calibration support. No next experiment is scheduled. The optional information-budget
 extension failed its training-only gate and did not run. The original test measurements,
-predictions and event-dependent summaries remain unopened. Selective enclosures remain
+predictions and event-dependent summaries were unopened at that delivery. Selective enclosures remain
 disabled; no simulator campaign, full study or paper was launched.
 
 New GPU-job time was **287.963973 seconds**; cumulative project use is

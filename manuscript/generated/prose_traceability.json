@@ -1,0 +1,502 @@
+{
+  "checked_literal_claims": [
+    {
+      "text": ".00015935",
+      "value": 0.0001593499116399753,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/paired/C_minus_B_onset/difference"
+    },
+    {
+      "text": ".00005218",
+      "value": 5.2175315728873406e-05,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/paired/C_minus_B_onset/3/bonferroni_family4/0"
+    },
+    {
+      "text": ".00023148",
+      "value": 0.00023148183518795722,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/paired/C_minus_B_onset/3/bonferroni_family4/1"
+    },
+    {
+      "text": "-.00022027",
+      "value": -0.00022026894570874005,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/paired/D_minus_C_onset/difference"
+    },
+    {
+      "text": "-.00043644",
+      "value": -0.0004364430846884748,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/paired/D_minus_C_onset/3/bonferroni_family4/0"
+    },
+    {
+      "text": ".00002676",
+      "value": 2.676422355637047e-05,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/paired/D_minus_C_onset/3/bonferroni_family4/1"
+    },
+    {
+      "text": "-.00010744",
+      "value": -0.00010743856237531108,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/paired/E_minus_D_onset/difference"
+    },
+    {
+      "text": "-.00023180",
+      "value": -0.00023180199269966315,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/paired/E_minus_D_onset/3/bonferroni_family4/0"
+    },
+    {
+      "text": ".00000729",
+      "value": 7.286171165258478e-06,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/paired/E_minus_D_onset/3/bonferroni_family4/1"
+    },
+    {
+      "text": "-.00016836",
+      "value": -0.0001683575964440759,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/paired/E_minus_B_onset/difference"
+    },
+    {
+      "text": "-.00029598",
+      "value": -0.0002959810899359512,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/paired/E_minus_B_onset/3/bonferroni_family4/0"
+    },
+    {
+      "text": ".00002452",
+      "value": 2.4521841167457995e-05,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/paired/E_minus_B_onset/3/bonferroni_family4/1"
+    },
+    {
+      "text": ".00096564",
+      "value": 0.0009656393586041795,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/secondary_paired/B_minus_R_union_onset/difference"
+    },
+    {
+      "text": ".00004839",
+      "value": 4.83854156405363e-05,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/secondary_paired/D_minus_D_rewire_20261004_onset/difference"
+    },
+    {
+      "text": "-.00018858",
+      "value": -0.00018858285024751036,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/secondary_paired/E_minus_E_rewire_20261004_onset/difference"
+    },
+    {
+      "text": "-.00024918",
+      "value": -0.00024917967950557657,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/secondary_paired/E_minus_E_rewire_20261005_onset/difference"
+    },
+    {
+      "text": ".00545291",
+      "value": 0.005452906216987773,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/diagnostics/B/onset/event_contribution"
+    },
+    {
+      "text": ".00975926",
+      "value": 0.009759259160917244,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/diagnostics/B/onset/nonevent_contribution"
+    },
+    {
+      "text": ".00559565",
+      "value": 0.005595647998139165,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/diagnostics/E/onset/event_contribution"
+    },
+    {
+      "text": ".00944816",
+      "value": 0.009448159783321775,
+      "artifact": "results/final_test/evaluate/raw_metrics.json",
+      "pointer": "/diagnostics/E/onset/nonevent_contribution"
+    }
+  ],
+  "quantitative_paragraphs": [
+    {
+      "paragraph": "\\section{Task and Observation Model}\n\\subsection{Recorded-Speed Event and Onset Eligibility}\nPEMS-BAY contains five-minute recorded speeds for 325 ordered sensors from January through June 2017 \\cite{dcrnn,release}. The stored units are mph. Let $v_{i,t}$ be recorded speed and $f_i$ the fixed reference free speed, estimated as the 85th percentile within the original training period. For a fully observed frame, define\n\\begin{equation}\n c_t=\\sum_{i=1}^{325}\\mathbf{1}\\{v_{i,t}\\leq f_i/2\\},\\qquad\n Y_t=\\mathbf{1}\\!\\left\\{\\max_{j=1,\\ldots,4}\\min_{k=0,1,2}c_{t+j+k}\\geq48\\right\\}.\n\\label{eq:target}\n\\end{equation}\nThe predictor uses 12 frames ending at $t$ and estimates whether this event occurs within the next six frames. The onset population excludes origins already satisfying the three-frame current event rule. Thus onset denotes a prediction made while the sustained event is not currently known or possibly active. It is not a detector-level onset time or a road-incident annotation.",
+      "section": "Task and Observation Model",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "reports/STAGE1_DATA_AUDIT.md",
+        "manifests/final_test/split_metadata.json"
+      ]
+    },
+    {
+      "paragraph": "Nonfinite and nonpositive observations are treated as unknown. At each future frame, the lower count treats unknown sensors as not severe and the upper count treats them as severe. Applying Eq.~\\ref{eq:target} to these counts gives lower and upper event labels. A forecast origin is scoreable only when these labels agree and at least 95\\% of its future sensor-frame entries are observed. We do not impute missing future speeds into observed labels. For current onset eligibility, an unknown sensor is conservatively allowed to be severe, excluding a possibly active event. Every arm uses the same resulting masks.",
+      "section": "Task and Observation Model",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "reports/STAGE1_DATA_AUDIT.md",
+        "manifests/final_test/split_metadata.json"
+      ]
+    },
+    {
+      "paragraph": "\\subsection{Aggregate and Local Inputs}\nSensors are assigned to 16 fixed regions by a deterministic recursive partition of coordinates. The aggregate vector has 1,158 entries: 12-frame histories of regional means and valid counts, six calendar terms, and histories of regional variance, minimum, maximum, and severe fraction. Summaries therefore preserve substantial heterogeneity as well as average slowing. Computing them already reads every sensor. They should not be described as saving sensor acquisition.",
+      "section": "Task and Observation Model",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "reports/STAGE1_DATA_AUDIT.md",
+        "manifests/final_test/split_metadata.json"
+      ]
+    },
+    {
+      "paragraph": "Feature speeds use an earlier-training reference and the clipped transformation\n\\begin{equation}\n x_{i,t}=\\operatorname{logit}\\!\\left(\\operatorname{clip}_{[.001,\\allowbreak .999]}(1-v_{i,t}/f_i^{\\rm feature})\\right).\n\\end{equation}\nFeature references and the historical target references have distinct fit cutoffs. Missing transformed entries contribute zero with explicit masks and valid counts. The aggregate correction input is standardized with the correction-training mean and scale, then clipped to $[-10,10]$.",
+      "section": "Task and Observation Model",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "reports/STAGE1_DATA_AUDIT.md",
+        "manifests/final_test/split_metadata.json"
+      ]
+    },
+    {
+      "paragraph": "\\section{Predictors and Graph Representations}\n\\subsection{Frozen Anchor and Aggregate Controls}\nThe anchor $A_G$ is a GPU quantile-binned tree booster with 100 trees, at most 15 leaves, 64 candidate bins, minimum leaf size 20, and learning rate .1. Its L2 setting was selected from two choices within early training. $R_{\\rm union}$ uses the same selected specification and feature transform, refitted on the exact union of the anchor and correction training examples at the same stride. Both have recoverable fitted weights. The earlier pilot's temporal baseline and a missing original sklearn fit are historical references only; saved probabilities do not reconstruct a fitted model.",
+      "section": "Predictors and Graph Representations",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/models_with_nulls.json",
+        "results/onset_graph/study01/main/null_graphs.json",
+        "src/traffic_risk_twins/onset_graph/graphs.py",
+        "src/traffic_risk_twins/onset_graph/models.py"
+      ]
+    },
+    {
+      "paragraph": "Every correction uses\n\\begin{equation}\n p_t=\\operatorname{clip}_{[0,1]}\\{p_{A_G,t}+\\alpha r_\\theta(I_t)\\},\n \\qquad r_\\theta(I_t)=\\tfrac12\\tanh g_\\theta(I_t).\n\\label{eq:correction}\n\\end{equation}\nThe residual head was initialized to zero and trained using ordinary all-time Brier loss plus $\\lambda r_\\theta^2$, with weight decay. Zero correction recovers the anchor exactly. This property does not guarantee better generalization after fitting. A global $\\alpha\\in\\{0,\\allowbreak .25,\\allowbreak .5,1\\}$ was selected in a separate training block. It scales the residual before clipping. The frozen final evaluation changes none of these values.",
+      "section": "Predictors and Graph Representations",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/models_with_nulls.json",
+        "results/onset_graph/study01/main/null_graphs.json",
+        "src/traffic_risk_twins/onset_graph/graphs.py",
+        "src/traffic_risk_twins/onset_graph/models.py"
+      ]
+    },
+    {
+      "paragraph": "\\begin{table}[t]\n\\caption{Main inputs and processing. Every correction also receives the aggregate vector and frozen anchor probability. Parameter counts exclude the shared anchor.}\n\\label{tab:inputs}\n\\small\n\\begin{tabularx}{\\textwidth}{l l X r}\n\\toprule\nArm & Extra measurements & Representation & Parameters\\\\\n\\midrule\n$A_G$, $R_{\\rm union}$ & None & Aggregate tree predictors & Trees\\\\\n$A_{\\rm mono}$ & None & Monotone anchor map & 2\\\\\nB & None & Aggregate correction & 38,209\\\\\nK & None & Larger aggregate correction & 50,129\\\\\nC & Full local histories & Shared temporal encoder, self message & 49,553\\\\\nD & Full local histories & Distance-weighted sensor messages & 49,553\\\\\nM & None & Messages among regional summaries & 49,937\\\\\nS & Graph summaries & Coarse and deviation streams at 1, 2, 4 hops & 50,321\\\\\nE & Full local histories & Separate internal and boundary messages & 49,809\\\\\nF & Full local histories & Frozen sparse dependency messages & 49,553\\\\\n\\bottomrule\n\\end{tabularx}\n\\end{table}",
+      "section": "Predictors and Graph Representations",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/models_with_nulls.json",
+        "results/onset_graph/study01/main/null_graphs.json",
+        "src/traffic_risk_twins/onset_graph/graphs.py",
+        "src/traffic_risk_twins/onset_graph/models.py"
+      ]
+    },
+    {
+      "paragraph": "The message and temporal widths are 16, and the ordinary aggregate and final hidden widths are 32. K uses aggregate width 42. All local and graph outputs pass through the same regional interface where feasible. Differences remain in input dimension, number of channels, normalization and effective function class. A matched parameter count is a capacity control, not a proof of equal optimization difficulty. B versus C therefore compares fitted representations and learning problems; it does not isolate an intrinsic information value independent of the learner.",
+      "section": "Predictors and Graph Representations",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/models_with_nulls.json",
+        "results/onset_graph/study01/main/null_graphs.json",
+        "src/traffic_risk_twins/onset_graph/graphs.py",
+        "src/traffic_risk_twins/onset_graph/models.py"
+      ]
+    },
+    {
+      "paragraph": "\\subsection{Coarse State and Graph-Dependent Detail}\nLet $L\\in\\mathbb{R}^{325\\times16}$ lift a regional vector to sensors and let $R\\in\\mathbb{R}^{16\\times325}$ average each nonempty region, so $RL=I$. For a fully observed vector $x$, write\n\\begin{equation}\n z=Rx,\\quad u=x-Lz,\\quad Q=RWL,\\quad s_h=RW^hu.\n\\end{equation}\nThen\n\\begin{equation}\n RWx=Qz+s_1,\\qquad RW^hx=(RW^hL)z+s_h.\n\\label{eq:decomposition}\n\\end{equation}\nS supplies the coarse and deviation terms separately at the fixed hop scales. Repeated sparse products compute these features without materializing dense powers. In general $RW^hL$ differs from $Q^h$, since omitted deviations can affect subsequent regional averages.",
+      "section": "Predictors and Graph Representations",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/models_with_nulls.json",
+        "results/onset_graph/study01/main/null_graphs.json",
+        "src/traffic_risk_twins/onset_graph/graphs.py",
+        "src/traffic_risk_twins/onset_graph/models.py"
+      ]
+    },
+    {
+      "paragraph": "The first deviation term vanishes for every vector exactly when $RW(I-LR)=0$, equivalently $RW=QR$. This follows by substituting $u=(I-LR)x$ and requiring the linear map to vanish for all $x$. It is an established closure condition, not a new theorem. Forward invariance $WL=LQ$ alone is insufficient for this implication with a general directed operator. Equitable-partition results require their stated symmetry or closure assumptions \\cite{schaub}. Diffusion and coarsening constructions likewise do not establish that these summaries are sufficient for Eq.~\\ref{eq:target} \\cite{diffusion}.",
+      "section": "Predictors and Graph Representations",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/models_with_nulls.json",
+        "results/onset_graph/study01/main/null_graphs.json",
+        "src/traffic_risk_twins/onset_graph/graphs.py",
+        "src/traffic_risk_twins/onset_graph/models.py"
+      ]
+    },
+    {
+      "paragraph": "\\subsection{Topology Controls and Attribution}\nD's identity control is the matched C architecture. E has its own self-message and internal-only controls. Two outcome-blind rewiring seeds generate trained competitors for D and E through directed double-edge swaps. Each null preserves nonself edge count, per-node in/outdegree, source-row weight multisets and diagonal fallbacks. It changes neighbor identity, geometry and regional mixing. Cross-region edge count rises from 1,130 in the original graph to 2,228 in each null. Thus a real-versus-null difference is not a clean test of geometry while holding regional structure fixed.",
+      "section": "Predictors and Graph Representations",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/models_with_nulls.json",
+        "results/onset_graph/study01/main/null_graphs.json",
+        "src/traffic_risk_twins/onset_graph/graphs.py",
+        "src/traffic_risk_twins/onset_graph/models.py"
+      ]
+    },
+    {
+      "paragraph": "\\section{Experimental Design}\n\\subsection{Chronology, Frozen Choices and Exposure}\nThe original split uses 108 complete training days through April 19, 36 validation days from April 20 to May 25, and 36 test days from May 26 to June 30. Incomplete March 12 is excluded from training. Input and outcome windows remain inside their split, with a two-sided 90-minute embargo at boundaries. Timestamps are naive in the release; a timezone convention is not asserted.",
+      "section": "Experimental Design",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/split_manifest.json",
+        "results/onset_graph/study01/main/anchor_fits.json",
+        "results/final_test/preflight/complete.json",
+        "results/final_test/replay/complete.json"
+      ]
+    },
+    {
+      "paragraph": "The main training pipeline separates six roles: anchor fitting through February 23; correction fitting from February 24 to March 16; early stopping from March 17 to 24; shrinkage and family selection from March 25 to April 1; calibration from April 2 to 9; and a final development gate from April 10 to 19. Windows crossing these boundaries are embargoed. All labels are observable before their role's cutoff. The anchor has 5,173 eligible fitting examples and the refit has 7,070. Correction training uses the later portion at stride three, matching its contribution to the refit's union. This addresses the older pilot's comparison between stride-12 early baseline training and denser later correction training.",
+      "section": "Experimental Design",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/split_manifest.json",
+        "results/onset_graph/study01/main/anchor_fits.json",
+        "results/final_test/preflight/complete.json",
+        "results/final_test/replay/complete.json"
+      ]
+    },
+    {
+      "paragraph": "Each correction family had two predeclared regularization choices, one tuning seed, and three retained seeds for the selected setting. AdamW used learning rate .001, weight decay .0001, batch size 256, at most 60 epochs and patience eight. Training minimized unweighted all-time Brier with residual regularization; selection used development onset Brier. No event weighting changed the probability estimand. Earlier rolling chronological evaluations are retained even when weak or unfavorable. Their overlaps and limited event counts prevent interpreting them as independent studies.",
+      "section": "Experimental Design",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/split_manifest.json",
+        "results/onset_graph/study01/main/anchor_fits.json",
+        "results/final_test/preflight/complete.json",
+        "results/final_test/replay/complete.json"
+      ]
+    },
+    {
+      "paragraph": "The registered raw onset comparison family is C minus B, D minus C, E minus D, and E minus B. Negative values favor the first arm. We use 2,000 paired calendar-block resamples with seed 20261007, three-day blocks as primary and one-day blocks as sensitivity. All origins in a selected day and their model/seed pairing remain together. Contiguous calendar segments are resampled separately, preserving gaps. Four-contrast Bonferroni percentile intervals use 98.75\\% marginal coverage as an approximate familywise assessment. We also show pointwise 95\\% intervals. These intervals condition on the fitted models and do not capture all training or development-selection uncertainty.",
+      "section": "Experimental Design",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/split_manifest.json",
+        "results/onset_graph/study01/main/anchor_fits.json",
+        "results/final_test/preflight/complete.json",
+        "results/final_test/replay/complete.json"
+      ]
+    },
+    {
+      "paragraph": "B versus $R_{\\rm union}$ is a required secondary comparison. Graph-versus-aggregate and topology-control contrasts are descriptive, with pointwise intervals. F remains secondary regardless of its point rank. Practical scales carried forward from the protocol are a .0001 absolute and 1\\% relative local benefit, or .00005 and .5\\% graph benefit. Alarm tolerances are a recall loss of .02 or FPR increase of .01. These are pilot interpretation scales, not equivalence margins or a substitute for uncertainty.",
+      "section": "Experimental Design",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/split_manifest.json",
+        "results/onset_graph/study01/main/anchor_fits.json",
+        "results/final_test/preflight/complete.json",
+        "results/final_test/replay/complete.json"
+      ]
+    },
+    {
+      "paragraph": "Each predictor's positive-slope logistic calibrator was fitted on separate, out-of-sample training predictions. The calibration block contains only 30 onset-positive origins in five groups on four days. Strict alarms use $p>c$, where the frozen cutoff targets 5\\% calibration FPR and excludes ties without jitter. The map is nondecreasing after endpoint clipping and cannot recover ranking among tied zeros. Test recall and FPR are measured, not assumed to inherit the calibration target.",
+      "section": "Experimental Design",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/split_manifest.json",
+        "results/onset_graph/study01/main/anchor_fits.json",
+        "results/final_test/preflight/complete.json",
+        "results/final_test/replay/complete.json"
+      ]
+    },
+    {
+      "paragraph": "Positive forecast groups merge origins separated by less than 30 minutes; a gap of at least 30 minutes starts a new group. A group is detected if any origin in it alarms. False-alarm groups use the same gap rule among alarmed non-event origins. These summaries account for repeated adjacent forecasts but do not turn groups into verified independent incidents. Event/non-event loss contributions, fixed-bin reliability and clipping diagnostics complement overall Brier.",
+      "section": "Experimental Design",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/split_manifest.json",
+        "results/onset_graph/study01/main/anchor_fits.json",
+        "results/final_test/preflight/complete.json",
+        "results/final_test/replay/complete.json"
+      ]
+    },
+    {
+      "paragraph": "\\subsection{Computation and Verification}\nAll scientific numerics ran on one NVIDIA RTX 6000 Ada Generation GPU, including transformations, graph operations, predictions, metrics, resampling and verification. CPU work handled orchestration, parsing, serialization and rendering. The final stage used PyTorch 2.8.0 with CUDA 12.8 and driver 570.124.06. Active allocations were capped at 32 billion bytes. Existing measured costs were reused, without an additional timing campaign or CPU benchmark.",
+      "section": "Experimental Design",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/split_manifest.json",
+        "results/onset_graph/study01/main/anchor_fits.json",
+        "results/final_test/preflight/complete.json",
+        "results/final_test/replay/complete.json"
+      ]
+    },
+    {
+      "paragraph": "Before test access, every raw and calibrated validation prediction vector was replayed exactly from the frozen checkpoints. Guards, hashes, labels, masks, origin alignment and zero-correction recovery passed focused checks. The held-out run and identical replay used the same committed implementation. Predictions matched exactly; the largest numeric metric difference was $2.22\\times10^{-16}$, below the predeclared $10^{-12}$ tolerance. This small reduction-level difference prevents claiming exact identity of all metrics. Reproduction establishes what computation ran, not predictive adequacy or formal floating-point certification.",
+      "section": "Experimental Design",
+      "source_artifacts": [
+        "configs/onset_graph_study.json",
+        "results/onset_graph/study01/main/split_manifest.json",
+        "results/onset_graph/study01/main/anchor_fits.json",
+        "results/final_test/preflight/complete.json",
+        "results/final_test/replay/complete.json"
+      ]
+    },
+    {
+      "paragraph": "\\section{Results}\n\\subsection{Held-Out Support and Competitive Aggregate Controls}\nThe test has 10,333 timestamp-eligible origins, of which \\TestEligible{} are scoreable. Six fail future coverage and none has disagreeing event bounds. There are 1,147 all-time positives. The onset population has \\TestOnsetN{} origins and \\TestPos{} positives, prevalence \\TestPrevalence{}, grouped into 45 positive forecast groups on 25 days. Validation had 8,981 onset origins, 289 positives and 47 groups on 26 days. These differing populations are not combined.",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "$R_{\\rm union}$ has the lowest raw onset and all-time point scores among the main families, \\TestOnRUnion{} and \\TestAllRUnion{} (Table~\\ref{tab:scores}). Its frozen-calibrated scores are also lowest, \\TestCalOnRUnion{} and \\TestCalAllRUnion{}. B's raw onset score is \\TestOnB{}. The secondary difference of B minus $R_{\\rm union}$ is .00096564. Its three-day pointwise interval is $[-.00000809,\\allowbreak .00253475]$. This favors aggregate refitting in point estimate while remaining uncertain. It does not prove statistical superiority or equivalence. The corresponding validation difference was near zero. The refit remains an essential control because it has access to the same union of fitting labels without local histories.",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "\\subsection{Registered Representation Contrasts}\nC remains worse than B on test. Its onset difference is +.00015935, or a 1.05\\% relative increase, with adjusted three-day interval $[.00005218,\\allowbreak .00023148]$. This direction persists from the strengthened validation comparison. It establishes a disadvantage for this fitted local representation, not zero information value of sensor histories.",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "D versus C changes direction from validation. Its test difference is -.00022027, a 1.43\\% relative reduction. The pointwise interval $[-.00036401,\\allowbreak -.00000627]$ favors D, but the adjusted three-day interval $[-.00043644,\\allowbreak .00002676]$ crosses zero. E versus D is -.00010744, a .71\\% reduction. Its adjusted interval is $[-.00023180,\\allowbreak .00000729]$. This retains the favorable validation point direction but loses its adjusted exclusion of zero. E versus B reverses from an unfavorable validation point to -.00016836, or 1.11\\%, on test. Its adjusted interval $[-.00029598,\\allowbreak .00002452]$ also crosses zero.",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "\\begin{figure}[t]\n\\centering\n\\figalt{Four paired Brier contrasts are shown separately for exposed validation and frozen test, for onset and all-time outcomes. C minus B stays positive, while several graph contrasts change direction or remain uncertain.}{\\includegraphics[width=\\textwidth]{figures/effects.pdf}}\n\\caption{Paired endpoint effects. Thin intervals are pointwise three-day 95\\%; pale thick onset intervals are the four-comparison adjusted intervals. Left favors the first named arm. Validation and test are separate evaluations.}\n\\label{fig:effects}\n\\end{figure}",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "D fails to beat both trained rewired controls. It is worse than rewiring seed 04 by .00004839, with pointwise interval $[.00001082,\\allowbreak .00008544]$, while its comparison with seed 05 is uncertain. The particular distance topology therefore lacks consistent support in this architecture.",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "E provides a more favorable but qualified topology result. It beats both trained rewired controls on test by .00018858 and .00024918, with pointwise intervals $[-.00027045,\\allowbreak -.00006917]$ and $[-.00041232,\\allowbreak -.00004701]$. Both paired differences favor E in all three seeds. Its internal-only contrast is also favorable, while E versus E\\_self remains uncertain. These are secondary comparisons, and the two real-versus-null directions were not consistently favorable on validation. Moreover, the nulls alter regional mixing. The evidence supports a limited statement about this trained within/cross-region representation and these controls, not a causal effect of road geometry.",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "\\subsection{Alarms, Calibration and Error Structure}\n$R_{\\rm union}$ achieves onset recall \\TestRecallRUnion{} at FPR \\TestFprRUnion{}. B, D and E share mean recall \\TestRecallB{}, with FPR \\TestFprB{}, \\TestFprD{} and \\TestFprE{}, respectively. E's FPR increase over B exceeds the registered one-percentage-point tolerance without a recall gain. Its favorable onset point Brier therefore does not yield an unqualified alarm improvement. $R_{\\rm union}$ detects all 45 positive groups; B, C, D and E each detect an average of 43.33. Group detection is forgiving and should not be equated with every positive origin being detected.",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "Clipping remains substantial. B, C, D and E put approximately 86.61\\%, 86.04\\%, 85.78\\% and 84.17\\% of seed-origin onset predictions at exactly zero. M and S include a seed with a zero alarm cutoff. Positive monotone calibration moves a tied endpoint mass but cannot recreate within-mass ranking. No noise was added to resolve ties. The test's mean predicted onset probabilities exceed its prevalence for these principal corrections, and high-probability bins overpredict observed risk (Fig.~\\ref{fig:alarms}). These are measured calibration diagnostics, not an explanation inferred solely from Brier.",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "For B, the event and non-event contributions to onset Brier are .00545291 and .00975926; for E they are .00559565 and .00944816. E reduces non-event loss but increases event loss. Its total improvement does not imply better recall. For each frozen arm, with $\\delta=p-p_{A_G}$ after clipping, the evaluation verifies\n\\begin{equation}\n \\overline{(Y-p_{A_G})^2-(Y-p)^2}\n =2\\overline{\\delta(Y-p_{A_G})}-\\overline{\\delta^2}.\n\\end{equation}\nThis established identity separates alignment with anchor errors from correction magnitude. It is descriptive algebra, not a novel explanation of generalization or a causal attribution to graph structure.",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "\\subsection{Measured Costs}\nTable~\\ref{tab:cost} reuses the earlier complete inference workload of 128 timestamp-selected validation origins. It includes warm-cache HDF history parsing, transfers, feature preparation, the relevant predictor and output transfer. Model restoration and graph preparation were measured separately as shared setup. The three repeats use the first registered seed only. These costs do not include future-label creation and are not measurements of a deployed telemetry service.",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "\\begin{table}[t]\n\\caption{Previously measured GPU fitting and complete 128-origin inference costs in seconds. Correction fitting lists the three selected seeds; tuning costs are recorded separately in the ledger. Inference means were summarized on CUDA from saved repeats.}\n\\label{tab:cost}\n\\centering\\small\n\\begin{tabular}{lrrl}\n\\toprule\nArm & Selected fit(s) & Mean inference & Inference repeats\\\\\n\\midrule\n\\input{generated/costs}\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "Representation payload accounting is a specification, not measured communication savings. A float32 aggregate vector occupies 4,632 bytes before its other metadata. Full local histories add 15,600 value bytes, while three additional regional deviation-summary streams add 2,304. Masks, identifiers and shared graph metadata must also be counted. Both kinds of summary require all-sensor ingestion. The study establishes neither acquisition savings nor a measured reduction in stored or transmitted traffic data.",
+      "section": "Results",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "results/final_test/evaluate/calibrated_metrics.json",
+        "results/onset_graph/study01/main/validation_raw_metrics.json",
+        "results/onset_graph/study01/main/information_cost.json",
+        "results/final_test/evaluate/historical_cost_summary.json",
+        "manifests/final_test/compute_summary.json"
+      ]
+    },
+    {
+      "paragraph": "Temporal support limits every conclusion. Overlapping forecast origins produce many labeled examples but relatively few event groups. A fixed 36-day test period supplies one chronological evaluation, not an independent sample of cities, seasons or incident types. Prior validation exposure influenced the research direction, and earlier rolling folds were small. The block bootstrap conditions on fitted models and uses a short series of day blocks. Its sensitivity to block length is an uncertainty limitation rather than a tuning opportunity.",
+      "section": "Discussion and Limitations",
+      "source_artifacts": [
+        "results/final_test/evaluate/raw_metrics.json",
+        "reports/FINAL_PUBLICATION_AUDIT.md"
+      ]
+    }
+  ]
+}
