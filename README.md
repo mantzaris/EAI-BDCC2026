@@ -3,13 +3,22 @@
 This project studies whether retaining local traffic histories improves sustained
 low-speed forecasts more than increasing Monte Carlo samples. The preserved
 [research plan](research_plan/EAI_BDCC_2026_Research_Plan.md) defines the task.
-The current handoff is the [campaign closeout](reports/CAMPAIGN_CLOSEOUT.md) and
-[research reset assessment](reports/RESEARCH_RESET.md), dated 23 September 2026.
-It recommends **C: defer a restart**. Neither task-specific aggregation
-sufficiency nor budgeted telemetry yet has a concrete new contribution,
-established independent event support and a documented deployment/data-use path.
+The current handoff is the [residual GPU pilot](reports/RESIDUAL_PILOT_REPORT.md),
+dated 23 September 2026, an explicitly authorized continuation after the
+[campaign closeout](reports/CAMPAIGN_CLOSEOUT.md) and
+[research reset assessment](reports/RESEARCH_RESET.md). Against a separately
+named frozen temporal baseline, aggregate residual correction improved
+exploratory Brier score from .020519 to .018352. Local and graph corrections
+scored .018251 and .018184, with uncertain increments over aggregate correction.
+The original strongest model's missing fitted artifact limits comparability;
+its saved predictions remain a separate historical reference.
+
+The recommendation is to simplify any next authorized investigation to an
+aggregate-correction replication with a recoverable baseline and stable alarm
+calibration. Adaptive acquisition failed its training-only gate and did not run.
+Test outcomes remain untouched; no full study or further experiment is running.
 The [source and provenance audit](reports/RESET_NOVELTY_AND_PROVENANCE.md)
-records the closest work and unresolved evidence.
+and the new pilot report retain unresolved data-use and novelty limitations.
 
 The historical [Stage 1 handoff](reports/STAGE1_REPORT.md),
 [Stage 2 handoff](reports/STAGE2_REPORT.md) and all their results remain unchanged.
@@ -18,15 +27,75 @@ Stage 2 recommends stopping the current method campaign: adding local histories
 did not improve the matched classifier, the single residual repair remained
 outside the simulator adequacy gate, and tighter enclosures still cost more than
 fine simulation. These are exploratory validation findings. Test outcomes remain
-untouched. Stage 2 used no GPU time; cumulative GPU-job usage is 668.62 seconds.
+untouched. Stage 2 used no GPU time; cumulative usage at its handoff was 668.62 seconds.
 The closeout also used zero GPU time. One hand-specified synthetic algebra job
 took 0.0324 seconds of wall time; no models were fit and no measurement files
-were opened. No Stage 3 or restart pilot is scheduled or authorized.
+were opened. The subsequent residual pilot used 41.234855 additional GPU-job
+seconds, bringing cumulative project usage to 709.858571 seconds. Its four jobs
+completed and the ledger has no unfinished reservation. No further stage is
+scheduled or authorized.
 
 This is a small recorded-speed predictive model. Its event is not an observed
 incident or a causal traffic cascade. The graph enclosure is an exact-arithmetic
 result; floating-point bounds are empirical. `certified` mode conservatively
 evaluates every scenario on the fine graph. No acceleration claim is implied.
+
+## Residual pilot reproduction
+
+Read the frozen [protocol](reports/RESIDUAL_PILOT_PROTOCOL.md) and
+[configuration](configs/residual_pilot.json) before using compute. The numerical
+implementation lives in `src/traffic_risk_twins/residual_gpu/`: baseline adapter,
+data/masks, correction models, fitting, evaluation, checks and the unexecuted
+conditional selection branch are separate. This path requires the verified
+RTX 6000 Ada Generation and CUDA; it has no CPU experiment fallback.
+
+The fitting/evaluation source was
+`29c64549c12e5daaad187cfe15f774d0ff3cd962`; checkpoint replay and expanded timing
+used `637c41b72666113f2e11ec8263ff4e6526f1c5f6`, with unchanged trained behavior.
+Dependencies are recorded in `environment.residual-gpu.lock` and the individual
+run JSON files. Reuse the existing private `data/raw/pems-bay.h5` and
+`data/processed/pilot_inputs.npz`; no new download is needed. The configured Pod
+used its existing `/workspace/EAI-BDCC2026-stage1/.venv/bin/python` environment.
+
+The following documents reproduction; it is not authorization for a new run.
+Keep `results/residual_pilot/compute_ledger.jsonl` across checkouts and use a new
+run ID. The wrapper includes startup, warm-up, failures and retries in its budget.
+The source SHA must identify the actual committed executable checkout.
+
+```bash
+PILOT_PYTHON=/workspace/EAI-BDCC2026-stage1/.venv/bin/python
+PILOT_SOURCE_SHA=$(git rev-parse HEAD)
+PILOT_RUN_ID=reproduction02
+$PILOT_PYTHON scripts/residual_budget.py --reserve 180 --phase core --source-sha "$PILOT_SOURCE_SHA" -- \
+  $PILOT_PYTHON scripts/run_residual_gpu.py --mode audit --run-id "$PILOT_RUN_ID" --source-sha "$PILOT_SOURCE_SHA"
+$PILOT_PYTHON scripts/residual_budget.py --reserve 3600 --phase core --source-sha "$PILOT_SOURCE_SHA" -- \
+  $PILOT_PYTHON scripts/run_residual_gpu.py --mode train --run-id "$PILOT_RUN_ID" --source-sha "$PILOT_SOURCE_SHA"
+# Inspect the durable training-only refinement_gate.json before evaluation.
+# In pilot01 the gate failed; no refine invocation was made.
+$PILOT_PYTHON scripts/residual_budget.py --reserve 600 --phase core --source-sha "$PILOT_SOURCE_SHA" -- \
+  $PILOT_PYTHON scripts/run_residual_gpu.py --mode evaluate --run-id "$PILOT_RUN_ID" --source-sha "$PILOT_SOURCE_SHA"
+$PILOT_PYTHON scripts/residual_budget.py --reserve 180 --phase core --source-sha "$PILOT_SOURCE_SHA" -- \
+  $PILOT_PYTHON scripts/verify_residual_gpu.py --run-id "$PILOT_RUN_ID" --source-sha "$PILOT_SOURCE_SHA"
+```
+
+Checkpoints are written under `checkpoints/residual_pilot/<run-id>/` and are
+excluded from Git. The delivered originals also have an ignored local copy at
+`data/processed/residual_pilot/pilot01/`; exact hashes are in
+`manifests/residual_pilot/checkpoints.json`. Replay refuses to overwrite a
+completed verification. A missing private checkpoint is not replaced by a claim
+that the original model was recovered.
+
+Render the delivered figures/CSV transcriptions from saved GPU statistics only:
+
+```bash
+python3 scripts/build_residual_figures.py
+```
+
+PDF, SVG and PNG exports are under `results/residual_pilot/pilot01/figures/`.
+`scripts/audit_residual_artifacts.py` checks hashes, historical preservation,
+links and ledger arithmetic using CPU metadata operations only; it requires
+the existing private files and refreshes its own verification manifests.
+It does not decode measurements, fit models or recompute research metrics.
 
 ## Review the closeout
 
