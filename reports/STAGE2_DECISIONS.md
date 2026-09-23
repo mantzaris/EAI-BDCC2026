@@ -137,3 +137,43 @@ figures, tests and provenance on main and verify the authorized push.
 ## Subsequent decisions and deviations
 
 None at initial save. New records will be appended here with evidence.
+
+### D1: one residual-location repair, before repaired outer evaluation
+
+CPU inner diagnosis (first 54 fit days, next 27 days, 128 time-selected origins,
+256 scenarios) gives full-retention Brier 0.0477086. The expected severe-sensor
+fraction falls from 0.03549 to 0.02501 across the horizon while the observed
+fraction stays near 0.039. Currently severe sensors have state bias -0.492 at
+30 minutes. Their subsequent teacher-forced residual mean is +0.1594, versus
+-0.02563 for currently nonsevere sensors. A near-zero unconditional residual mean
+(0.00945) therefore hides state-dependent bias. There is no inversion coding
+error: inverse/declared clipping agrees to 1.42e-14. Conditional Gaussian
+undercoverage is real, but cannot explain the full-retention defect.
+
+Attempt exactly one targeted repair: residual **location conditioned on current
+sensor severity and the existing calendar regime**. Fit 6 regimes x 2 severity
+groups x 6 horizon offsets from intact first-period out-of-fold residual sequences.
+Pool sensors within these groups. If a group has fewer than 100 sensor-sequence
+positions, use the regime's unconditional mean. Center each historical sequence
+by the location for its own origin and add the location for the forecast's initial
+state. Continue sampling complete centered multivariate sequences with replacement;
+do not independently shuffle sensors or fit an architecture. Keep coefficients,
+calendar forcing, transform, and scenario counts unchanged. No covariance repair,
+relaxed stability family, or second speculative repair is scheduled.
+
+Accept for outer evaluation only if inner Brier improves by at least 5% and
+30-minute speed MAE increases by no more than 2%. Report a failed attempt and
+stop simulator repair if this gate fails. Refit accepted location parameters on
+the original full-training OOF bank; compare the same fixed outer 128 origins at
+full retention, N=256 on CPU. Do not spend GPU time solely to reproduce a clear
+CPU outcome. Training-only logistic risk calibration remains a separate diagnostic
+for the original and (if accepted) repaired simulator, using a pre-calibration
+dynamics/bank fit and the final chronological inner block, then transport to the
+outer fitted model. Report this transport assumption and do not treat calibrated
+probabilities as unbiased simulator probabilities.
+
+Forcing now depends on the initial state, but is fixed before rollout. The existing
+pathwise theorem permits arbitrary coupled initial states and forcing; it does not
+require their independence. It still applies only when the coarse/fine runs reuse
+that same repaired forcing, including its actual block deviations. No new theorem
+or floating-point guarantee follows. Default prediction remains fine MC.
