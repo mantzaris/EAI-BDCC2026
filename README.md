@@ -1,44 +1,95 @@
 # When Averages Hide Congestion
 
-This project studies whether retaining local traffic histories improves sustained
-low-speed forecasts more than increasing Monte Carlo samples. The preserved
-[research plan](research_plan/EAI_BDCC_2026_Research_Plan.md) defines the task.
-The current handoff is the [residual GPU pilot](reports/RESIDUAL_PILOT_REPORT.md),
-dated 23 September 2026, an explicitly authorized continuation after the
-[campaign closeout](reports/CAMPAIGN_CLOSEOUT.md) and
-[research reset assessment](reports/RESEARCH_RESET.md). Against a separately
-named frozen temporal baseline, aggregate residual correction improved
-exploratory Brier score from .020519 to .018352. Local and graph corrections
-scored .018251 and .018184, with uncertain increments over aggregate correction.
-The original strongest model's missing fitted artifact limits comparability;
-its saved predictions remain a separate historical reference.
+The current handoff is the [exploratory onset/graph study](reports/ONSET_GRAPH_STUDY_REPORT.md),
+completed 23 September 2026. The authorized study implemented all six local/regional
+graph representations, stronger aggregate controls, chronological evaluations and
+matched trained graph nulls on CUDA. Historical reports and results are preserved.
 
-The recommendation is to simplify any next authorized investigation to an
-aggregate-correction replication with a recoverable baseline and stable alarm
-calibration. Adaptive acquisition failed its training-only gate and did not run.
-Test outcomes remain untouched; no full study or further experiment is running.
-The [source and provenance audit](reports/RESET_NOVELTY_AND_PROVENANCE.md)
-and the new pilot report retain unresolved data-use and novelty limitations.
+The previous secondary onset finding did not persist under this registered follow-up.
+On 8,981 identical onset-eligible validation origins, raw Brier was R_union .01216714,
+aggregate correction B .01216962, local C .01239595, distance graph D .01253247,
+training-selected expanded E .01228246, and dependency graph F .01214400.
+C was worse than B; E improved D but not B and raised false alarms beyond tolerance.
+Neither D nor E consistently beat both trained rewired nulls. F's tiny increment
+over B was uncertain. Every validation day was already exposed: these remain
+exploratory findings, not confirmation or proof of zero local information value.
 
-The historical [Stage 1 handoff](reports/STAGE1_REPORT.md),
-[Stage 2 handoff](reports/STAGE2_REPORT.md) and all their results remain unchanged.
+The recommended next authorized experiment is a narrow chronological comparison
+of aggregate refitting R_union versus aggregate correction B with stronger alarm
+calibration support. No next experiment is scheduled. The optional information-budget
+extension failed its training-only gate and did not run. The original test measurements,
+predictions and event-dependent summaries remain unopened. Selective enclosures remain
+disabled; no simulator campaign, full study or paper was launched.
 
-Stage 2 recommends stopping the current method campaign: adding local histories
-did not improve the matched classifier, the single residual repair remained
-outside the simulator adequacy gate, and tighter enclosures still cost more than
-fine simulation. These are exploratory validation findings. Test outcomes remain
-untouched. Stage 2 used no GPU time; cumulative usage at its handoff was 668.62 seconds.
-The closeout also used zero GPU time. One hand-specified synthetic algebra job
-took 0.0324 seconds of wall time; no models were fit and no measurement files
-were opened. The subsequent residual pilot used 41.234855 additional GPU-job
-seconds, bringing cumulative project usage to 709.858571 seconds. Its four jobs
-completed and the ledger has no unfinished reservation. No further stage is
-scheduled or authorized.
+New GPU-job time was **287.963973 seconds**; cumulative project use is
+**997.822543 seconds**, reconciled in the [ledger summary](manifests/onset_graph/compute_summary.json).
+All eight new jobs finished. CUDA event spans are recorded separately and are not
+active-kernel totals. The actual device was the RTX 6000 Ada Generation, with peak
+allocated VRAM 1.86 GB. All 187 compact checkpoints are versioned with hashes and
+[restore instructions](artifacts/onset_graph/README.md), so weights survive the Pod.
 
-This is a small recorded-speed predictive model. Its event is not an observed
-incident or a causal traffic cascade. The graph enclosure is an exact-arithmetic
-result; floating-point bounds are empirical. `certified` mode conservatively
-evaluates every scenario on the fine graph. No acceleration claim is implied.
+The [original research plan](research_plan/EAI_BDCC_2026_Research_Plan.md),
+[Stage 1](reports/STAGE1_REPORT.md), [Stage 2](reports/STAGE2_REPORT.md),
+[campaign closeout](reports/CAMPAIGN_CLOSEOUT.md), [research reset](reports/RESEARCH_RESET.md)
+and [prior residual pilot](reports/RESIDUAL_PILOT_REPORT.md) retain every positive,
+negative and inconclusive result. Stage 2's original simulator/local-feature/enclosure
+campaign failed its gates; its exploratory results are not overwritten by subsequent
+experiments. Data-use terms and upstream measurement preprocessing remain unresolved;
+see the [updated source audit](reports/ONSET_GRAPH_SOURCES.md). Raw data remain private.
+
+## Onset/graph reproduction
+
+Read the frozen [protocol](reports/ONSET_GRAPH_PROTOCOL.md) and
+[configuration](configs/onset_graph_study.json) before any future authorized compute.
+The modular implementation is `src/traffic_risk_twins/onset_graph/`, reusing the
+prior guarded data and baseline modules. There is no CPU experiment fallback.
+Dependencies match `environment.residual-gpu.lock` and run JSON environment records.
+Reuse private `data/raw/pems-bay.h5` and `data/processed/pilot_inputs.npz` without
+new downloads. The original private residual checkpoints are needed only for the
+historical-original replay audit; compact converted references are now also versioned.
+
+Fitting/checks/nulls used `48e31b66745d577105c5aa8f2b8b2e6690fafd0b`;
+outer evaluation/checkpoint replay used `70e03d050022e294340712071c0d8a261fb04438`;
+supplementary CUDA diagnostics used `541723f5c858cb852742b7080e59e0a391b37779`.
+Later source differences concern reporting/rendering/metadata, not fitted behavior.
+
+The following is documentation, **not a new run authorization**. Use a new run ID,
+retain the persistent ledger, and record the actual committed executable source.
+The wrapper serializes GPU jobs, times startup/failed runs and enforces reservations.
+
+```bash
+ONSET_PYTHON=/workspace/EAI-BDCC2026-stage1/.venv/bin/python
+ONSET_SOURCE_SHA=$(git rev-parse HEAD)
+ONSET_RUN_ID=reproduction02
+$ONSET_PYTHON scripts/onset_budget.py --reserve 240 --phase core --source-sha "$ONSET_SOURCE_SHA" -- \
+  $ONSET_PYTHON scripts/run_onset_graph.py --mode audit --run-id "$ONSET_RUN_ID" --source-sha "$ONSET_SOURCE_SHA"
+for ONSET_FOLD in rolling1 rolling2 main; do
+  $ONSET_PYTHON scripts/onset_budget.py --reserve 600 --phase core --source-sha "$ONSET_SOURCE_SHA" -- \
+    $ONSET_PYTHON scripts/run_onset_graph.py --mode train --fold "$ONSET_FOLD" --run-id "$ONSET_RUN_ID" --source-sha "$ONSET_SOURCE_SHA"
+done
+$ONSET_PYTHON scripts/onset_budget.py --reserve 600 --phase core --source-sha "$ONSET_SOURCE_SHA" -- \
+  $ONSET_PYTHON scripts/run_onset_graph.py --mode nulls --run-id "$ONSET_RUN_ID" --source-sha "$ONSET_SOURCE_SHA"
+# Read the frozen training-only budget_decision.json before outer evaluation.
+# study01 did not admit an extension; no policy was fit or executed.
+$ONSET_PYTHON scripts/onset_budget.py --reserve 600 --phase core --source-sha "$ONSET_SOURCE_SHA" -- \
+  $ONSET_PYTHON scripts/run_onset_graph.py --mode evaluate --run-id "$ONSET_RUN_ID" --source-sha "$ONSET_SOURCE_SHA"
+$ONSET_PYTHON scripts/onset_budget.py --reserve 180 --phase core --source-sha "$ONSET_SOURCE_SHA" -- \
+  $ONSET_PYTHON scripts/run_onset_graph.py --mode replay --run-id "$ONSET_RUN_ID" --source-sha "$ONSET_SOURCE_SHA"
+$ONSET_PYTHON scripts/onset_budget.py --reserve 240 --phase core --source-sha "$ONSET_SOURCE_SHA" -- \
+  $ONSET_PYTHON scripts/run_onset_graph.py --mode supplement --run-id "$ONSET_RUN_ID" --source-sha "$ONSET_SOURCE_SHA"
+```
+
+Render delivered figures and scalar CSV transcriptions from saved GPU outputs only:
+
+```bash
+python3 scripts/build_onset_figures.py
+python3 scripts/finalize_onset.py
+```
+
+The latter checks archival hashes, historical preservation and ledger metadata;
+it does not fit or score a CPU model. The illustrative local window is categorical,
+not an invertible raw-speed export. The four main figures and illustration have
+PDF/SVG exports and PNG previews under `results/onset_graph/study01/main/figures/`.
 
 ## Residual pilot reproduction
 

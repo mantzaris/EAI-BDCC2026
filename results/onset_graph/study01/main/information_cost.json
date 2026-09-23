@@ -1,0 +1,20 @@
+{
+  "sensors": 325,
+  "regions": 16,
+  "frames": 12,
+  "common_summary_float32_bytes": 4632,
+  "common_counts_uint16_bytes": 384,
+  "common_region_valid_bitset_bytes": 24,
+  "common_timestamp_bytes": 8,
+  "local_history_float32_bytes": 15600,
+  "local_frame_mask_bitset_bytes": 488,
+  "local_ids_uint16_bytes": 650,
+  "local_derived_input_float32_bytes": 62400,
+  "S_additional_summary_float32_bytes": 2304,
+  "graph_CSR_float64_uint32_bytes": 29876,
+  "sensor_region_uint16_bytes": 650,
+  "region_identity_uint16_bytes": 32,
+  "note": "1158 summary floats already include counts; uint16 count bytes are a disclosed alternative, not double-counted. C/D/E/F local payload transmits one transformed history plus masks/IDs; deviations/changes derived at receiver. S transmits 3 extra regional deviation summaries; its coarse contribution is computable from common means and shared graph operators. All summaries require all-sensor ingestion; no acquisition savings or measured compressed-file savings.",
+  "all_sensors_read_for_initial_summaries": true,
+  "budget_extension_executed": false
+}

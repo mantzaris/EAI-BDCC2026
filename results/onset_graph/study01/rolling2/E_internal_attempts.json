@@ -1,0 +1,1091 @@
+[
+  {
+    "kind": "E",
+    "seed": 20261001,
+    "regularization": 0.1,
+    "best_early_onset": 0.013023155292010202,
+    "best_epoch": 9,
+    "epochs": 17,
+    "history": [
+      {
+        "epoch": 1,
+        "train_all_time_brier": 0.01371840414202855,
+        "early_onset": 0.014025721323204543,
+        "early_all_time": 0.020700681206315148
+      },
+      {
+        "epoch": 2,
+        "train_all_time_brier": 0.013246191707888707,
+        "early_onset": 0.013902639700348511,
+        "early_all_time": 0.020622608685184608
+      },
+      {
+        "epoch": 3,
+        "train_all_time_brier": 0.012916411311410601,
+        "early_onset": 0.014078554821769897,
+        "early_all_time": 0.020947974759235294
+      },
+      {
+        "epoch": 4,
+        "train_all_time_brier": 0.012672005204484589,
+        "early_onset": 0.01375679675559645,
+        "early_all_time": 0.02034993153455238
+      },
+      {
+        "epoch": 5,
+        "train_all_time_brier": 0.011959838475863254,
+        "early_onset": 0.013778153484149127,
+        "early_all_time": 0.02027802661437355
+      },
+      {
+        "epoch": 6,
+        "train_all_time_brier": 0.011389689468764674,
+        "early_onset": 0.013280937021034275,
+        "early_all_time": 0.019576845065466177
+      },
+      {
+        "epoch": 7,
+        "train_all_time_brier": 0.010600346013102115,
+        "early_onset": 0.013187215586988203,
+        "early_all_time": 0.01929792080562769
+      },
+      {
+        "epoch": 8,
+        "train_all_time_brier": 0.009387745490153187,
+        "early_onset": 0.01455130441073312,
+        "early_all_time": 0.021933922955962092
+      },
+      {
+        "epoch": 9,
+        "train_all_time_brier": 0.00873847187633191,
+        "early_onset": 0.013023155292010202,
+        "early_all_time": 0.018926724158711883
+      },
+      {
+        "epoch": 10,
+        "train_all_time_brier": 0.008069671335698957,
+        "early_onset": 0.013129523181454836,
+        "early_all_time": 0.019235874492136068
+      },
+      {
+        "epoch": 11,
+        "train_all_time_brier": 0.0070590314090998255,
+        "early_onset": 0.01340912806889026,
+        "early_all_time": 0.019534196781631322
+      },
+      {
+        "epoch": 12,
+        "train_all_time_brier": 0.00649965568179017,
+        "early_onset": 0.013780704070617256,
+        "early_all_time": 0.02030667627768217
+      },
+      {
+        "epoch": 13,
+        "train_all_time_brier": 0.006282359092097891,
+        "early_onset": 0.013591115537400607,
+        "early_all_time": 0.019842265796100402
+      },
+      {
+        "epoch": 14,
+        "train_all_time_brier": 0.005410653249793544,
+        "early_onset": 0.013494066873231356,
+        "early_all_time": 0.019640112601054957
+      },
+      {
+        "epoch": 15,
+        "train_all_time_brier": 0.005273912546513172,
+        "early_onset": 0.013064246145880459,
+        "early_all_time": 0.01952149810836465
+      },
+      {
+        "epoch": 16,
+        "train_all_time_brier": 0.005002153365642233,
+        "early_onset": 0.013566809145889551,
+        "early_all_time": 0.01992346765108602
+      },
+      {
+        "epoch": 17,
+        "train_all_time_brier": 0.004479374493944821,
+        "early_onset": 0.013796098480133374,
+        "early_all_time": 0.0201750391661326
+      }
+    ],
+    "training_origins": 1903,
+    "parameters": 49809,
+    "fit_wall_seconds": 1.1126724109053612,
+    "cuda_event_span_seconds": 1.102381591796875,
+    "checkpoint_sha256": "07a091e8aec3f4020c8835106be9ffe295bcda11c347d78e9fe35df1caee804d",
+    "checkpoint": "artifacts/onset_graph/study01/rolling2/E_internal_20261001.pt.gz",
+    "graph_key": "distance",
+    "source_sha": "48e31b66745d577105c5aa8f2b8b2e6690fafd0b",
+    "internal_only": true,
+    "masked": false,
+    "shrinkage": {
+      "alpha": 1,
+      "grid": [
+        0,
+        0.25,
+        0.5,
+        1
+      ],
+      "onset_briers": [
+        0.01075849068895379,
+        0.010315163722277402,
+        0.009944725088131375,
+        0.009340742700475144
+      ]
+    },
+    "replicate": {
+      "key": "E_internal_20261001",
+      "kind": "E",
+      "seed": 20261001,
+      "regularization": 0.1,
+      "alpha": 1,
+      "checkpoint": "artifacts/onset_graph/study01/rolling2/E_internal_20261001.pt.gz",
+      "graph_key": "distance",
+      "internal_only": true,
+      "calibrator": {
+        "identity": false,
+        "slope": 0.7292359233470754,
+        "intercept": -0.8062253705085307,
+        "epsilon": 1e-06,
+        "n": 967,
+        "positives": 36
+      },
+      "raw_cutoff": 0.20911451800934827,
+      "calibrated_cutoff": 0.14475975914895334,
+      "calibration_raw": {
+        "n": 967,
+        "positives": 36,
+        "prevalence": 0.03722854188210962,
+        "brier": 0.022744448323753202,
+        "event_contribution": 0.004373858055037301,
+        "nonevent_contribution": 0.018370590268715906,
+        "tp": 35,
+        "fp": 46,
+        "recall": 0.9722222222222222,
+        "fpr": 0.04940923737916219,
+        "cutoff": 0.20911451800934827,
+        "alarm_rule": "strict >",
+        "zero_count": 774,
+        "one_count": 1,
+        "cutoff_ties": 1,
+        "unique_scores": 194,
+        "mean_probability": 0.05794380574850251,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0,
+          0.041159245876233284,
+          0.9020113090153651,
+          1.0
+        ],
+        "episodes": {
+          "positive_groups": 6,
+          "detected_groups": 6,
+          "false_alarm_groups": 10,
+          "false_alarm_groups_per_day": 2.5,
+          "meaning": "Clusters of forecast origins separated by30minutes, not independently observed incidents"
+        },
+        "reliability": [
+          {
+            "bin": 0,
+            "n": 821,
+            "predicted": 0.00021273272848481366,
+            "observed": 0.0
+          },
+          {
+            "bin": 1,
+            "n": 53,
+            "predicted": 0.026206801826077927,
+            "observed": 0.0
+          },
+          {
+            "bin": 2,
+            "n": 4,
+            "predicted": 0.06433327250411927,
+            "observed": 0.25
+          },
+          {
+            "bin": 3,
+            "n": 7,
+            "predicted": 0.1224927092381326,
+            "observed": 0.0
+          },
+          {
+            "bin": 4,
+            "n": 16,
+            "predicted": 0.2791704115050669,
+            "observed": 0.1875
+          },
+          {
+            "bin": 5,
+            "n": 14,
+            "predicted": 0.5159937477343268,
+            "observed": 0.21428571428571427
+          },
+          {
+            "bin": 6,
+            "n": 27,
+            "predicted": 0.7176804820315785,
+            "observed": 0.4444444444444444
+          },
+          {
+            "bin": 7,
+            "n": 25,
+            "predicted": 0.8914100788014437,
+            "observed": 0.68
+          }
+        ],
+        "brier_95": [
+          0.009442127817431721,
+          0.022744448323753205
+        ],
+        "recall_95": [
+          0.9523809523809524,
+          1.0
+        ],
+        "fpr_95": [
+          0.025988700564971753,
+          0.05186721991701245
+        ]
+      },
+      "calibration_calibrated": {
+        "n": 967,
+        "positives": 36,
+        "prevalence": 0.03722854188210962,
+        "brier": 0.017742931705385264,
+        "event_contribution": 0.009385093624941724,
+        "nonevent_contribution": 0.008357838080443535,
+        "tp": 35,
+        "fp": 46,
+        "recall": 0.9722222222222222,
+        "fpr": 0.04940923737916219,
+        "cutoff": 0.14475975914895334,
+        "alarm_rule": "strict >",
+        "zero_count": 0,
+        "one_count": 0,
+        "cutoff_ties": 1,
+        "unique_scores": 194,
+        "mean_probability": 0.04177415131630052,
+        "quantiles": [
+          1.881210425789178e-05,
+          1.881210425789178e-05,
+          1.881210425789178e-05,
+          0.04302217835216026,
+          0.6931271086270295,
+          0.9999056627886527
+        ],
+        "episodes": {
+          "positive_groups": 6,
+          "detected_groups": 6,
+          "false_alarm_groups": 10,
+          "false_alarm_groups_per_day": 2.5,
+          "meaning": "Clusters of forecast origins separated by30minutes, not independently observed incidents"
+        },
+        "reliability": [
+          {
+            "bin": 0,
+            "n": 807,
+            "predicted": 0.00022326834453986354,
+            "observed": 0.0
+          },
+          {
+            "bin": 1,
+            "n": 67,
+            "predicted": 0.0266026327055931,
+            "observed": 0.0
+          },
+          {
+            "bin": 2,
+            "n": 10,
+            "predicted": 0.07914663168192132,
+            "observed": 0.1
+          },
+          {
+            "bin": 3,
+            "n": 11,
+            "predicted": 0.15996802540337615,
+            "observed": 0.09090909090909091
+          },
+          {
+            "bin": 4,
+            "n": 22,
+            "predicted": 0.2968189235495516,
+            "observed": 0.3181818181818182
+          },
+          {
+            "bin": 5,
+            "n": 29,
+            "predicted": 0.4905819323717141,
+            "observed": 0.3793103448275862
+          },
+          {
+            "bin": 6,
+            "n": 17,
+            "predicted": 0.6752070410579625,
+            "observed": 0.7058823529411764
+          },
+          {
+            "bin": 7,
+            "n": 4,
+            "predicted": 0.9116309316081591,
+            "observed": 1.0
+          }
+        ],
+        "brier_95": [
+          0.011099670523248117,
+          0.01774293170538523
+        ],
+        "recall_95": [
+          0.9523809523809524,
+          1.0
+        ],
+        "fpr_95": [
+          0.025988700564971753,
+          0.05186721991701245
+        ]
+      }
+    }
+  },
+  {
+    "kind": "E",
+    "seed": 20261002,
+    "regularization": 0.1,
+    "best_early_onset": 0.01305925894238372,
+    "best_epoch": 11,
+    "epochs": 19,
+    "history": [
+      {
+        "epoch": 1,
+        "train_all_time_brier": 0.013644664041217848,
+        "early_onset": 0.01400534682654986,
+        "early_all_time": 0.02070727587186657
+      },
+      {
+        "epoch": 2,
+        "train_all_time_brier": 0.013269550676490457,
+        "early_onset": 0.013830642647444017,
+        "early_all_time": 0.020576248956344682
+      },
+      {
+        "epoch": 3,
+        "train_all_time_brier": 0.012897001618587495,
+        "early_onset": 0.013832945055472563,
+        "early_all_time": 0.02066571105437896
+      },
+      {
+        "epoch": 4,
+        "train_all_time_brier": 0.012470764953750485,
+        "early_onset": 0.013672026811974004,
+        "early_all_time": 0.020336325730174316
+      },
+      {
+        "epoch": 5,
+        "train_all_time_brier": 0.012174425144338941,
+        "early_onset": 0.013618576630179978,
+        "early_all_time": 0.02014598574086535
+      },
+      {
+        "epoch": 6,
+        "train_all_time_brier": 0.011630099980890148,
+        "early_onset": 0.013346645966733095,
+        "early_all_time": 0.019663640400282848
+      },
+      {
+        "epoch": 7,
+        "train_all_time_brier": 0.01084099320927422,
+        "early_onset": 0.01340065882331129,
+        "early_all_time": 0.019582633691416117
+      },
+      {
+        "epoch": 8,
+        "train_all_time_brier": 0.010259255646252125,
+        "early_onset": 0.013104684646901312,
+        "early_all_time": 0.01927588600398135
+      },
+      {
+        "epoch": 9,
+        "train_all_time_brier": 0.009508209360826471,
+        "early_onset": 0.01311405893444628,
+        "early_all_time": 0.019083983933377565
+      },
+      {
+        "epoch": 10,
+        "train_all_time_brier": 0.008326275130680622,
+        "early_onset": 0.01454728092917347,
+        "early_all_time": 0.021697348595622373
+      },
+      {
+        "epoch": 11,
+        "train_all_time_brier": 0.00842169829639123,
+        "early_onset": 0.01305925894238372,
+        "early_all_time": 0.0195188030398595
+      },
+      {
+        "epoch": 12,
+        "train_all_time_brier": 0.007276736002353008,
+        "early_onset": 0.013656152475769168,
+        "early_all_time": 0.01983106322153429
+      },
+      {
+        "epoch": 13,
+        "train_all_time_brier": 0.006335876515402361,
+        "early_onset": 0.014418591928631564,
+        "early_all_time": 0.020982544263804106
+      },
+      {
+        "epoch": 14,
+        "train_all_time_brier": 0.005840411090124271,
+        "early_onset": 0.013575729605687615,
+        "early_all_time": 0.019757191321953752
+      },
+      {
+        "epoch": 15,
+        "train_all_time_brier": 0.005852144974718046,
+        "early_onset": 0.014005605969545826,
+        "early_all_time": 0.020320047818909216
+      },
+      {
+        "epoch": 16,
+        "train_all_time_brier": 0.0049950781190565945,
+        "early_onset": 0.014278069085943689,
+        "early_all_time": 0.020594580591296447
+      },
+      {
+        "epoch": 17,
+        "train_all_time_brier": 0.005072271516351819,
+        "early_onset": 0.014017109540633683,
+        "early_all_time": 0.020257960200068557
+      },
+      {
+        "epoch": 18,
+        "train_all_time_brier": 0.004329270225948494,
+        "early_onset": 0.013680145661226405,
+        "early_all_time": 0.02032162560276374
+      },
+      {
+        "epoch": 19,
+        "train_all_time_brier": 0.004512239996693843,
+        "early_onset": 0.014405454560654576,
+        "early_all_time": 0.020908680237304942
+      }
+    ],
+    "training_origins": 1903,
+    "parameters": 49809,
+    "fit_wall_seconds": 1.264376275241375,
+    "cuda_event_span_seconds": 1.252119384765625,
+    "checkpoint_sha256": "07c1ce7bb28dc3bd2baf492e84fffe98082e75863e6dca1b05f06052551c615b",
+    "checkpoint": "artifacts/onset_graph/study01/rolling2/E_internal_20261002.pt.gz",
+    "graph_key": "distance",
+    "source_sha": "48e31b66745d577105c5aa8f2b8b2e6690fafd0b",
+    "internal_only": true,
+    "masked": false,
+    "shrinkage": {
+      "alpha": 1,
+      "grid": [
+        0,
+        0.25,
+        0.5,
+        1
+      ],
+      "onset_briers": [
+        0.01075849068895379,
+        0.010205399191732079,
+        0.009725498071942089,
+        0.008915960420397624
+      ]
+    },
+    "replicate": {
+      "key": "E_internal_20261002",
+      "kind": "E",
+      "seed": 20261002,
+      "regularization": 0.1,
+      "alpha": 1,
+      "checkpoint": "artifacts/onset_graph/study01/rolling2/E_internal_20261002.pt.gz",
+      "graph_key": "distance",
+      "internal_only": true,
+      "calibrator": {
+        "identity": false,
+        "slope": 0.8438133097953735,
+        "intercept": -0.6802289634768687,
+        "epsilon": 1e-06,
+        "n": 967,
+        "positives": 36
+      },
+      "raw_cutoff": 0.1896008786333796,
+      "calibrated_cutoff": 0.1294357505842914,
+      "calibration_raw": {
+        "n": 967,
+        "positives": 36,
+        "prevalence": 0.03722854188210962,
+        "brier": 0.02148243472445046,
+        "event_contribution": 0.005502936266515387,
+        "nonevent_contribution": 0.01597949845793507,
+        "tp": 35,
+        "fp": 46,
+        "recall": 0.9722222222222222,
+        "fpr": 0.04940923737916219,
+        "cutoff": 0.1896008786333796,
+        "alarm_rule": "strict >",
+        "zero_count": 872,
+        "one_count": 0,
+        "cutoff_ties": 1,
+        "unique_scores": 96,
+        "mean_probability": 0.052246437413976436,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.8476890188270333,
+          0.9399162566402927
+        ],
+        "episodes": {
+          "positive_groups": 6,
+          "detected_groups": 6,
+          "false_alarm_groups": 10,
+          "false_alarm_groups_per_day": 2.5,
+          "meaning": "Clusters of forecast origins separated by30minutes, not independently observed incidents"
+        },
+        "reliability": [
+          {
+            "bin": 0,
+            "n": 873,
+            "predicted": 9.512193346143178e-06,
+            "observed": 0.001145475372279496
+          },
+          {
+            "bin": 1,
+            "n": 4,
+            "predicted": 0.033232138711167876,
+            "observed": 0.0
+          },
+          {
+            "bin": 2,
+            "n": 3,
+            "predicted": 0.06617122890567137,
+            "observed": 0.0
+          },
+          {
+            "bin": 3,
+            "n": 8,
+            "predicted": 0.1477082644599709,
+            "observed": 0.0
+          },
+          {
+            "bin": 4,
+            "n": 15,
+            "predicted": 0.26999610767411514,
+            "observed": 0.2
+          },
+          {
+            "bin": 5,
+            "n": 15,
+            "predicted": 0.5119738718818002,
+            "observed": 0.4
+          },
+          {
+            "bin": 6,
+            "n": 32,
+            "predicted": 0.7080942278638858,
+            "observed": 0.375
+          },
+          {
+            "bin": 7,
+            "n": 17,
+            "predicted": 0.8595486760176179,
+            "observed": 0.8235294117647058
+          }
+        ],
+        "brier_95": [
+          0.009565755158175171,
+          0.02148243472445046
+        ],
+        "recall_95": [
+          0.9523809523809524,
+          1.0
+        ],
+        "fpr_95": [
+          0.027118644067796613,
+          0.049792531120331954
+        ]
+      },
+      "calibration_calibrated": {
+        "n": 967,
+        "positives": 36,
+        "prevalence": 0.03722854188210962,
+        "brier": 0.018255742625012606,
+        "event_contribution": 0.0097907403409589,
+        "nonevent_contribution": 0.008465002284053709,
+        "tp": 35,
+        "fp": 46,
+        "recall": 0.9722222222222222,
+        "fpr": 0.04940923737916219,
+        "cutoff": 0.1294357505842914,
+        "alarm_rule": "strict >",
+        "zero_count": 0,
+        "one_count": 0,
+        "cutoff_ties": 1,
+        "unique_scores": 96,
+        "mean_probability": 0.038880604077257304,
+        "quantiles": [
+          4.382267855401813e-06,
+          4.382267855401813e-06,
+          4.382267855401813e-06,
+          4.382267855401813e-06,
+          0.683158753706573,
+          0.8375758999346367
+        ],
+        "episodes": {
+          "positive_groups": 6,
+          "detected_groups": 6,
+          "false_alarm_groups": 10,
+          "false_alarm_groups_per_day": 2.5,
+          "meaning": "Clusters of forecast origins separated by30minutes, not independently observed incidents"
+        },
+        "reliability": [
+          {
+            "bin": 0,
+            "n": 873,
+            "predicted": 1.4540317311142385e-05,
+            "observed": 0.001145475372279496
+          },
+          {
+            "bin": 1,
+            "n": 5,
+            "predicted": 0.03116976859399694,
+            "observed": 0.0
+          },
+          {
+            "bin": 2,
+            "n": 7,
+            "predicted": 0.07751602332314612,
+            "observed": 0.0
+          },
+          {
+            "bin": 3,
+            "n": 13,
+            "predicted": 0.1499631327533128,
+            "observed": 0.23076923076923078
+          },
+          {
+            "bin": 4,
+            "n": 18,
+            "predicted": 0.3064528438913042,
+            "observed": 0.2222222222222222
+          },
+          {
+            "bin": 5,
+            "n": 31,
+            "predicted": 0.5041944472216174,
+            "observed": 0.4193548387096774
+          },
+          {
+            "bin": 6,
+            "n": 18,
+            "predicted": 0.6747369992353403,
+            "observed": 0.7222222222222222
+          },
+          {
+            "bin": 7,
+            "n": 2,
+            "predicted": 0.8227118367601791,
+            "observed": 1.0
+          }
+        ],
+        "brier_95": [
+          0.011521114595391617,
+          0.01825574262501256
+        ],
+        "recall_95": [
+          0.9523809523809524,
+          1.0
+        ],
+        "fpr_95": [
+          0.027118644067796613,
+          0.049792531120331954
+        ]
+      }
+    }
+  },
+  {
+    "kind": "E",
+    "seed": 20261003,
+    "regularization": 0.1,
+    "best_early_onset": 0.013040248739561128,
+    "best_epoch": 14,
+    "epochs": 22,
+    "history": [
+      {
+        "epoch": 1,
+        "train_all_time_brier": 0.01374536560441792,
+        "early_onset": 0.014190759904666726,
+        "early_all_time": 0.021044815753918086
+      },
+      {
+        "epoch": 2,
+        "train_all_time_brier": 0.013461474549616444,
+        "early_onset": 0.013965097683210036,
+        "early_all_time": 0.020684892860062615
+      },
+      {
+        "epoch": 3,
+        "train_all_time_brier": 0.0131723492413618,
+        "early_onset": 0.014034821394104054,
+        "early_all_time": 0.020734114868019564
+      },
+      {
+        "epoch": 4,
+        "train_all_time_brier": 0.012936012780181765,
+        "early_onset": 0.01394335347076711,
+        "early_all_time": 0.020713201721375103
+      },
+      {
+        "epoch": 5,
+        "train_all_time_brier": 0.01266732461528447,
+        "early_onset": 0.013980186648631984,
+        "early_all_time": 0.020755895703496983
+      },
+      {
+        "epoch": 6,
+        "train_all_time_brier": 0.012846807754548393,
+        "early_onset": 0.013938699368626318,
+        "early_all_time": 0.02061196989937893
+      },
+      {
+        "epoch": 7,
+        "train_all_time_brier": 0.012211172455665104,
+        "early_onset": 0.01373018636769412,
+        "early_all_time": 0.020720680686054618
+      },
+      {
+        "epoch": 8,
+        "train_all_time_brier": 0.01173330599267456,
+        "early_onset": 0.013807586380722558,
+        "early_all_time": 0.02032658701767179
+      },
+      {
+        "epoch": 9,
+        "train_all_time_brier": 0.010929410887889533,
+        "early_onset": 0.01359921625189394,
+        "early_all_time": 0.019793129685779814
+      },
+      {
+        "epoch": 10,
+        "train_all_time_brier": 0.010538048670736416,
+        "early_onset": 0.01428228554624463,
+        "early_all_time": 0.02146807458754181
+      },
+      {
+        "epoch": 11,
+        "train_all_time_brier": 0.009793209037984628,
+        "early_onset": 0.01318986526263911,
+        "early_all_time": 0.01913217515757781
+      },
+      {
+        "epoch": 12,
+        "train_all_time_brier": 0.008509221285363047,
+        "early_onset": 0.0140106656288842,
+        "early_all_time": 0.020902826604825262
+      },
+      {
+        "epoch": 13,
+        "train_all_time_brier": 0.007840411156598552,
+        "early_onset": 0.013454234298925971,
+        "early_all_time": 0.019966619439926874
+      },
+      {
+        "epoch": 14,
+        "train_all_time_brier": 0.007102222606509036,
+        "early_onset": 0.013040248739561128,
+        "early_all_time": 0.01935091081653045
+      },
+      {
+        "epoch": 15,
+        "train_all_time_brier": 0.006474441278955153,
+        "early_onset": 0.013631668032965906,
+        "early_all_time": 0.02027989291552805
+      },
+      {
+        "epoch": 16,
+        "train_all_time_brier": 0.00567342130592273,
+        "early_onset": 0.013615203021800805,
+        "early_all_time": 0.02034911924177072
+      },
+      {
+        "epoch": 17,
+        "train_all_time_brier": 0.004943898697989104,
+        "early_onset": 0.013405440241611447,
+        "early_all_time": 0.019871701702462455
+      },
+      {
+        "epoch": 18,
+        "train_all_time_brier": 0.004530399038978149,
+        "early_onset": 0.01338577418353445,
+        "early_all_time": 0.019826384738742184
+      },
+      {
+        "epoch": 19,
+        "train_all_time_brier": 0.004312362037939135,
+        "early_onset": 0.013814858350164346,
+        "early_all_time": 0.020623651938485737
+      },
+      {
+        "epoch": 20,
+        "train_all_time_brier": 0.003989039676003225,
+        "early_onset": 0.013534753814144772,
+        "early_all_time": 0.020109079301877802
+      },
+      {
+        "epoch": 21,
+        "train_all_time_brier": 0.003701129501895476,
+        "early_onset": 0.013788640880455949,
+        "early_all_time": 0.02041376911038905
+      },
+      {
+        "epoch": 22,
+        "train_all_time_brier": 0.0035463192498024956,
+        "early_onset": 0.013208673319723523,
+        "early_all_time": 0.019600333003093454
+      }
+    ],
+    "training_origins": 1903,
+    "parameters": 49809,
+    "fit_wall_seconds": 1.4212379362434149,
+    "cuda_event_span_seconds": 1.4098848876953125,
+    "checkpoint_sha256": "b6eb31b25960a56ddeda4ab7e4d99bd2fa6e353b7b9d9edfc2a0a2e2da8f431a",
+    "checkpoint": "artifacts/onset_graph/study01/rolling2/E_internal_20261003.pt.gz",
+    "graph_key": "distance",
+    "source_sha": "48e31b66745d577105c5aa8f2b8b2e6690fafd0b",
+    "internal_only": true,
+    "masked": false,
+    "shrinkage": {
+      "alpha": 1,
+      "grid": [
+        0,
+        0.25,
+        0.5,
+        1
+      ],
+      "onset_briers": [
+        0.01075849068895379,
+        0.01054163757409568,
+        0.010384239107629796,
+        0.010175854202244447
+      ]
+    },
+    "replicate": {
+      "key": "E_internal_20261003",
+      "kind": "E",
+      "seed": 20261003,
+      "regularization": 0.1,
+      "alpha": 1,
+      "checkpoint": "artifacts/onset_graph/study01/rolling2/E_internal_20261003.pt.gz",
+      "graph_key": "distance",
+      "internal_only": true,
+      "calibrator": {
+        "identity": false,
+        "slope": 0.7111602481195435,
+        "intercept": -0.8475039924617036,
+        "epsilon": 1e-06,
+        "n": 967,
+        "positives": 36
+      },
+      "raw_cutoff": 0.1996947132665337,
+      "calibrated_cutoff": 0.13767467459638888,
+      "calibration_raw": {
+        "n": 967,
+        "positives": 36,
+        "prevalence": 0.03722854188210962,
+        "brier": 0.023328073197312227,
+        "event_contribution": 0.003731115174584644,
+        "nonevent_contribution": 0.019596958022727578,
+        "tp": 35,
+        "fp": 46,
+        "recall": 0.9722222222222222,
+        "fpr": 0.04940923737916219,
+        "cutoff": 0.1996947132665337,
+        "alarm_rule": "strict >",
+        "zero_count": 735,
+        "one_count": 2,
+        "cutoff_ties": 1,
+        "unique_scores": 232,
+        "mean_probability": 0.060062474534454825,
+        "quantiles": [
+          0.0,
+          0.0,
+          0.0,
+          0.04384907472942012,
+          0.909448747619765,
+          1.0
+        ],
+        "episodes": {
+          "positive_groups": 6,
+          "detected_groups": 6,
+          "false_alarm_groups": 10,
+          "false_alarm_groups_per_day": 2.5,
+          "meaning": "Clusters of forecast origins separated by30minutes, not independently observed incidents"
+        },
+        "reliability": [
+          {
+            "bin": 0,
+            "n": 812,
+            "predicted": 0.00029453236931947915,
+            "observed": 0.0
+          },
+          {
+            "bin": 1,
+            "n": 59,
+            "predicted": 0.018738053022493137,
+            "observed": 0.0
+          },
+          {
+            "bin": 2,
+            "n": 8,
+            "predicted": 0.07211777174108877,
+            "observed": 0.125
+          },
+          {
+            "bin": 3,
+            "n": 7,
+            "predicted": 0.16833299741690702,
+            "observed": 0.0
+          },
+          {
+            "bin": 4,
+            "n": 12,
+            "predicted": 0.2985326764063927,
+            "observed": 0.16666666666666666
+          },
+          {
+            "bin": 5,
+            "n": 14,
+            "predicted": 0.5125308574419789,
+            "observed": 0.21428571428571427
+          },
+          {
+            "bin": 6,
+            "n": 26,
+            "predicted": 0.6994134604127574,
+            "observed": 0.42307692307692313
+          },
+          {
+            "bin": 7,
+            "n": 29,
+            "predicted": 0.8978572487917285,
+            "observed": 0.6551724137931034
+          }
+        ],
+        "brier_95": [
+          0.009882893758243753,
+          0.023328073197312223
+        ],
+        "recall_95": [
+          0.9523809523809524,
+          1.0
+        ],
+        "fpr_95": [
+          0.025988700564971753,
+          0.050829875518672206
+        ]
+      },
+      "calibration_calibrated": {
+        "n": 967,
+        "positives": 36,
+        "prevalence": 0.03722854188210962,
+        "brier": 0.017774071929966315,
+        "event_contribution": 0.009011172328107097,
+        "nonevent_contribution": 0.008762899601859216,
+        "tp": 35,
+        "fp": 46,
+        "recall": 0.9722222222222222,
+        "fpr": 0.04940923737916219,
+        "cutoff": 0.13767467459638888,
+        "alarm_rule": "strict >",
+        "zero_count": 0,
+        "one_count": 0,
+        "cutoff_ties": 1,
+        "unique_scores": 232,
+        "mean_probability": 0.042861425811117924,
+        "quantiles": [
+          2.317194287917635e-05,
+          2.317194287917635e-05,
+          2.317194287917635e-05,
+          0.045676323192107154,
+          0.6884962560270226,
+          0.9998738026262121
+        ],
+        "episodes": {
+          "positive_groups": 6,
+          "detected_groups": 6,
+          "false_alarm_groups": 10,
+          "false_alarm_groups_per_day": 2.5,
+          "meaning": "Clusters of forecast origins separated by30minutes, not independently observed incidents"
+        },
+        "reliability": [
+          {
+            "bin": 0,
+            "n": 794,
+            "predicted": 0.00035008650054734727,
+            "observed": 0.0
+          },
+          {
+            "bin": 1,
+            "n": 77,
+            "predicted": 0.021817413255398644,
+            "observed": 0.0
+          },
+          {
+            "bin": 2,
+            "n": 9,
+            "predicted": 0.06739056317186029,
+            "observed": 0.1111111111111111
+          },
+          {
+            "bin": 3,
+            "n": 13,
+            "predicted": 0.14698158363050368,
+            "observed": 0.0
+          },
+          {
+            "bin": 4,
+            "n": 24,
+            "predicted": 0.3063773204864686,
+            "observed": 0.29166666666666663
+          },
+          {
+            "bin": 5,
+            "n": 26,
+            "predicted": 0.4756616032142932,
+            "observed": 0.46153846153846156
+          },
+          {
+            "bin": 6,
+            "n": 19,
+            "predicted": 0.6644914247114359,
+            "observed": 0.5789473684210527
+          },
+          {
+            "bin": 7,
+            "n": 5,
+            "predicted": 0.9252438313486607,
+            "observed": 1.0
+          }
+        ],
+        "brier_95": [
+          0.011517923989487523,
+          0.01777407192996633
+        ],
+        "recall_95": [
+          0.9523809523809524,
+          1.0
+        ],
+        "fpr_95": [
+          0.025988700564971753,
+          0.050829875518672206
+        ]
+      }
+    }
+  }
+]
