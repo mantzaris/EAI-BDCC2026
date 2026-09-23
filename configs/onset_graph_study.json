@@ -1,0 +1,250 @@
+{
+  "name": "onset_graph_study",
+  "starting_commit": "1eafe14dc1ac6cd65a1647f949c9422e58a9db22",
+  "registered_utc": "2026-09-23T15:13:16.766620+00:00",
+  "raw_file": "data/raw/pems-bay.h5",
+  "input_archive": "data/processed/pilot_inputs.npz",
+  "output": "results/onset_graph",
+  "artifacts": "artifacts/onset_graph",
+  "reference_private": "data/processed/residual_pilot/pilot01",
+  "primary": "onset_brier_raw_after_training_shrinkage",
+  "secondary": "all_time_brier",
+  "endpoint_change": "Data-driven follow-up to previously secondary onset result; all36validationdays exposed; exploratory",
+  "test_access": false,
+  "history_frames": 12,
+  "horizon_frames": 6,
+  "sustained_frames": 3,
+  "threshold_count": 48,
+  "minimum_future_coverage": 0.95,
+  "embargo_minutes": 90,
+  "inner_day_cuts": [
+    54,
+    74,
+    82,
+    90
+  ],
+  "inner_roles": [
+    "baseline_fit",
+    "correction_fit",
+    "early_stop",
+    "shrinkage",
+    "refinement_gate"
+  ],
+  "folds": [
+    {
+      "name": "rolling1",
+      "cuts": [
+        36,
+        54,
+        62,
+        66,
+        70,
+        74
+      ]
+    },
+    {
+      "name": "rolling2",
+      "cuts": [
+        46,
+        66,
+        74,
+        78,
+        82,
+        90
+      ]
+    },
+    {
+      "name": "main",
+      "cuts": [
+        54,
+        74,
+        82,
+        90,
+        98,
+        108
+      ]
+    }
+  ],
+  "baseline": {
+    "trees": 100,
+    "max_leaves": 15,
+    "max_bins": 64,
+    "min_leaf": 20,
+    "l2": 10,
+    "learning_rate": 0.1,
+    "seed": 20260930
+  },
+  "baseline_l2_choices": [
+    3,
+    10
+  ],
+  "anchor_selection_days": 8,
+  "training_stride": 3,
+  "refresh": "same selected trees/transform; exact union of anchor and correction training origins at stride3",
+  "correction": {
+    "families": [
+      "B",
+      "K",
+      "C",
+      "D",
+      "M",
+      "S",
+      "E",
+      "F"
+    ],
+    "width": 16,
+    "aggregate_width": 32,
+    "capacity_aggregate_width": 42,
+    "head_width": 32,
+    "regularization": [
+      0.01,
+      0.1
+    ],
+    "weight_decay": 0.0001,
+    "learning_rate": 0.001,
+    "batch_size": 256,
+    "max_epochs": 60,
+    "patience": 8,
+    "minimum_improvement": 1e-06,
+    "tuning_seed": 20260930,
+    "seeds": [
+      20261001,
+      20261002,
+      20261003
+    ],
+    "alpha_grid": [
+      0,
+      0.25,
+      0.5,
+      1
+    ],
+    "objective": "ordinary unweighted all-time Brier + lambda*r^2; select on onset Brier",
+    "output": "0.5*tanh(zero head)"
+  },
+  "calibration": {
+    "family": "strictly monotone logistic with positive slope",
+    "steps": 200,
+    "learning_rate": 0.03,
+    "regularization": 0.001,
+    "epsilon": 1e-06,
+    "min_positives": 5,
+    "objective": "unweighted onset Brier; identity fallback if insufficient positives",
+    "target_fpr": 0.05,
+    "alarm_rule": "strict p>cutoff; no tie jitter",
+    "fit_role": "calibration; out of sample for every fitted predictor"
+  },
+  "graph": {
+    "hops": [
+      1,
+      2,
+      4
+    ],
+    "dependency": "absolute residual Pearson, after calendar and regional-common OLS; top k per row matches original nonself outdegree",
+    "regression_rcond": 1e-08,
+    "dependency_cutoff": "anchor_fit only",
+    "null_seeds": [
+      20261004,
+      20261005
+    ],
+    "rewire_rounds": 1000,
+    "rewire_batch_pairs": 32,
+    "permutation_seed": 20261006,
+    "original_control": "D",
+    "expanded_candidates": [
+      "M",
+      "S",
+      "E",
+      "F"
+    ],
+    "strong_aggregate_candidates": [
+      "A_G",
+      "R_union",
+      "A_mono",
+      "B",
+      "K",
+      "M"
+    ],
+    "selection_role": "shrinkage; smallest seed-mean onset Brier after frozen global shrinkage",
+    "nulls_main_only": true,
+    "matched_null_training": "same2regularizationchoices and3seeds; D identity reuses C",
+    "E_internal_control": true
+  },
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 20261007,
+    "block_days": [
+      3,
+      1
+    ],
+    "calendar_gaps": "resample each contiguous calendar segment separately; never bridge missing dates",
+    "multiplicity": "Bonferroni percentile intervals: familywise alpha .05 over4 contrasts =>98.75% marginal intervals; approximate dependent-data bootstrap, not confirmation",
+    "familywise_alpha": 0.05,
+    "primary_contrasts": [
+      "C-G",
+      "D-C",
+      "X-D",
+      "X-G"
+    ],
+    "unit": "paired days, preserve all seed losses; mean seed loss not probability ensemble"
+  },
+  "validation_blocks": [
+    [
+      "2017-04-20",
+      "2017-05-01"
+    ],
+    [
+      "2017-05-02",
+      "2017-05-13"
+    ],
+    [
+      "2017-05-14",
+      "2017-05-25"
+    ]
+  ],
+  "validation_exposed_days": "all36",
+  "episode_gap_minutes": 30,
+  "illustration": "first eligible validation origin on2017-04-20 at or after08:00; fixed first region and first4sensorIDs in it; no outcome selection",
+  "practical": {
+    "local_relative": 0.01,
+    "local_absolute": 0.0001,
+    "graph_relative": 0.005,
+    "graph_absolute": 5e-05,
+    "recall_degradation": 0.02,
+    "fpr_degradation": 0.01
+  },
+  "budget_extension": {
+    "max_seconds": 3600,
+    "min_onset_groups": 10,
+    "min_event_days": 5,
+    "budgets": [
+      4,
+      8,
+      16
+    ],
+    "policies": [
+      "uniform",
+      "training_fixed",
+      "graph_priority"
+    ],
+    "seed": 20261008,
+    "max_epochs": 30,
+    "gate_role": "main gate only; before outer loading",
+    "admission": "best local C/D/S/E/F from shrinkage; raw onset gain >=1% and>=.0001 vsG; calibrated onset no worse; all-time loss <=1.02G; calibrated recall loss<=.02/FPR increase<=.01; support floors",
+    "S_meaning": "retained graph-summary compression after all-sensor ingestion, not acquisition"
+  },
+  "resource": {
+    "device": "NVIDIA RTX 6000 Ada Generation",
+    "prior_gpu_seconds": 709.858570696786,
+    "max_new_gpu_seconds": 21600,
+    "max_core_gpu_seconds": 18000,
+    "max_budget_gpu_seconds": 3600,
+    "project_provisional_seconds": 86400,
+    "max_allocated_vram_bytes": 32000000000,
+    "max_processed_bytes": 20000000000,
+    "max_download_bytes": 12000000000,
+    "cpu_numeric_fallback": false,
+    "compile": false
+  },
+  "selective_enclosure_enabled": false,
+  "full_study_enabled": false
+}
