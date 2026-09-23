@@ -1,0 +1,155 @@
+{
+  "name": "residual_pilot",
+  "starting_commit": "0f513de6a0691eceed70bdb664b6e7381c8a06ee",
+  "created_utc": "2026-09-23T10:20:00Z",
+  "raw_file": "data/raw/pems-bay.h5",
+  "input_archive": "data/processed/pilot_inputs.npz",
+  "output": "results/residual_pilot",
+  "history_frames": 12,
+  "horizon_frames": 6,
+  "sustained_frames": 3,
+  "threshold_count": 48,
+  "minimum_future_coverage": 0.95,
+  "embargo_minutes": 90,
+  "original_free_speed": "frozen Stage1 85th percentile; used only to define the unchanged target and historical reference",
+  "new_feature_free_speed": "GPU 85th percentile fit only on baseline_fit rows",
+  "missing_input_fill": 0,
+  "missing_input_masks": true,
+  "inner_day_cuts": [
+    54,
+    74,
+    82,
+    90
+  ],
+  "inner_roles": [
+    "baseline_fit",
+    "correction_fit",
+    "early_stop",
+    "shrinkage",
+    "refinement_gate"
+  ],
+  "baseline_training_stride": 12,
+  "correction_training_stride": 3,
+  "baseline": {
+    "name": "A_T_GPUQuantileBoost",
+    "family": "GPU-only quantile-binned Newton logistic boosted trees; distinct from historical sklearn HistGradientBoostingClassifier",
+    "trees": 100,
+    "max_leaves": 15,
+    "max_bins": 64,
+    "min_leaf": 20,
+    "l2": 10,
+    "learning_rate": 0.1,
+    "seed": 20260923
+  },
+  "historical_baseline": {
+    "name": "A_H_saved",
+    "artifact_missing": true,
+    "predictions": "results/tables/baseline_predictions.csv",
+    "model": "heterogeneity",
+    "scope": "saved128_reference_and_prespecified_transferred_correction_diagnostic_only",
+    "calibration": "raw"
+  },
+  "correction": {
+    "families": [
+      "B",
+      "C",
+      "D"
+    ],
+    "width": 16,
+    "aggregate_width": 32,
+    "head_width": 32,
+    "local_channels": [
+      "state_scaled",
+      "block_deviation_scaled",
+      "one_step_change_scaled",
+      "valid_mask"
+    ],
+    "output": "0.5*tanh(zero_initialized_head)",
+    "regularization": [
+      0.01,
+      0.1
+    ],
+    "weight_decay": 0.0001,
+    "learning_rate": 0.001,
+    "batch_size": 256,
+    "max_epochs": 60,
+    "patience": 8,
+    "minimum_improvement": 0.000001,
+    "tuning_seed": 20260923,
+    "seeds": [
+      20260924,
+      20260925,
+      20260926
+    ],
+    "alpha_grid": [
+      0,
+      0.25,
+      0.5,
+      1
+    ],
+    "training_alpha": 1,
+    "graph": "W row i aggregates distance-similarity neighbors j; no road-flow or causal claim",
+    "pooling": "16 fixed regions; same masked pooling C/D",
+    "local_access": "full_initially"
+  },
+  "validation": "all_original_split_origins",
+  "validation_exposure": "all36days_exposed_before_this_pilot",
+  "primary_population": "identical eligible all-time outer-validation origins with A_T",
+  "historical_panel": "separate 128-origin A_H and transferred-correction diagnostic",
+  "bootstrap": {
+    "device": "cuda",
+    "replicates": 2000,
+    "seed": 20260927,
+    "block_days": [
+      1,
+      3
+    ],
+    "unit": "days, paired across models; seed mean is mean loss, not probability ensemble"
+  },
+  "alarms": {
+    "target_fpr": 0.05,
+    "selection": "shrinkage onset non-events; nextafter tie-safe threshold",
+    "recall_degradation_tolerance": 0.05,
+    "fpr_degradation_tolerance": 0.02
+  },
+  "practical_relative_brier_improvement": 0.05,
+  "refinement": {
+    "reserved_seconds": 3600,
+    "min_onset_episode_groups": 20,
+    "min_onset_event_days": 10,
+    "gate": "training refinement_gate only; seed-mean local Brier <=0.95*A_T and <B; mean onset recall at least A_T/B minus0.05; FPR at most A_T/B plus0.02",
+    "candidate_choice": "lower mean gate Brier of C,D; ties C",
+    "budgets": [
+      0,
+      4,
+      8,
+      16
+    ],
+    "policies": [
+      "uniform",
+      "training_fixed",
+      "aggregate_priority_adaptive"
+    ],
+    "random_seed": 20260928,
+    "masked_fit_epochs": 30,
+    "priority": "regional near-threshold variation plus slowing; acquired encoder magnitude propagated via fixed regional graph; explicit stop",
+    "stop_priority": 0.02
+  },
+  "simulator_blend": "skip: saved inner predictions use full-outer-training preprocessing and nonchronological OOF residual bank; not honest under this stricter cutoff requirement",
+  "resource": {
+    "device": "NVIDIA RTX 6000 Ada Generation",
+    "max_new_gpu_seconds": 14400,
+    "max_core_gpu_seconds": 10800,
+    "max_refinement_gpu_seconds": 3600,
+    "prior_gpu_seconds": 668.6237159054726,
+    "project_provisional_seconds": 86400,
+    "max_allocated_vram_bytes": 32000000000,
+    "max_processed_bytes": 20000000000,
+    "max_download_bytes": 12000000000,
+    "compile": false,
+    "cpu_numeric_fallback": false
+  },
+  "test_access": false,
+  "selective_enclosure_enabled": false,
+  "full_study_enabled": false
+}
