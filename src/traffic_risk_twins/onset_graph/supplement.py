@@ -44,6 +44,7 @@ def supplement(c,fold,out,art,source):
                 record['alignment']={key:to_cuda([r[key] for r in identities],torch.float64).mean().item() for key in identities[0]}
                 summary[calibration].setdefault(name,{})[endpoint]=record
             comparisons=[(local,control) for local in ('C','D','M','S','E','F') for control in ('B','K','R_union','A_mono')]
+            comparisons += [(name,'D') for name in ('M','S','E','F')]+[('B','R_union')]
             for a,b in comparisons:
                 va,vb=group_loss[a],group_loss[b];d=va-vb
                 draws=resample(d[:,None],day,3,c['bootstrap']['replicates'],c['bootstrap']['seed'])[:,0]
