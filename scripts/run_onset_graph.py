@@ -241,7 +241,8 @@ def evaluate(c,fold,out,art,source):
     preparation=time.perf_counter()-start;metadata=read(out/'models_with_nulls.json');graphs={'distance':data.W}
     raw,th,families,times=collect(c,data,art,part,metadata,graphs);cal,ct,_,cal_times=collect(c,data,art,part,metadata,graphs,True)
     G,X=metadata['strong_aggregate'],metadata['expanded'];contrasts=[('C',G),('D','C'),(X,'D'),(X,G)]
-    raw_metrics=population(part,raw,th,families,contrasts,c['bootstrap']);cal_metrics=population(part,cal,ct,families,[],c['bootstrap'])
+    raw_metrics=population(part,raw,th,families,contrasts,c['bootstrap'])
+    cal_metrics=population(part,cal,ct,families,contrasts,c['bootstrap'],primary_family=False)
     save(out/'validation_raw_metrics.json',raw_metrics);save(out/'validation_calibrated_metrics.json',cal_metrics)
     save_predictions(out/'validation_raw_predictions.csv.gz',part,raw);save_predictions(out/'validation_calibrated_predictions.csv.gz',part,cal)
     blocks={}
@@ -283,18 +284,22 @@ def illustration(c,data,part,raw,families,out):
     import pandas as pd
     stamp=pd.Timestamp('2017-04-20 08:00').value
     pick=torch.where((part['time_ns']>=stamp)&part['eligible'])[0][0];origin=part['origins'][pick]
-    sensors=torch.where(data.blocks==0)[0][:4];history=part['Z'][pick,sensors,:,0]
+    sensors=torch.where(data.blocks==0)[0][:4];history=part['Z'][pick,sensors,:,0]*7
+    categories=torch.bucketize(history.contiguous(),history.new_tensor([-1.,0.,1.]),right=True)
+    categories=torch.where(part['Z'][pick,sensors,:,-1]>0,categories,-1)
+    assert ((categories>=-1)&(categories<=3)).all()
     ops=GraphFeatures(data.W,data.blocks);summary=ops.summaries(part['X'][pick:pick+1],part['Z'][pick:pick+1])
     save(out/'illustration.json',dict(rule=c['illustration'],origin=origin.item(),timestamp_ns=part['time_ns'][pick].item(),
-        sensor_column_indices=sensors.tolist(),sensor_history_scaled=history.tolist(),
+        sensor_column_indices=sensors.tolist(),local_severity_categories=categories.tolist(),
+        category_legend={'-1':'missing','0':'state < -1','1':'-1 <= state < 0','2':'0 <= state < 1','3':'state >= 1'},
         regional_mean_scaled=(part['X'][pick,:192].reshape(12,16)[:,0]/7).tolist(),
         regional_summary_hops=summary[0,0,:,:6].tolist(),label=part['y'][pick].item(),
         probabilities={k:[raw[n][pick].item() for n in keys] for k,keys in families.items()},
-        meaning='Fixed-window transformed illustration, not a population estimate or raw speed export'))
+        meaning='Fixed-window categorical local illustration, not a population estimate or invertible raw speed export'))
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--mode',choices=['audit','train','nulls','evaluate','replay','budget'],required=True)
+    p=argparse.ArgumentParser();p.add_argument('--mode',choices=['audit','train','nulls','evaluate','replay','supplement','budget'],required=True)
     p.add_argument('--fold',default='main');p.add_argument('--run-id',default='study01');p.add_argument('--source-sha',required=True);args=p.parse_args()
     c=read('configs/onset_graph_study.json');fold=fold_spec(c,args.fold);out,art=paths(c,args.run_id,args.fold)
     marker=out/(args.mode+'_run.json')
@@ -313,6 +318,9 @@ def main():
     elif args.mode=='replay':
         from traffic_risk_twins.onset_graph.checks import replay
         replay(c,fold,out,art,args.source_sha)
+    elif args.mode=='supplement':
+        from traffic_risk_twins.onset_graph.supplement import supplement
+        supplement(c,fold,out,art,args.source_sha)
     else:
         if not read(out/'budget_decision.json')['admitted']:raise RuntimeError('Budget gate did not pass')
         from traffic_risk_twins.onset_graph.budget import run_budget

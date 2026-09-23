@@ -67,6 +67,8 @@ Positive onset groups merge origins less than30 minutes apart. A group is detect
 
 Illustration: first eligible validation origin on April20 at/after08:00, first fixed region and its first four source-ordered sensors. This timestamp/identity rule is frozen without event or error selection. Only a small derived illustration is exported; it is not population evidence or raw measurement redistribution.
 
+Pre-outer implementation clarification, 23 September: export local history only as four severity categories (transformed-state cutoffs −1,0,1), with a distinct missing category, rather than invertible transformed sensor values. The illustration rule and fitted models do not change. Calibrated versions of the four primary contrasts are also reported as explicitly secondary pointwise comparisons. Complete inference timing uses a deterministic timestamp-spaced 128-origin panel, one warm-up and three repeats, including warm-cache HDF parsing, input/output transfer, feature preparation and the frozen anchor. This is a GPU pipeline cost audit, never a CPU model benchmark. Supplemental GPU diagnostics report per-family alignment, clipping, seed variation and graph-feature payload sizes; they cannot select models or thresholds.
+
 ## Conditional information budget and resources
 
 Before new outer scoring, use the final main gate block to admit at most one extension. Choose the best local C/D/S/E/F using shrinkage only. Require >=10 separated onset groups on >=5 event days, raw onset gain>=1% and>=.0001 versus G, calibrated onset no worse, all-time Brier<=1.02G and calibrated alarm tolerances. Failure defers the extension but never cancels the six core representations or topology controls.
