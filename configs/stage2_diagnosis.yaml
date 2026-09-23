@@ -1,0 +1,59 @@
+stage: 2
+seed: 20260922
+starting_commit: 3f9e2e1308235a75bf0a1d84cbe2e6c50eaa97bd
+dataset: pems_bay
+input_archive: data/processed/pilot_inputs.npz
+raw_file: data/raw/pems-bay.h5
+output_directory: results/stage2
+history_frames: 12
+horizon_frames: 6
+embargo_minutes: 90
+training_origin_stride: 12
+inner_day_cuts: [54, 81]
+inner_roles: [initial_fit, diagnosis, calibration]
+validation_origins: stage1_saved_128
+validation_status: exploratory_all_36_days_already_exposed
+retained_fractions: [0.0, 0.15, 1.0]
+selector: frozen_stage1_training_only
+predictive_family: HistGradientBoostingClassifier
+shared_settings:
+  - max_iter: 100
+    max_leaf_nodes: 15
+    l2_regularization: 10.0
+    learning_rate: 0.1
+    min_samples_leaf: 20
+    early_stopping: false
+calibration: logistic_on_clipped_logit_C1_inner_chronological_oof
+calibration_clip: 0.00001
+primary_probability: raw
+primary_subset: identical_eligible_all_time_origins
+false_alarm_target: 0.05
+alarm_subset: onset
+bootstrap_replicates: 2000
+bootstrap_seed: 20260923
+bootstrap_block_days: [1, 3]
+local_relative_brier_improvement: 0.05
+maximum_detection_recall_drop: 0.05
+stochastic_relative_brier_tolerance: 0.05
+max_targeted_repairs: 2
+repair_selection: inner_training_diagnostics_only
+cpu_diagnostic_origins: 128
+cpu_scenario_count: 256
+gpu_scenario_count: 1024
+forecasting_path: fine_mc
+selective_refinement_enabled: false
+enclosure_diagnostic_origins: 16
+enclosure_scenarios: 256
+enclosure_timing_repeats: 5
+max_enclosure_adjustments: 1
+selective_minimum_runtime_reduction: 0.10
+max_gpu_seconds: 1800
+project_provisional_gpu_seconds: 86400
+max_allocated_vram_bytes: 32000000000
+max_download_bytes: 12000000000
+max_processed_bytes: 20000000000
+cpu_threads: 4
+cpu_job_timeout_seconds: 900
+gpu_compile: false
+test_outcomes_access: forbidden
+stage3_enabled: false
