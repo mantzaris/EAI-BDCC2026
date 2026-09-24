@@ -1,6 +1,6 @@
 """Render already-computed CUDA statistics. No fitting, metrics or resampling on CPU."""
-import csv
 import hashlib
+import io
 import json
 from pathlib import Path
 import matplotlib
@@ -46,19 +46,7 @@ add('NewGPU',usage['new_gpu_job_seconds'],'.2f','manifests/final_test/compute_su
 add('CumulativeGPU',usage['cumulative_gpu_job_seconds'],'.2f','manifests/final_test/compute_summary.json','/cumulative_gpu_job_seconds')
 (OUT/'numbers.tex').write_text('\n'.join(macro)+'\n')
 
-# Every family and seed is retained in machine-readable tables; no averages computed here.
-rows=[]
-for mode,data in [('raw',raw),('calibrated',cal)]:
-    for k,f in data['families'].items():
-        for endpoint,m in f.items():
-            rows.append(dict(model=k,calibration=mode,endpoint=endpoint,**{key:v for key,v in m.items() if key!='seed_briers'},seed_briers=json.dumps(m['seed_briers'])))
-with (ROOT/'results/final_test/metrics.csv').open('w',newline='') as f:
-    w=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator='\n');w.writeheader();w.writerows(rows)
-pairs=[]
-for mode,data in [('raw',raw),('calibrated',cal)]:
-    for kind in ['paired','secondary_paired']:
-        for key,r in data[kind].items():pairs.append(dict(calibration=mode,kind=kind,key=key,**r))
-(ROOT/'results/final_test/paired_metrics.json').write_text(json.dumps(pairs,indent=2)+'\n')
+# Scientific result exports are frozen. This renderer only writes manuscript assets.
 lines=[]
 for k in principal:
     r=raw['families'][k];cc=cal['families'][k]
@@ -74,7 +62,15 @@ for k in principal:
         fittime='/'.join(f"{r['fit_wall_seconds']:.3f}" for r in selected)
     r=cost['families'][k]
     lines.append(texname(k)+f" & {fittime} & {r['complete_seconds']:.4f} & "+'/'.join(f'{x:.4f}' for x in r['repeats'])+r' \\')
-(OUT/'costs.tex').write_text('\n'.join(lines)+'\n')
+# Retain the historical detailed cost export; the paper uses saved means only.
+assert (OUT/'costs.tex').read_text()=='\n'.join(lines)+'\n','Historical detailed cost export changed'
+compact=[]
+for left,right in zip(['A_G','R_union','A_mono','B','K',None],['C','D','M','S','E','F']):
+    cells=[]
+    for k in (left,right):
+        cells.extend(['',''] if k is None else [texname(k),f"{cost['families'][k]['complete_seconds']:.4f}"])
+    compact.append(' & '.join(cells)+r' \\')
+(OUT/'cost_summary.tex').write_text('\n'.join(compact)+'\n')
 lines=[]
 for k in roster:
     r=raw['families'][k]
@@ -84,10 +80,14 @@ for k in roster:
 plt.rcParams.update({'font.size':10,'axes.spines.top':False,'axes.spines.right':False,'pdf.fonttype':42,'svg.fonttype':'none'})
 COL=['#2166ac','#b2182b'];MARK=['o','s']
 def export(fig,name):
+    # Avoid timestamp-only changes to vector exports when the rendered plot is unchanged.
+    preview=io.BytesIO();fig.savefig(preview,format='png',dpi=180,bbox_inches='tight')
+    if all((FIG/(name+suffix)).exists() for suffix in ('.pdf','.svg','.png')) and (FIG/(name+'.png')).read_bytes()==preview.getvalue():
+        plt.close(fig);return
     fig.savefig(FIG/(name+'.pdf'),bbox_inches='tight');fig.savefig(FIG/(name+'.svg'),bbox_inches='tight');fig.savefig(FIG/(name+'.png'),dpi=180,bbox_inches='tight');plt.close(fig)
     svg=FIG/(name+'.svg');svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines())+'\n')
 
-fig,axes=plt.subplots(1,2,figsize=(7.1,3.15));contrasts=['C_minus_B','D_minus_C','E_minus_D','E_minus_B']
+fig,axes=plt.subplots(1,2,figsize=(7.1,3.45));contrasts=['C_minus_B','D_minus_C','E_minus_D','E_minus_B']
 for ax,ep,title in zip(axes,['onset','all_time'],['Onset (primary)','All-time (secondary)']):
     for j,data in enumerate([val,raw]):
         for i,key in enumerate(contrasts):
@@ -97,7 +97,13 @@ for ax,ep,title in zip(axes,['onset','all_time'],['Onset (primary)','All-time (s
                 lo,hi=r['3']['bonferroni_family4'];ax.plot([lo,hi],[y,y],color=COL[j],lw=3,alpha=.28)
             ax.plot(r['difference'],y,MARK[j],color=COL[j],ms=5,label=['Validation (exposed)','Test (frozen)'][j] if i==0 else None)
     ax.axvline(0,color='#555555',lw=.8);ax.set_yticks(range(4));ax.set_yticklabels(['C - B','D - C','E - D','E - B']);ax.invert_yaxis();ax.set_title(title);ax.set_xlabel('Brier difference (units of 0.0001)');ax.xaxis.set_major_formatter(FuncFormatter(lambda x,pos:f'{x*10000:g}'))
-axes[0].legend(fontsize=8,loc='lower left');fig.tight_layout();export(fig,'effects')
+handles,labels=axes[0].get_legend_handles_labels()
+fig.legend(handles,labels,fontsize=10,loc='lower center',ncol=2,frameon=False,bbox_to_anchor=(.5,0))
+fig.tight_layout(rect=(0,.13,1,1))
+fig.canvas.draw()
+legend_bounds=fig.legends[0].get_window_extent(fig.canvas.get_renderer())
+assert all(not legend_bounds.overlaps(ax.bbox) for ax in axes),'Effects legend covers data'
+export(fig,'effects')
 
 fig,axes=plt.subplots(1,2,figsize=(7.1,3.15));models=['R_union','B','C','D','E','F']
 for i,k in enumerate(models):
@@ -120,15 +126,59 @@ for j,data in enumerate([null['paired'],raw['secondary_paired']]):
         ax.plot([lo,hi],[y,y],color=COL[j]);ax.plot(r['difference'],y,MARK[j],color=COL[j],ms=5,label=['Validation (exposed)','Test (frozen)'][j] if i==0 else None)
 ax.set_yticks(range(len(keys)));ax.set_yticklabels([a+' - '+b.replace('202610','').replace('_',' ') for a,b in keys]);ax.invert_yaxis();ax.axvline(0,color='#555555',lw=.8);ax.set_xlabel('Onset Brier difference (units of 0.0001)');ax.xaxis.set_major_formatter(FuncFormatter(lambda x,pos:f'{x*10000:g}'));ax.legend(fontsize=8);fig.tight_layout();export(fig,'topology')
 
-# Conceptual flowchart uses no raw measurements or generated imagery.
-fig,ax=plt.subplots(figsize=(7.0,3.0));ax.set(xlim=(0,10),ylim=(0,5));ax.axis('off')
-boxes=[(.1,3.5,2.5,1,'60-minute sensor histories\n325 sensors + masks'),(3.2,3.5,2.8,1,'16 fixed regional summaries\nmeans, counts, heterogeneity'),(6.7,3.5,3.1,1,'Frozen aggregate anchor\nA_G or refit R_union'),(.1,1.5,2.5,1,'C: local temporal\nD/F: sensor messages'),(3.2,1.5,2.8,1,'M: regional messages\nS: coarse + deviations'),(6.7,1.5,3.1,1,'E: within/cross messages\nB/K: aggregate correction'),(3.2,0,3.7,.85,'Frozen additive correction + clipping\n30-minute sustained-event risk')]
-for x,y,w,h,label in boxes:
-    ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle='round,pad=.06',fc='#f4f4f4',ec='#555555',lw=.8));ax.text(x+w/2,y+h/2,label,ha='center',va='center',fontsize=9)
-for xy,xytext in [((3.2,4),(2.65,4)),((6.7,4),(6.05,4)),((1.35,2.55),(1.35,3.45)),((4.6,2.55),(4.6,3.45)),((8.25,2.55),(8.25,3.45)),((3.2,.6),(1.35,1.45)),((5.05,.9),(4.6,1.45)),((6.95,.6),(8.25,1.45))]:ax.annotate('',xy=xy,xytext=xytext,arrowprops=dict(arrowstyle='->',color='#555555',lw=.8))
+# Conceptual interface: one alternative correction per prediction, never an ensemble.
+# Input paths checked against onset_graph/models.py and graphs.py. No raw data read.
+fig,ax=plt.subplots(figsize=(6.8,4.25))
+fig.subplots_adjust(left=.015,right=.985,bottom=.015,top=.985)
+ax.set(xlim=(0,16),ylim=(0,9.4));ax.axis('off')
+label_boxes=[]
+def box(x,y,w,h,label,color='#f4f4f4',size=11):
+    patch=FancyBboxPatch((x,y),w,h,boxstyle='round,pad=0,rounding_size=.10',
+                        fc=color,ec='#555555',lw=.8)
+    ax.add_patch(patch)
+    txt=ax.text(x+w/2,y+h/2,label,ha='center',va='center',fontsize=size,linespacing=1.25)
+    label_boxes.append((patch,txt))
+
+def arrow(start,end):
+    ax.annotate('',xy=end,xytext=start,arrowprops=dict(arrowstyle='-|>',
+                color='#555555',lw=.9,shrinkA=3,shrinkB=3,mutation_scale=10))
+
+box(.25,7.9,4.75,1.2,'60-minute histories\n325 sensors + masks')
+box(5.65,7.9,4.8,1.2,'16 regional summaries\n+ calendar features')
+box(11.1,7.9,4.65,1.2,'Aggregate refit\n'+r'$R_{\rm union}$',color='#eef3f8')
+arrow((5,8.5),(5.65,8.5));arrow((10.45,8.5),(11.1,8.5))
+
+box(.25,5.45,4.75,1.8,'Local histories supply\nC / D / E / F and\nbuild summaries for S')
+box(5.65,5.45,4.8,1.8,'Shared correction inputs\nAggregates + '+r'$p_{A_G}$'+'\n(anchor '+r'$A_G$'+' frozen)',color='#edf4ee')
+box(11.1,5.85,4.65,1.15,'Separate prediction\n'+r'$p_{R_{\rm union}}$',color='#eef3f8')
+arrow((2.625,7.9),(2.625,7.25));arrow((8.05,7.9),(8.05,7.25))
+arrow((13.425,7.9),(13.425,7))
+
+panel=FancyBboxPatch((.25,1.95),15.5,3.05,boxstyle='round,pad=0,rounding_size=.1',
+                    fc='white',ec='#555555',lw=.8)
+ax.add_patch(panel)
+ax.text(8,4.57,'Alternative correction models: evaluate one arm at a time',
+        ha='center',va='center',fontsize=11,fontweight='bold')
+arrow((2.625,5.45),(2.625,5));arrow((8.05,5.45),(8.05,5))
+box(.55,2.65,3.4,1.35,'B / K\nAggregate\ncorrection',size=11)
+box(4.35,2.65,3.4,1.35,'M\nRegional\ngraph',size=11)
+box(8.15,2.65,3.4,1.35,'S\nCoarse/deviation\nsummaries',size=10.5)
+box(11.95,2.65,3.4,1.35,'C / D / E / F\nLocal histories\n+ graph (D/E/F)',size=10.5)
+ax.text(8,2.24,'All arms receive shared inputs; graph arms use their fixed operators.',
+        ha='center',va='center',fontsize=10)
+box(2.4,.15,11.2,1.4,'Each arm separately: '+r'$p=\operatorname{clip}(p_{A_G}+\alpha r,0,1)$'+'\n30-minute sustained-event probability',color='#edf4ee',size=11)
+arrow((8,1.95),(8,1.55))
+
+# Check actual rendered extents, including padding, before every export.
+fig.canvas.draw();renderer=fig.canvas.get_renderer()
+for patch,txt in label_boxes:
+    outer=patch.get_window_extent(renderer);inner=txt.get_window_extent(renderer)
+    assert outer.x0+4 <= inner.x0 and inner.x1 <= outer.x1-4,txt.get_text()
+    assert outer.y0+4 <= inner.y0 and inner.y1 <= outer.y1-4,txt.get_text()
+    assert ax.bbox.contains(outer.x0,outer.y0) and ax.bbox.contains(outer.x1,outer.y1)
 export(fig,'overview')
 
 (OUT/'claim_traceability.json').write_text(json.dumps(dict(numeric_macros=claims,artifact_sources=TRACE,
-    generated_tables=dict(scores='raw/calibrated families plus validation families',costs='saved measured repeats and selected fit records',seeds='all saved raw onset seed scores'),
+    generated_tables=dict(scores='raw/calibrated families plus validation families',costs='saved measured repeats and selected fit records; historical export retained unchanged',cost_summary='saved complete_seconds means, first seed, three repeats, no recomputation',seeds='all saved raw onset seed scores'),
     scientific_computation='All inputs are saved GPU statistics. CPU only formats tables, text and geometric plotting coordinates.'),indent=2)+'\n')
 print('Rendered four figures, tables and traceable numerical macros')
