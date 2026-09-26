@@ -17,6 +17,8 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
 ROOT = Path(__file__).resolve().parents[1]
+REPOSITORY = Path(subprocess.check_output(
+    ['git', 'rev-parse', '--show-toplevel'], cwd=ROOT, text=True).strip())
 REVIEWED = '09af231f3d8407ff5342f5b91292d8c4f18b76eb'
 RAW = 'results/final_test/evaluate/raw_metrics.json'
 
@@ -119,13 +121,22 @@ new = plotted_coordinates((ROOT / 'scripts/render_final_manuscript.py').read_tex
 assert old == new, 'A plotted coordinate, interval, direction, label or style changed'
 assert set(new) == {'effects', 'topology', 'alarms'}
 
-# No historical science, protocol, source, checkpoint, ledger or report changes.
+# Compare historical blobs with the paper's current files, independent of its
+# location within the repository. Older revisions used the repository root.
 protected = ('results', 'manifests', 'configs', 'artifacts', 'src', 'tests')
-changed = subprocess.check_output(
-    ['git', 'diff', '--name-only', REVIEWED, '--', *protected], cwd=ROOT, text=True)
-assert not changed, changed
+historical_files = subprocess.check_output(
+    ['git', 'ls-tree', '-r', '-z', REVIEWED, '--', *protected], cwd=REPOSITORY)
+for entry in historical_files.split(b'\0'):
+    if not entry:
+        continue
+    metadata, path = entry.split(b'\t', 1)
+    _, kind, expected = metadata.split()
+    assert kind == b'blob', path
+    contents = (ROOT / path.decode()).read_bytes()
+    actual = hashlib.sha1(b'blob ' + str(len(contents)).encode() + b'\0' + contents).hexdigest()
+    assert actual == expected.decode(), path
 historical_reports = subprocess.check_output(
-    ['git', 'ls-tree', '-r', '--name-only', REVIEWED, '--', 'reports'], cwd=ROOT, text=True).splitlines()
+    ['git', 'ls-tree', '-r', '--name-only', REVIEWED, '--', 'reports'], cwd=REPOSITORY, text=True).splitlines()
 for path in historical_reports:
     assert prior(path) == (ROOT / path).read_bytes(), path
 for name in ('llncs.cls', 'splncs04.bst'):
