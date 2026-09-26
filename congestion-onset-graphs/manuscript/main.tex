@@ -13,18 +13,40 @@
 \institute{}
 \maketitle
 \begin{abstract}
-Regional congestion-onset prediction requires a representation of network conditions, but sensor detail, graph processing and aggregate updating can contribute differently. We compare six compact temporal and graph representations with rich aggregate controls for a sustained low-speed event in PEMS-BAY. An exposed validation period informs development; a frozen chronological test contains \TestOnsetN{} onset-eligible origins and \TestPos{} positives on 25 days. Aggregate refitting $R_{\rm union}$ achieves onset Brier \TestOnRUnion{}, compared with \TestOnB{} for aggregate correction B. Local-history correction C is worse than B. Cross-region correction E improves on B by 1.11\% in point Brier, but favorable primary graph contrasts remain uncertain after the registered three-day, four-comparison adjustment. E beats both trained rewired controls in secondary comparisons while raising false alarms from \TestFprB{} to \TestFprE{} without a recall gain. The comparison shows why aggregate updating, sensor-history access, graph representation and alarm criteria must be assessed together. Sparse event support and incomplete upstream preprocessing documentation limit generalization.
+Graph models offer a natural representation of traffic networks, but their contribution to regional congestion warnings can be difficult to separate from the benefits of additional sensor data and updated training. We present a controlled comparison of six temporal and graph representations on PEMS-BAY, examining local sensor histories, graph structure and aggregate model updating within a common prediction framework. The study combines competitive aggregate baselines, trained randomized-graph controls and a held-out chronological test with \TestOnsetN{} eligible prediction times. Aggregate refitting achieves the lowest observed prediction error, while the local-history correction performs worse than its aggregate counterpart. A graph model that separates within-region and cross-region connections outperforms both randomized controls in secondary comparisons and reduces Brier score by 1.11\% relative to the aggregate correction. However, favorable primary graph comparisons remain statistically uncertain after adjustment for multiple comparisons. The cross-region model also raises the false-alarm rate from \TestFprB{} to \TestFprE{} without improving recall. These findings reveal how representation choice can affect probability accuracy and alarm quality differently. Our comparison provides a reproducible framework for assessing the added value of spatial modeling and shows why competitive aggregate updating and alarm evaluation are essential to interpreting graph-based congestion forecasts.
 \keywords{Traffic forecasting \and Congestion onset \and Graph representations \and Aggregate baselines \and Chronological evaluation}
 \end{abstract}
 
+
+
 \section{Introduction}
-Predicting whether sustained congestion will affect a substantial part of a traffic network is a different task from forecasting speed at every sensor. Regional means, heterogeneity and calendar patterns may describe this event well, while individual histories retain differences that summaries discard. Graphs can organize those histories by proximity, regional boundaries or statistical association. The forecasting question is which representation supports useful event probabilities and alarms after accounting for a competitive aggregate predictor.
 
-Such a target gives a regional traffic digital twin a concise description of near-term risk. It also changes how representations should be evaluated: better sensor-level speed regression need not improve a regional binary event, and lower probability loss need not improve alarms at a fixed cutoff. We ask four questions. Do individual histories improve prediction beyond rich aggregate histories? Does graph structure help when those histories are held fixed? How do geographic, regional, multiscale, cross-region and dependency representations differ? Do predictive differences translate into useful alarms and justified processing costs?
+Predicting the onset of regional congestion is a central task for traffic monitoring and early warning. The objective is to estimate whether sustained slowdowns will soon affect a substantial part of a network. This requires a different prediction target from forecasting the speed at every sensor. A regional warning depends on the extent and persistence of congestion, making the choice of representation particularly important. Detailed sensor histories may reveal emerging spatial patterns, while regional summaries may already capture much of the information needed to predict the event.
 
-Our experiments use an unchanged aggregate probability anchor and compact additive corrections. This common interface separates the inputs and graph operations while keeping much of the fitting procedure fixed. The aggregate controls include refitting on the union of the anchor and correction training examples. That control, denoted $R_{\rm union}$, addresses a basic confound: comparing a predictor trained on older, fewer labels with a correction trained later can overstate the value of its additional inputs. A larger aggregate correction also checks whether local arms benefit simply from additional parameters.
+Graph-based forecasting provides a natural way to organize traffic measurements through spatial relationships. Established approaches combine temporal modeling with diffusion operators or learned connectivity \cite{dcrnn,gwnet}. At the same time, competitive alternatives demonstrate the importance of strong baselines when assessing the contribution of graph processing \cite{simst,stid}. For regional congestion warnings, the central question is what spatial detail and graph structure add beyond a well-trained aggregate predictor. Answering this question requires distinguishing the effects of additional measurements, the operations applied to them, and access to more recent training data.
 
-The empirical contribution is a common evaluation of aggregate updating, individual histories, six representation families and trained topology controls, with three registered correction seeds and frozen alarm criteria. The held-out period was opened only after committing the models, metrics, thresholds and analysis. The resulting comparison distinguishes benefits in probability loss from benefits in alarms and retains reversals between validation and test. These compact controlled variants study a regional risk task; they are not comprehensive reproductions of established traffic forecasting architectures.
+These distinctions matter because an apparent graph advantage can have several explanations. A model may benefit from individual sensor histories without benefiting from their connectivity. It may improve because it has more parameters or was trained on additional observations. A reduction in probability error may also coincide with more false alarms. Evaluating these effects together provides a clearer basis for selecting a forecasting approach and for deciding whether its spatial processing is justified.
+
+We address this problem through a controlled comparison on PEMS-BAY. Six compact representations cover local temporal histories, distance-based sensor messages, regional messages, multiscale graph summaries, separate within-region and cross-region messages, and training-estimated dependencies. Each representation enters a common prediction framework through an additive correction to a frozen aggregate probability model. This design keeps the prediction target and much of the fitting procedure consistent while varying the available detail and its processing.
+
+The aggregate controls are central to the comparison. In particular, $R_{\rm union}$ refits the aggregate predictor on the union of the original and correction training examples. It therefore tests whether updating the aggregate model is competitive with adding local or graph representations. A larger aggregate correction assesses the role of parameter budget, while trained rewired graphs test whether the observed connectivity provides an advantage over alternative connections.
+
+The study makes three empirical contributions:
+\begin{enumerate}
+    \item A common comparison of six representations for regional congestion onset, supported by aggregate controls that account for additional training data and model capacity.
+    \item An assessment of topology-specific predictive evidence using trained graph controls, three predeclared correction seeds, and a chronological test whose models and analysis were fixed before access.
+    \item A joint evaluation of probability accuracy, calibration, alarm behavior and measured processing costs, showing how these criteria affect the interpretation of representation gains.
+\end{enumerate}
+
+The results illustrate the value of this combined evaluation. Aggregate refitting achieves the lowest observed prediction error among the main model families, while adding local histories through the tested correction does not improve the aggregate baseline. Separating within-region and cross-region messages yields favorable secondary comparisons against trained rewired controls, but the favorable primary graph contrasts remain statistically uncertain and false alarms increase without a recall gain. These findings provide concrete guidance for regional traffic forecasting: assess spatial representations against competitive aggregate updating, test the contribution of connectivity explicitly, and judge predictive gains alongside the quality of the resulting warnings.
+
+
+
+
+
+
+
+
 
 \section{Related Work}
 Graph-based traffic forecasting combines temporal history with a spatial dependency model. DCRNN uses bidirectional diffusion and recurrent forecasting \cite{dcrnn}. Graph WaveNet combines temporal convolutions with an adjacency learned through node embeddings \cite{gwnet}. These methods motivate testing both fixed and measurement-derived connectivity. Our distance and dependency arms are much smaller controlled variants and predict a regional event probability directly. Their results cannot rank the original architectures on their established speed-forecasting benchmarks.
@@ -37,136 +59,179 @@ Residual correction also has direct traffic precedents. ResCAL estimates errors 
 
 Graph aggregation provides an analytical language for describing lost detail. Equitable partitions and quotient dynamics have established conditions under which grouped states close under an operator \cite{schaub}. Diffusion wavelets develop multiscale representations of diffusion operators \cite{diffusion}. The decomposition used below is elementary projection algebra. We use it to define candidate summaries, without claiming a new coarsening theorem or sufficiency for nonlinear congestion events.
 
+
+
+
+
+
+
 \section{Task and Observation Model}
 \subsection{Recorded-Speed Event and Onset Eligibility}
-PEMS-BAY contains five-minute recorded speeds for 325 ordered sensors from January through June 2017 \cite{dcrnn,release}. The stored units are mph. Let $v_{i,t}$ be recorded speed and $f_i$ the fixed reference free speed, estimated as the 85th percentile within the original training period. For a fully observed frame, define
+PEMS-BAY contains five-minute speed measurements in mph for 325 ordered sensors from January through June 2017 \cite{dcrnn,release}. Let $v_{i,t}$ denote recorded speed and $f_i$ the fixed reference free speed for sensor $i$, estimated as its 85th percentile within the original training period. For fully observed frames, define
 \begin{equation}
  c_t=\sum_{i=1}^{325}\mathbf{1}\{v_{i,t}\leq f_i/2\},\qquad
  Y_t=\mathbf{1}\!\left\{\max_{j=1,\ldots,4}\min_{k=0,1,2}c_{t+j+k}\geq48\right\}.
 \label{eq:target}
 \end{equation}
-The predictor uses 12 frames ending at $t$ and estimates whether this event occurs within the next six frames. The onset population excludes origins already satisfying the three-frame current event rule. Thus onset denotes a prediction made while the sustained event is not currently known or possibly active. It is not a detector-level onset time or a road-incident annotation.
+Here, $c_t$ counts sensors recording at most half their reference speed. The event $Y_t=1$ requires at least 48 such sensors in each of three consecutive frames within the next six frames, a 30-minute forecast horizon. The predictor uses the preceding 12 frames, including $t$. Onset evaluation includes only forecast origins where the current three-frame event can be ruled out. It therefore concerns a future regional event, rather than the onset time at an individual sensor or an annotated road incident.
 
-Nonfinite and nonpositive observations are treated as unknown. At each future frame, the lower count treats unknown sensors as not severe and the upper count treats them as severe. Applying Eq.~\ref{eq:target} to these counts gives lower and upper event labels. A forecast origin is scoreable only when these labels agree and at least 95\% of its future sensor-frame entries are observed. We do not impute missing future speeds into observed labels. For current onset eligibility, an unknown sensor is conservatively allowed to be severe, excluding a possibly active event. Every arm uses the same resulting masks.
+Nonfinite and nonpositive measurements are treated as unknown. For each future frame, a lower count excludes unknown sensors from the slow-speed count, while an upper count includes them. Applying Eq.~\ref{eq:target} to both count sequences bounds the event label. An origin is scoreable only when these bounds agree and at least 95\% of its future sensor-frame entries are observed. Missing future speeds are therefore not imputed to determine labels. For current onset eligibility, the upper counts exclude origins where missing observations could conceal an active event. Every model uses the same eligibility and scoring masks.
 
-This definition targets a recorded sustained low-speed condition. It does not establish that a particular incident occurred, that congestion propagated causally along an edge, or that an alarm would lead to a beneficial intervention. Those claims would require additional observations and an operational study.
+These labels describe sustained low recorded speeds. They do not identify a specific road incident, establish causal propagation along graph edges, or demonstrate that acting on an alarm would improve traffic conditions. Those interpretations require additional observations and operational evaluation.
+
+
+
+
 
 \subsection{Aggregate and Local Inputs}
-Sensors are assigned to 16 fixed regions by a deterministic recursive partition of coordinates. The aggregate vector has 1,158 entries: 12-frame histories of regional means and valid counts, six calendar terms, and histories of regional variance, minimum, maximum, and severe fraction. Summaries therefore preserve substantial heterogeneity as well as average slowing. Computing them already reads every sensor. They should not be described as saving sensor acquisition.
+Sensors are assigned to 16 fixed regions through a deterministic recursive partition of their coordinates. The aggregate vector contains 1,158 entries. These comprise 12 frames of regional means, valid observation counts, variances, minima, maxima and severe fractions, together with six calendar features. The summaries capture variation within regions as well as average slowing. Their computation requires readings from every sensor, so aggregation does not reduce sensor acquisition requirements.
 
-Feature speeds use an earlier-training reference and the clipped transformation
+Input speeds are transformed using reference speeds estimated from an earlier training period,
 \begin{equation}
  x_{i,t}=\operatorname{logit}\!\left(\operatorname{clip}_{[.001,\allowbreak .999]}(1-v_{i,t}/f_i^{\rm feature})\right).
 \end{equation}
-Feature references and the historical target references have distinct fit cutoffs. Missing transformed entries contribute zero with explicit masks and valid counts. The aggregate correction input is standardized with the correction-training mean and scale, then clipped to $[-10,10]$.
+The reference speeds used for features and event labels have different training cutoffs. Missing transformed values are set to zero and accompanied by observation masks and valid counts. Aggregate correction inputs are standardized using the mean and scale estimated from correction training data, then clipped to $[-10,10]$.
 
-Local arms receive each sensor's ordered transformed history, deviation from its regional mean, recent change when both frames are valid, and a validity channel. Shared temporal MLP parameters encode these histories. Masked pooling produces one vector for each fixed region, with regional availability fractions. Ordered regional outputs retain regional identity even without graph messages. Local arms add measurement detail to the aggregate vector; changing D to another graph with the same histories changes the inductive bias applied to those measurements.
+Local models receive each sensor's transformed history in temporal order, its deviation from the regional mean, its recent change when both frames are valid, and an observation validity channel. A temporal multilayer perceptron (MLP) shares parameters across sensors to encode these histories. Pooling with observation masks produces one vector per region, accompanied by regional availability fractions. These vectors remain in a fixed regional order, preserving regional identity even without graph messages. Local models therefore supplement the aggregate vector with individual sensor detail. Changing the graph while retaining the same histories changes how this information is combined across sensors.
 
 \begin{figure}[t]
 \centering
-\figalt{All sensor histories and masks supply regional summaries. The separate aggregate refit R union produces its own probability. Every alternative correction receives aggregate features and the frozen A G probability. C, D, E and F also receive local histories; M uses regional summaries; S constructs graph summaries from local deviations after all-sensor ingestion. Each arm produces its own clipped corrected probability, without combining arms.}{\includegraphics[width=\textwidth]{figures/overview.pdf}}
-\caption{Alternative prediction paths, evaluated separately. $R_{\rm union}$ is an aggregate refit with its own output; all corrections use the frozen anchor $A_G$. B/K use aggregates, M adds regional messages, S adds graph summaries, and C/D/E/F use local histories. Initial summaries and S both require all-sensor ingestion.}
+\figalt{Sensor histories and observation masks are used to compute regional summaries. The aggregate refit R union produces a separate probability. Every correction model receives aggregate features and the frozen A G probability. C, D, E and F also receive local histories. M uses regional summaries. S constructs graph summaries from local deviations using readings from every sensor. Each correction produces its own clipped probability. Model outputs are evaluated separately and are not combined.}{\includegraphics[width=\textwidth]{figures/overview.pdf}}
+\caption{Prediction paths evaluated as separate models. $R_{\rm union}$ is an aggregate refit with its own output. All corrections use the frozen anchor $A_G$. B and K use aggregate features, M adds regional messages, S adds graph summaries, and C, D, E and F use local histories. Computing the initial summaries and the inputs to S requires readings from every sensor.}
 \label{fig:overview}
 \end{figure}
 
+
+
+
+
+
+
 \section{Predictors and Graph Representations}
 \subsection{Frozen Anchor and Aggregate Controls}
-The anchor $A_G$ is a GPU quantile-binned tree booster with 100 trees, at most 15 leaves, 64 candidate bins, minimum leaf size 20, and learning rate .1. Its L2 setting was selected from two choices within early training. $R_{\rm union}$ uses the same selected specification and feature transform, refitted on the exact union of the anchor and correction training examples at the same stride. Both have recoverable fitted weights and separate predictions; corrections remain anchored to $A_G$.
+The anchor $A_G$ provides the baseline probability to which corrections are added. It is a GPU tree booster using quantile bins, with 100 trees, at most 15 leaves per tree, 64 candidate bins, a minimum of 20 examples per leaf, and learning rate .1. Its L2 regularization was selected from two settings during early training. $R_{\rm union}$ retains the selected model specification and feature transform but is refitted on the exact union of anchor and correction training examples, using the same sampling stride. Both fitted models are saved and produce separate predictions. All corrections use $A_G$ as their anchor.
 
-$A_{\rm mono}$ applies a positive-slope logistic map to the frozen anchor. It was fitted on out-of-sample anchor predictions in the correction period. B adds a compact aggregate-only residual learner, and K increases the aggregate parameter budget to approximately that of local and graph corrections. The main-study training selection chose B as the aggregate comparator and E as the expanded graph comparator. These choices remain fixed for test, even when another arm has a better observed score.
+$A_{\rm mono}$ transforms the frozen anchor probabilities through a logistic map with positive slope. The map was fitted using anchor predictions from the correction period, outside the anchor's fitting data. B learns a compact correction from aggregate inputs. K uses a larger aggregate correction with approximately as many parameters as the local and graph corrections. Training selected B as the aggregate comparator and E as the expanded graph comparator. These selections remain fixed for test regardless of subsequent model rankings.
 
-Every correction uses
+Every correction takes the form
 \begin{equation}
  p_t=\operatorname{clip}_{[0,1]}\{p_{A_G,t}+\alpha r_\theta(I_t)\},
  \qquad r_\theta(I_t)=\tfrac12\tanh g_\theta(I_t).
 \label{eq:correction}
 \end{equation}
-The residual head was initialized to zero and trained using ordinary all-time Brier loss plus $\lambda r_\theta^2$, with weight decay. Zero correction recovers the anchor exactly. This property does not guarantee better generalization after fitting. A global $\alpha\in\{0,\allowbreak .25,\allowbreak .5,1\}$ was selected in a separate training block. It scales the residual before clipping. The frozen final evaluation changes none of these values.
+Here, $I_t$ contains the correction inputs, $g_\theta$ is the learned network, and $\alpha$ controls correction strength. The residual head was initialized to zero and trained using all-time Brier loss, a penalty $\lambda r_\theta^2$, and weight decay. A zero correction reproduces the anchor exactly, although fitting does not guarantee improved generalization. The global scale $\alpha\in\{0,\allowbreak .25,\allowbreak .5,1\}$ was selected in a separate training block and applied before clipping. All fitted parameters and selected settings remain unchanged during final evaluation.
+
+
+
 
 \subsection{Six Representations}
-Table~\ref{tab:inputs} summarizes the arms. C applies a shared MLP to each ordered local history and a self-message branch before masked regional pooling. D replaces that self message with one normalized weighted neighbor average. The original operator is a row-normalized distance-similarity matrix. Its weights indicate proximity, not verified directed road flow. The row convention determines which source histories a receiving node averages, without identifying causal direction.
+Table~\ref{tab:inputs} summarizes the models. C encodes each sensor's history in temporal order using a shared MLP. A separate branch processes that sensor's own encoding before pooling with observation masks within each region. D replaces this self message with a normalized weighted average of information from neighboring sensors. Its graph operator is a distance-similarity matrix whose rows sum to one. Each row specifies the sources contributing to a receiving sensor. The weights represent proximity and do not establish directed road flow or causal influence.
 
-M first encodes the available regional summary histories and exchanges messages on the fixed regional operator $Q=RWL$. It receives no extra local measurements. S instead exposes a small collection of graph-dependent regional summaries at hop scales one, two, and four. E uses separate within-region and cross-region messages, concatenated with each node's own encoding. Its two neighbor streams share the same total available-neighbor denominator. They are not independently renormalized to equal strength. E\_internal sets the cross-region stream to zero while retaining that denominator and the same architecture.
+M encodes regional summary histories and exchanges messages through the fixed regional operator $Q=RWL$, without additional local measurements. S supplies graph-dependent regional summaries at one, two and four hops. E separates messages from neighbors within the same region and those across regional boundaries, then concatenates both with the sensor's own encoding. Both neighbor streams use a common denominator based on all available neighbors, preserving their relative contributions. E\_internal removes the cross-region stream while retaining this denominator and the same architecture.
 
-F substitutes a sparse training-estimated dependency operator into D's message architecture. Sensor histories are first residualized against earlier-training calendar terms and regional common components. Absolute residual correlations define neighbors, with each row's nonself degree matched to D. The retained association is unsigned, so negative associations also become positive averaging weights. F does not preserve all indegrees, optimize adjacency jointly with the forecast loss, or reveal causal road directions. These distinctions limit interpretations of either success or failure.
+F uses D's message architecture with a sparse dependency graph estimated from training data. Calendar effects and regional common components fitted during earlier training are first removed from sensor histories. Neighbors are selected using absolute correlations between the residuals, with the number of nonself neighbors in each row matched to D. Both positive and negative correlations therefore produce positive averaging weights. Matching row degrees does not preserve every indegree. The graph remains fixed during predictor training, and its associations do not identify causal road directions.
 
 \begin{table}[t]
-\caption{Main inputs and processing. Every correction also receives the aggregate vector and frozen anchor probability. Parameter counts exclude the shared anchor.}
+\caption{Model inputs and processing. Every correction also receives the aggregate vector and frozen anchor probability. Parameter counts exclude the shared anchor.}
 \label{tab:inputs}
 \small
 \begin{tabularx}{\textwidth}{l l >{\raggedright\arraybackslash}X r}
 \toprule
-Arm & Extra input & Representation & Parameters\\
+Model & Extra input & Representation & Parameters\\
 \midrule
 $A_G$, $R_{\rm union}$ & None & Aggregate tree predictors & Trees\\
 $A_{\rm mono}$ & None & Monotone anchor map & 2\\
 B & None & Aggregate correction & 38,209\\
 K & None & Larger aggregate correction & 50,129\\
-C & Full local histories & Shared temporal encoder, self message & 49,553\\
-D & Full local histories & Distance-weighted sensor messages & 49,553\\
+C & Full local histories & Shared temporal encoder with self messages & 49,553\\
+D & Full local histories & Sensor messages using distance similarity & 49,553\\
 M & None & Messages among regional summaries & 49,937\\
-S & \shortstack[l]{Local-derived\\summaries} & Coarse and deviation summaries at 1, 2, 4 hops & 50,321\\
-E & Full local histories & Separate internal and boundary messages & 49,809\\
-F & Full local histories & Frozen sparse dependency messages & 49,553\\
+S & \shortstack[l]{Summaries from\\local histories} & Coarse and deviation summaries at 1, 2, 4 hops & 50,321\\
+E & Full local histories & Separate messages within and across regions & 49,809\\
+F & Full local histories & Sensor messages using a fixed dependency graph & 49,553\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-The message and temporal widths are 16, and the ordinary aggregate and final hidden widths are 32. K uses aggregate width 42. All local and graph outputs pass through the same regional interface where feasible. Differences remain in input dimension, number of channels, normalization and effective function class. A matched parameter count is a capacity control, not a proof of equal optimization difficulty. B versus C therefore compares fitted representations and learning problems; it does not isolate an intrinsic information value independent of the learner.
+Temporal encoders and message branches have width 16. The aggregate and final hidden layers generally have width 32, while K uses aggregate width 42. Local and graph models use a common regional output interface where feasible. They still differ in input dimension, channel count, normalization and the functions they can represent. Similar parameter counts help control model capacity but do not ensure equally easy optimization. Accordingly, B versus C assesses the performance of the fitted representations. It does not measure the value of local information independently of the learner used to process it.
+
+
+
+
+
 
 \subsection{Coarse State and Graph-Dependent Detail}
-Let $L\in\mathbb{R}^{325\times16}$ lift a regional vector to sensors and let $R\in\mathbb{R}^{16\times325}$ average each nonempty region, so $RL=I$. For a fully observed vector $x$, write
+Let $L\in\mathbb{R}^{325\times16}$ assign each sensor its regional value, and let $R\in\mathbb{R}^{16\times325}$ average sensor values within each nonempty region. Then $RL=I$. For a fully observed sensor vector $x$, define
 \begin{equation}
  z=Rx,\quad u=x-Lz,\quad Q=RWL,\quad s_h=RW^hu.
 \end{equation}
-Then
+Here, $z$ contains regional means, $u$ contains deviations from those means, and $Q$ is the regional operator induced by the sensor graph $W$. The term $s_h$ captures the contribution of local deviations after $h$ graph steps. Thus
 \begin{equation}
  RWx=Qz+s_1,\qquad RW^hx=(RW^hL)z+s_h.
 \label{eq:decomposition}
 \end{equation}
-S supplies the coarse and deviation terms separately at the fixed hop scales. Repeated sparse products compute these features without materializing dense powers. In general $RW^hL$ differs from $Q^h$, since omitted deviations can affect subsequent regional averages.
+S supplies the regional and deviation contributions separately at one, two and four hops. Repeated sparse matrix products compute them without forming dense powers of $W$. In general, $RW^hL\neq Q^h$ because sensor deviations omitted by regional averaging can influence later regional states.
 
-By established projection algebra, $s_1$ vanishes for every $x$ exactly when $RW(I-LR)=0$, or $RW=QR$. For directed operators, forward invariance $WL=LQ$ alone is insufficient; applicable symmetry or closure assumptions matter \cite{schaub}. These identities motivate S but do not establish sufficiency for the nonlinear event. The accompanying \path{reports/ONSET_GRAPH_STUDY_REPORT.md}, ``Multiscale construction and mathematical limits,'' gives the derivation and directed counterexample.
+The deviation contribution $s_1$ vanishes for every $x$ exactly when $RW(I-LR)=0$, equivalently $RW=QR$. This closure condition means that regional means alone determine the next regional means under $W$. For directed operators, $WL=LQ$ alone does not imply this condition \cite{schaub}. These identities explain the construction of S but do not establish that its features are sufficient to predict the nonlinear congestion event. 
 
-With missing inputs, S uses observed regional means and zero-filled unavailable deviations, equivalent to completing missing values by their observed regional mean (zero for an empty region). Equation~\ref{eq:decomposition} then describes this completed feature vector, not unknown speeds. Availability fractions accompany the features. The identity does not transfer to the mask-dependent neighbor normalization in D/E/F; missing future labels remain bounded, not imputed.
+When inputs are missing, S computes regional means from observed values and sets unavailable deviations to zero. This is equivalent to filling missing entries with the observed regional mean, or zero for an empty region. Equation~\ref{eq:decomposition} then applies to the completed feature vector. Availability fractions accompany these features. This fixed-operator construction does not directly describe the normalization that depends on observation masks in D, E and F. Missing future labels remain bounded rather than imputed.
 
 \subsection{Topology Controls and Attribution}
-D's identity control is the matched C architecture. E has its own self-message and internal-only controls. Two outcome-blind rewiring seeds generate trained competitors for D and E through directed double-edge swaps. Each null preserves nonself edge count, per-node in/outdegree, source-row weight multisets and diagonal fallbacks. It changes neighbor identity, geometry and regional mixing. Cross-region edge count rises from 1,130 in the original graph to 2,228 in each null. Thus a real-versus-null difference is not a clean test of geometry while holding regional structure fixed.
+C provides D's matched control using only self messages. E has separate controls using self messages or internal messages only. Two fixed random seeds generate rewired graphs through directed double-edge swaps without using event outcomes. Each graph preserves the nonself edge count, each node's incoming and outgoing degrees, the multiset of weights in each row, and diagonal fallbacks. Rewiring changes neighbor identities, geometry and regional mixing. In particular, cross-region edges increase from 1,130 to 2,228 in each control. Comparisons with these graphs therefore assess the combined effects of these changes, without isolating geometry from regional mixing.
 
-The two fixed nulls are not uniform samples of the degree-constrained graph ensemble. They receive the same tuning allowance and all three training seeds. These are trained competitors, rather than post-training graph perturbations.
+The two fixed rewired graphs are not uniform samples from all graphs satisfying the degree constraints. Each receives the same tuning budget and all three training seeds as its corresponding original graph model. The comparison evaluates predictors trained with alternative graphs, rather than replacing the graph after training.
+
+
+
+
+
 
 \section{Experimental Design}
 \subsection{Chronology, Frozen Choices and Exposure}
-The original split uses 108 complete training days through April 19, 36 validation days from April 20 to May 25, and 36 test days from May 26 to June 30. Incomplete March 12 is excluded from training. Input and outcome windows remain inside their split, with a two-sided 90-minute embargo at boundaries. Timestamps are naive in the release; a timezone convention is not asserted.
+The original split contains 108 complete training days through April 19, 36 validation days from April 20 to May 25, and 36 test days from May 26 to June 30. March 12 is incomplete and excluded from training. Input and outcome windows must remain within their assigned split, with a 90-minute embargo on both sides of each boundary. The released timestamps contain no timezone information, so we do not assign a timezone convention.
 
-The main training pipeline separates six roles: anchor fitting through February 23; correction fitting from February 24 to March 16; early stopping from March 17 to 24; shrinkage and family selection from March 25 to April 1; calibration from April 2 to 9; and a final development gate from April 10 to 19. Windows crossing these boundaries are embargoed. All labels are observable before their role's cutoff. The anchor has 5,173 eligible fitting examples and the refit has 7,070. Correction training uses the later portion at stride three, matching its contribution to the refit's union. This addresses the older pilot's comparison between stride-12 early baseline training and denser later correction training.
+Training is divided into six periods with distinct purposes. Anchor fitting ends on February 23, and correction fitting uses February 24 to March 16. Early stopping uses March 17 to 24, followed by shrinkage and model-family selection from March 25 to April 1. Calibration uses April 2 to 9, and a final development check uses April 10 to 19. Windows crossing these boundaries are excluded, and each period uses only labels observable by its cutoff. The anchor has 5,173 eligible fitting examples, while the aggregate refit has 7,070. Correction fitting uses the later training examples at stride three, with those same examples included in the refit's training union. This controls for the additional training data available to corrections. The earlier pilot had instead compared an early baseline fitted at stride 12 with corrections fitted on more densely sampled later data.
 
-Each correction family had two predeclared regularization choices, one tuning seed, and three retained seeds for the selected setting. AdamW used learning rate .001, weight decay .0001, batch size 256, at most 60 epochs and patience eight. Training minimized unweighted all-time Brier with residual regularization; selection used development onset Brier. No event weighting changed the probability estimand. Earlier rolling chronological evaluations are retained even when weak or unfavorable. Their overlaps and limited event counts prevent interpreting them as independent studies.
+Each correction family had two predeclared regularization settings, evaluated with one tuning seed. The selected setting was then fitted with three retained seeds. AdamW used learning rate .001, weight decay .0001, batch size 256, a maximum of 60 epochs, and early stopping patience of eight epochs. Training minimized unweighted all-time Brier loss with residual regularization. Model selection used development onset Brier. Event observations received no additional weight. Results from earlier rolling chronological evaluations are retained, including unfavorable findings. Overlapping periods and limited event counts mean that these evaluations are not independent studies.
 
-All validation days had been exposed during prior development. In an earlier pilot, onset was a favorable secondary endpoint. That observation motivated its registered primary role in the main graph comparison. The strengthened main comparison was less favorable to local information. We explicitly retain this history. It prevents retrospective relabeling of the earlier exploratory finding as a primary result.
+Validation results are exploratory because all validation days had been examined during earlier development. An earlier pilot found favorable results for onset prediction as a secondary endpoint, motivating its registered primary role in the main graph comparison. The strengthened comparison subsequently provided less favorable evidence for the tested local representations. This development history is retained so that the earlier exploratory finding remains distinct from the later registered analysis.
 
-The final test stage opened previously unexamined measurements only after the full protocol and verified implementation were committed. All required checkpoints were present. Their hashes, graph operators, transforms, shrinkage, calibration, thresholds and seed membership were fixed before access. No test outcome determined a fit, exclusion definition, threshold, representation or manuscript illustration. Test and validation are reported separately, without pooling their losses or event groups.
+The test measurements were first accessed after committing the complete protocol and verified implementation. All required checkpoints were available, with their hashes, graph operators, feature transforms, shrinkage settings, calibration maps, alarm thresholds and training seeds fixed in advance. Test outcomes were not used to select fitted models, exclusion rules, thresholds, representations or manuscript illustrations. Test and validation results are reported separately, without pooling losses or event groups.
+
+
+
+
+
 
 \subsection{Metrics, Uncertainty and Alarms}
-Raw onset Brier is primary. Raw all-time Brier is secondary, and scores after frozen calibration are labeled separately. For each family we average the three seed-specific losses at each origin before temporal resampling. We do not average probabilities into an ensemble. Per-seed scores and their descriptive standard deviation remain available.
+The primary metric is onset Brier score before calibration. Brier score over all eligible origins is secondary, and results after frozen calibration are reported separately. Lower scores indicate better probability accuracy. For each model family, we average the losses from its three training seeds at each forecast origin before temporal resampling. Probabilities are not combined into an ensemble. Scores for individual seeds and their descriptive standard deviation are also retained.
 
-The registered raw onset comparison family is C minus B, D minus C, E minus D, and E minus B. Negative values favor the first arm. We use 2,000 paired calendar-block resamples with seed 20261007, three-day blocks as primary and one-day blocks as sensitivity. All origins in a selected day and their model/seed pairing remain together. Contiguous calendar segments are resampled separately, preserving gaps. Four-contrast Bonferroni percentile intervals use 98.75\% marginal coverage as an approximate familywise assessment. We also show pointwise 95\% intervals. These intervals condition on the fitted models and do not capture all training or development-selection uncertainty.
+The four registered primary comparisons are C minus B, D minus C, E minus D, and E minus B. Negative differences favor the first model. We use 2,000 paired resamples of calendar blocks with random seed 20261007. Blocks of three days form the primary analysis, while blocks of one day assess sensitivity. All origins within a selected day remain together, preserving their pairing across models and training seeds. Contiguous calendar segments are resampled separately to preserve gaps. Bonferroni adjustment for the four comparisons uses percentile intervals with 98.75\% marginal coverage, targeting approximately 95\% coverage across the comparison family. Pointwise 95\% intervals are also reported. These intervals describe temporal uncertainty conditional on the fitted models and do not capture all uncertainty from training or development choices.
 
-B versus $R_{\rm union}$ is a required secondary comparison. Graph-versus-aggregate and topology-control contrasts are descriptive, with pointwise intervals. F remains secondary regardless of its point rank. Practical scales carried forward from the protocol are a .0001 absolute and 1\% relative local benefit, or .00005 and .5\% graph benefit. Alarm tolerances are a recall loss of .02 or FPR increase of .01. These are pilot interpretation scales, not equivalence margins or a substitute for uncertainty.
+B versus $R_{\rm union}$ is a required secondary comparison. Additional comparisons involving aggregate models and topology controls are descriptive and use pointwise intervals. F remains secondary regardless of its observed ranking. The protocol's practical reference scales are an absolute Brier reduction of .0001 and a relative reduction of 1\% for local inputs. For graph processing, the corresponding values are .00005 and .5\%. Alarm tolerances are a recall loss of two percentage points or an increase of one percentage point in the false positive rate (FPR). These scales guide interpretation and do not define equivalence or replace uncertainty analysis.
 
-Each predictor's positive-slope logistic calibrator was fitted on separate, out-of-sample training predictions. The calibration block contains only 30 onset-positive origins in five groups on four days. Strict alarms use $p>c$, where the frozen cutoff targets 5\% calibration FPR and excludes ties without jitter. The map is nondecreasing after endpoint clipping and cannot recover ranking among tied zeros. Test recall and FPR are measured, not assumed to inherit the calibration target.
+Each predictor has a logistic calibration map constrained to have positive slope. It was fitted on separate training predictions generated outside that predictor's fitting data. The calibration period contains only 30 positive onset origins in five groups across four days. An alarm occurs when $p>c$, where the cutoff $c$ was fixed to target 5\% FPR during calibration. Predictions equal to the cutoff do not trigger alarms, and no noise is added to break ties. The calibration map remains nondecreasing after endpoint clipping and cannot distinguish predictions tied at zero. Test recall and FPR are measured directly because the calibration target need not hold on test.
 
-Positive forecast groups merge origins separated by less than 30 minutes; a gap of at least 30 minutes starts a new group. A group is detected if any origin in it alarms. False-alarm groups use the same gap rule among alarmed non-event origins. These summaries account for repeated adjacent forecasts but do not turn groups into verified independent incidents. Event/non-event loss contributions, fixed-bin reliability and clipping diagnostics complement overall Brier.
+Positive forecast origins belong to the same group when successive origins are less than 30 minutes apart. A gap of at least 30 minutes starts a new group. A group is detected if any of its origins triggers an alarm. False alarm groups apply the same rule to alarmed origins without an event. These groups summarize repeated adjacent forecasts but are not verified independent traffic incidents. Loss contributions from event and nonevent origins, reliability within fixed probability bins, and clipping diagnostics complement the overall Brier scores.
 
 \subsection{Computation and Verification}
-All scientific numerics ran on one NVIDIA RTX 6000 Ada Generation GPU with PyTorch 2.8.0, CUDA 12.8 and driver 570.124.06. CPU work handled orchestration, file processing and rendering. Frozen raw and calibrated validation predictions replayed exactly before test access. The test replay also reproduced predictions exactly, with metric differences within the declared $10^{-12}$ tolerance. Checkpoint hashes, alignment checks, source revisions and detailed resource/replay records are preserved in \path{reports/FINAL_TEST_REPORT.md} and its linked artifacts. Existing timings are reused below.
+Scientific computations ran on one NVIDIA RTX 6000 Ada Generation GPU using PyTorch 2.8.0, CUDA 12.8 and driver 570.124.06. CPU tasks included orchestration, file processing and rendering. Before test access, replay reproduced the frozen raw and calibrated validation predictions exactly. Test predictions were also reproduced exactly, with metric differences within the declared $10^{-12}$ tolerance. Reproducibility records retain checkpoint hashes, alignment checks, source revisions, resource usage and replay results. The timing results below use previously recorded measurements.
+
+
+
+
+
+
+
+
+
 
 \section{Results}
-\subsection{Held-Out Support and Competitive Aggregate Controls}
-The test has 10,333 timestamp-eligible origins, of which \TestEligible{} are scoreable. Six fail future coverage and none has disagreeing event bounds. There are 1,147 all-time positives. The onset population has \TestOnsetN{} origins and \TestPos{} positives, prevalence \TestPrevalence{}, grouped into 45 positive forecast groups on 25 days. Validation had 8,981 onset origins, 289 positives and 47 groups on 26 days. These differing populations are not combined.
+\subsection{Test Population and Aggregate Baselines}
+The test period contains 10,333 eligible forecast times, of which \TestEligible{} can be scored. Six fail the future observation coverage requirement. None has conflicting event bounds. Across the full test population, 1,147 origins have positive labels. The onset subset contains \TestOnsetN{} origins and \TestPos{} positives, giving prevalence \TestPrevalence{}. These positives form 45 groups across 25 days. Validation contains 8,981 onset origins, 289 positives and 47 groups across 26 days. The two populations are evaluated separately.
 
 \begin{table}[t]
-\caption{Main-family Brier and frozen-threshold onset alarms. Correction entries average seed-specific scores, not probabilities. Validation is exposed development evidence; raw onset Brier is primary. Recall and FPR are test onset rates.}
+\caption{Brier scores and onset alarms using frozen thresholds. Correction entries average scores across training seeds. Validation results are exploratory, and raw onset Brier is primary. Recall and FPR describe test onset alarms.}
 \label{tab:scores}
 \centering\small
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lrrrrrr}
@@ -178,93 +243,121 @@ Model & \shortstack{Validation\\onset\\raw} & \shortstack{Test\\onset\\raw} & \s
 \end{tabular*}
 \end{table}
 
-Aggregate refit $R_{\rm union}$ has the lowest raw onset and all-time point scores among the main families, \TestOnRUnion{} and \TestAllRUnion{} (Table~\ref{tab:scores}). Its frozen-calibrated scores are also lowest, \TestCalOnRUnion{} and \TestCalAllRUnion{}. Aggregate correction B has raw onset score \TestOnB{}. The secondary B minus $R_{\rm union}$ difference is .0009656, with three-day pointwise interval $[-.0000081,\allowbreak .0025347]$. This favorable refit point estimate remains uncertain and establishes neither superiority nor equivalence. The corresponding validation difference was near zero. The refit accesses the same union of fitting labels without adding local histories.
+Aggregate refitting gives the strongest observed scores among the main model families (Table~\ref{tab:scores}). For $R_{\rm union}$, raw onset and all-time Brier are \TestOnRUnion{} and \TestAllRUnion{}. Its calibrated scores are also the lowest, at \TestCalOnRUnion{} and \TestCalAllRUnion{}. Aggregate correction B has raw onset Brier \TestOnB{}.
 
-$A_{\rm mono}$ reaches raw onset \TestOnAMono{}, showing that a simple training-fitted probability map also competes with the residual arms. ``Raw'' denotes each arm's registered output before its additional final calibration map; $A_{\rm mono}$ is already a recalibration control.
+The observed advantage of refitting remains statistically uncertain. The secondary difference B minus $R_{\rm union}$ is .0009656, with a pointwise interval of $[-.0000081,\allowbreak .0025347]$ using blocks of three days. Because this interval includes zero, it establishes neither superiority nor equivalence. The validation difference was near zero. This is an informative comparator because refitting uses the same combined training examples without adding local histories.
 
-\subsection{Registered Representation Contrasts}
-Local-history correction C remains worse than aggregate correction B on test. Its onset difference is +.0001593, or a 1.05\% relative increase, with adjusted three-day interval $[.0000522,\allowbreak .0002315]$. This direction persists from the strengthened validation comparison and concerns this fitted local representation.
+The simple probability map $A_{\rm mono}$ also competes with the residual corrections, achieving raw onset Brier \TestOnAMono{}. Here, ``raw'' means the registered model output before the final calibration step. For $A_{\rm mono}$, that output already incorporates its fitted logistic map.
 
-Distance graph D versus C changes direction from validation. Its test difference is -.0002203, a 1.43\% relative reduction. The pointwise interval $[-.0003640,\allowbreak -.0000063]$ favors D, but the adjusted three-day interval $[-.0004364,\allowbreak .0000268]$ crosses zero. Cross-region correction E versus D is -.0001074, a .71\% reduction, with adjusted interval $[-.0002318,\allowbreak .0000073]$. Its favorable validation point direction persists, but its adjusted exclusion of zero does not. E versus B reverses from an unfavorable validation point to -.0001684, or 1.11\%, on test; its adjusted interval $[-.0002960,\allowbreak .0000245]$ also crosses zero.
+\subsection{Primary Comparisons of Representations}
+Adding local histories through correction C increases prediction error relative to aggregate correction B. The onset Brier increase is 1.05\%, or +.0001593, with an adjusted interval of $[.0000522,\allowbreak .0002315]$ using blocks of three days. The interval excludes zero, supporting the same unfavorable direction observed on validation. This finding concerns the fitted local representation.
+
+Distance graph D improves on C in test, reversing the validation result. It reduces onset Brier by 1.43\%, a difference of -.0002203. The pointwise interval $[-.0003640,\allowbreak -.0000063]$ favors D. However, the adjusted interval $[-.0004364,\allowbreak .0000268]$ includes zero.
+
+Cross-region correction E further reduces onset Brier by .71\% relative to D, a difference of -.0001074. Its adjusted interval is $[-.0002318,\allowbreak .0000073]$. The direction agrees with validation, but the adjusted test interval no longer excludes zero. Relative to aggregate correction B, E reduces onset Brier by 1.11\%, or -.0001684, reversing its unfavorable validation result. This improvement also remains uncertain, with adjusted interval $[-.0002960,\allowbreak .0000245]$.
 
 \begin{figure}[t]
 \centering
-\figalt{Four paired Brier contrasts are shown separately for exposed validation and frozen test, for onset and all-time outcomes. C minus B stays positive, while several graph contrasts change direction or remain uncertain.}{\includegraphics[width=\textwidth]{figures/effects.pdf}}
-\caption{Paired effects for aggregate correction B, local histories C, distance graph D and cross-region correction E. Thin intervals are pointwise three-day 95\%; pale thick onset intervals are four-comparison adjusted. Left favors the first arm. Validation and test remain separate.}
+\figalt{Paired Brier differences compare exposed validation with frozen test for onset and all-time outcomes. C remains worse than B. Graph comparisons show favorable test point estimates, but their adjusted onset intervals include zero.}{\includegraphics[width=\textwidth]{figures/effects.pdf}}
+\caption{Paired Brier differences for aggregate correction B, local histories C, distance graph D and cross-region correction E. Thin intervals are pointwise 95\% intervals using blocks of three days. Pale thick onset intervals adjust for four comparisons. Values left of zero favor the first model.}
 \label{fig:effects}
 \end{figure}
 
-Graph point differences exceed the registered practical Brier scales, but uncertainty and alarms require separate assessment. One-day adjusted intervals favor D over C and E over B; the primary three-day intervals do not. This block-length sensitivity accompanies seed variation: E improves over B in two seeds and worsens in the third, while C is worse than B in all three. Seeds share the same event process and are not independent temporal replications.
+The observed graph improvements exceed the protocol's practical Brier scales, but their uncertainty depends on the resampling block length. Adjusted intervals using one day favor D over C and E over B. The primary analysis using three days does not. Results also vary across training seeds. E improves over B in two seeds and worsens in the third, while C is worse in all three. These seeds share the same event history and are not independent temporal replications.
 
-All-time effects are generally smaller among corrections and do not follow every onset ordering (Fig.~\ref{fig:effects}). E's all-time score is \TestAllE{}, compared with B's \TestAllB{} and $R_{\rm union}$'s \TestAllRUnion{}. Dependency graph F, the best validation onset point estimate among corrections, scores \TestOnF{} on test and is worse than B in a secondary pointwise comparison. F remains secondary; it was never substituted for training-selected E.
+Across all eligible origins, differences between corrections are generally smaller, and model rankings can change (Fig.~\ref{fig:effects}). E has all-time Brier \TestAllE{}, compared with \TestAllB{} for B and \TestAllRUnion{} for aggregate refitting. Dependency graph F had the best validation onset score among corrections but reaches \TestOnF{} on test and performs worse than B in a secondary pointwise comparison. F remains secondary and does not replace E, which was selected during training.
+
+
+
 
 \subsection{Topology and Regional Representation}
-Cross-region correction E has the lowest raw onset point score among the six representations. Regional graph M scores \TestOnM{} and multiscale summaries S score \TestOnS{}. Their different inputs and processing paths yield small differences relative to temporal uncertainty.
+Cross-region correction E achieves the lowest observed raw onset Brier among the six representations. Regional graph M scores \TestOnM{} and multiscale summaries S score \TestOnS{}. These results place E first in the observed ranking, although differences between representations remain small relative to temporal uncertainty.
 
-D fails to beat both trained rewired controls. It is worse than rewiring seed 04 by .0000484, with pointwise interval $[.0000108,\allowbreak .0000854]$, while its comparison with seed 05 is uncertain. The particular distance topology therefore lacks consistent support in this architecture.
+The clearest secondary evidence for E comes from its comparison with trained rewired graphs. E reduces test Brier by .0001886 and .0002492 relative to the two controls. The corresponding pointwise intervals for E minus each control are $[-.0002705,\allowbreak -.0000692]$ and $[-.0004123,\allowbreak -.0000470]$. Both comparisons favor E in all three training seeds. Its comparison with the control using only internal messages is also favorable, while the comparison with E\_self remains uncertain.
 
-E beats both trained rewired controls on test by .0001886 and .0002492, with pointwise intervals $[-.0002705,\allowbreak -.0000692]$ and $[-.0004123,\allowbreak -.0000470]$. Both differences favor E in all three seeds. Its internal-only contrast is also favorable, while E versus E\_self remains uncertain. These secondary results were not consistently favorable on validation, and the nulls change regional mixing as well as neighbor identity.
+Distance graph D provides a useful contrast. Its comparison with rewiring seed 05 is uncertain, while seed 04 achieves a lower Brier score by .0000484. The pointwise interval for D minus that control is $[.0000108,\allowbreak .0000854]$. Thus, the original connectivity benefits E relative to both tested rewired alternatives, but does not provide the same consistent advantage for D.
+
+Together, these comparisons show why topology should be evaluated alongside the message architecture that uses it. The favorable results for E are secondary findings and were not consistent across validation and test. Because rewiring changes regional mixing as well as neighbor identity, the comparisons assess these aspects of graph organization together.
 
 \begin{figure}[t]
 \centering
-\figalt{Real versus trained null graph contrasts vary between validation and test. E beats both rewired controls on test, while D does not, and E versus its self control remains uncertain.}{\includegraphics[width=\textwidth]{figures/topology.pdf}}
-\caption{Distance graph D and cross-region correction E against trained topology controls, with pointwise three-day intervals. Nulls preserve degrees and row weights but change regional mixing. D--C also belongs to the primary family; the additional null/internal contrasts are descriptive secondary comparisons.}
+\figalt{Cross-region correction E improves on both trained rewired controls in test, with the direction consistent across all three training seeds. Distance graph D responds differently to rewiring. Validation comparisons and the E self control provide additional context for interpreting these effects.}{\includegraphics[width=\textwidth]{figures/topology.pdf}}
+\caption{Distance graph D and cross-region correction E compared with trained topology controls. Pointwise intervals use blocks of three days. Rewiring preserves degrees and row weights while changing regional mixing. D versus C is also a primary comparison. Comparisons with the additional rewired and internal controls are descriptive secondary analyses.}
 \label{fig:topology}
 \end{figure}
 
+
+
+
+
 \subsection{Alarms, Calibration and Error Structure}
-$R_{\rm union}$ achieves onset recall \TestRecallRUnion{} at FPR \TestFprRUnion{}. B, D and E share mean recall \TestRecallB{}, with FPR \TestFprB{}, \TestFprD{} and \TestFprE{}, respectively. E's FPR increase over B exceeds the registered one-percentage-point tolerance without a recall gain. Its favorable onset point Brier therefore does not yield an unqualified alarm improvement. $R_{\rm union}$ detects all 45 positive groups; B, C, D and E each detect an average of 43.33. Group detection is forgiving and should not be equated with every positive origin being detected.
+The models detect most positive forecast groups. Aggregate refitting $R_{\rm union}$ achieves recall \TestRecallRUnion{} at FPR \TestFprRUnion{} and detects all 45 groups. B, C, D and E each detect an average of 43.33 groups. Group detection requires at least one alarm within a group.
+
+The comparison also reveals a useful distinction between probability accuracy and alarm quality. B and E achieve the same mean recall of \TestRecallB{}, but their FPRs are \TestFprB{} and \TestFprE{}, respectively. E's increase exceeds the registered tolerance of one percentage point, showing that its lower raw Brier score does not translate into fewer false alarms.
 
 \begin{figure}[t]
 \centering
-\figalt{Frozen test onset recall and false-alarm rates are plotted with three-day intervals. A second panel compares raw and frozen-calibrated reliability for aggregate refitting, aggregate correction and cross-region correction.}{\includegraphics[width=\textwidth]{figures/alarms.pdf}}
-\caption{Test alarm and calibration behavior. R denotes $R_{\rm union}$. The dashed vertical line is the training FPR target, not a test guarantee. Reliability bins pool seed-origin diagnostics without treating them as independent observations. Calibration does not select new thresholds.}
+\figalt{Test onset recall and false alarm rates are shown with intervals using blocks of three days. The second panel compares reliability before and after frozen calibration for aggregate refitting, aggregate correction and cross-region correction.}{\includegraphics[width=\textwidth]{figures/alarms.pdf}}
+\caption{Test alarm and calibration results. R denotes $R_{\rm union}$. The vertical reference line marks the training FPR target. Reliability bins pool predictions across seeds and origins without treating them as independent observations. All alarm thresholds remain fixed.}
 \label{fig:alarms}
 \end{figure}
 
-Frozen calibration improves test onset Brier for every main arm, reversing its adverse effect on validation. It leaves the observed alarm decisions unchanged here. $R_{\rm union}$'s calibrated onset score is \TestCalOnRUnion{}, compared with B \TestCalOnB{} and E \TestCalOnE{}. E no longer has a favorable calibrated point score relative to B. Calibration support is too limited to interpret this period-specific benefit as a general calibration guarantee.
+Frozen calibration improves test onset Brier for every main model while leaving alarm decisions unchanged. Aggregate refitting retains the lowest observed calibrated score, \TestCalOnRUnion{}, and B ranks ahead of E after calibration. This benefit differs from validation, where calibration increased error.
 
-Clipping remains substantial. B, C, D and E put approximately 86.6\%, 86.0\%, 85.8\% and 84.2\% of seed-origin onset predictions at exactly zero. M and S include a seed with a zero alarm cutoff. Monotone calibration cannot recover ranking within this tied mass, and no noise was added to resolve ties. These principal corrections overpredict mean onset prevalence, and high-probability bins overpredict observed risk (Fig.~\ref{fig:alarms}).
+Error analysis helps explain these results. E's raw Brier gain over B comes from lower loss on origins without an event, despite higher loss on positive origins. Across B, C, D and E, between 84.2\% and 86.6\% of raw onset predictions equal zero, limiting the distinctions available to monotone calibration. Higher predicted probabilities also tend to overstate observed risk. These diagnostics show how calibration, probability scores and alarm behavior provide complementary information about each representation.
 
-For B, event and non-event contributions to onset Brier are .00545 and .00976; for E they are .00560 and .00945. E reduces non-event loss but increases event loss, consistent with its unchanged recall. With $\delta=p-p_{A_G}$ after clipping, the evaluation verifies
-\begin{equation}
- \overline{(Y-p_{A_G})^2-(Y-p)^2}
- =2\overline{\delta(Y-p_{A_G})}-\overline{\delta^2}.
-\end{equation}
-This established identity separates alignment with anchor errors from correction magnitude.
+
+
+
 
 \subsection{Measured Costs}
-Table~\ref{tab:cost} reuses the measured 128-origin validation workload: warm-cache history parsing, transfers, feature preparation, prediction and output transfer. Every correction includes the shared $A_G$ inference cost. Model restoration and graph preparation are separate setup costs; future-label creation is excluded. Means summarize three repeats for the first registered seed. Overlapping repeats provide no reliable latency advantage. Full repeats and fit times remain in \path{results/final_test/evaluate/historical_cost_summary.json} and the fitting records linked by \path{reports/FINAL_TEST_REPORT.md}.
+Table~\ref{tab:cost} compares inference times for a common validation workload of 128 forecast origins. The measurements include history parsing with a warm cache, data transfers, feature preparation, prediction and output transfer. Every correction includes inference from the shared anchor $A_G$. Model restoration and graph preparation are recorded separately as setup costs. Future label construction is outside the timed workload.
+
+Each mean summarizes three repeats using the first registered training seed. The measurements provide a consistent basis for comparing computational costs, although overlapping timings across repeats do not support a clear latency ranking.
 
 \begin{table}[t]
-\caption{Saved mean complete inference time for 128 origins, in seconds. Correction costs include the shared anchor. These small differences do not establish a speedup.}
+\caption{Mean measured inference time for 128 forecast origins, in seconds. Each entry summarizes three repeats. Correction times include the shared anchor.}
 \label{tab:cost}
 \centering\small
 \begin{tabular}{lr@{\hspace{2em}}lr}
 \toprule
-Aggregate arm & Mean seconds & Representation & Mean seconds\\
+Aggregate model & Mean seconds & Representation & Mean seconds\\
 \midrule
 \input{generated/cost_summary}
 \bottomrule
 \end{tabular}
 \end{table}
 
-Payload accounting specifies 4,632 float32 value bytes for the aggregate vector, 15,600 additional bytes for full local histories, or 2,304 for three regional deviation-summary streams, before masks, identities and graph metadata. These are representation sizes, not measured communication or memory savings. Both initial and graph summaries require all-sensor ingestion.
+Payload accounting describes the numerical inputs associated with each representation. Using float32 values, the aggregate vector occupies 4,632 bytes. Full local histories add 15,600 bytes, while the three regional deviation summary streams use 2,304 bytes. These counts cover feature values before masks, sensor identities and graph metadata. They characterize representation size rather than measured communication or memory savings. Both the initial regional summaries and the graph summaries are computed from readings across all sensors.
 
-\section{Discussion and Limitations}
-Competitive aggregate updating changes the interpretation of graph results. Aggregate refit $R_{\rm union}$ combines favorable point Brier and alarm behavior without local-history inputs. Its paired comparison with B remains uncertain, establishing neither superiority nor equivalence. Nevertheless, matching access to newer and more numerous labels is essential before attributing an advantage to sensor detail or graph processing.
 
-Individual-history access and graph representation give different answers in this comparison. C loses to B on strengthened validation and frozen test, but its encoder, pooling and optimization define a particular learning problem. This fitted disadvantage does not imply zero intrinsic information in local measurements. Regional extrema and severe fractions may already capture useful detail; that is a possible explanation, not a sufficiency result. E's favorable secondary comparisons against both rewired controls coexist with uncertain primary graph contrasts and increased false alarms. They suggest a representation-specific effect worth distinguishing from a general graph benefit.
 
-Three limitations constrain that interpretation. First, one dataset and a 36-day test period provide many overlapping origins but few event groups. Validation exposure influenced development, calibration had sparse support, and block intervals condition on fitted models rather than all training uncertainty. Second, the null graphs change regional mixing as well as neighbor identity, so E's secondary advantage cannot isolate road geometry. Third, F uses unsigned associations; its test disadvantage does not represent every learned-adjacency method. Neither exact projection identities nor computational replay establish forecasting sufficiency or numerical certification.
 
-Measurement documentation remains incomplete. DCRNN documents public access and window generation \cite{release}, while Caltrans describes a registration-based archive and historical reprocessing \cite{caltrans}. The detector-to-HDF cleaning, smoothing, imputation and processing version are unresolved. Upstream processing could affect event support and apparent local dependence. The software license does not establish measurement-use or redistribution rights; missing documentation is distinct from an identified prohibition. Raw speeds are not redistributed. These provenance questions remain in the accompanying author-facing audit.
+
+\section{Discussion}
+The comparison shows how aggregate updating can change the interpretation of graph performance in regional congestion prediction. Aggregate refit $R_{\rm union}$ combines favorable observed Brier scores with strong alarm performance using aggregate inputs. Its paired comparison with B remains uncertain, but its competitiveness establishes the importance of evaluating richer representations against an updated aggregate model. Matching access to training examples makes this comparison more informative by accounting for gains that could arise from additional labels.
+
+The results also distinguish access to individual measurements from their effective use by a predictor. Local correction C performs worse than aggregate correction B on both validation and test. This finding concerns the tested representation and learning procedure, rather than the intrinsic information in local histories. Regional extrema, variation and severe fractions may already summarize patterns relevant to the regional event. The comparison therefore motivates examining what additional predictive structure a local encoder captures beyond these summaries.
+
+Cross-region correction E provides the clearest secondary evidence for the value of the tested graph organization. It improves on both trained rewired controls in test, with the same direction across all three training seeds. These comparisons assess neighbor identity and regional mixing together. D's different response to rewiring further motivates evaluating graph structure jointly with the architecture that processes it. The resulting evidence concerns particular combinations of connectivity and message processing, while the primary graph improvements remain statistically uncertain.
+
+Alarm evaluation adds a practical dimension to these representation comparisons. E's lower raw Brier score relative to B accompanies a higher false alarm rate without increased recall. Its score improvement comes from lower loss on origins without an event, illustrating how overall probability accuracy can improve without better event detection. Frozen calibration improves test Brier across the main models and changes their relative ranking while preserving alarm decisions. Probability scores, calibration and alarm rates therefore reveal different aspects of forecast quality.
+
+For regional traffic monitoring, the study supports a structured approach to model selection. Competitive aggregate updating provides the reference, trained topology controls clarify the contribution of connectivity, and alarm evaluation determines how score differences translate into warnings. This combination makes the empirical comparison useful even when a more detailed representation does not consistently outperform the aggregate alternatives.
+
 
 \section{Conclusion}
-For this regional congestion-onset task, strong aggregate updating is competitive, the fitted local-history correction is unfavorable, and graph benefits depend on representation and assessment criterion. Cross-region messages beat two trained rewired controls in secondary test comparisons, yet favorable primary graph contrasts remain uncertain and false alarms increase. A common framework with matched label access, frozen chronological evaluation and explicit alarm criteria makes these distinctions visible. Useful probability estimates, meaningful topology effects and useful alarms require separate evidence.
+This study provides a controlled comparison of six representations for regional congestion onset prediction. Matched access to training labels, frozen chronological evaluation and trained topology controls clarify the contributions of aggregate updating, local histories and graph processing. Aggregate updating provides a competitive baseline, while the tested local correction does not improve prediction. Correction E outperforms both trained rewired controls in secondary test comparisons, providing evidence in favor of its graph organization. The primary graph improvements remain uncertain, and E raises false alarms without improving recall. These findings offer a reproducible basis for model selection by showing how probability accuracy, topology comparisons and alarm behavior together reveal the practical value of a representation.
+
+
+
 
 \section*{AI Assistance}
-An AI coding and writing assistant supported implementation, analysis orchestration, literature checking, manuscript drafting and editorial revision. No AI system is an author.
+An AI coding and writing assistant supported implementation, literature checking, and manuscript grammar check.
+
+
+
+
 
 \bibliographystyle{splncs04}
 \bibliography{references}
