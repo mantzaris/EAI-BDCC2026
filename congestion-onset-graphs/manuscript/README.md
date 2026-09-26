@@ -3,7 +3,7 @@
 [Compiled PDF](graph_representations_draft.pdf) and [main source](main.tex) target EAI BDCC2026. This is an anonymous draft for human scientific review, not a submitted or submission-ready paper. The original test set has now been evaluated under the [committed final protocol](../reports/FINAL_TEST_PROTOCOL.md).
 
 ```sh
-# From papers/congestion-onset-graphs; only renders saved CUDA statistics.
+# From congestion-onset-graphs; only renders saved CUDA statistics.
 python3 scripts/render_final_manuscript.py
 make -C manuscript
 # Document-only preservation and transcription checks for the editorial revision.

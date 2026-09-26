@@ -1,8 +1,8 @@
 # Current status: frozen final evaluation and comparative draft
 
-This paper now lives in `papers/congestion-onset-graphs/`. Run the commands below
+This paper now lives in `congestion-onset-graphs/` at the repository's top level. Run the commands below
 from this directory. Its code, data, results and manuscript keep their internal
-relative layout. See the [repository index](../../README.md) for sibling papers.
+relative layout. See the [repository index](../README.md) for sibling papers.
 
 The authorized final test evaluation is complete. Test data have now been evaluated, with no retraining or test-driven selection. [FINAL_TEST_REPORT.md](reports/FINAL_TEST_REPORT.md) is the current handoff; the [compiled comparative manuscript](manuscript/graph_representations_draft.pdf) is an anonymous draft for review. All historical results and reports below retain their original scope and exposure status.
 

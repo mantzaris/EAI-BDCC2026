@@ -1,25 +1,25 @@
 # EAI BDCC research papers
 
-Each paper has a self-contained directory under `papers/`. Code, configurations,
+Each paper has a named directory directly at the repository's top level. Code, configurations,
 results, reports, manuscript sources and local private data stay with that paper.
 
 | Paper | Project | Manuscript |
 |---|---|---|
-| Graph Representations for Congestion Onset Prediction: A Controlled Comparative Study | [papers/congestion-onset-graphs](papers/congestion-onset-graphs/README.md) | [LaTeX](papers/congestion-onset-graphs/manuscript/main.tex), [PDF](papers/congestion-onset-graphs/manuscript/graph_representations_draft.pdf) |
+| Graph Representations for Congestion Onset Prediction: A Controlled Comparative Study | [congestion-onset-graphs](congestion-onset-graphs/README.md) | [LaTeX](congestion-onset-graphs/manuscript/main.tex), [PDF](congestion-onset-graphs/manuscript/graph_representations_draft.pdf) |
 
 Compile the existing paper from the repository root:
 
 ```sh
-make -C papers/congestion-onset-graphs/manuscript
+make -C congestion-onset-graphs/manuscript
 ```
 
 Run its other documented commands from its project directory:
 
 ```sh
-cd papers/congestion-onset-graphs
+cd congestion-onset-graphs
 ```
 
-A second paper can be created at `papers/<descriptive-paper-name>/`, beside
+A second paper can be created at `<descriptive-paper-name>/`, directly beside
 `congestion-onset-graphs/`, with its own code, dependencies and manuscript.
 The repository remains on one shared Git history; do not initialize a nested
 repository. The root [license](LICENSE) and ignore rules remain shared.
