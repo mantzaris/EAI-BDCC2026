@@ -28,7 +28,7 @@ def download(url: str, path: Path) -> None:
         return
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".part")
-    subprocess.run(["curl", "--fail", "--location", "--retry", "5", "--retry-delay", "3",
+    subprocess.run(["curl", "--http1.1", "--fail", "--location", "--retry", "5", "--retry-delay", "3",
                     "--continue-at", "-", "--output", str(temporary), url], check=True)
     if path.suffix == ".zip" and not zipfile.is_zipfile(temporary):
         raise ValueError(f"Downloaded response is not a ZIP archive: {path}")
@@ -73,7 +73,8 @@ def acquire(dataset: str, local_archive: str | None = None) -> dict:
     landing = fetch_text(SOURCES[dataset])
     (manifest_directory / f"{dataset}_source.html").write_text(landing)
     if dataset == "wesad":
-        links = re.findall(r'href=[\"\']([^\"\']+)[\"\']', landing, flags=re.I)
+        visible_html = re.sub(r"<!--.*?-->", "", landing, flags=re.S)
+        links = re.findall(r'href=[\"\']([^\"\']+)[\"\']', visible_html, flags=re.I)
         shares = [url for url in links if "sciebo.de/s/" in url]
         if len(shares) != 1:
             raise ValueError(f"Expected one original WESAD archive link, found {shares}")
