@@ -6,6 +6,7 @@ results, reports, manuscript sources and local private data stay with that paper
 | Paper | Project | Manuscript |
 |---|---|---|
 | Graph Representations for Congestion Onset Prediction: A Controlled Comparative Study | [congestion-onset-graphs](congestion-onset-graphs/README.md) | [LaTeX](congestion-onset-graphs/manuscript/main.tex), [PDF](congestion-onset-graphs/manuscript/graph_representations_draft.pdf) |
+| Temporal Evidence Graphs (working title) | [temporal-evidence-graphs](temporal-evidence-graphs/README.md) | Research plan forthcoming |
 
 Compile the existing paper from the repository root:
 
@@ -19,8 +20,8 @@ Run its other documented commands from its project directory:
 cd congestion-onset-graphs
 ```
 
-A second paper can be created at `<descriptive-paper-name>/`, directly beside
-`congestion-onset-graphs/`, with its own code, dependencies and manuscript.
+New papers live at `<descriptive-paper-name>/`, directly beside
+`congestion-onset-graphs/`, with their own code, dependencies and manuscript.
 The repository remains on one shared Git history; do not initialize a nested
 repository. The root [license](LICENSE) and ignore rules remain shared.
 
