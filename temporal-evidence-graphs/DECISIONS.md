@@ -38,3 +38,21 @@
   Keep original paragraph output and discrepancies for evaluation. Lexical checks
   are limited; a separately pinned GPU model will perform the required auxiliary
   fidelity audit. No human annotation is claimed.
+- UCI's PPG-DaLiA packaged and legacy archive downloads stalled repeatedly. Use the
+  unchanged original archive linked from the authors' PPG-DaLiA page, and record
+  both the UCI CC BY 4.0 statement and the author's non-commercial research terms.
+- Select two episodes at 25% and 75% of each recording's common channel duration,
+  rounded down to the 5-second update grid. Require at least 600 seconds; all
+  acquired recordings satisfy this. Selection uses duration, not model failures,
+  protocol labels, or held-out outcomes. Target windows are 30 seconds and comparison
+  windows are the strictly preceding 120 seconds. Prepare seven 5-second updates
+  ending at each target time, with four paired replay variants.
+- Native wrist EDA is reported in uS and wrist acceleration in recorded 1/64g
+  units. Synthetic units are explicitly marked. Spectral pulse/respiration frequency
+  estimates require concentration >= 0.5; these are simple recording summaries,
+  not validated physiological truth or a replacement for reference heart rates.
+- WESAD's extracted synchronized pickles were verified and removed as redundant
+  cache copies after preparation; the original hashed archive is retained. Adapters
+  support direct reading from that archive. This recovered 12.88 GiB of local disk.
+- Use pip for the system-site-packages overlay: uv's installer redownloaded existing
+  CUDA dependencies. The tested final environment will be recorded before freezing.

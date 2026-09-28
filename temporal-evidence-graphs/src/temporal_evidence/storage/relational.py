@@ -5,7 +5,7 @@ import json
 import sqlite3
 
 from temporal_evidence.io import canonical
-from temporal_evidence.schema import Record, dependency_order
+from temporal_evidence.schema import Record, dependency_order, with_entities, record_relations
 
 
 class RelationalStore:
@@ -27,6 +27,7 @@ class RelationalStore:
         CREATE TABLE IF NOT EXISTS assessments(scope TEXT,id TEXT,known_at REAL,state TEXT,value REAL,
           trigger_id TEXT,PRIMARY KEY(scope,id,known_at,trigger_id));
         """)
+        self._records = self.snapshot(float("inf"))
 
     def get(self, identifier):
         row = self.connection.execute("SELECT payload FROM records WHERE scope=? AND id=?", (self.scope, identifier)).fetchone()
@@ -36,9 +37,9 @@ class RelationalStore:
         self.put_many([record])
 
     def put_many(self, records):
-        records = list(records)
+        records = with_entities(list(records))
         # Cycle validation covers all proposed dependencies, including later arrivals.
-        existing = self.snapshot(float("inf"))
+        existing = self._records.copy()
         for record in records:
             if record.record_id in existing and existing[record.record_id] != record:
                 raise ValueError("Immutable record conflicts with existing value")
@@ -50,18 +51,19 @@ class RelationalStore:
                     self.scope, record.record_id, record.logical_id, record.record_type,
                     record.dataset_id, record.subject_id, record.session_id, record.event_start_seconds,
                     record.event_end_seconds, record.ingested_at_seconds, record.version, canonical(record.to_dict())))
-                for source in record.source_ids:
+                for dependent, source, relation in record_relations(record):
                     self.connection.execute("INSERT OR IGNORE INTO dependencies VALUES(?,?,?,?)",
-                                            (self.scope, record.record_id, source, "DEPENDS_ON"))
-                if record.supersedes_id:
-                    self.connection.execute("INSERT OR IGNORE INTO dependencies VALUES(?,?,?,?)",
-                                            (self.scope, record.record_id, record.supersedes_id, "SUPERSEDES"))
+                                            (self.scope, dependent, source, relation))
+        self._records = existing
 
     def snapshot(self, knowledge_time):
         rows = self.connection.execute("SELECT id,payload FROM records WHERE scope=? AND ingested<=?", (self.scope, knowledge_time))
         return {identifier: Record.from_dict(json.loads(payload)) for identifier, payload in rows}
 
     def dependents(self, identifier, knowledge_time, transitive=True):
+        root = self.get(identifier)
+        if root is None or root.ingested_at_seconds > knowledge_time:
+            return set()
         if not transitive:
             rows = self.connection.execute("""SELECT d.dependent FROM dependencies d JOIN records r
                 ON r.scope=d.scope AND r.id=d.dependent
@@ -82,6 +84,9 @@ class RelationalStore:
         with self.connection:
             self.connection.execute("INSERT OR IGNORE INTO assessments VALUES(?,?,?,?,?,?)",
                                     (self.scope, identifier, known_at, state, value, trigger))
+            if state=="contradicted":
+                self.connection.execute("INSERT OR IGNORE INTO dependencies VALUES(?,?,?,?)",
+                                        (self.scope,trigger,identifier,"CONTRADICTS"))
 
     def close(self):
         self.connection.close()

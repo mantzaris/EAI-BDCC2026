@@ -47,6 +47,8 @@ def extract_selected(archive: Path, destination: Path) -> list[dict]:
                 continue
             lower = name.name.lower()
             if name.suffix.lower() == ".zip":
+                if lower not in {"data.zip", "wesad.zip", "ppg_fieldstudy.zip"}:
+                    continue
                 nested = destination / name
                 nested.parent.mkdir(parents=True, exist_ok=True)
                 if not nested.exists():
@@ -66,18 +68,22 @@ def extract_selected(archive: Path, destination: Path) -> list[dict]:
     return files
 
 
-def acquire(dataset: str, local_archive: str | None = None) -> dict:
+def acquire(dataset: str, local_archive: str | None = None, author_source: bool = False) -> dict:
     raw = Path("data/raw") / dataset
     manifest_directory = Path("artifacts/manifests/acquisition")
     manifest_directory.mkdir(parents=True, exist_ok=True)
     landing = fetch_text(SOURCES[dataset])
     (manifest_directory / f"{dataset}_source.html").write_text(landing)
-    if dataset == "wesad":
+    if author_source and dataset == "ppg_dalia":
+        author_page = "https://ubi29.informatik.uni-siegen.de/usi/data_ppgdalia.html"
+        landing = fetch_text(author_page)
+        (manifest_directory / "ppg_dalia_author.html").write_text(landing)
+    if dataset == "wesad" or author_source:
         visible_html = re.sub(r"<!--.*?-->", "", landing, flags=re.S)
         links = re.findall(r'href=[\"\']([^\"\']+)[\"\']', visible_html, flags=re.I)
         shares = [url for url in links if "sciebo.de/s/" in url]
         if len(shares) != 1:
-            raise ValueError(f"Expected one original WESAD archive link, found {shares}")
+            raise ValueError(f"Expected one original author archive link, found {shares}")
         url = shares[0].rstrip("/") + "/download"
         license_text = "Scientific, non-commercial use with credit to the owners; see saved author page."
     else:
@@ -89,6 +95,9 @@ def acquire(dataset: str, local_archive: str | None = None) -> dict:
     result = {"dataset": dataset, "retrieved_at": utc_now(), "source_url": SOURCES[dataset],
               "resolved_archive_url": url, "archive": str(archive), "license": license_text,
               "archive_bytes": archive.stat().st_size, "archive_sha256": digest_file(archive)}
+    if author_source:
+        result["author_url"] = author_page
+        result["acquisition_note"] = "Original author archive used after UCI packaged and legacy downloads stalled; UCI lists CC BY 4.0, author page states scientific non-commercial use with attribution."
     result["files"] = extract_selected(archive, raw / "recordings")
     write_json(manifest_directory / f"{dataset}.json", result)
     print(f"{dataset}: {len(result['files'])} selected files acquired", flush=True)
@@ -99,8 +108,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--datasets", nargs="+", choices=tuple(SOURCES), required=True)
     parser.add_argument("--local-archive")
+    parser.add_argument("--author-source", action="store_true")
     args = parser.parse_args()
     if args.local_archive and len(args.datasets) != 1:
         parser.error("--local-archive requires exactly one dataset")
     for dataset in args.datasets:
-        acquire(dataset, args.local_archive)
+        acquire(dataset, args.local_archive, args.author_source)

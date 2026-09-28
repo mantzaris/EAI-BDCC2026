@@ -64,7 +64,17 @@ def support_state(identifier: str, records: dict[str, Record], memo=None, active
         if not satisfied:
             answer = ("unsupported", None)
         elif record.operator == "difference":
-            answer = ("supported", usable[0] - usable[1]) if len(usable) == 2 and None not in usable else ("unsupported", None)
+            if len(usable) == 2 and None not in usable:
+                difference = usable[0] - usable[1]
+                if record.record_type == "claim":
+                    correct = record.value is not None and abs(record.value-difference)<=max(1e-6,.01*abs(difference))
+                    answer = ("supported" if correct else "contradicted",record.value)
+                else:
+                    answer = ("supported",difference)
+            else:
+                answer = ("unsupported",None)
+        elif record.operator == "missing" and record.record_type == "claim":
+            answer = ("supported" if all(value == 0 for value in usable) else "contradicted",None)
         elif record.record_type == "claim" and record.value is not None:
             tolerance = max(1e-6, 0.01 * abs(record.value))
             matches = [value is not None and abs(record.value - value) <= tolerance for value in usable]

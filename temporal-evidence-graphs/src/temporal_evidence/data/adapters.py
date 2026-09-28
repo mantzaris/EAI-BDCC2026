@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import pickle
 import re
+import zipfile
 from pathlib import Path
 import numpy as np
 
@@ -66,8 +67,15 @@ def load_signals(dataset, entry):
         units = {"eda":"synthetic_uS","motion":"synthetic_g","cardiac":"synthetic_amplitude","respiration":"synthetic_amplitude"}
         return signals, entry["rates"], units
     # Paths come from the acquisition inventory of the official archives, never from model output.
-    with path.open("rb") as stream:
-        original = pickle.load(stream, encoding="latin1")
+    if path.exists():
+        with path.open("rb") as stream:
+            original = pickle.load(stream, encoding="latin1")
+    else:
+        acquisition=read_json(f"artifacts/manifests/acquisition/{dataset}.json")
+        member=next(item["member"] for item in acquisition["files"] if item["path"]==str(path))
+        with zipfile.ZipFile(acquisition["archive"]) as archive:
+            with archive.open(member) as stream:
+                original=pickle.load(stream,encoding="latin1")
     content = original.get("data", original)
     wrist, chest = content["signal"]["wrist"], content["signal"]["chest"]
     respiration = chest.get("Resp", chest.get("RESP"))

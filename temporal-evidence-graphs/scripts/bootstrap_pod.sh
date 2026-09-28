@@ -7,9 +7,9 @@ export HF_HOME="$PWD/.runtime/huggingface"
 if [ ! -f .venv/pyvenv.cfg ]; then
   uv venv --system-site-packages --python /usr/bin/python3 .venv
 fi
-uv pip install --python .venv/bin/python -e '.[gpu,dashboard]'
+.venv/bin/python -m pip install --find-links .runtime/wheels -e '.[gpu,dashboard]'
 .venv/bin/python -m pip --version >/dev/null 2>&1 || true
-uv pip freeze --python .venv/bin/python > artifacts/manifests/requirements.actual.txt
+.venv/bin/python -m pip freeze > artifacts/manifests/requirements.actual.txt
 uv pip compile pyproject.toml --extra gpu --extra dashboard --generate-hashes -o requirements.lock
 if [ ! -x .runtime/jre/bin/java ]; then
   curl -fL --retry 3 'https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jre/hotspot/normal/eclipse' -o .runtime/jre.tar.gz

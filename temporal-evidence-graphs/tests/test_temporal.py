@@ -51,7 +51,7 @@ def test_out_of_order_duplicate_and_conflicting_revision():
     records, revision = correction_fixture()
     store.put_many([revision] + records)
     store.put(revision)
-    assert len(store.snapshot(20)) == len(records) + 1
+    assert len([r for r in store.snapshot(20).values() if r.record_type!="subject"]) == len(records) + 1
     assert "a/v2" not in store.snapshot(19)
     with pytest.raises(ValueError, match="Immutable"):
         store.put(replace(revision, value=100))

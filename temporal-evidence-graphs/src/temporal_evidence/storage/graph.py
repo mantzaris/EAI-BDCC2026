@@ -5,7 +5,7 @@ import json
 from neo4j import GraphDatabase
 
 from temporal_evidence.io import canonical
-from temporal_evidence.schema import Record, dependency_order
+from temporal_evidence.schema import Record, dependency_order, with_entities, record_relations
 
 LABELS = {"subject": "Subject", "sensor": "Sensor", "observation": "Observation",
           "feature": "FeatureVersion", "claim": "ClaimVersion", "explanation": "ExplanationVersion", "review": "ReviewEvent"}
@@ -24,6 +24,7 @@ class GraphStore:
             "CREATE INDEX record_ingestion IF NOT EXISTS FOR (r:Record) ON (r.scope,r.ingested)",
         ]:
             self.driver.execute_query(statement)
+        self._records = self.snapshot(float("inf"))
 
     def get(self, identifier):
         rows, _, _ = self.driver.execute_query("MATCH (r:Record {scope:$scope,id:$id}) RETURN r.payload AS payload",
@@ -34,8 +35,8 @@ class GraphStore:
         self.put_many([record])
 
     def put_many(self, records):
-        records = list(records)
-        existing = self.snapshot(float("inf"))
+        records = with_entities(list(records))
+        existing = self._records.copy()
         for record in records:
             if record.record_id in existing and existing[record.record_id] != record:
                 raise ValueError("Immutable record conflicts with existing value")
@@ -43,23 +44,26 @@ class GraphStore:
         dependency_order(existing, set(existing))
         with self.driver.session() as session:
             def operation(tx):
+                groups = {}
+                relations = {}
                 for record in records:
                     props = dict(scope=self.scope, id=record.record_id, logical_id=record.logical_id,
                                  kind=record.record_type, dataset=record.dataset_id, subject=record.subject_id,
                                  session=record.session_id, start=record.event_start_seconds, end=record.event_end_seconds,
                                  ingested=record.ingested_at_seconds, version=record.version, payload=canonical(record.to_dict()))
-                    tx.run(f"MERGE (r:Record {{scope:$scope,id:$id}}) SET r:{LABELS[record.record_type]} SET r += $props",
-                           scope=self.scope, id=record.record_id, props=props).consume()
-                for record in records:
-                    for source in record.source_ids:
-                        tx.run("""MATCH (r:Record {scope:$scope,id:$id})
-                            MERGE (s:Record {scope:$scope,id:$source}) MERGE (r)-[:DEPENDS_ON]->(s)""",
-                            scope=self.scope, id=record.record_id, source=source).consume()
-                    if record.supersedes_id:
-                        tx.run("""MATCH (r:Record {scope:$scope,id:$id})
-                            MERGE (s:Record {scope:$scope,id:$source}) MERGE (r)-[:SUPERSEDES]->(s)""",
-                            scope=self.scope, id=record.record_id, source=record.supersedes_id).consume()
+                    groups.setdefault(LABELS[record.record_type], []).append(props)
+                    for dependent, source, relation in record_relations(record):
+                        relations.setdefault(relation,[]).append({"id":dependent,"source":source})
+                for label, rows in groups.items():
+                    tx.run(f"UNWIND $rows AS props MERGE (r:Record {{scope:props.scope,id:props.id}}) SET r:{label} SET r += props",
+                           rows=rows).consume()
+                for relation, rows in relations.items():
+                    if rows:
+                        tx.run(f"""UNWIND $rows AS row MATCH (r:Record {{scope:$scope,id:row.id}})
+                            MERGE (s:Record {{scope:$scope,id:row.source}}) MERGE (r)-[:{relation}]->(s)""",
+                            scope=self.scope,rows=rows).consume()
             session.execute_write(operation)
+        self._records = existing
 
     def snapshot(self, knowledge_time):
         rows, _, _ = self.driver.execute_query("MATCH (r:Record {scope:$scope}) WHERE r.ingested <= $time RETURN r.id AS id,r.payload AS payload",
@@ -78,6 +82,9 @@ class GraphStore:
             MERGE (a:SupportAssessment {scope:$scope,id:$id,known_at:$known_at,trigger_id:$trigger})
             ON CREATE SET a.state=$state,a.value=$value MERGE (r)-[:ASSESSED_AS]->(a)""",
             scope=self.scope, id=identifier, known_at=known_at, trigger=trigger, state=state, value=value)
+        if state=="contradicted":
+            self.driver.execute_query("""MATCH (t:Record {scope:$scope,id:$trigger}),(r:Record {scope:$scope,id:$id})
+                MERGE (t)-[:CONTRADICTS]->(r)""",scope=self.scope,trigger=trigger,id=identifier)
 
     def close(self):
         if self.owns_driver:

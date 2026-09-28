@@ -89,3 +89,39 @@ def dependency_order(records: dict[str, Record], identifiers: set[str]) -> list[
     for identifier in sorted(identifiers):
         visit(identifier)
     return ordered
+
+
+def with_entities(records):
+    result={r.record_id:r for r in records}
+    for record in list(result.values()):
+        if record.record_type in {"subject","sensor"}:
+            continue
+        subject_id=f"{record.dataset_id}/{record.subject_id}/subject"
+        common=dict(dataset_id=record.dataset_id,subject_id=record.subject_id,session_id=record.session_id,
+                    event_start_seconds=0,event_end_seconds=0,ingested_at_seconds=0)
+        result.setdefault(subject_id,Record(record_id=subject_id,logical_id=subject_id,record_type="subject",**common))
+        if record.record_type=="observation" and "channel" in record.metadata:
+            sensor_id=f"{record.dataset_id}/{record.subject_id}/{record.session_id}/{record.metadata['channel']}/sensor"
+            result.setdefault(sensor_id,Record(record_id=sensor_id,logical_id=sensor_id,record_type="sensor",**common,
+                              metadata={"channel":record.metadata["channel"]}))
+    return list(result.values())
+
+
+def record_relations(record):
+    edges=[(record.record_id,source,"DEPENDS_ON") for source in record.source_ids]
+    if record.supersedes_id:
+        edges.append((record.record_id,record.supersedes_id,"SUPERSEDES"))
+    if record.record_type!="subject":
+        edges.append((record.record_id,f"{record.dataset_id}/{record.subject_id}/subject","FOR_SUBJECT"))
+    if record.record_type=="observation" and "channel" in record.metadata:
+        sensor=f"{record.dataset_id}/{record.subject_id}/{record.session_id}/{record.metadata['channel']}/sensor"
+        edges.append((record.record_id,sensor,"OBSERVED_BY"))
+    if record.record_type=="feature":
+        edges.extend((record.record_id,source,"DERIVED_FROM") for source in record.source_ids)
+    if record.record_type=="claim" and record.metadata.get("accepted"):
+        edges.extend((source,record.record_id,"SUPPORTS") for source in record.source_ids)
+    if record.record_type=="explanation":
+        edges.extend((record.record_id,source,"CONTAINS") for source in record.source_ids)
+    if record.record_type=="review":
+        edges.extend((source,record.record_id,"REVIEWED_BY_EVENT") for source in record.source_ids)
+    return edges

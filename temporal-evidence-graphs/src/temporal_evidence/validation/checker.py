@@ -22,6 +22,7 @@ class Decision:
 
 
 def validate(answer: Answer, records: dict, query) -> tuple[list[Decision], list[str]]:
+    records = {key: value for key, value in records.items() if value.ingested_at_seconds <= query.knowledge_time}
     current = current_versions(records)
     decisions, accepted = [], {}
     seen = set()
