@@ -18,3 +18,23 @@
   separate from development tuning; structural inventories may include both splits.
 - Progress percentages estimate completion of the plan's gates, not scientific
   success or percentage of generator calls. Track actual call counts separately.
+
+## 2026-09-28 — Acquisition and runtime repairs
+
+- WESAD's author HTML retains a commented-out obsolete archive link. Resolve only
+  active links. HTTP/1.1 avoids a pod-side HTTP/2 download failure.
+- WESAD downloaded locally; original archive and synchronized recordings are hashed.
+  Slow pod transfers motivate local host-side numerical feature extraction. Neural
+  generation remains exclusively on the pod GPU. Numerical extraction is not a
+  trained model; compare a fixed sample with CUDA calculations before freezing.
+- Qwen3-8B revision `b968826d9c46dd6066d109eabc6255188de91218` downloaded through
+  parallel resumable byte ranges, independently of inference installation.
+- Reuse the pod's existing PyTorch 2.8.0+cu128 and CUDA libraries through a Python
+  3.12 virtual environment with system site packages. This replaces the initial
+  unfinished Python 3.11 environment, avoiding redundant CUDA downloads. Record
+  the entire resolved environment and test GPU placement before any generation.
+- The generated explanation is required to concatenate its claim sentences.
+  Checked methods retain only supported claim sentences after the bounded repair.
+  Keep original paragraph output and discrepancies for evaluation. Lexical checks
+  are limited; a separately pinned GPU model will perform the required auxiliary
+  fidelity audit. No human annotation is claimed.

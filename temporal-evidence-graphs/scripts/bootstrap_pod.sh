@@ -4,7 +4,9 @@ cd "$(dirname "$0")/.."
 mkdir -p .runtime logs artifacts/manifests
 export UV_CACHE_DIR="$PWD/.runtime/uv-cache"
 export HF_HOME="$PWD/.runtime/huggingface"
-uv venv --python 3.11 .venv
+if [ ! -f .venv/pyvenv.cfg ]; then
+  uv venv --system-site-packages --python /usr/bin/python3 .venv
+fi
 uv pip install --python .venv/bin/python -e '.[gpu,dashboard]'
 .venv/bin/python -m pip --version >/dev/null 2>&1 || true
 uv pip freeze --python .venv/bin/python > artifacts/manifests/requirements.actual.txt
@@ -33,4 +35,6 @@ CONF
 fi
 .runtime/neo4j-community-5.26.0/bin/neo4j start
 sha256sum .runtime/jre.tar.gz .runtime/neo4j.tar.gz > artifacts/manifests/server_archives.sha256
-.venv/bin/python scripts/prepare_model.py
+if [ ! -f artifacts/manifests/model.json ]; then
+  .venv/bin/python scripts/prepare_model.py
+fi
