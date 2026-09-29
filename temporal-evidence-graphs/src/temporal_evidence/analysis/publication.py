@@ -95,8 +95,14 @@ def generate():
     truncations = sum(row["initial_truncation"] for row in metrics)
     dependency_counts = Counter()
     reasons = Counter()
+    request_errors = Counter()
     for path in Path("artifacts/runs/minimum_v1/cases").glob("*.json"):
         output = read_json(path)
+        for phase in ("initial","repair"):
+            call = output.get(phase)
+            if call and call.get("error"):
+                error_type = call["error"].split(":",1)[0]
+                request_errors[(output["case"]["dataset"],output["case"]["method"],phase,error_type)] += 1
         for claim in (output["display"] or {}).get("claims", []):
             dependency_counts[(output["case"]["method"], "claims")] += 1
             dependency_counts[(output["case"]["method"], "parent_claims")] += bool(claim["depends_on_claim_ids"])
@@ -200,6 +206,8 @@ def generate():
               "PilotInteractiveP95":number(final_pilot["interactive_p95"],2),
               "PilotBatchRate":number(final_pilot["initial_cases_per_second_including_repairs_and_database"],3),
               "TotalFailed":str(failures), "TotalTruncated":str(truncations),
+              "TotalInitialErrors":str(sum(row["initial_parse_failure"] for row in metrics)),
+              "ClientTimeouts":str(sum(row["timeout_calls"] for row in metrics)),
               "MainHours":number(stages["matched_held_out_run"]["wall_seconds"]/3600,2),
               "AuditFlagged":str(audit["flagged"]), "AuditParsed":str(audit["parsed"]),
               "AuditDisagreements":str(audit["disagreements_with_exact"]), "AuditCalibration":str(audit["calibration_correct"]),
@@ -243,12 +251,15 @@ def generate():
     (DIRECTORY/"reliability_findings.tex").write_text("\n\n".join(finding_lines)+"\n")
 
     report = {"complete":True,"protocol_hash":frozen["protocol_hash"],"integrity":integrity,"macros":macros,"workloads":workload,
+              "request_error_types":[{"dataset":key[0],"method":key[1],"phase":key[2],"error_type":key[3],"count":value}
+                                     for key,value in sorted(request_errors.items())],
               "reason_components":[{"dataset":key[0],"method":key[1],"reason":key[2],"count":value} for key,value in sorted(reasons.items())],
               "generated_dependencies":[{"method":method,"claims":dependency_counts[(method,"claims")],
                                          "claims_with_parents":dependency_counts[(method,"parent_claims")]} for method in METHODS],
               "database_accounting":database,"resources":resources,"automated_audit":audit,
               "audit_details":audit_details,
               "notes":["Reason components overlap; they cannot be summed into an error total",
+                       "The saved metric named initial_parse_failure includes all initial request/format errors; request_error_types preserves their logged categories",
                        "Claims requiring correction are conditional on initially generated content",
                        "All model families and sources retained, including failures and negative findings"]}
     write_json("artifacts/analysis/publication.json",report)

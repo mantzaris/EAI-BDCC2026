@@ -47,6 +47,11 @@ def generate():
     table('Generation failures and use', ['Source','Method','Failed','Truncated initially','Repair calls','Abstained %','Valid references %'],
           [[SOURCES[r['dataset']],r['method'],r['failed']['numerator'],r['initial_truncation']['numerator'],r['repair_calls']['numerator'],
             percent(r['abstained']['value']),percent(r['reference_validity']['value'])] for r in ordered])
+    table('Logged request error categories', ['Source','Method','Phase','Category','Calls'],
+          [[SOURCES[r['dataset']],r['method'],r['phase'],r['error_type'],r['count']] for r in publication['request_error_types']])
+    lines.extend([f"Initial request/format failures: {publication['macros']['TotalInitialErrors']}; "
+                  f"client timeout attempts across initial and repair phases: {publication['macros']['ClientTimeouts']}. "
+                  'Truncation and request/format failure counts can overlap.', ''])
     table('Measured workload costs', ['Workload','Requests','Input tokens','Output tokens','Wall minutes'],
           [[r['name'],f"{r['calls']:,}",f"{r['input_tokens']:,}",f"{r['output_tokens']:,}",number(r['seconds']/60)] for r in publication['workloads']])
     lines.extend(['These are observed GPU-backed workload wall times, including host processing. '

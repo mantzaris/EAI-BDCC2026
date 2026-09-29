@@ -24,8 +24,11 @@ def audit_integrity():
     for path in paths:
         output = read_json(path)
         case = output["case"]
-        for key, value in case.items():
-            assert value == expected[path.stem][key], (path.stem, key)
+        # Prepared-file pointers/hashes live in the manifest; verify_frozen
+        # checks those files above. Every remaining case field must match exactly.
+        planned = {key:value for key,value in expected[path.stem].items()
+                   if key not in {"episode_path","episode_sha256"}}
+        assert case == planned, (path.stem, "case metadata differs from manifest")
         payload = json.loads(output["initial"]["request"]["messages"][1]["content"])
         assert set(payload) <= allowed_payload
         assert payload["subject_id"] == case["subject"]

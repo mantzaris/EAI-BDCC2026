@@ -13,7 +13,7 @@ RATIOS={"claim_error":("claim_errors","claim_count"),"reference_validity":("vali
         "correction_by_deadline":("corrected_by_5s","correction_required"),
         "residual_incorrect":("residual_incorrect","correction_required"),
         "collateral_revision":("collateral_withdrawn","unaffected")}
-MEANS=("case_error","abstained","partial","failed","initial_parse_failure","initial_truncation","repair_calls")
+MEANS=("case_error","abstained","partial","failed","initial_parse_failure","initial_truncation","repair_calls","timeout_calls")
 
 
 def aggregate(rows):
@@ -114,8 +114,10 @@ def analyze(run_id="minimum_v1"):
                     selected=[r for r in rows if (r["dataset"],r["method"],r["variant"],r["checkpoint"])==(source,method,variant,checkpoint)]
                     strata.append({"dataset":source,"method":method,"variant":variant,"checkpoint":checkpoint,**aggregate(selected)})
     report={"run_id":run_id,"input_sha256":digest_file(path),"cases":len(rows),"summary":summary,"strata":strata,
+            "partitions":sorted({row["split"] for row in rows}),
+            "independent_subjects":{source:len({row["subject"] for row in rows if row["dataset"]==source}) for source in SOURCES},
             "contrasts":contrasts,"intervals":"Pointwise 95% paired subject-cluster bootstrap; no hypothesis-test p-values",
-            "limitations":["10 independent held-out subjects per source","Exact lexical prose checks do not replace the separate fidelity audit",
+            "limitations":["Independent subject counts are reported separately; repeated requests do not add participants","Exact lexical prose checks do not replace the separate fidelity audit",
                            "Faithfulness to ingested evidence is distinct from physiological accuracy",
                            "Replay flag/withdrawal service times exclude offered-load queues; streaming results measure queues separately"]}
     directory=Path(f"artifacts/analysis/{run_id}")

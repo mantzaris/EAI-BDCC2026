@@ -1,0 +1,448 @@
+{
+  "case": {
+    "case_id": "synthetic-V1002-e1-channel_fault-c1-B0",
+    "checkpoint": 1,
+    "dataset": "synthetic",
+    "episode_id": "synthetic-V1002-e1",
+    "family": "evidence_sufficiency",
+    "knowledge_time": 1381.0,
+    "method": "B0",
+    "split": "test",
+    "subject": "V1002",
+    "variant": "channel_fault"
+  },
+  "completed_at": "2026-09-29T02:45:59.962819+00:00",
+  "database_update_seconds": 0.016235762042924762,
+  "display": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V1002/1320-1350/eda_median/v2"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median during the window is approximately equal to 2.708173 synthetic_uS.",
+        "subject_id": "V1002",
+        "unit": "synthetic_uS",
+        "value": 2.708173
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V1002/1320-1350/eda_missing_fraction/v2"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.",
+        "subject_id": "V1002",
+        "unit": "fraction",
+        "value": 0.0
+      }
+    ],
+    "explanation": "The EDA median during the window is approximately equal to 2.708173 synthetic_uS. The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.",
+    "unresolved_evidence_ids": []
+  },
+  "end_to_end_seconds": 30.64886346599087,
+  "evidence_hash": "9ab7bd8f570101103f973d0f874f75d0a1c4c4aaec51e663d1f0bcceca934005",
+  "final_candidate": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V1002/1320-1350/eda_median/v2"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median during the window is approximately equal to 2.708173 synthetic_uS.",
+        "subject_id": "V1002",
+        "unit": "synthetic_uS",
+        "value": 2.708173
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V1002/1320-1350/eda_missing_fraction/v2"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.",
+        "subject_id": "V1002",
+        "unit": "fraction",
+        "value": 0.0
+      }
+    ],
+    "explanation": "The EDA median during the window is approximately equal to 2.708173 synthetic_uS. The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.",
+    "unresolved_evidence_ids": []
+  },
+  "initial": {
+    "case_id": "synthetic-V1002-e1-channel_fault-c1-B0",
+    "event": "finished",
+    "http_status": 200,
+    "phase": "initial",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "Claim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "claim_type": {
+                "enum": [
+                  "numeric_observation",
+                  "trend",
+                  "comparison",
+                  "evidence_conflict",
+                  "missing_evidence",
+                  "revision_effect"
+                ],
+                "title": "Claim Type",
+                "type": "string"
+              },
+              "depends_on_claim_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Depends On Claim Ids",
+                "type": "array"
+              },
+              "event_end_seconds": {
+                "title": "Event End Seconds",
+                "type": "number"
+              },
+              "event_start_seconds": {
+                "title": "Event Start Seconds",
+                "type": "number"
+              },
+              "evidence_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Evidence Ids",
+                "type": "array"
+              },
+              "operator": {
+                "enum": [
+                  "approximately_equal",
+                  "difference",
+                  "greater_than",
+                  "less_than",
+                  "missing",
+                  "disagrees",
+                  "remains_supported",
+                  "revised"
+                ],
+                "title": "Operator",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "subject_id": {
+                "title": "Subject Id",
+                "type": "string"
+              },
+              "unit": {
+                "title": "Unit",
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Value"
+              }
+            },
+            "required": [
+              "claim_id",
+              "claim_type",
+              "subject_id",
+              "quantity",
+              "event_start_seconds",
+              "event_end_seconds",
+              "operator",
+              "value",
+              "unit",
+              "evidence_ids",
+              "depends_on_claim_ids",
+              "sentence"
+            ],
+            "title": "Claim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "answer_status": {
+            "enum": [
+              "answered",
+              "partially_answered",
+              "insufficient_evidence"
+            ],
+            "title": "Answer Status",
+            "type": "string"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/Claim"
+            },
+            "maxItems": 3,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "unresolved_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolved Evidence Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claims",
+          "answer_status",
+          "explanation",
+          "unresolved_evidence_ids"
+        ],
+        "title": "Answer",
+        "type": "object"
+      },
+      "max_tokens": 1536,
+      "messages": [
+        {
+          "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nThe top-level JSON object has exactly four required keys, in this order: claims,\nanswer_status, explanation, unresolved_evidence_ids. After closing the claims array,\nwrite the remaining three keys. answer_status is answered, partially_answered, or\ninsufficient_evidence; explanation is a string; unresolved_evidence_ids is an array\nof unavailable evidence IDs, or []. Each claim has all of these fields: claim_id,\nclaim_type, subject_id, quantity, event_start_seconds, event_end_seconds, operator,\nvalue, unit, evidence_ids, depends_on_claim_ids, sentence. Never pad with whitespace.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nKeep every claim's event_start_seconds and event_end_seconds equal to the requested\ntarget interval, including comparisons whose earlier operand covers another interval.\nReport only requested facts; the baseline is an operand, not an additional claim.\nUse one short sentence per claim and compact JSON. Round reported numbers to six\nsignificant digits. A revision_effect claim uses revised for an explicitly revised\nfeature; an unchanged feature can be reported as an ordinary numeric_observation.\ndepends_on_claim_ids contains only claim_id values of earlier claims, never evidence IDs.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"evidence\":[{\"event_end_seconds\":1320.0,\"event_start_seconds\":1200.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1321.0,\"quantity\":\"eda_median\",\"record_id\":\"synthetic/V1002/1200-1320/eda_median/v1\",\"subject_id\":\"V1002\",\"supersedes_id\":null,\"unit\":\"synthetic_uS\",\"value\":2.1933882236480713,\"version\":1},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1351.0,\"quantity\":\"acceleration_magnitude_sd\",\"record_id\":\"synthetic/V1002/1320-1350/acceleration_magnitude_sd/v1\",\"subject_id\":\"V1002\",\"supersedes_id\":null,\"unit\":\"synthetic_g\",\"value\":0.10605134589544991,\"version\":1},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1381.0,\"quantity\":\"eda_clipping_fraction\",\"record_id\":\"synthetic/V1002/1320-1350/eda_clipping_fraction/v2\",\"subject_id\":\"V1002\",\"supersedes_id\":\"synthetic/V1002/1320-1350/eda_clipping_fraction/v1\",\"unit\":\"fraction\",\"value\":0.004166666666666667,\"version\":2},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1381.0,\"quantity\":\"eda_iqr\",\"record_id\":\"synthetic/V1002/1320-1350/eda_iqr/v2\",\"subject_id\":\"V1002\",\"supersedes_id\":\"synthetic/V1002/1320-1350/eda_iqr/v1\",\"unit\":\"synthetic_uS\",\"value\":0.05090749263763428,\"version\":2},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1381.0,\"quantity\":\"eda_median\",\"record_id\":\"synthetic/V1002/1320-1350/eda_median/v2\",\"subject_id\":\"V1002\",\"supersedes_id\":\"synthetic/V1002/1320-1350/eda_median/v1\",\"unit\":\"synthetic_uS\",\"value\":2.708172917366028,\"version\":2},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1381.0,\"quantity\":\"eda_missing_fraction\",\"record_id\":\"synthetic/V1002/1320-1350/eda_missing_fraction/v2\",\"subject_id\":\"V1002\",\"supersedes_id\":\"synthetic/V1002/1320-1350/eda_missing_fraction/v1\",\"unit\":\"fraction\",\"value\":0.0,\"version\":2},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1351.0,\"quantity\":\"pulse_frequency_bpm\",\"record_id\":\"synthetic/V1002/1320-1350/pulse_frequency_bpm/v1\",\"subject_id\":\"V1002\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":74.0,\"version\":1},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1351.0,\"quantity\":\"respiration_frequency_per_min\",\"record_id\":\"synthetic/V1002/1320-1350/respiration_frequency_per_min/v1\",\"subject_id\":\"V1002\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":16.0,\"version\":1}],\"knowledge_time\":1381.0,\"question\":\"Which requested measurements are available? Give the window's EDA median and its missing-sample fraction, identifying unavailable values explicitly.\",\"subject_id\":\"V1002\",\"target_interval\":[1320.0,1350.0]}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260928,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\"claims\": [{\"claim_id\": \"claim_1\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"V1002\", \"quantity\": \"eda_median\", \"event_start_seconds\": 1320.0, \"event_end_seconds\": 1350.0, \"operator\": \"approximately_equal\", \"value\": 2.708173, \"unit\": \"synthetic_uS\", \"evidence_ids\": [\"synthetic/V1002/1320-1350/eda_median/v2\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA median during the window is approximately equal to 2.708173 synthetic_uS.\"}, {\"claim_id\": \"claim_2\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"V1002\", \"quantity\": \"eda_missing_fraction\", \"event_start_seconds\": 1320.0, \"event_end_seconds\": 1350.0, \"operator\": \"approximately_equal\", \"value\": 0.0, \"unit\": \"fraction\", \"evidence_ids\": [\"synthetic/V1002/1320-1350/eda_missing_fraction/v2\"], \"depends_on_claim_ids\": [], \"sentence\": \"The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.\"}], \"answer_status\": \"answered\", \"explanation\": \"The EDA median during the window is approximately equal to 2.708173 synthetic_uS. The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.\", \"unresolved_evidence_ids\": []}",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790649954,
+      "id": "chatcmpl-1b1a04611dfd46fc89997514a6189c35",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 371,
+        "prompt_tokens": 1519,
+        "prompt_tokens_details": null,
+        "total_tokens": 1890
+      }
+    },
+    "seconds": 5.222379120066762,
+    "started_at": "2026-09-29T02:45:54.738953+00:00",
+    "truncated": false
+  },
+  "paragraph_discrepancies": [],
+  "persistent_before": {
+    "synthetic-V1002-e1-channel_fault-c0-B0/claim/claim_1/0": {
+      "claim": {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V1002/1320-1350/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The window's EDA median is approximately equal to 2.208173 synthetic_uS.",
+        "subject_id": "V1002",
+        "unit": "synthetic_uS",
+        "value": 2.208173
+      },
+      "created_at": 1351.0,
+      "current_evidence_ids": [
+        "synthetic/V1002/1320-1350/eda_median/v1"
+      ],
+      "last_transition": null,
+      "state": "unverified"
+    },
+    "synthetic-V1002-e1-channel_fault-c0-B0/claim/claim_2/1": {
+      "claim": {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V1002/1320-1350/eda_missing_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The window's EDA missing-sample fraction is approximately equal to 0.0 fraction.",
+        "subject_id": "V1002",
+        "unit": "fraction",
+        "value": 0.0
+      },
+      "created_at": 1351.0,
+      "current_evidence_ids": [
+        "synthetic/V1002/1320-1350/eda_missing_fraction/v1"
+      ],
+      "last_transition": null,
+      "state": "unverified"
+    }
+  },
+  "query": {
+    "dataset_id": "synthetic",
+    "event_end_seconds": 1350.0,
+    "event_start_seconds": 1320.0,
+    "family": "evidence_sufficiency",
+    "freshness_seconds": null,
+    "knowledge_time": 1381.0,
+    "question": "Which requested measurements are available? Give the window's EDA median and its missing-sample fraction, identifying unavailable values explicitly.",
+    "session_id": "session_1",
+    "subject_id": "V1002"
+  },
+  "raw_candidate": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V1002/1320-1350/eda_median/v2"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median during the window is approximately equal to 2.708173 synthetic_uS.",
+        "subject_id": "V1002",
+        "unit": "synthetic_uS",
+        "value": 2.708173
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V1002/1320-1350/eda_missing_fraction/v2"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.",
+        "subject_id": "V1002",
+        "unit": "fraction",
+        "value": 0.0
+      }
+    ],
+    "explanation": "The EDA median during the window is approximately equal to 2.708173 synthetic_uS. The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.",
+    "unresolved_evidence_ids": []
+  },
+  "repair": null,
+  "retrieval_seconds": 0.0028225129935890436,
+  "revisions": [
+    {
+      "affected": [],
+      "assessments": {},
+      "ingested_at": 1381.0,
+      "seconds": 0.0009377910755574703,
+      "trigger_id": "synthetic/V1002/1320-1350/eda/raw/v2"
+    },
+    {
+      "affected": [],
+      "assessments": {},
+      "ingested_at": 1381.0,
+      "seconds": 0.0006079880986362696,
+      "trigger_id": "synthetic/V1002/1320-1350/eda_clipping_fraction/v2"
+    },
+    {
+      "affected": [],
+      "assessments": {},
+      "ingested_at": 1381.0,
+      "seconds": 0.0005871378816664219,
+      "trigger_id": "synthetic/V1002/1320-1350/eda_iqr/v2"
+    },
+    {
+      "affected": [],
+      "assessments": {},
+      "ingested_at": 1381.0,
+      "seconds": 0.0005261988844722509,
+      "trigger_id": "synthetic/V1002/1320-1350/eda_median/v2"
+    },
+    {
+      "affected": [],
+      "assessments": {},
+      "ingested_at": 1381.0,
+      "seconds": 0.010108296060934663,
+      "trigger_id": "synthetic/V1002/1320-1350/eda_missing_fraction/v2"
+    }
+  ],
+  "seconds": 5.222379120066762,
+  "status": "completed",
+  "validation": []
+}
