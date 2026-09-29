@@ -1,5 +1,39 @@
 # Single-paper PDF and dashboard review
 
+## Current prose revision
+
+Reviewed on 29 September 2026 against the completed paper at `c62001f`. The
+authoritative output is `paper/semantic_structure_revision.pdf`, with **20 main
+pages and one reference page**. SHA-256:
+`7b3ef55ec526529598d1bfa0fb90436993180bba96104e8ae0cc5130916c48b8`.
+
+All 21 compiled pages were inspected as Poppler rasterizations. Equations and
+proofs remain readable, and all references resolve. Figures 1–6 retain their
+original assets and inclusion widths. The WESAD, structured-program and classic
+network pages remain spacious and labeled. The ontology paragraph now stays
+together after the construction tables. The waveform interpretation is kept
+together after the two network pages, and the semantic-result passage no longer
+breaks a sentence across the following figure pages. Figure 3's caption was
+shortened to remove a small float overflow without changing its meaning or
+scaling the figure.
+
+Figure pages are 5, 13, 14, 16, 17 and 19. The worked equations are on page 15.
+The fidelity table shares page 17 with its plot, the structural table is on page
+18, and the operational limitation and conclusion remain on page 20. References
+occupy page 21. Ordinary text and proof continuations span adjacent pages. There
+are no clipped captions, overfull boxes, oversized floats, undefined references
+or unembedded fonts. Fonts, margins, spacing and the official template are unchanged.
+
+Current preservation and PDF checks are in `paper/prose_revision/validation.json`.
+Approximate body-plus-caption prose is 5,634 words versus 5,500 (+2.44%). All
+numerical results, equations, proposition statements, citations, generated tables
+and experimental artifacts remain unchanged. Publication regeneration was
+byte-idempotent across its 19 outputs. No inference, replay, dashboard changes or
+implementation-test rerun was part of this prose revision. The prior implementation
+and browser checks below describe the completed `c62001f` version, not new runs.
+
+## Historical implementation and classic-network review at c62001f
+
 Reviewed on 29 September 2026 from the actual compiled PDF, using Poppler page
 rasterizations and direct image inspection. The official LLNCS class, font sizes
 and page geometry are unchanged.

@@ -1,5 +1,16 @@
 # Study status
 
+## Prose revision — complete (100%)
+
+The current [paper](paper/semantic_structure_revision.pdf) retains 20 main pages
+and one reference page. Clearer definitions, transitions, equation explanations
+and result interpretations bring approximate prose from 5,500 to 5,634 words
+(+2.44%). All equations, propositions, numerical results, citations, figures and
+experimental artifacts are preserved. No inference or experimental analysis was
+rerun. Read [PROSE_REVISION.md](PROSE_REVISION.md), the
+[current validation](paper/prose_revision/validation.json) and
+[PDF inspection record](paper/semantic_visual_review.md).
+
 ## Classic ontology-instance addition — complete (100%)
 
 The authoritative [paper](paper/semantic_structure_revision.pdf) has

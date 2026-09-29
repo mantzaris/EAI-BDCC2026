@@ -3,8 +3,8 @@
 
 \subsection{Schema-Guided Ontology Instantiation}
 
-The ontology is fixed in code; the generator proposes instances inside it.
-Formally, let
+The ontology is fixed in code and specifies the allowed objects and relationships.
+The generator proposes instances within this vocabulary. Formally, let
 \begin{equation}
 \begin{split}
  \Omega&=(\mathcal T,\mathcal R,\operatorname{dom},\operatorname{ran},\mathcal C),\\
@@ -12,45 +12,45 @@ Formally, let
 \end{split}
 \label{eq:ontology}
 \end{equation}
-Here $\mathcal T$ and $\mathcal R$ are node and relation vocabularies;
-$\vartheta_V:V_t\to\mathcal T$ and $\vartheta_E:E_t\to\mathcal R$ give their
-types. An edge of type $r$ connects allowed types in $\operatorname{dom}(r)$ and
-$\operatorname{ran}(r)$. Attributes $a_t$ include immutable and logical IDs,
-dataset/subject/session scope, event intervals, ingestion time, version, value,
-unit and evidence state. Constraints $\mathcal C$ include immutable identifiers,
-finite acyclic declared dependencies and the admission predicates below.
-Ingestion time is written $\tau_v$, distinct from the type maps $\vartheta$.
-At knowledge time $t$, only records with $\tau_v\leq t$ are visible. Current
-assessments use their recorded knowledge time for visibility. Current
-queries resolve each logical identity to its greatest visible version, breaking
-ties by ingestion time and ID; historical queries retain their specified
-knowledge time.
-Tied assessments retain their trigger IDs; conflicting states are marked ambiguous
-because the stored timestamp alone does not order triggers.
+Here $\mathcal T$ and $\mathcal R$ are the node and relation vocabularies.
+$\vartheta_V:V_t\to\mathcal T$ and $\vartheta_E:E_t\to\mathcal R$
+assign their types. An edge of type $r$ connects allowed types in
+$\operatorname{dom}(r)$ and $\operatorname{ran}(r)$. Attributes $a_t$ record
+immutable and logical IDs, dataset, subject, session, event interval, ingestion
+time, version, value, unit and evidence state. Constraints $\mathcal C$ require
+immutable identifiers, finite acyclic declared dependencies and the admission
+checks below. Ingestion time $\tau_v$ is distinct from the type maps $\vartheta$.
+At knowledge time $t$, only records with $\tau_v\leq t$ are visible.
+Assessments become visible at their recorded knowledge time.
+Queries select the greatest version visible at their knowledge time,
+using ingestion time and ID to break ties. Historical queries retain that time. Tied assessments retain their trigger IDs. Conflicting states
+remain ambiguous because the timestamp does not establish the order of triggers.
 
-Table~\ref{tab:objects} identifies stored objects. Windows carry hashes, sample
-indices and channel metadata; raw arrays remain outside the database. Features
-carry units, extractor metadata and source IDs. The \texttt{with\_entities}
-function adds subject and channel identities. The model proposes proposition
-fields, evidence references, parent links and sentences. Checks admit bounded
-claims before immutable insertion. Neo4j additionally creates
-\texttt{SupportAssessment} nodes and \texttt{ASSESSED\_AS} edges, included in
-storage accounting. Source-endpoint insertion can create an unresolved Record
-placeholder; none occurs in the original exports. Table~\ref{tab:relations}
-gives relation meanings and construction rules. Neo4j enforces unique scope/ID
-pairs; Python checks record kinds, immutable payloads, acyclicity and numerical
-admission. The database does not independently enforce those semantic predicates.
+Table~\ref{tab:objects} lists the stored objects. Observation windows carry hashes,
+sample indices and channel metadata, while raw arrays remain outside the database.
+Features carry units, extractor metadata and source IDs. The
+\texttt{with\_entities} function adds subject and channel identities.
+The model proposes proposition fields, evidence references, parent links and
+sentences. Claims that pass the bounded checks are inserted immutably.
+The Neo4j adapter adds \texttt{SupportAssessment} nodes and
+\texttt{ASSESSED\_AS} edges to the storage totals.
+Inserting an edge can create a placeholder for an unresolved source Record.
+None occurs in the original exports. Table~\ref{tab:relations} gives relation
+meanings and creation rules. Neo4j enforces unique scope/ID pairs.
+Python checks record kinds, immutable payloads, acyclicity and numerical
+admission. The database itself does not enforce these semantic checks.
 
 \begin{table}[!htbp]
-\caption{Implemented object vocabulary. Checked status describes an admission or
-assessment operation; it does not establish physiological truth.}
+\caption{Implemented object vocabulary. Checked status records an admission or
+assessment operation. It does not establish physiological truth.}
 \label{tab:objects}
 \centering\small
 \input{generated/semantic/object_table}
 \end{table}
 \input{sections/relation_table}
 
-The construction can be written as
+Construction first normalizes the available evidence, then checks the model's
+proposals and inserts the accepted records:
 \begin{equation}
  G_t=\Gamma_\Omega(E_{\leq t},\widehat C_{\leq t})
  =\operatorname{Insert}_{\rm immutable}\!\left(
@@ -58,29 +58,33 @@ The construction can be written as
  \widehat C_{\leq t}\right)\right).
 \label{eq:construction}
 \end{equation}
-$E_{\leq t}$ is the observation/revision log; $\widehat C_{\leq t}$ contains
-model proposals generated from the normalized visible evidence. Rejected
-proposals remain in the request archive. Inserted assessments and explanation
-versions extend the instance without overwriting earlier content. This is
-schema-guided instantiation, rather than ontology discovery.
+$E_{\leq t}$ is the observation and revision log. $\widehat C_{\leq t}$ contains
+proposals generated from the normalized visible evidence. Rejected proposals
+remain in the request archive. New assessments and explanation versions extend
+the graph without overwriting earlier content. The process instantiates the
+specified ontology rather than discovering one.
 
-Construction determines much of the apparent topology. Each \texttt{source\_ids}
-entry creates dependent-to-input \texttt{DEPENDS\_ON}; features also receive
-\texttt{DERIVED\_FROM}, and accepted claims the opposite-direction
-\texttt{SUPPORTS} mirror. Display membership adds two relations:
-\texttt{CONTAINS} and \texttt{DEPENDS\_ON}. Subject links create
-\texttt{FOR\_SUBJECT} hubs.
-We separate these administrative, provenance and reasoning roles.
+\begin{samepage}
+These rules explain much of the graph's topology. Each \texttt{source\_ids}
+entry creates a \texttt{DEPENDS\_ON} edge from dependent to input.
+Features also receive \texttt{DERIVED\_FROM} edges, and accepted claims receive
+\texttt{SUPPORTS} edges in the opposite direction. Display membership creates
+both \texttt{CONTAINS} and \texttt{DEPENDS\_ON} edges. Subject membership creates
+\texttt{FOR\_SUBJECT} hubs. Our analysis separates these administrative,
+provenance and reasoning roles.
+
+\end{samepage}
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{semantic_analysis_v1/ontology_construction.pdf}
-\caption{Fixed vocabulary and actual instantiation. Blue denotes deterministic
-recording/feature construction, green a checked model proposition, grey identity
-or display administration, and amber assessment/version effects. The concrete
-path comes from the exported WESAD S11 correction scope; its source hash, sample
-indices and full IDs accompany the figure. Arrows have the stored direction.
-The displayed schema is a readable subset of the complete construction table.}
+\caption{Fixed vocabulary and an actual instance. Blue denotes deterministic
+recording and feature construction, green a checked model proposition, grey
+identity or display administration, and amber assessment or version effects.
+The concrete path comes from the exported WESAD S11 correction scope.
+Its source hash, sample indices and full IDs accompany the figure.
+Arrows preserve stored direction. The schema shown is a readable subset of
+the complete construction table.}
 \label{fig:ontology}
 \end{figure}
 
@@ -88,47 +92,46 @@ The displayed schema is a readable subset of the complete construction table.}
 
 \subsection{Edges as Explicit Semantic Commitments}
 
-A citation identifies a proposed evidence witness. A parent link declares a
-prerequisite. A deterministic extraction edge records how a feature was produced.
-Membership and co-occurrence carry neither implication. In particular, an
-LLM-proposed \texttt{DEPENDS\_ON} edge does not prove that its target is a necessary
-premise. \texttt{SUPPORTS} records acceptance at insertion, not support at every
-later time. A \texttt{CONTRADICTS} edge records an adverse assessment triggered by
-a revision; its associated assessment supplies the knowledge time. Exports retain
-these origins and the distinction between proposed, accepted and displayed links.
+An edge's type determines what it asserts. A citation names evidence offered as support. A parent link declares a prerequisite. An extraction edge records how
+a feature was produced. Membership and co-occurrence imply neither support nor
+a prerequisite. In particular, an LLM-proposed \texttt{DEPENDS\_ON} edge does not
+prove that its target is necessary. \texttt{SUPPORTS} records acceptance when a
+claim was inserted, not validity at every later time. \texttt{CONTRADICTS}
+records an adverse assessment triggered by a revision, whose knowledge time is
+stored in the associated assessment. Exports retain these origins and distinguish
+proposed, accepted and displayed links.
 
 \subsection{The Query-Specific Semantic Core}
 
-We define a projection rather than discover a second ontology:
+To interpret and revise an answer, a reviewer needs its claims and the inputs
+they cite. We select this semantic core by a fixed projection:
 \begin{equation}
  K_{q,t}=\pi_{q,\Omega}(G_t),\qquad
  V(K_{q,t})=C_{q,t}^{*}\cup F_{q,t},\quad
  E(K_{q,t})=D_{q,t}\cup P_{q,t}.
 \label{eq:core}
 \end{equation}
-$C_{q,t}^{*}$ contains the latest displayed answer's member claims and their
-declared claim ancestors. $F_{q,t}$ contains their visible cited feature
-propositions, including explicit availability watches. $D_{q,t}$ retains the
-corresponding stored dependency edges; $P_{q,t}$ contains labelled derived paths
-that resolve an immutable citation through a visible version chain. Each derived
-path retains its source citation and supersession witness IDs. It is never drawn
-as a directly stored Neo4j relationship.
+$C_{q,t}^{*}$ contains the latest displayed answer's claims and their declared
+claim ancestors. $F_{q,t}$ contains the visible feature propositions they cite,
+including explicit availability watches. $D_{q,t}$ retains the corresponding
+stored dependency edges. When a cited feature has a newer visible version,
+$P_{q,t}$ records a labelled path from the original citation through the version
+chain. Each such path keeps the citation and supersession witness IDs.
+It is never drawn as a directly stored Neo4j relationship.
 
-Subject/sensor identity, explanation containers, assessments and old versions are
-sidecars. Feature-to-observation provenance is retained there and may be expanded
-in a drawing. Claim scope comes from the asserted proposition fields, rather than
-the storage wrapper's query interval. Full IDs, raw sentences, original versions
-and assessment times remain recoverable. Thus the projection preserves the
-explicit commitments needed for the answer and its revision; its smaller size
-is a consequence of a specified selection rule.
+Linked metadata retains subject and sensor identities, explanation containers,
+assessments and old versions. It also retains feature-to-observation provenance,
+which can be expanded in the drawing. A claim's asserted fields determine its scope, not the wrapper's query interval. Full IDs,
+raw sentences, original versions and assessment times remain recoverable.
+The core preserves the answer's explicit commitments through this selection rule.
 
-We distinguish the complete stored graph, an active evidence-and-claim projection
-at $t$, and $K_{q,t}$. The active projection includes latest evidence and current
-display members across queries, retaining actual observation provenance. The
-core answers more focused competency questions: which window supports a value,
-which operands support a comparison, which version was known, what changed after
-correction, and whether an alternative witness survives. We evaluate answers to
-these questions against immutable input logs or exact program specifications,
-independently of database support flags.
+We analyze three distinct representations. The complete graph contains all stored
+objects. The active projection at $t$ contains the latest evidence and current
+display members across queries, with their observation provenance.
+The core $K_{q,t}$ answers focused questions. Which window supports
+a value, and which operands support a comparison? Which version was known,
+what changed after correction, and does another witness still support the claim?
+We evaluate these competency questions against immutable input logs or exact
+program specifications, independently of database support flags.
 
 \input{sections/review_view}

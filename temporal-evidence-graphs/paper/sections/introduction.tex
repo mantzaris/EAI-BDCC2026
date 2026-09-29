@@ -2,57 +2,56 @@
 
 A generated explanation can become misleading when a sensor window is corrected,
 a feature fails a quality check, or a delayed observation replaces a statement
-of absence. Deleting the answer discards useful information; retaining it can
-preserve a wrong number. A temporal evidence graph exposes what was asserted,
-which observations and prerequisites were cited, and what was known when.
+of absence. Deleting the answer discards useful information. Keeping it may
+preserve a wrong number. A temporal evidence graph records what the answer
+asserted, which observations and prerequisites it cited, and what was known when.
 
-A comparison may declare a parent while also citing both operands directly;
-revising either operand then reaches it in one step. Conversely, a conjunction
-supported only through an intermediate claim can remain displayed after a direct
-checker updates that intermediate. A third case reaches a statement but preserves
-it through another admissible witness. Edge semantics and support predicates,
-rather than visual complexity, distinguish these regimes.
+A comparison may cite both a parent claim and the two operands directly.
+Revising either operand then reaches the comparison in one step.
+If an answer relies only on an intermediate claim, however, a direct checker
+may update that claim and leave the answer unchanged. A reached claim may also
+remain supported because another valid route survives. Understanding these
+cases requires the meaning of the edges and support rules, not visual complexity.
 
-We study a researcher-specified, typed temporal property graph instantiated from
-recording provenance and generated propositions. The contribution has three
-parts. First, we define its construction and a query-specific semantic projection
-with mappings back to stored objects and a shared labeled view for a human
-reviewer. Immutable citations, version changes and grouped support witnesses
-are visible in both the paper and an evidence-review dashboard. Second, we connect an explicit support
-model to a locality result and a measurable condition for direct/full maintenance
-equivalence. Third, we evaluate that connection using actual Neo4j exports,
-independent proposition scoring, and a controlled structural extension of three
-completed benchmarks. The graph exposes commitments made by the generated
-answer; it is not a measurement of internal neural reasoning.
+We study a typed temporal property graph whose schema is specified by the
+researcher and whose instances record provenance and generated propositions.
+First, we define how the graph is constructed
+and how a query selects a semantic core linked to the stored objects.
+A shared network view lets a reviewer inspect original citations, version changes
+and groups of supporting inputs in the paper and an evidence-review dashboard.
+Second, we connect an explicit support model to a locality result and a measurable
+condition under which direct and transitive maintenance agree. Third, we test
+that connection using actual Neo4j exports, independent proposition scores and
+a controlled structural extension of three completed benchmarks. The graph
+records commitments made by the answer, not the model's internal neural reasoning.
 
-The completed waveform study supplies a useful contrast. Only
-\SemParentClaims{} of \SemDisplayedClaims{} M1 displayed claims declare parents,
-and direct checking matches transitive maintenance. Our structural analysis
-finds zero transitive exposure in every eligible waveform revision batch. A new
-protocol also distinguishes accurate background statements from violations of a
-strict target-only output contract. This exposes the tradeoff between grounded
-content and required-fact coverage. Finally, exact numerical programs and common
-GPU-generated candidates vary dependency depth and admissible alternative
-witnesses while preserving the underlying recordings. The resulting evidence
-identifies when propagation matters and when simpler maintenance suffices.
+The waveform study provides a useful contrast. Only \SemParentClaims{}
+of \SemDisplayedClaims{} claims displayed by transitive graph maintenance (M1)
+declare parents, and direct checking
+matches transitive maintenance. Every eligible waveform revision batch has zero
+transitive exposure. A separate scoring protocol distinguishes accurate background
+statements from violations of the original target-only output contract. It reveals
+how checking trades coverage of required facts for grounded content. We then vary
+dependency depth and alternative support routes in exact numerical programs and
+common GPU-generated candidates over the same recordings. Together, these results
+show when propagation matters and when direct maintenance suffices.
 
 \subsection{Relation to Prior Work}
 
-Truth-maintenance systems revise justified beliefs when premises
-change~\cite{doyle1979}; incremental view maintenance updates database
-results from changes to their inputs~\cite{gupta1993}. Provenance semirings
-distinguish jointly required inputs from alternative derivations~\cite{green2007}.
-Our contribution connects these established ideas to dependencies actually
-expressed by a bounded generator and independently measured maintenance outcomes.
+Truth-maintenance systems revise justified beliefs when their premises
+change~\cite{doyle1979}. Incremental view maintenance updates database results
+when their inputs change~\cite{gupta1993}. Provenance semirings distinguish
+jointly required inputs from alternative derivations~\cite{green2007}.
+We connect these established ideas to the dependencies a bounded generator
+actually expresses and to independently measured maintenance outcomes.
 
 PROV-DM distinguishes entities, activities, derivation, revision and
-attribution~\cite{prov2013}. It informs our conceptual separation of recording
-provenance, generated assertions and review events. The implementation remains a
-property graph with Python admission checks and database identity constraints.
-GraphRAG constructs entity graphs and community summaries for corpus-level
-question answering~\cite{edge2025}; Graphiti, described in the Zep architecture,
-maintains temporal information for agent memory~\cite{rasmussen2025}. Here the
-unit of evaluation is a revisable numerical proposition and its admissible
-witnesses. This distinction also separates source-grounded semantic fidelity from
-the faithfulness of a model's account of its own computation, which need not
-match its actual decision process~\cite{turpin2023}.
+attribution~\cite{prov2013}. It informs our separation of recording provenance,
+generated assertions and review events. We implement a property graph with
+Python admission checks and database identity constraints. GraphRAG builds entity
+graphs and community summaries for corpus-level question answering~\cite{edge2025}.
+Graphiti, described in the Zep architecture, maintains temporal information for
+agent memory~\cite{rasmussen2025}. Our unit of evaluation is a revisable numerical
+proposition and its admissible supporting inputs. We measure whether evidence
+grounds that proposition. This differs from asking whether a model's account of
+its own computation faithfully describes its decision process~\cite{turpin2023}.

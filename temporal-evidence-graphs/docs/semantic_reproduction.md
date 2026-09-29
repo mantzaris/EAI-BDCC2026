@@ -4,6 +4,31 @@ Run from temporal-evidence-graphs/. Saved prepared events, candidates, database
 exports and replays suffice for all scoring, figures and PDF builds. The
 following commands perform no neural inference and do not modify minimum_v1.
 
+## Current prose revision only
+
+The language revision preserves the completed experiments and figure assets.
+From the existing environment, regenerate publication text, build the single PDF
+and compare it with the completed `c62001f` manuscript:
+
+```sh
+PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.publication --prose-only
+bash paper/build.sh
+PYTHONPATH=src .venv/bin/python scripts/check_prose_revision.py
+```
+
+The checker also requires TeXcount, supplied by the existing TeX installation.
+`--prose-only` writes publication files without writing analysis artifacts.
+The current record is `paper/prose_revision/validation.json`, with manual review
+in `paper/semantic_visual_review.md` and examples in `PROSE_REVISION.md`.
+The PDF remains 20 main pages plus one reference page. Approximate prose rises
+from 5,500 to 5,634 words (+2.44%), counting body text and captions with TeXcount.
+
+The original analysis and implementation validation records remain frozen at
+their completed source versions. In particular, the archived full-analysis
+checker expects the old publication-generator hash. The current prose checker
+validates the revised generator and manuscript against those unchanged results.
+Do not refresh experimental manifests just to validate a language edit.
+
 ## Analysis and the single paper
 
 Use the existing .venv, or create a Python 3.10+ environment and install
@@ -24,10 +49,10 @@ Outputs:
 - paper/semantic_structure_revision.pdf: main paper plus references.
 - paper/archive/minimum_v1/temporal_evidence_maintenance.pdf: unchanged original.
 - THEORY_RESULTS_CHANGES.md and paper/generated/semantic/: generated results.
-- artifacts/manifests/semantic_manuscript_validation.json: final page counts/checks.
+- artifacts/manifests/semantic_manuscript_validation.json: full-analysis page counts/checks.
 
 The old scripts/check_manuscript.py validates the archived 23-page format.
-Use the new checker for the revision. Do not rerun the old publication generator
+Use the full-analysis checker after the full workflow above. Do not rerun the old publication generator
 as part of this workflow: its frozen tables remain reproducibility artifacts.
 The prior two-document submission is historical material under
 `paper/archive/semantic_revision_8c3d3d3/`; it is not built or required by the

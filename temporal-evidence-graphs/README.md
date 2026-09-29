@@ -9,6 +9,7 @@ preserved structured diagrams, with individually visible ontology instances and
 computed support/revision annotations.
 
 - [Revised main paper](paper/semantic_structure_revision.pdf)
+- [Prose revision and preservation checks](PROSE_REVISION.md)
 - [Classic ontology-instance addition](CLASSIC_NETWORK_ADDITION.md)
 - [Graph-view revision and validation](GRAPH_VIEW_REVISION.md)
 - [Shared dashboard/publication network representation](docs/review_network_views.md)
@@ -42,6 +43,19 @@ summary for uncertainty, exclusions and the full outcome crosswalk.
 From this directory, using the existing environment:
 
 ```sh
+PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.publication --prose-only
+bash paper/build.sh
+PYTHONPATH=src .venv/bin/python scripts/check_prose_revision.py
+```
+
+This is the current manuscript-only workflow. It preserves experimental artifacts
+and compares equations, numbers, citations, figures and prose length with the
+completed paper at `c62001f`. Its record is
+[paper/prose_revision/validation.json](paper/prose_revision/validation.json).
+
+For a full analysis reproduction from saved outputs, the original workflow remains:
+
+```sh
 PYTHONPATH=src .venv/bin/python -m pytest -q --junitxml=artifacts/analysis/review_views_v1/pytest.xml
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.analyze
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.structural_analysis
@@ -52,8 +66,8 @@ bash paper/build.sh
 PYTHONPATH=src .venv/bin/python scripts/check_semantic_manuscripts.py
 ```
 
-The new checker validates the revised format; the older check_manuscript.py
-belongs to the archived manuscript. Analysis uses saved answers and exports,
+The full-analysis checker validates refreshed analysis/code manifests. The older
+check_manuscript.py belongs to the archived manuscript. Analysis uses saved answers and exports,
 without repeating original GPU calls. [STATUS.md](STATUS.md) records completion;
 [DECISIONS.md](DECISIONS.md) records choices. No conference submission is performed.
 

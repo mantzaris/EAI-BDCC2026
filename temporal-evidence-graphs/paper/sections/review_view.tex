@@ -1,59 +1,60 @@
 \subsection{Producing the Human-Review Network View}
 \label{sec:reviewview}
 
-The review view expands the semantic core for a selected answer or focus claim.
-It restores original cited versions, required observation provenance and visible
-successor versions instead of redirecting immutable citations.
-For a stored-node budget $B$ and selected recorded times $T$, the implemented
-transformation is
+The review view helps a reader trace a selected answer or claim back to its
+evidence. It expands the semantic core with original cited versions, required
+observation provenance and visible successor versions. Citations stay attached
+to their original inputs. For a stored-node budget $B$ and selected recorded
+times $T$, the transformation is
 \begin{equation}
  H_{q,t}=\operatorname{View}_B(G_t,q),\quad
  p=\operatorname{Layout}\!\left(\bigcup_{u\in T}H_{q,u};m\right),\quad
  I_{q,t}=\operatorname{Render}(H_{q,t},p).
 \label{eq:reviewview}
 \end{equation}
-$H$ is a bounded review expansion of $K$, not another learned representation.
-$p$ stores node coordinates and routed edges. Mode $m$ selects deterministic
-Graphviz \texttt{dot} for structured views or seeded spring positioning for the
-classic network. The latter uses an undirected simple projection only to position
-nodes; analysis and arrows retain the typed directed graph. Collision separation
-and routing adjust presentation, not support semantics.
-A comparison uses the union layout and reuses $p$; records not yet ingested
-remain absent from the earlier drawing. Coordinates and Euclidean distances
-have no semantic-similarity or neural-state interpretation.
+$H$ is the bounded review expansion of $K$. The layout $p$ stores node coordinates
+and routed edges, and rendering produces the drawing $I$.
+Mode $m$ selects deterministic Graphviz \texttt{dot} for structured views or
+seeded spring positioning for the classic network. Spring positioning uses an
+undirected simple projection only to place nodes. Analysis and arrows retain
+the typed directed graph. Routing and collision separation change presentation,
+not support. Time comparisons reuse the layout of the union of their nodes.
+Records not yet ingested remain absent from the earlier drawing. Coordinates
+and distances do not measure semantic similarity or neural state.
 
-The implementation selects database scope, answer, focus and knowledge time,
-follows declared inputs, expands feature-to-observation paths on request,
-and filters versions and assessments by their ingestion/knowledge times. Event
-intervals describe what was measured or asserted, separately from when it was
-known. Original \texttt{DEPENDS\_ON} edges remain intact; current-version
-resolution retains its citation and reverse-supersession witnesses in an explicit
-derived-path sidecar. Availability, support assessment and display membership
-are separate fields. Of \SemAssessmentTies{} tied record/time assessment groups,
-\SemAssessmentConflicts{} contain conflicting states: all outcomes and trigger
-IDs remain visible as ambiguous, while membership follows the saved explanation
-version. These flags and drawings never supply evaluator reference truth.
+The implementation selects a database scope, answer, focus and knowledge time,
+then follows the declared inputs. It expands observation provenance on request.
+Ingestion and assessment times determine visibility, while event intervals
+describe when the measurements or assertions apply.
+Original \texttt{DEPENDS\_ON} edges remain intact. A separate derived path records
+how a citation resolves to a newer version, preserving the citation and the
+supersession edges traversed in reverse. Availability, assessed support and
+display membership remain separate. Among \SemAssessmentTies{} assessment groups
+sharing a record and time, \SemAssessmentConflicts{} have conflicting states.
+All outcomes and trigger IDs remain visible as ambiguous. Display membership
+follows the saved explanation version. Neither flags nor drawings determine
+the evaluator's reference truth.
 
-The budget counts stored records, preferring complete alternative-witness closures
-when they fit. Missing records and incomplete witness groups trigger a
-\emph{partial view} label and expansion control; the drawing does not claim
-that omitted context is irrelevant. Subject/sensor hubs, display containers,
-assessment nodes and reverse \texttt{SUPPORTS} mirrors stay in details. For
-multi-input witnesses in structured mode, labeled AND enclosures group feature rows: each row
-maps to its stored ID, and a dashed dependency bundle enumerates its original
-edges. Enclosures and bundles are rendering constructs. Between witness sets
-support is OR; within each set all inputs are required.
+The node budget favors complete sets of alternative witnesses when they fit.
+Omitted records or incomplete witness groups produce a \emph{partial view}
+warning and an expansion control. The view does not imply that omitted context
+is irrelevant. Subject and sensor hubs, display containers, assessments and
+reverse \texttt{SUPPORTS} edges remain in details. Structured views group feature
+rows in labelled AND enclosures. Each row maps to a stored ID, and each dashed
+bundle lists the original dependency edges it summarizes. These are drawing
+constructs. All inputs within a witness are required, while different witnesses
+are alternatives.
 
-Green/blue/grey fills distinguish claims/features/observations; outlines and
-explicit words distinguish revisions, support and withdrawal. Every arrow is
-labeled and preserves stored direction or identifies a grouped rendering edge.
-The same typed JSON view, ID maps and Graphviz renderer produce
-Figures~\ref{fig:instances} and~\ref{fig:topology} and the existing Streamlit
-dashboard. Its optional \emph{Classic network} mode draws
-Figure~\ref{fig:classic} from the same typed objects as individual ellipses.
-Selectboxes choose a recorded case, time, focus, witness route and
-node or edge; details recover full sentences, exact values/units, intervals,
-versions, source IDs and assessment provenance. Highlighting changes appearance
-only. Expansion exposes omitted provenance; review actions append events in an
-isolated workspace. This implements inspectable external commitments, without
-claiming a measured human-performance benefit or access to neural reasoning.
+Green, blue and grey fills identify claims, features and observations.
+Outlines and words identify revisions, support and withdrawal. Every arrow is
+labelled with its stored direction or identified as a grouped edge.
+Figures~\ref{fig:instances} and~\ref{fig:topology} share their typed JSON views,
+ID maps and Graphviz renderer with the Streamlit dashboard.
+Its optional \emph{Classic network} mode draws the same typed objects as individual
+ellipses in Figure~\ref{fig:classic}. Selectboxes choose case, time, focus, witness
+route and node or edge. Details show full sentences, exact values and units,
+intervals, versions, source IDs and assessment provenance. Highlighting affects
+appearance only. Expansion reveals omitted provenance, and review actions append
+events in an isolated workspace. The interface makes external commitments
+inspectable. It does not establish a human-performance benefit or reveal neural
+reasoning.

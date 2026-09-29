@@ -305,3 +305,18 @@ This instruction supersedes the earlier two-document presentation decisions.
 - Save separate `classic_network_v1` analysis, visual maps, predicate/set values,
   source/code hashes and browser evidence; preserve scientific history and all
   frozen result namespaces.
+
+## 2026-09-29: prose revision
+
+- Revise the authoritative manuscript and generated prose for clarity. Preserve
+  all equations, proposition statements, numerical results, citations, figures,
+  section structure and the official template. Keep 20 main pages and one
+  reference page, with approximate prose word count within 5% of `c62001f`.
+- Explain practical meaning before formal definitions, distinguish candidate
+  neighborhoods from actual changes, and keep grounding separate from coverage.
+  Retain the scope and adequacy limitations without repeating them unnecessarily.
+- Run no inference or experimental analysis and change no experimental artifacts.
+  Add `publication --prose-only` and record manuscript checks separately under
+  `paper/prose_revision/`. Earlier scientific validation stays frozen.
+- Adjust paragraph boundaries and float pagination without changing fonts,
+  margins, spacing or figure dimensions. Inspect the compiled PDF, not only TeX.

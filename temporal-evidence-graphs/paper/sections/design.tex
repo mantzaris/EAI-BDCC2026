@@ -5,42 +5,43 @@
 
 The unchanged \texttt{minimum\_v1} study uses synthetic physiological-style
 waveforms, WESAD laboratory recordings~\cite{schmidt2018,wesad}, and PPG-DaLiA
-daily-activity recordings~\cite{reiss2019,ppgdalia}. Each contributes ten held-out
-subjects with two episodes each. Real-source splits use PCG64 seed 20260928 and
-five separate development subjects. Physiological/activity labels enter neither
-generation nor checking; outcomes concern recorded features.
+daily-activity recordings~\cite{reiss2019,ppgdalia}. Each source contributes ten
+held-out subjects with two episodes each. The real-source splits use PCG64 seed
+20260928 and five separate development subjects. Generation and checking exclude physiological and activity labels.
+Outcomes concern recorded features.
 
-Each episode has a 30-second target and a preceding 120-second comparison
-interval. Four replay variants provide clean/benign, channel-fault, delayed,
-and numerical-correction events; three knowledge checkpoints occur at target
-end plus 1, 31 and 91 seconds. Four question families require the target EDA
-median plus either its preceding-window difference, EDA missing fraction, or
-acceleration variability. These requirements are fixed independently of answers.
-Five methods produce 3,600 initial cases. B0 displays unchecked proposals;
-B1 performs direct maintenance over indexed records; B2 uses Neo4j with direct
-maintenance; M1 uses Neo4j with transitive maintenance; B3 uses indexed SQLite
-and recursive CTEs with the same transitive support semantics. All checked
-methods share fresh-answer checks and at most one repair attempt.
+Each episode has a 30-second target interval and a preceding 120-second
+comparison interval. Four replay variants introduce clean or benign updates,
+channel faults, delays and numerical corrections. Three knowledge checkpoints
+occur at target end plus 1, 31 and 91 seconds. Four question families require
+the target EDA median plus its preceding-window difference, EDA missing fraction
+or acceleration variability. Requirements are fixed independently of answers.
+Five methods produce 3,600 initial cases. B0 displays unchecked proposals.
+B1 performs direct maintenance over indexed records, and B2 does so in Neo4j.
+M1 uses Neo4j with transitive maintenance. B3 implements the same transitive
+support rules in indexed SQLite with recursive common table expressions.
+All checked methods use the same fresh-answer checks and at most one repair.
 
-Pinned Qwen3-8B BF16~\cite{qwen3} originally uses a three-claim contract and
-1,536 output tokens. Both studies use the existing RTX 5090, verified CUDA
-parameters and forward tensors, and vLLM structured decoding~\cite{vllm}.
-Database/statistical work uses the host CPU; Neo4j Community 5.26 and indexed
-SQLite retain their adapters. The three original B0 transport failures remain
-empty outputs.
+The original study uses pinned Qwen3-8B BF16~\cite{qwen3}, a three-claim contract and
+1,536 output tokens. Both studies use the existing RTX 5090 and vLLM structured
+decoding~\cite{vllm}, with model parameters and forward tensors verified on CUDA.
+Database operations and statistics run on the host CPU. Neo4j Community 5.26
+and indexed SQLite retain their adapters. The three original B0 transport
+failures remain empty outputs.
 
 \subsection{Independent Semantic Evaluation}
 
-The new \texttt{semantic\_analysis\_v1} oracle resolves values and witnesses
-from immutable events and task specifications, never support flags or a neural
-verifier. Canonical identity includes dataset, subject/session, asserted interval,
-quantity, operation, normalized value/unit, temporal mode and logical version.
-Correctly labelled background can be grounded without meeting a target
-requirement. Wrong numbers, subjects and target attributions still fail.
-Citation/witness fidelity is separate from directly checkable proposition truth.
+The \texttt{semantic\_analysis\_v1} oracle determines values and supporting
+witnesses from immutable events and task specifications. It uses neither support
+flags nor a neural verifier. Canonical proposition identity includes dataset,
+subject, session, asserted interval, quantity, operation, normalized value and
+unit, temporal mode and logical version. A correctly labelled background fact
+can be grounded without answering the target question. Wrong numbers, subjects
+and target attributions still fail. Citation and witness fidelity are separate from directly checkable truth.
 
-For emitted checkable propositions $C(q,t)$ and answerable required propositions
-$R(q,t)$, we report
+Precision asks how much emitted content is grounded. Recall asks how many
+answerable requirements it covers. For emitted checkable propositions $C(q,t)$
+and answerable required propositions $R(q,t)$, we report
 \begin{equation}
 \begin{aligned}
  P_{\rm grounded}&=\frac{\sum_{c\in C}\mathbf 1[\text{source-grounded }c]}{|C|},\\
@@ -48,68 +49,68 @@ $R(q,t)$, we report
 \end{aligned}
  \label{eq:semanticmetrics}
 \end{equation}
-Every requirement is matched once, so repeated paraphrases cannot increase
-recall. The optional harmonic summary $S=2P_{\rm grounded}R_{\rm required}/
-(P_{\rm grounded}+R_{\rm required})$ combines grounding and task completeness;
-their universes differ, so it is not conventional set F1. Empty output has
-precision NA and zero recall/summary when the question is answerable. Fully
-unanswerable questions have recall/summary NA and separately checked absence
-statements. Partially answerable questions contribute their answerable facts.
+Each requirement is counted once, so repeated paraphrases cannot increase recall.
+The optional harmonic summary $S=2P_{\rm grounded}R_{\rm required}/
+(P_{\rm grounded}+R_{\rm required})$ combines grounding and task completeness.
+It is not conventional set F1 because their universes differ. For an answerable
+question, empty output has precision NA and zero recall and summary score.
+Fully unanswerable questions have recall and summary NA, with absence statements
+checked separately. Partially answerable questions contribute their answerable facts.
 
 We separately score raw and final proposals, accepted claims and displays.
-Raw text, literal discrepancies and additional interpretation terms remain in a
-limited prose audit; structured scores do not certify unrestricted language.
-Temporal integrity reuses each prior answer before arrival, after arrival and
-after maintenance. These are discrete checkpoints, not recovery curves.
-Withdrawal and adequate replacement are separate outcomes.
+A limited prose audit retains raw text, literal discrepancies and interpretation terms. Structured scores do not certify unrestricted language.
+To assess temporal integrity, we score the same prior answer before arrival,
+after arrival and after maintenance. These discrete checkpoints do not establish
+a recovery curve. Withdrawing content and producing an adequate replacement
+remain separate outcomes.
 
 \subsection{Controlled Structural Extension}
 
-\texttt{structure\_study\_v1} selects the first five naturally sorted existing
-held-out subjects per source and both episodes, before observing new outputs.
-The 30 episodes reuse participants; they are not a new independent cohort.
+Before new outputs are observed, \texttt{structure\_study\_v1} selects the first
+five naturally sorted held-out subjects per source and both episodes.
+These 30 episodes reuse participants rather than forming a new independent cohort.
 Four intended evidence-to-answer depths (1--4) and two support regimes yield
-240 cases. Each route applies four explicit numerical comparisons to EDA median,
-EDA IQR, acceleration SD and EDA missing fraction. Bounds are fixed from the
-clean episode so the routes initially satisfy the tests. The answer states
-whether at least one eligible window meets all four criteria. A second route
-uses the disjoint preceding window, providing a genuinely different observation
-witness for this existential statement. The task makes no physiological diagnosis.
+240 cases. Each route compares EDA median, EDA interquartile range (IQR),
+acceleration standard deviation (SD) and EDA missing fraction with explicit bounds.
+The clean episode fixes these bounds so each route initially passes all four tests.
+The answer states whether at least one eligible window passes all tests.
+An alternative route uses the disjoint preceding window, which provides a distinct
+observation witness for that existential statement. The task makes no physiological
+diagnosis.
 
-Depth changes grouping while preserving the tests: direct inputs; a complete
-route then answer; a two-test prefix then route and answer; or first-test,
-two-test prefix, route and answer. Exact compiled fixtures instantiate these
-programs. Separately, the model proposes up to 16 claims and explicit witness
-lists, with a 4,096-token output allowance and at most one repair. Model links
-are never filled in by the compiler. Requested and realized depths, omitted
-roots and incomplete alternative-witness families are retained. Two development
-pilots precede the core freeze. The second clarifies readable sentences and
-reuse of emitted parent IDs through a generic grouping example; neither pilot
-inserts required links. Both use development episodes. Their 40 calls are
-separate from the core budget.
+The depths group the same tests as direct inputs,
+a complete route followed by an answer, a two-test prefix followed by a route and
+answer, or a first test followed by that prefix, route and answer.
+Exact compiled fixtures instantiate these programs. Separately, the model proposes
+up to 16 claims and explicit witness lists, with 4,096 output tokens and at most
+one repair. The compiler never fills in missing model links. We retain requested
+and realized depth, omitted roots and incomplete alternative-witness families.
+Two development pilots precede the core freeze. The second uses a generic grouping
+example to clarify readable sentences and reuse of emitted parent IDs.
+Neither pilot inserts required links. Both use development episodes, and their
+40 calls are separate from the core budget.
 
-One common admitted candidate per case is replayed through all maintenance
-methods, with no post-correction generation. B0 here is a maintenance-off
-counterfactual on that same admitted content. Four independent update conditions
-make the first test false in every route, remove only the primary route, make a
-benign numerical change, or revise an unused cardiac feature. Neo4j and relational
-methods receive identical candidates, events and predicates. An independent
-truth-table evaluator enumerates the bounded Boolean assignments to test witness
-entailment and equivalence, allowing different valid derivations. A separate
-event-log evaluator determines the actual required changes.
+Each method replays the same admitted candidate without generation after
+correction. B0 here disables maintenance on that content.
+Four independent update conditions make the first test false in every route,
+remove only the primary route, make a benign numerical change, or revise an
+unused cardiac feature. Neo4j and relational methods receive identical candidates,
+events and predicates. An independent truth-table evaluator enumerates the bounded
+Boolean assignments to test witness entailment and equivalence, allowing different
+valid derivations. A separate event-log evaluator determines required changes.
 
 \subsection{Graph Measurement and Uncertainty}
 
 Read-only Neo4j exports preserve nodes, relations, assessment times, Cypher and
-element IDs. Counts match the original ledger and sampled stored paths. We
-measure full storage, active graphs and query cores separately: typed mixing,
-degree/depth, direct citations, witness counts, reach and actual changes.
-Dependency degree excludes SUPPORTS and provenance mirrors; meaningful zero
-categories remain. No power-law or embedding interpretation is imposed.
+element IDs. Counts match the original ledger and sampled stored paths.
+Separate measurements of the full graph, active graph and query core cover type mixing, degree, depth, direct citations, witness counts, reachability
+and actual changes. Dependency degree excludes SUPPORTS and provenance mirrors.
+Meaningful zero categories remain, and we impose no power-law or embedding
+interpretation.
 
-Snapshots and variants are first aggregated within episodes, then episodes within
+We first aggregate snapshots and variants within episodes, then episodes within
 subjects. Pointwise 95\% intervals use 2,000 subject-cluster bootstrap resamples
-with seed 20260929. Historical versions and replay copies are never independent
-participants. Detailed distributions and exhaustive operational logs remain
-repository data. All definitions and primary denominators needed to interpret
-the results are retained here.
+with seed 20260929. Historical versions and replay copies never count as
+independent participants. Detailed distributions and operational logs remain
+repository data. This paper retains the definitions and primary denominators
+needed to interpret the results.

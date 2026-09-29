@@ -9,7 +9,11 @@ single PDF has 20 main pages plus one reference page. Its new Figure 4 exposes
 Figures 1–3 and the completed experimental outcomes are preserved.
 [Reproduction commands](docs/semantic_reproduction.md) cover scoring, actual database
 exports, shared dashboard views, figures, frozen inputs and the single PDF build. Final page and integrity
-checks are recorded in artifacts/manifests/semantic_manuscript_validation.json.
+checks for the prose revision are recorded in
+[paper/prose_revision/validation.json](paper/prose_revision/validation.json).
+[PROSE_REVISION.md](PROSE_REVISION.md) describes the language changes, unchanged
+science and 2.44% prose increase. The earlier implementation and analysis checks
+remain frozen in artifacts/manifests/semantic_manuscript_validation.json.
 
 The report below preserves the original experiment and its interpretation.
 Its page counts and links describe the archived minimum-v1 manuscript.

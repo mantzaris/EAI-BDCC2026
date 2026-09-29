@@ -3,67 +3,66 @@
 
 \subsection{Storage Structure and Semantic Structure Differ}
 
-The read-only export covers \SemExportScopes{} retained Neo4j scopes; counts
-match the original ledger and \SemVerifiedPaths{} representative stored paths
-are verified. M1 alone stores \SemStorageNodes{} nodes and \SemStorageEdges{}
-relations across its replay scopes. These are storage totals, not independent
-observations. Membership and extraction rules contribute much of the edge mass
-through their construction rules. Neither those edges nor the accepted-citation mirror
-demonstrate additional reasoning depth.
+The export covers \SemExportScopes{} retained Neo4j scopes. Counts match the
+original ledger, and \SemVerifiedPaths{} representative stored paths are verified.
+M1 stores \SemStorageNodes{} nodes and \SemStorageEdges{} relations across its
+replay scopes. These totals measure storage, not independent observations.
+Membership and extraction rules create many of the edges. Neither these edges
+nor the reverse links added when claims are accepted imply deeper reasoning.
 
-The query core averages \SemCoreSizeMin--\SemCoreSizeMax{} nodes across sources,
-or \SemCoreRatioMin--\SemCoreRatioMax\% of visible storage. This reduction follows
-the fixed selection of answer propositions and declared inputs; the active graph
-also includes other visible evidence. Observation witnesses remain recoverable
-through sidecars. The full stored totals count historical versions, whereas core sizes count
-visible propositions per query; subject-level aggregation prevents replay copies
-from becoming independent samples.
+Across sources, the query core averages \SemCoreSizeMin--\SemCoreSizeMax{} nodes,
+or \SemCoreRatioMin--\SemCoreRatioMax\% of visible storage. It is smaller because
+it selects answer propositions and their declared inputs. The active graph also
+contains other visible evidence. Linked metadata preserves the observation
+witnesses. Full storage counts include historical versions, whereas core sizes
+count visible propositions for each query. Aggregating within subjects prevents
+replay copies from being treated as independent samples.
 
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth]{semantic_analysis_v1/real_revision_network.pdf}
-\caption{Human-review network from actual Neo4j records: WESAD S11, episode 0,
-knowledge time \ViewRealAfter{} s. The unchanged median-size rule selects this
+\caption{Review network from actual Neo4j records for WESAD S11, episode 0,
+at knowledge time \ViewRealAfter{} s. The unchanged median-size rule selects this
 case among \ViewRealEligible{} eligible correction cores. Green nodes are claims,
-blue features, folded corners observations. \emph{Cites/requires} mean
-\texttt{DEPENDS\_ON}; \emph{derived from} means \texttt{DERIVED\_FROM};
-\emph{supersedes} is the stored new-to-old relation. The injected correction adds
-F2 v2; C1/C2 keep their original v1 citations and are withdrawn. Measurement
-availability remains distinct from current support. C2 directly cites both
-operands, so direct checking suffices here. Identity hubs, admission mirrors and
-assessment/display containers are hidden; their details remain inspectable.
-Labels round values; metadata preserves full precision.}
+blue nodes are features, and folded corners mark observations. \emph{Cites/requires}
+mean \texttt{DEPENDS\_ON}, \emph{derived from} means \texttt{DERIVED\_FROM}, and
+\emph{supersedes} points from new to old. The injected correction adds F2 v2.
+C1/C2 retain their original v1 citations and are withdrawn. Availability remains
+distinct from current support. C2 cites both operands directly, so direct checking
+suffices. Identity hubs, admission mirrors and assessment/display containers are
+hidden but inspectable in details. Labels round values, while metadata preserves
+full precision.}
 \label{fig:instances}
 \end{figure}
 
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth]{semantic_analysis_v1/structural_witness_network.pdf}
-\caption{Actual Neo4j generated-program view, PPG-DaLiA S1 episode 0,
-knowledge time \ViewStructAfter{} s; requested and realized depth
-\ViewStructDepth{}. This is the smallest complete eligible graph, with ID
-tie-breaking, among \ViewStructEligible{} programs. Windows A/B span
-\ViewRouteAInterval/\ViewRouteBInterval{} s. A1's correction invalidates CA;
-CB still supports R. W1/W2 are alternatives at R; each route requires all four
-inputs. Blue rows are stored feature records. Dashed bundles summarize four
-\texttt{DEPENDS\_ON} edges; AND enclosures are rendering constructs with exported
-row/edge mappings. Solid \emph{needs} arrows are stored parent dependencies.
-Observation provenance is expandable; administrative details remain inspectable.}
+\caption{Generated program from Neo4j for PPG-DaLiA S1 episode 0
+at knowledge time \ViewStructAfter{} s. Requested and realized depth are both
+\ViewStructDepth{}. The smallest complete graph among
+\ViewStructEligible{} eligible programs is selected, with ties broken by ID. Windows A/B span
+\ViewRouteAInterval/\ViewRouteBInterval{} s. Correcting A1 invalidates CA, but
+CB still supports R. Alternative routes W1/W2 each require all four inputs.
+Blue rows are stored features. Dashed bundles summarize four \texttt{DEPENDS\_ON}
+edges. AND enclosures are drawing constructs with exported row/edge mappings.
+Solid \emph{needs} arrows are stored parent dependencies. Observation provenance
+expands on request. Administrative details remain inspectable.}
 \label{fig:topology}
 \end{figure}
 
-Only \SemParentClaims{} of \SemDisplayedClaims{} displayed M1 claims declare a
-parent: \SemParentlessPercent\% are parentless. Claim-parent depth never exceeds
-one in the displayed waveform cores. Figure~\ref{fig:instances} illustrates why
-even that parent edge need not create transitive exposure: the comparison cites
-the revised target feature directly. Across \SemRevisionBatches{} revision
-batches, \SemEligibleBatches{} require a withdrawal and \SemNonzeroExposure{}
-have nonzero exposure; the locality audit finds \SemLocalityViolations{} violations.
-This structure explains the completed direct/full equivalence without attributing
-it to an absence of stored paths or to a particular database engine.
-
-% Flush the two structured network pages before beginning the worked instance.
+% Keep the interpretation together after the two network pages.
 \clearpage
+Only \SemParentClaims{} of \SemDisplayedClaims{} displayed M1 claims declare a
+parent, leaving \SemParentlessPercent\% parentless. Claim-parent depth never
+exceeds one. Even a parent edge need not create transitive exposure.
+In Figure~\ref{fig:instances}, the comparison also cites the corrected feature
+directly. Of \SemRevisionBatches{} revision batches, \SemEligibleBatches{} require
+a withdrawal and \SemNonzeroExposure{} have nonzero exposure. The locality audit
+finds \SemLocalityViolations{} violations. These dependencies explain why
+direct and full maintenance agree. The equivalence does not arise from missing
+stored paths or a particular database engine.
+
 \input{sections/classic_case}
 
 \subsection{Grounded Content and Useful Coverage}
@@ -71,7 +70,7 @@ it to an absence of stored paths or to a particular database engine.
 \begin{table}[!htbp]
 \caption{Independent semantic scores in percent (subject means and 95\% intervals).
 Each row contains 240 answer instances from 20 episodes. Matched counts unique
-requirements within each answer; denominators count answerable requirements.
+requirements within each answer. Denominators count answerable requirements.
 Empty displays have zero recall on answerable questions and undefined precision.
 The original strict-contract interpretation is preserved separately from these scores.}
 \label{tab:fidelity}
@@ -86,38 +85,40 @@ The original strict-contract interpretation is preserved separately from these s
 M1 answers at three discrete checkpoints, with subject-cluster 95\% intervals.
 Each source has 160 transitions from 20 episodes and ten subjects across the
 four variants. No smooth recovery curve is inferred. Emitted-claim and required-fact
-denominators are given in the text; fresh-answer scores remain in
+denominators appear in the text. Fresh-answer scores remain in
 Table~\ref{tab:fidelity}.}
 \label{fig:fidelity}
 \end{figure}
 
 \input{generated/semantic/temporal_denominators}
 
-The checked displays are fully grounded under the bounded numerical protocol,
-but they do not recover all useful information. Raw M1 required recall is
+Checking produces fully grounded displays under the bounded numerical protocol,
+but it also removes useful information.
+
+Raw M1 required recall is
 \SemSyntheticRawR\%, \SemWesadRawR\% and \SemPpgRawR\% for synthetic, WESAD and
-PPG-DaLiA respectively; displayed recall falls to \SemSyntheticDisplayR\%,
+PPG-DaLiA respectively. Displayed recall falls to \SemSyntheticDisplayR\%,
 \SemWesadDisplayR\% and \SemPpgDisplayR\% (Table~\ref{tab:fidelity}).
-The precision gain therefore includes rejection of correct useful propositions,
-not merely successful repair. Figure~\ref{fig:fidelity} isolates maintenance: re-evaluation restores grounding of retained content
-by withdrawing stale assertions, while required coverage can remain unresolved.
+Thus the precision gain partly comes from rejecting correct, useful propositions.
+Figure~\ref{fig:fidelity} follows the same prior answers.
+Withdrawing stale assertions restores grounding among retained claims, but
+required facts can remain unanswered.
 
-The contract crosswalk sharpens this interpretation. Of \SemContractInvalid{}
-B0 claims invalid under the frozen contract, \SemInvalidGrounded{} are grounded
-under the new proposition protocol; \SemBackground{} are correctly time-labelled
-background observations. Other disagreements include dependency/citation
-admission restrictions despite correct bounded numerical content. No claim
-passing the old contract becomes numerically ungrounded in this crosswalk.
-This does not turn an inaccurate target attribution into a correct background
-fact: matching uses the asserted interval and independently resolved version.
+Of \SemContractInvalid{} B0 claims rejected by the frozen contract,
+\SemInvalidGrounded{} are grounded under the new proposition protocol.
+This includes \SemBackground{} correctly time-labelled background observations.
+Other disagreements arise when dependency or citation restrictions reject
+correct numerical content. No claim that passed the old contract becomes
+numerically ungrounded under the new scoring. A wrong target attribution still
+fails because matching uses the asserted interval and independently resolved version.
 
-Source-window and known-version competency queries each agree with the independent
-log oracle on \SemCompetencyWitnesses{} queried feature witnesses; comparison
-operand queries agree on \SemCompetencyComparisons{} eligible displayed comparisons. These results
-test recoverability of admissible witnesses, rather than equality to a unique
-gold reasoning graph. The separate prose audit and original auxiliary-verifier
-disagreements remain available; bounded proposition scores do not certify
-unrestricted interpretation.
+Queries about source windows and known versions agree with the independent log
+oracle on all \SemCompetencyWitnesses{} feature witnesses. Queries about comparison
+operands agree on \SemCompetencyComparisons{} eligible displayed comparisons.
+These checks recover admissible witnesses without requiring a unique gold
+reasoning graph. The separate prose audit and
+original auxiliary-verifier disagreements remain available. The bounded scores
+do not certify unrestricted interpretation.
 
 \subsection{Structural Variation Tests the Maintenance Condition}
 
@@ -127,9 +128,9 @@ unrestricted interpretation.
 \caption{Population-level structural test. Full-minus-direct correction fraction
 versus independently computed transitive exposure, separately for exact compiled
 and admitted GPU-generated programs. Points aggregate equal exposure, support
-regime and realized depth; size reflects batch count. The diagonal is the
-conditional prediction. This reports primary admission; the text gives the
-separate normalization sensitivity result.}
+regime and realized depth. Size reflects batch count, and the diagonal shows the
+conditional prediction. These are primary-admission results. The text reports
+the separate sensitivity analysis after normalization.}
 \label{fig:structure}
 \end{figure}
 
@@ -137,7 +138,7 @@ separate normalization sensitivity result.}
 \caption{Common-candidate structural replay. Counts aggregate four update conditions
 per case, separately for exact and generated programs. A required change is
 independently determined before scheduling. Correction intervals average episodes
-within dataset-scoped subjects. B1 matches B2 and B3 matches M1 in every cell.
+within subjects identified separately for each dataset. B1 matches B2 and B3 matches M1 in every cell.
 Missing generated roots are included in the depth/coverage analysis, not invented
 as initially displayed claims.}
 \label{tab:structural}
@@ -145,55 +146,49 @@ as initially displayed claims.}
 \input{generated/semantic/structural_table}
 \end{table}
 
-The extension completes \SemCoreCases{} common candidates with \SemCoreCalls{}
+The extension produces \SemCoreCases{} common candidates with \SemCoreCalls{}
 GPU calls, including \SemCoreRepairs{} repairs, in \SemCoreMinutes{} minutes.
-Its \SemReplayCells{} method/update replays include exact and generated structures.
-Neo4j and the relational control agree in all \SemParityGroups{} matched
-origin/update groups. Direct maintenance misses \SemFixtureMissed{} of
-\SemFixtureRequired{} required changes in exact programs and
-\SemGeneratedMissed{} of \SemGeneratedRequired{} in admitted generated programs;
-full maintenance misses none and causes no collateral withdrawal.
-The predicted missed set agrees in all \SemPredictionAgreement{} of
+Its \SemReplayCells{} replays include exact and generated programs. Neo4j and the relational control agree in all \SemParityGroups{}
+matched groups of program origin and update. Direct maintenance misses
+\SemFixtureMissed{} of \SemFixtureRequired{} required changes in exact programs
+and \SemGeneratedMissed{} of \SemGeneratedRequired{} in admitted generated programs.
+Full maintenance misses none and withdraws no unaffected claims.
+Predicted misses agree in all \SemPredictionAgreement{} of
 \SemPredictionGroups{} eligible groups (Figure~\ref{fig:structure}).
 
-Realized structure differs from the requested structure. Admitted generated
-answers have depth one in \SemRootOne{} cases and depth two in \SemRootTwo{};
-\SemMissingRoots{} cases have no admitted answer root. None reaches depth three
-or four. The model commonly groups tests into route claims followed by an answer,
-without expressing the requested longer chain. Exact programs consequently
-test the deeper counterexamples, while generated programs test the dependencies
-the model actually expressed. Under primary-route loss, all
-\SemFixtureAlternative{} exact and \SemGeneratedAlternative{} generated
-two-route answers with admitted roots retain support; single-route roots do not.
-Figure~\ref{fig:topology} makes preservation inspectable: the numerical update
-changes A1 from \ViewRouteOld{} to \ViewRouteNew{} $\mu$S, below its
-\ViewRouteThreshold{} $\mu$S threshold. CA is withdrawn, but CB and the answer
-remain displayed. Direct and full maintenance agree for this route-loss update;
-necessary-change conditions in the population test expose excluded dependents.
-Necessary intermediate dependencies and surviving alternatives, rather than path
-length alone, determine maintenance behavior. In \SemSameSize{} paired cases,
-programs with the same evidence and baseline record count have different exposure,
-showing why total storage size is insufficient.
+Generated answers have depth one in \SemRootOne{} cases and depth two in
+\SemRootTwo{} cases.
+Another \SemMissingRoots{} cases have no admitted answer root. None reaches depth
+three or four. The model usually proposes route claims followed by an answer.
+Exact programs test deeper counterexamples, while generated programs test the
+expressed dependencies. When the primary route is
+lost, all \SemFixtureAlternative{} exact and \SemGeneratedAlternative{} generated
+two-route answers with admitted roots remain supported. Single-route roots do not.
+In Figure~\ref{fig:topology}, A1 changes from
+\ViewRouteOld{} to \ViewRouteNew{} $\mu$S, below its \ViewRouteThreshold{} $\mu$S
+threshold. CA is withdrawn, but CB and the answer remain displayed.
+Direct and full maintenance agree for this update. Other tested conditions require updates to dependents excluded by direct scheduling.
+Necessary dependencies and surviving alternatives determine the outcome, not path length. In \SemSameSize{} paired cases, programs with
+the same evidence and baseline record count have different exposure.
+Storage size alone therefore cannot explain maintenance behavior.
 
-An admission-table omission was discovered after the core completed: primitive
-test names were defined in the input but unavailable as claim proposition names.
-It generated \SemUnknownPrimitive{} unknown-proposition rejection reasons.
-A separate corrected replication normalizes those names to their supplied
-comparators without changing candidates, witnesses or links. It admits
-\SemAliasRoots{} roots and repeats \SemAliasCells{} CPU database cells:
-direct maintenance misses \SemAliasMissed{} of \SemAliasRequired{} required
-changes, while full maintenance again misses none. The original extension
-scores above remain frozen. Independent truth-table scoring distinguishes
-initially true statements from sound, complete witness families, so the admission
-correction is not treated as new model reasoning.
+After the core run, we found an omission in the admission table. Primitive test
+names were defined in the input but unavailable as claim proposition names.
+This produced \SemUnknownPrimitive{} unknown-proposition rejection reasons.
+A separate corrected replication maps those names to their supplied comparators
+without changing candidates, witnesses or links. It admits \SemAliasRoots{} roots
+and repeats \SemAliasCells{} CPU database replays. Direct maintenance misses
+\SemAliasMissed{} of \SemAliasRequired{} required changes, while full maintenance
+again misses none. The original scores remain frozen. Truth-table scoring independently distinguishes
+initially true statements from sound, complete witness families. This admission
+correction adds no model reasoning.
 
 \subsection{Operational Cost and Adequate Replacement}
 
 The original systems workload produces \SystemsAdequate{} adequate replacements
-among \SystemsExplanations{} completed candidates. All omit the required
-preceding-window difference. Their successful-replacement times therefore remain
-unresolved through observation. At the highest offered rate, both databases accumulate
-backlog and delayed flags. The extension isolates maintenance of a common answer;
-it adds no post-correction generation and hence establishes selective withdrawal
-and preservation, not automatic completion of a new adequate answer. Structural
-replay timings include diagnostic traversal and whole-program evaluation; they are instrumented costs, not production latency estimates.
+among \SystemsExplanations{} completed candidates. All omit the required preceding-window difference, so no successful
+replacement time is observed. At the highest offered rate, both databases accumulate a backlog and
+delay flags. The extension maintains a common answer without post-correction generation.
+It establishes selective withdrawal and preservation, not an adequate replacement.
+Replay timings include diagnostic traversal and whole-program evaluation.
+They measure instrumented costs rather than production latency.

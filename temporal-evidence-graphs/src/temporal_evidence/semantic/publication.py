@@ -24,7 +24,7 @@ def table(name,header,rows,columns=None):
     body += [r"\bottomrule",r"\end{tabular}"]
     (OUT/(name+".tex")).write_text("\n".join(body)+"\n")
 
-def write():
+def write(prose_only=False):
     OUT.mkdir(parents=True,exist_ok=True)
     recon=read_json(DATA/"reconfirmation.json");assert recon["passed"]
     sem=read_json(DATA/"semantic_summary.json");struct=read_json(DATA/"structural_summary.json")
@@ -117,12 +117,12 @@ def write():
     fs=sorted((n for n in ns if n["type"]=="feature"),key=lambda n:n["interval"][0])
     c=next(n for n in ns if n["type"]=="claim" and n["claim"]["claim_type"]=="numeric_observation")
     revised=max((n for n in example["after"]["nodes"] if n["type"]=="feature"),key=lambda n:n["interval"][0])
-    text=(r"In the saved WESAD S11 episode (Figure~\ref{fig:ontology}), the EDA window at "
+    text=(r"In the saved WESAD S11 episode (Figure~\ref{fig:ontology}), the electrodermal activity (EDA) window at "
         f"{fs[-1]['interval'][0]:g}--{fs[-1]['interval'][1]:g} s produces a median of "
         f"{fs[-1]['value']:.6f} "+r"$\mu$S. The model proposes "
-        f"{c['value']:.6f} "+r"$\mu$S and cites that feature. The checker admits the bounded statement and insertion records both its "
-        r"\texttt{DEPENDS\_ON} citation and the reverse \texttt{SUPPORTS} edge. A later feature version changes the median to "
-        f"{revised['value']:.6f} "+r"$\mu$S, retaining the original observation hash and immutable claim citation. "
+        f"{c['value']:.6f} "+r"$\mu$S and cites that feature. The claim passes the bounded checks. Insertion records its "
+        r"\texttt{DEPENDS\_ON} citation and reverse \texttt{SUPPORTS} edge. A later feature version changes the median to "
+        f"{revised['value']:.6f} "+r"$\mu$S, while the observation hash and original claim citation remain unchanged. "
         "Re-evaluation changes the claim's current support without rewriting its history.\n")
     (OUT/"worked_example.tex").write_text(text)
     semrows=[]
@@ -145,7 +145,8 @@ def write():
             srows.append([label,method,n,miss,sum(r["collateral"] for r in rs),ci(corr)])
             outcome.append({"origin":origin,"method":method,"required":n,"missed":miss,"correction":corr})
     table("structural_table",["Program","Method","Required","Missed","Collateral",r"Corrected \% [CI]"],srows,"llrrrr")
-    write_json(DATA/"structural_method_summary.json",outcome)
+    if not prose_only:
+        write_json(DATA/"structural_method_summary.json",outcome)
     table("alias_table",["Method","Required","Missed","Collateral",r"Corrected \% [CI]"],
         [[r["method"],r["required"],r["missed"],r["collateral"],ci(r["correction"])] for r in alias["methods"]])
     stagerows=[]
@@ -172,7 +173,7 @@ def write():
         descriptions.append(label+" "+"/".join(str(r["emitted"]) for r in group))
         required.append([r["answerable"] for r in group])
     assert all(x==required[0] for x in required)
-    (OUT/"temporal_denominators.tex").write_text("Before/arrival/maintenance emitted-claim counts are "+"; ".join(descriptions)+". Answerable required-fact counts are "+"/".join(map(str,required[0]))+" per source. Precision excludes empty outputs; recall includes their zero coverage. These pooled denominators describe the sample, while reported percentages average episodes within subjects.\n")
+    (OUT/"temporal_denominators.tex").write_text("Emitted-claim counts before arrival, after arrival and after maintenance are "+", ".join(descriptions[:-1])+", and "+descriptions[-1]+". Each source has "+"/".join(map(str,required[0]))+" answerable required facts at these checkpoints. Precision excludes empty outputs, whereas recall includes their zero coverage. These pooled counts describe the sample. Reported percentages average episodes within subjects.\n")
     requestrows=[]
     for folder in ("pilot_v1","pilot_v2","core"):
         p=Path("artifacts/runs/structure_study_v1")/folder/"completion.json"
@@ -181,27 +182,27 @@ def write():
         requestrows.append([folder.replace("_"," "),r["cases"],r["calls"],r["repairs"],r["adequate_answers"],f"{r['invocation_wall_seconds']/60:.2f}",f"{r['input_tokens']:,}",f"{r['output_tokens']:,}"])
     table("extension_requests",["Stage","Cases","Calls","Repairs","Roots","Minutes","Input tokens","Output tokens"],requestrows,"lrrrrrrr")
     abstract=r"""Generated explanations can remain plausible after their evidence changes.
-We study a typed temporal property graph that separates recording provenance,
-model-proposed propositions, declared prerequisites and time-indexed support.
-A query-specific semantic projection preserves numerical witnesses and version
-history while exposing the dependencies relevant to revision. A shared, labeled
-network view makes immutable citations, changed versions and alternative
-witnesses inspectable in the paper and review dashboard. Two conditional
-results connect local support re-evaluation to transitive exposure: the fraction
-of necessary changes excluded by direct-only scheduling. Re-analysis of synthetic,
-WESAD and PPG-DaLiA experiments finds that only \SemParentClaims{} of
-\SemDisplayedClaims{} displayed claims have parents; every eligible waveform
-revision has zero transitive exposure. Independent semantic scoring separates
-source grounding from target completeness: checked displays are fully grounded,
-but subject-averaged required recall is \SemPpgDisplayR--\SemSyntheticDisplayR\%.
-In \SemCoreCases{} controlled structural cases, exact and GPU-generated programs
-expose necessary intermediate dependencies and surviving alternative witnesses.
-Exposure predicts direct-maintenance misses in all \SemPredictionGroups{} eligible
-replays; full maintenance agrees across Neo4j and an indexed relational control.
-Generated answers realize evidence-to-answer depth one or two despite requests
-up to four. These results identify when explicit semantic structure enables
-selective revision, and show why storage size, path length and contract acceptance
-alone cannot establish explanation fidelity or maintenance benefit.
+We study a typed temporal property graph that records observations, proposed
+propositions, declared prerequisites and support at each knowledge time.
+A query-specific semantic core retains numerical witnesses and version history.
+A shared network view lets readers inspect original citations, corrected versions
+and alternative support routes in the paper and dashboard. Two conditional results
+bound which claims may change and characterize when direct maintenance misses
+required updates. We measure these misses through transitive exposure, the fraction
+of necessary changes excluded by direct scheduling. In synthetic, WESAD and
+PPG-DaLiA experiments, only \SemParentClaims{} of \SemDisplayedClaims{} displayed
+claims declare parents. Every eligible waveform revision has zero exposure.
+Independent scoring separates source grounding from task completeness.
+Checked displays are fully grounded, but subject-averaged required recall is
+\SemPpgDisplayR--\SemSyntheticDisplayR\%. Across \SemCoreCases{} controlled
+structural cases, exact and GPU-generated programs expose necessary intermediate
+dependencies and surviving alternatives. Exposure predicts direct-maintenance
+misses in all \SemPredictionGroups{} eligible replays. Full maintenance agrees
+across Neo4j and an indexed relational control. Generated answers reach
+evidence-to-answer depth one or two despite requests up to four.
+These results explain when explicit semantic structure enables selective revision.
+Storage size, path length and contract acceptance alone do not establish
+explanation fidelity or maintenance benefit.
 """
     (OUT/"abstract.tex").write_text(abstract)
     report=["# Theory and results revision", "",
@@ -237,4 +238,8 @@ alone cannot establish explanation fidelity or maintenance benefit.
         "macros":macros,"generated_docs":{"THEORY_RESULTS_CHANGES.md":digest_file("THEORY_RESULTS_CHANGES.md")},
         "generated_tex":{str(p):digest_file(p) for p in sorted(OUT.glob("*.tex"))}})
 
-if __name__=="__main__":write()
+if __name__=="__main__":
+    import argparse
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--prose-only',action='store_true',help='Regenerate publication files without writing analysis artifacts.')
+    write(prose_only=parser.parse_args().prose_only)
