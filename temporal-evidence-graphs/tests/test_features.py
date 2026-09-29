@@ -1,7 +1,7 @@
 import numpy as np
 from temporal_evidence.features.extract import spectral_rate, summarize, window_records
 from temporal_evidence.synthetic.generator import generate_subject
-from temporal_evidence.data.adapters import aligned_reference_interval
+from temporal_evidence.data.adapters import aligned_reference_interval,signal_units
 
 
 def test_frequency_of_known_signal():
@@ -39,3 +39,27 @@ def test_synthetic_determinism_and_independent_namespace():
 def test_reference_window_alignment():
     assert aligned_reference_interval(0) == (0,8)
     assert aligned_reference_interval(10) == (20,28)
+
+
+def test_dataset_specific_synchronized_motion_units():
+    assert signal_units("ppg_dalia")["motion"] == "g"
+    assert signal_units("wesad")["motion"] == "1/64g"
+
+
+def test_replay_fault_provenance_matches_separate_array(tmp_path,monkeypatch):
+    from temporal_evidence.data.prepare import make_variants
+    from temporal_evidence.features.extract import summarize
+    from temporal_evidence.io import digest_file
+    monkeypatch.chdir(tmp_path)
+    signals={"eda":np.linspace(0,5,400)}
+    entry={"subject":"V101","sha256":"original_hash","path":"original.npz"}
+    variants,_=make_variants("synthetic",entry,signals,{"eda":1},{"eda":"uS"},200,0)
+    events=variants["channel_fault"]["events"]
+    feature=next(r for r in events if r["quantity"]=="eda_median" and r["version"]==2)
+    observation=next(r for r in events if r["record_id"]==feature["source_ids"][0])
+    meta=observation["metadata"]
+    assert digest_file(meta["path"])==meta["file_sha256"]
+    values=np.load(meta["path"])
+    assert np.isnan(values[-15:]).all()
+    assert summarize(values,"eda",1)["eda_median"][0]==feature["value"]
+    assert not np.isnan(signals["eda"]).any()

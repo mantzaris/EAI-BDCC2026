@@ -28,6 +28,14 @@ def validate(answer: Answer, records: dict, query) -> tuple[list[Decision], list
     seen = set()
     for claim in answer.claims:
         errors = []
+        operators={"numeric_observation":{"approximately_equal"},"revision_effect":{"revised","remains_supported"},
+                   "trend":{"difference","greater_than","less_than"},"comparison":{"difference","greater_than","less_than"},
+                   "evidence_conflict":{"disagrees"},"missing_evidence":{"missing"}}
+        if claim.operator not in operators[claim.claim_type]:
+            errors.append("operator_type_mismatch")
+        if claim.operator in {"greater_than","less_than"} and (claim.value is None or
+                (claim.value<=0 if claim.operator=="greater_than" else claim.value>=0)):
+            errors.append("wrong_direction")
         if claim.claim_id in seen:
             errors.append("duplicate_claim_id")
         seen.add(claim.claim_id)
@@ -62,13 +70,17 @@ def validate(answer: Answer, records: dict, query) -> tuple[list[Decision], list
         elif claim.claim_type in {"numeric_observation", "trend", "comparison", "evidence_conflict", "revision_effect"}:
             if not evidence:
                 errors.append("no_support")
-            if any(r.evidence_state != "available" or r.value is None for r in evidence):
+            usable_evidence = [r for r in evidence if r.evidence_state == "available" and r.value is not None]
+            if claim.claim_type in {"numeric_observation","revision_effect"}:
+                if not usable_evidence:
+                    errors.append("unavailable_evidence")
+            elif len(usable_evidence) != len(evidence):
                 errors.append("unavailable_evidence")
             if any(r.unit != claim.unit or r.quantity != claim.quantity for r in evidence):
                 errors.append("wrong_quantity_or_unit")
             if claim.claim_type in {"numeric_observation", "revision_effect"}:
                 if not any(close(claim.value, r.value) and (r.event_start_seconds,r.event_end_seconds) ==
-                           (claim.event_start_seconds,claim.event_end_seconds) for r in evidence):
+                           (claim.event_start_seconds,claim.event_end_seconds) for r in usable_evidence):
                     errors.append("wrong_numeric_value_or_interval")
                 if claim.claim_type == "revision_effect" and not any(r.supersedes_id for r in evidence):
                     errors.append("no_observable_revision")
@@ -103,8 +115,8 @@ def validate(answer: Answer, records: dict, query) -> tuple[list[Decision], list
 
 
 def safe_display(answer: Answer, decisions: list[Decision]) -> dict:
-    accepted = {d.claim_id for d in decisions if d.state == "supported"}
-    claims = [c.model_dump() for c in answer.claims if c.claim_id in accepted]
+    rejected = {d.claim_id for d in decisions if d.state != "supported"}
+    claims = [c.model_dump() for c,d in zip(answer.claims,decisions) if d.state=="supported" and c.claim_id not in rejected]
     return {"claims": claims, "answer_status": "insufficient_evidence" if not claims else
             (answer.answer_status if len(claims) == len(answer.claims) else "partially_answered"),
             "explanation": " ".join(c["sentence"] for c in claims),

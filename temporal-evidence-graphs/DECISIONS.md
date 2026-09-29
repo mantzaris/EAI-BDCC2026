@@ -47,8 +47,9 @@
   protocol labels, or held-out outcomes. Target windows are 30 seconds and comparison
   windows are the strictly preceding 120 seconds. Prepare seven 5-second updates
   ending at each target time, with four paired replay variants.
-- Native wrist EDA is reported in uS and wrist acceleration in recorded 1/64g
-  units. Synthetic units are explicitly marked. Spectral pulse/respiration frequency
+- Native wrist EDA is reported in uS. WESAD acceleration uses recorded 1/64g
+  units; PPG-DaLiA's synchronized acceleration is in g (verified below).
+  Synthetic units are explicitly marked. Spectral pulse/respiration frequency
   estimates require concentration >= 0.5; these are simple recording summaries,
   not validated physiological truth or a replacement for reference heart rates.
 - WESAD's extracted synchronized pickles were verified and removed as redundant
@@ -56,3 +57,23 @@
   support direct reading from that archive. This recovered 12.88 GiB of local disk.
 - Use pip for the system-site-packages overlay: uv's installer redownloaded existing
   CUDA dependencies. The tested final environment will be recorded before freezing.
+
+## 2026-09-28 — Development audit before any model evaluation
+
+- Verified PPG-DaLiA ACC scaling using development subject S2: 300 synchronized
+  samples multiplied by 64 exactly match original raw ACC.csv at sample offset
+  4416. Use g for the synchronized pickle, while the raw CSV uses 1/64g.
+  Evidence is in `artifacts/manifests/ppg_acc_unit_verification.json`. Rebuilt all
+  prepared episodes before protocol freeze; no held-out outputs existed.
+- Channel-fault replays now write separate hashed NumPy arrays. Feature revisions
+  cite new observation versions referencing the altered arrays; restoration points
+  back to the original recording. Hidden intervention labels stay evaluator-only.
+- Repeated revisions revisit dependencies on all earlier versions of the logical
+  evidence item, preserving immutable citations while handling v1 -> v2 -> v3.
+- Implemented an independent evaluator that reconstructs snapshots from immutable
+  events without importing the runtime replay or validation modules. Required fact
+  recall counts answerable slots; empty answers do not receive a zero claim-error
+  rate. Persistent correction results retain explicit conditional denominators.
+- The pilot includes 100 batched development cases plus a separate 20-request
+  concurrency-one workload. Both include actual bounded-repair costs. No hourly
+  price has been supplied, so report observed time and tokens without invented cost.

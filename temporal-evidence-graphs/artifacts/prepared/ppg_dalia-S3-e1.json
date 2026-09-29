@@ -3,7 +3,7 @@
   "end": 6555.0,
   "episode_id": "ppg_dalia-S3-e1",
   "family": "revision_impact",
-  "feature_extraction_seconds": 0.023409082998114172,
+  "feature_extraction_seconds": 0.0251463020031224,
   "raw_samples_processed": 155520,
   "sampling_rates": {
     "cardiac": 64,
@@ -264,7 +264,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.17446393979911892,
           "version": 1
         },
@@ -818,7 +818,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.23413010039917076,
           "version": 1
         },
@@ -1372,7 +1372,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.23773609865663908,
           "version": 1
         },
@@ -1926,7 +1926,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2585625937018634,
           "version": 1
         },
@@ -2480,7 +2480,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2819988663530978,
           "version": 1
         },
@@ -3034,7 +3034,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.29600118039260187,
           "version": 1
         },
@@ -3588,7 +3588,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.26218590816921605,
           "version": 1
         },
@@ -4142,7 +4142,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2560513560226015,
           "version": 1
         },
@@ -4468,9 +4468,67 @@
           "event_start_seconds": 6525.0,
           "evidence_state": "available",
           "ingested_at_seconds": 6586.0,
+          "logical_id": "ppg_dalia/S3/6525-6555/eda/raw",
+          "metadata": {
+            "channel": "eda",
+            "file_sha256": "223863497474dd456b27ba688434be803e84af8f51639bb321b158f47f1a49af",
+            "original_file_sha256": "0fe923d3a7e7fd60e5245e655a9c1d0a1c2c106ea3128e2dfe79ba0f2266f799",
+            "original_sample_start": 26100,
+            "original_sample_stop": 26220,
+            "path": "data/derived/windows/223863497474dd456b27ba688434be803e84af8f51639bb321b158f47f1a49af.npy",
+            "rate_hz": 4,
+            "sample_start": 0,
+            "sample_stop": 120
+          },
+          "operator": "identity",
+          "quantity": "",
+          "record_id": "ppg_dalia/S3/6525-6555/eda/raw/v2",
+          "record_type": "observation",
+          "session_id": "session_1",
+          "source_ids": [],
+          "subject_id": "S3",
+          "supersedes_id": "ppg_dalia/S3/6525-6555/eda/raw",
+          "support_mode": "AND",
+          "unit": "",
+          "value": null,
+          "version": 2
+        },
+        {
+          "dataset_id": "ppg_dalia",
+          "event_end_seconds": 6555.0,
+          "event_start_seconds": 6525.0,
+          "evidence_state": "available",
+          "ingested_at_seconds": 6646.0,
+          "logical_id": "ppg_dalia/S3/6525-6555/eda/raw",
+          "metadata": {
+            "channel": "eda",
+            "file_sha256": "0fe923d3a7e7fd60e5245e655a9c1d0a1c2c106ea3128e2dfe79ba0f2266f799",
+            "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S3/S3.pkl",
+            "rate_hz": 4,
+            "sample_start": 26100,
+            "sample_stop": 26220
+          },
+          "operator": "identity",
+          "quantity": "",
+          "record_id": "ppg_dalia/S3/6525-6555/eda/raw/v3",
+          "record_type": "observation",
+          "session_id": "session_1",
+          "source_ids": [],
+          "subject_id": "S3",
+          "supersedes_id": "ppg_dalia/S3/6525-6555/eda/raw/v2",
+          "support_mode": "AND",
+          "unit": "",
+          "value": null,
+          "version": 3
+        },
+        {
+          "dataset_id": "ppg_dalia",
+          "event_end_seconds": 6555.0,
+          "event_start_seconds": 6525.0,
+          "evidence_state": "available",
+          "ingested_at_seconds": 6586.0,
           "logical_id": "ppg_dalia/S3/6525-6555/eda_missing_fraction",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4480,7 +4538,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S3/6525-6555/eda/raw"
+            "ppg_dalia/S3/6525-6555/eda/raw/v2"
           ],
           "subject_id": "S3",
           "supersedes_id": "ppg_dalia/S3/6525-6555/eda_missing_fraction/v1",
@@ -4497,7 +4555,6 @@
           "ingested_at_seconds": 6646.0,
           "logical_id": "ppg_dalia/S3/6525-6555/eda_missing_fraction",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4507,7 +4564,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S3/6525-6555/eda/raw"
+            "ppg_dalia/S3/6525-6555/eda/raw/v3"
           ],
           "subject_id": "S3",
           "supersedes_id": "ppg_dalia/S3/6525-6555/eda_missing_fraction/v2",
@@ -4524,7 +4581,6 @@
           "ingested_at_seconds": 6586.0,
           "logical_id": "ppg_dalia/S3/6525-6555/eda_clipping_fraction",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4534,7 +4590,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S3/6525-6555/eda/raw"
+            "ppg_dalia/S3/6525-6555/eda/raw/v2"
           ],
           "subject_id": "S3",
           "supersedes_id": "ppg_dalia/S3/6525-6555/eda_clipping_fraction/v1",
@@ -4551,7 +4607,6 @@
           "ingested_at_seconds": 6646.0,
           "logical_id": "ppg_dalia/S3/6525-6555/eda_clipping_fraction",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4561,7 +4616,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S3/6525-6555/eda/raw"
+            "ppg_dalia/S3/6525-6555/eda/raw/v3"
           ],
           "subject_id": "S3",
           "supersedes_id": "ppg_dalia/S3/6525-6555/eda_clipping_fraction/v2",
@@ -4578,7 +4633,6 @@
           "ingested_at_seconds": 6586.0,
           "logical_id": "ppg_dalia/S3/6525-6555/eda_median",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4588,7 +4642,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S3/6525-6555/eda/raw"
+            "ppg_dalia/S3/6525-6555/eda/raw/v2"
           ],
           "subject_id": "S3",
           "supersedes_id": "ppg_dalia/S3/6525-6555/eda_median/v1",
@@ -4605,7 +4659,6 @@
           "ingested_at_seconds": 6646.0,
           "logical_id": "ppg_dalia/S3/6525-6555/eda_median",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4615,7 +4668,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S3/6525-6555/eda/raw"
+            "ppg_dalia/S3/6525-6555/eda/raw/v3"
           ],
           "subject_id": "S3",
           "supersedes_id": "ppg_dalia/S3/6525-6555/eda_median/v2",
@@ -4632,7 +4685,6 @@
           "ingested_at_seconds": 6586.0,
           "logical_id": "ppg_dalia/S3/6525-6555/eda_iqr",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4642,7 +4694,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S3/6525-6555/eda/raw"
+            "ppg_dalia/S3/6525-6555/eda/raw/v2"
           ],
           "subject_id": "S3",
           "supersedes_id": "ppg_dalia/S3/6525-6555/eda_iqr/v1",
@@ -4659,7 +4711,6 @@
           "ingested_at_seconds": 6646.0,
           "logical_id": "ppg_dalia/S3/6525-6555/eda_iqr",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4669,7 +4720,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S3/6525-6555/eda/raw"
+            "ppg_dalia/S3/6525-6555/eda/raw/v3"
           ],
           "subject_id": "S3",
           "supersedes_id": "ppg_dalia/S3/6525-6555/eda_iqr/v2",
@@ -4925,7 +4976,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.17446393979911892,
           "version": 1
         },
@@ -5479,7 +5530,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.23413010039917076,
           "version": 1
         },
@@ -6033,7 +6084,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.23773609865663908,
           "version": 1
         },
@@ -6587,7 +6638,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2585625937018634,
           "version": 1
         },
@@ -7141,7 +7192,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2819988663530978,
           "version": 1
         },
@@ -7695,7 +7746,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.29600118039260187,
           "version": 1
         },
@@ -8249,7 +8300,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.26218590816921605,
           "version": 1
         },
@@ -8803,7 +8854,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2560513560226015,
           "version": 1
         },
@@ -9424,7 +9475,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.17446393979911892,
           "version": 1
         },
@@ -9978,7 +10029,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.23413010039917076,
           "version": 1
         },
@@ -10532,7 +10583,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.23773609865663908,
           "version": 1
         },
@@ -11086,7 +11137,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2585625937018634,
           "version": 1
         },
@@ -11640,7 +11691,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2819988663530978,
           "version": 1
         },
@@ -12194,7 +12245,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.29600118039260187,
           "version": 1
         },
@@ -12748,7 +12799,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.26218590816921605,
           "version": 1
         },
@@ -13302,7 +13353,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2560513560226015,
           "version": 1
         },
@@ -13922,7 +13973,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.17446393979911892,
           "version": 1
         },
@@ -14476,7 +14527,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.23413010039917076,
           "version": 1
         },
@@ -15030,7 +15081,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.23773609865663908,
           "version": 1
         },
@@ -15584,7 +15635,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2585625937018634,
           "version": 1
         },
@@ -16138,7 +16189,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2819988663530978,
           "version": 1
         },
@@ -16692,7 +16743,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.29600118039260187,
           "version": 1
         },
@@ -17246,7 +17297,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.26218590816921605,
           "version": 1
         },
@@ -17800,7 +17851,7 @@
           "subject_id": "S3",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2560513560226015,
           "version": 1
         },

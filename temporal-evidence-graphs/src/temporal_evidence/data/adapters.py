@@ -14,12 +14,32 @@ RATES = {"chest": {"ACC":700,"ECG":700,"EDA":700,"EMG":700,"Resp":700,"TEMP":700
 UNITS = {"eda":"uS", "motion":"1/64g", "cardiac":"recorded_BVP_unit", "respiration":"recorded_RESP_unit"}
 
 
+def signal_units(dataset):
+    # Author-synchronized PPG-DaLiA pickles scale ACC by 1/64 relative to raw E4 CSV.
+    # Verified against 300 exactly matching development samples; see the unit manifest.
+    return {**UNITS, "motion":"g" if dataset == "ppg_dalia" else "1/64g"}
+
+
+def read_original(dataset, path):
+    path = Path(path)
+    if path.exists():
+        with path.open("rb") as stream:
+            return pickle.load(stream, encoding="latin1")
+    acquisition = read_json(f"artifacts/manifests/acquisition/{dataset}.json")
+    member = next(item["member"] for item in acquisition["files"] if item["path"] == str(path))
+    with zipfile.ZipFile(acquisition["archive"]) as archive:
+        with archive.open(member) as stream:
+            return pickle.load(stream, encoding="latin1")
+
+
 def natural_key(value):
     return [int(part) if part.isdigit() else part for part in re.split(r"(\d+)", str(value))]
 
 
 def inventory(dataset):
-    paths = sorted(Path(f"data/raw/{dataset}/recordings").rglob("S*.pkl"), key=lambda p:natural_key(p.stem))
+    acquisition = read_json(f"artifacts/manifests/acquisition/{dataset}.json")
+    original_files = {item["path"]:item for item in acquisition["files"] if Path(item["path"]).suffix == ".pkl"}
+    paths = sorted((Path(path) for path in original_files), key=lambda p:natural_key(p.stem))
     if len(paths) != 15 or len({p.stem for p in paths}) != 15:
         raise ValueError(f"Expected 15 unique {dataset} participants, found {len(paths)}")
     subjects = [path.stem for path in paths]
@@ -35,8 +55,7 @@ def inventory(dataset):
     # Only array structure is inventoried; outcomes are not inspected for selection.
     entries = []
     for path in paths:
-        with path.open("rb") as stream:
-            original = pickle.load(stream, encoding="latin1")
+        original = read_original(dataset, path)
         content = original.get("data", original)
         identity = str(content.get("subject", path.stem))
         if identity != path.stem:
@@ -50,11 +69,11 @@ def inventory(dataset):
                 channels.append({"location":location,"name":channel,"shape":list(array.shape),
                                  "rate_hz":rate,"duration_seconds":len(array)/rate,
                                  "excluded_dummy":dataset=="ppg_dalia" and location=="chest" and channel.upper() in {"EDA","EMG","TEMP"}})
-        entries.append({"subject":path.stem,"path":str(path),"sha256":digest_file(path),
+        entries.append({"subject":path.stem,"path":str(path),"sha256":original_files[str(path)]["sha256"],
                         "split":"development" if path.stem in development else "test", "channels":channels,
                         "non_runtime_fields":[key for key in content if key not in {"subject","signal"}]})
     manifest = {"dataset":dataset,"synchronization":"Author-provided synchronized pickle; relative session seconds",
-                "wrist_units":UNITS,"reference_targets_in_runtime":False,"subjects":entries}
+                "wrist_units":signal_units(dataset),"reference_targets_in_runtime":False,"subjects":entries}
     write_json(f"artifacts/manifests/{dataset}_inventory.json", manifest)
     return manifest
 
@@ -67,15 +86,7 @@ def load_signals(dataset, entry):
         units = {"eda":"synthetic_uS","motion":"synthetic_g","cardiac":"synthetic_amplitude","respiration":"synthetic_amplitude"}
         return signals, entry["rates"], units
     # Paths come from the acquisition inventory of the official archives, never from model output.
-    if path.exists():
-        with path.open("rb") as stream:
-            original = pickle.load(stream, encoding="latin1")
-    else:
-        acquisition=read_json(f"artifacts/manifests/acquisition/{dataset}.json")
-        member=next(item["member"] for item in acquisition["files"] if item["path"]==str(path))
-        with zipfile.ZipFile(acquisition["archive"]) as archive:
-            with archive.open(member) as stream:
-                original=pickle.load(stream,encoding="latin1")
+    original = read_original(dataset, path)
     content = original.get("data", original)
     wrist, chest = content["signal"]["wrist"], content["signal"]["chest"]
     respiration = chest.get("Resp", chest.get("RESP"))
@@ -83,7 +94,7 @@ def load_signals(dataset, entry):
         raise ValueError("Documented respiration channel absent")
     signals = {"eda":np.asarray(wrist["EDA"]).reshape(-1), "motion":np.asarray(wrist["ACC"]),
                "cardiac":np.asarray(wrist["BVP"]).reshape(-1), "respiration":np.asarray(respiration).reshape(-1)}
-    return signals, {"eda":4,"motion":32,"cardiac":64,"respiration":700}, UNITS.copy()
+    return signals, {"eda":4,"motion":32,"cardiac":64,"respiration":700}, signal_units(dataset)
 
 
 def aligned_reference_interval(index):

@@ -1,5 +1,6 @@
 """Select episodes by recording duration, before any held-out generation."""
 from dataclasses import replace
+import io
 from pathlib import Path
 import numpy as np
 import yaml
@@ -56,6 +57,25 @@ def make_variants(dataset, entry, signals, rates, units, end, index):
                 altered[-15*rate:]=np.nan
             else:
                 altered+=.5
+            # The replay array is a separate immutable file. Its observation carries
+            # the actual hash/sample range, never the original array's identity.
+            buffer=io.BytesIO()
+            np.save(buffer,altered,allow_pickle=False)
+            import hashlib
+            replay_hash=hashlib.sha256(buffer.getvalue()).hexdigest()
+            replay_path=Path(f"data/derived/windows/{replay_hash}.npy")
+            replay_path.parent.mkdir(parents=True,exist_ok=True)
+            if replay_path.exists():
+                assert digest_file(replay_path)==replay_hash
+            else:
+                replay_path.write_bytes(buffer.getvalue())
+            old_raw=next(r for r in original if r.record_id==target.source_ids[0])
+            second_raw=revised(old_raw,end+31,2,metadata={**old_raw.metadata,
+                "file_sha256":replay_hash,"path":str(replay_path),"sample_start":0,"sample_stop":len(altered),
+                "original_file_sha256":entry["sha256"],"original_sample_start":round(start*rate),
+                "original_sample_stop":round(end*rate)})
+            third_raw=revised(second_raw,end+91,3,metadata=old_raw.metadata)
+            events.extend([second_raw,third_raw])
             altered_records,seconds=window_records(dataset,entry,signals,rates,units,start,end,overrides={"eda":altered})
             extraction_seconds+=seconds
             altered_by_quantity={r.quantity:r for r in altered_records if r.record_type=="feature" and r.quantity.startswith("eda_")}
@@ -63,8 +83,9 @@ def make_variants(dataset, entry, signals, rates, units, end, index):
                 if old.quantity in altered_by_quantity:
                     changed=altered_by_quantity[old.quantity]
                     second=revised(old,end+31,2,value=changed.value,evidence_state=changed.evidence_state,
-                                   metadata={**old.metadata,"derived_replay_window":True})
-                    events.extend([second,revised(second,end+91,3,value=old.value,evidence_state=old.evidence_state)])
+                                   source_ids=(second_raw.record_id,))
+                    events.extend([second,revised(second,end+91,3,value=old.value,evidence_state=old.evidence_state,
+                                                  source_ids=(third_raw.record_id,))])
             oracle.update(fault_family=family,dropout_seconds=15 if family=="missingness" else 0,
                           offset=.5 if family=="corruption" else 0,observable_fault=family=="missingness")
         # Evaluator metadata never appears in a runtime event record.

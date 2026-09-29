@@ -99,7 +99,7 @@ def with_entities(records):
         subject_id=f"{record.dataset_id}/{record.subject_id}/subject"
         common=dict(dataset_id=record.dataset_id,subject_id=record.subject_id,session_id=record.session_id,
                     event_start_seconds=0,event_end_seconds=0,ingested_at_seconds=0)
-        result.setdefault(subject_id,Record(record_id=subject_id,logical_id=subject_id,record_type="subject",**common))
+        result.setdefault(subject_id,Record(record_id=subject_id,logical_id=subject_id,record_type="subject",**{**common,"session_id":"all_sessions"}))
         if record.record_type=="observation" and "channel" in record.metadata:
             sensor_id=f"{record.dataset_id}/{record.subject_id}/{record.session_id}/{record.metadata['channel']}/sensor"
             result.setdefault(sensor_id,Record(record_id=sensor_id,logical_id=sensor_id,record_type="sensor",**common,

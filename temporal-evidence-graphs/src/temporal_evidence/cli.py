@@ -21,6 +21,16 @@ def main():
     validate=commands.add_parser("validate-core")
     validate.add_argument("--config",default="configs/minimum_study.yaml")
     validate.add_argument("--graph",action="store_true")
+    pilot=commands.add_parser("pilot")
+    pilot.add_argument("--config",default="configs/pilot.yaml")
+    pilot.add_argument("--run-id",default="pilot_v1")
+    freeze=commands.add_parser("freeze-manifest")
+    freeze.add_argument("--config",default="configs/minimum_study.yaml")
+    run=commands.add_parser("run")
+    run.add_argument("--config",default="configs/minimum_study.yaml")
+    run.add_argument("--resume",action="store_true")
+    evaluation=commands.add_parser("evaluate")
+    evaluation.add_argument("--run-id",default="minimum_v1")
     args=parser.parse_args()
     if args.command=="check-environment":
         from temporal_evidence.environment import check_environment
@@ -45,6 +55,26 @@ def main():
         from temporal_evidence.environment import validate_core
         validate_core(args.graph)
         print("Temporal fixtures passed for all five conditions")
+    elif args.command=="pilot":
+        import asyncio
+        from temporal_evidence.experiment import pilot
+        from temporal_evidence.study import load_config
+        configuration=load_config(args.config)
+        print(json.dumps(asyncio.run(pilot(configuration.get("study_config",args.config),args.run_id)),indent=2))
+    elif args.command=="freeze-manifest":
+        from temporal_evidence.study import freeze
+        manifest=freeze(args.config)
+        print(f"Frozen {len(manifest['cases'])} initial calls; protocol {manifest['protocol_hash']}")
+    elif args.command=="run":
+        import asyncio
+        from pathlib import Path
+        from temporal_evidence.experiment import run
+        if Path("artifacts/runs/minimum_v1").exists() and not args.resume:
+            parser.error("Existing run requires --resume")
+        print(json.dumps(asyncio.run(run()),indent=2))
+    elif args.command=="evaluate":
+        from temporal_evidence.evaluation.exact import evaluate
+        print(json.dumps(evaluate(args.run_id),indent=2))
 
 
 if __name__=="__main__":

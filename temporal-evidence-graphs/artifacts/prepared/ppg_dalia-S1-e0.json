@@ -3,7 +3,7 @@
   "end": 2300.0,
   "episode_id": "ppg_dalia-S1-e0",
   "family": "current_evidence",
-  "feature_extraction_seconds": 0.03687691199593246,
+  "feature_extraction_seconds": 0.02225419399474049,
   "raw_samples_processed": 155520,
   "sampling_rates": {
     "cardiac": 64,
@@ -264,7 +264,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.3417050664970838,
           "version": 1
         },
@@ -818,7 +818,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2673905514390669,
           "version": 1
         },
@@ -1372,7 +1372,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.234540282005429,
           "version": 1
         },
@@ -1926,7 +1926,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2525749264032534,
           "version": 1
         },
@@ -2480,7 +2480,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.25317160679609424,
           "version": 1
         },
@@ -3034,7 +3034,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.26527487046437237,
           "version": 1
         },
@@ -3588,7 +3588,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2657326286677669,
           "version": 1
         },
@@ -4142,7 +4142,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.21871439562534606,
           "version": 1
         },
@@ -4468,9 +4468,67 @@
           "event_start_seconds": 2270.0,
           "evidence_state": "available",
           "ingested_at_seconds": 2331.0,
+          "logical_id": "ppg_dalia/S1/2270-2300/eda/raw",
+          "metadata": {
+            "channel": "eda",
+            "file_sha256": "b88ca2de9e1670c89735bdf2fad2f4f09aafad2e7082ff185ef6934f31b3c709",
+            "original_file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+            "original_sample_start": 9080,
+            "original_sample_stop": 9200,
+            "path": "data/derived/windows/b88ca2de9e1670c89735bdf2fad2f4f09aafad2e7082ff185ef6934f31b3c709.npy",
+            "rate_hz": 4,
+            "sample_start": 0,
+            "sample_stop": 120
+          },
+          "operator": "identity",
+          "quantity": "",
+          "record_id": "ppg_dalia/S1/2270-2300/eda/raw/v2",
+          "record_type": "observation",
+          "session_id": "session_1",
+          "source_ids": [],
+          "subject_id": "S1",
+          "supersedes_id": "ppg_dalia/S1/2270-2300/eda/raw",
+          "support_mode": "AND",
+          "unit": "",
+          "value": null,
+          "version": 2
+        },
+        {
+          "dataset_id": "ppg_dalia",
+          "event_end_seconds": 2300.0,
+          "event_start_seconds": 2270.0,
+          "evidence_state": "available",
+          "ingested_at_seconds": 2391.0,
+          "logical_id": "ppg_dalia/S1/2270-2300/eda/raw",
+          "metadata": {
+            "channel": "eda",
+            "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+            "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+            "rate_hz": 4,
+            "sample_start": 9080,
+            "sample_stop": 9200
+          },
+          "operator": "identity",
+          "quantity": "",
+          "record_id": "ppg_dalia/S1/2270-2300/eda/raw/v3",
+          "record_type": "observation",
+          "session_id": "session_1",
+          "source_ids": [],
+          "subject_id": "S1",
+          "supersedes_id": "ppg_dalia/S1/2270-2300/eda/raw/v2",
+          "support_mode": "AND",
+          "unit": "",
+          "value": null,
+          "version": 3
+        },
+        {
+          "dataset_id": "ppg_dalia",
+          "event_end_seconds": 2300.0,
+          "event_start_seconds": 2270.0,
+          "evidence_state": "available",
+          "ingested_at_seconds": 2331.0,
           "logical_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4480,7 +4538,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S1/2270-2300/eda/raw"
+            "ppg_dalia/S1/2270-2300/eda/raw/v2"
           ],
           "subject_id": "S1",
           "supersedes_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
@@ -4497,7 +4555,6 @@
           "ingested_at_seconds": 2391.0,
           "logical_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4507,7 +4564,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S1/2270-2300/eda/raw"
+            "ppg_dalia/S1/2270-2300/eda/raw/v3"
           ],
           "subject_id": "S1",
           "supersedes_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v2",
@@ -4524,7 +4581,6 @@
           "ingested_at_seconds": 2331.0,
           "logical_id": "ppg_dalia/S1/2270-2300/eda_clipping_fraction",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4534,7 +4590,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S1/2270-2300/eda/raw"
+            "ppg_dalia/S1/2270-2300/eda/raw/v2"
           ],
           "subject_id": "S1",
           "supersedes_id": "ppg_dalia/S1/2270-2300/eda_clipping_fraction/v1",
@@ -4551,7 +4607,6 @@
           "ingested_at_seconds": 2391.0,
           "logical_id": "ppg_dalia/S1/2270-2300/eda_clipping_fraction",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4561,7 +4616,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S1/2270-2300/eda/raw"
+            "ppg_dalia/S1/2270-2300/eda/raw/v3"
           ],
           "subject_id": "S1",
           "supersedes_id": "ppg_dalia/S1/2270-2300/eda_clipping_fraction/v2",
@@ -4578,7 +4633,6 @@
           "ingested_at_seconds": 2331.0,
           "logical_id": "ppg_dalia/S1/2270-2300/eda_median",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4588,7 +4642,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S1/2270-2300/eda/raw"
+            "ppg_dalia/S1/2270-2300/eda/raw/v2"
           ],
           "subject_id": "S1",
           "supersedes_id": "ppg_dalia/S1/2270-2300/eda_median/v1",
@@ -4605,7 +4659,6 @@
           "ingested_at_seconds": 2391.0,
           "logical_id": "ppg_dalia/S1/2270-2300/eda_median",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4615,7 +4668,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S1/2270-2300/eda/raw"
+            "ppg_dalia/S1/2270-2300/eda/raw/v3"
           ],
           "subject_id": "S1",
           "supersedes_id": "ppg_dalia/S1/2270-2300/eda_median/v2",
@@ -4632,7 +4685,6 @@
           "ingested_at_seconds": 2331.0,
           "logical_id": "ppg_dalia/S1/2270-2300/eda_iqr",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4642,7 +4694,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S1/2270-2300/eda/raw"
+            "ppg_dalia/S1/2270-2300/eda/raw/v2"
           ],
           "subject_id": "S1",
           "supersedes_id": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
@@ -4659,7 +4711,6 @@
           "ingested_at_seconds": 2391.0,
           "logical_id": "ppg_dalia/S1/2270-2300/eda_iqr",
           "metadata": {
-            "derived_replay_window": true,
             "extractor": "numpy_completed_window_v1",
             "window_seconds": 30.0
           },
@@ -4669,7 +4720,7 @@
           "record_type": "feature",
           "session_id": "session_1",
           "source_ids": [
-            "ppg_dalia/S1/2270-2300/eda/raw"
+            "ppg_dalia/S1/2270-2300/eda/raw/v3"
           ],
           "subject_id": "S1",
           "supersedes_id": "ppg_dalia/S1/2270-2300/eda_iqr/v2",
@@ -4925,7 +4976,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.3417050664970838,
           "version": 1
         },
@@ -5479,7 +5530,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2673905514390669,
           "version": 1
         },
@@ -6033,7 +6084,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.234540282005429,
           "version": 1
         },
@@ -6587,7 +6638,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2525749264032534,
           "version": 1
         },
@@ -7141,7 +7192,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.25317160679609424,
           "version": 1
         },
@@ -7695,7 +7746,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.26527487046437237,
           "version": 1
         },
@@ -8249,7 +8300,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2657326286677669,
           "version": 1
         },
@@ -8803,7 +8854,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.21871439562534606,
           "version": 1
         },
@@ -9424,7 +9475,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.3417050664970838,
           "version": 1
         },
@@ -9978,7 +10029,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2673905514390669,
           "version": 1
         },
@@ -10532,7 +10583,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.234540282005429,
           "version": 1
         },
@@ -11086,7 +11137,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2525749264032534,
           "version": 1
         },
@@ -11640,7 +11691,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.25317160679609424,
           "version": 1
         },
@@ -12194,7 +12245,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.26527487046437237,
           "version": 1
         },
@@ -12748,7 +12799,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2657326286677669,
           "version": 1
         },
@@ -13302,7 +13353,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.21871439562534606,
           "version": 1
         },
@@ -13922,7 +13973,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.3417050664970838,
           "version": 1
         },
@@ -14476,7 +14527,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2673905514390669,
           "version": 1
         },
@@ -15030,7 +15081,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.234540282005429,
           "version": 1
         },
@@ -15584,7 +15635,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2525749264032534,
           "version": 1
         },
@@ -16138,7 +16189,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.25317160679609424,
           "version": 1
         },
@@ -16692,7 +16743,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.26527487046437237,
           "version": 1
         },
@@ -17246,7 +17297,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.2657326286677669,
           "version": 1
         },
@@ -17800,7 +17851,7 @@
           "subject_id": "S1",
           "supersedes_id": null,
           "support_mode": "AND",
-          "unit": "1/64g",
+          "unit": "g",
           "value": 0.21871439562534606,
           "version": 1
         },

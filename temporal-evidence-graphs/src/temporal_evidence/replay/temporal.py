@@ -55,6 +55,31 @@ def support_state(identifier: str, records: dict[str, Record], memo=None, active
     record = resolve(identifier, records, current)
     if record is None or record.evidence_state != "available":
         answer = ("unsupported", None)
+    elif record.record_type == "claim" and "claim" in record.metadata:
+        # Generated claims use the same published predicate at later knowledge times.
+        # The independent evaluator never calls this runtime implementation.
+        from dataclasses import replace
+        from temporal_evidence.generation.contract import Answer
+        from temporal_evidence.validation.checker import validate
+        dependencies = record.metadata.get("claim_dependency_records", [])
+        dependency_states = [support_state(source, records, memo, active)[0] for source in dependencies]
+        proposal = dict(record.metadata["claim"])
+        proposal["depends_on_claim_ids"] = []
+        proposal["evidence_ids"] = [resolved.record_id if (resolved := resolve(source, records, current)) is not None else source
+                                    for source in proposal["evidence_ids"]]
+        query = Query(**record.metadata["query"])
+        query = replace(query,knowledge_time=max(r.ingested_at_seconds for r in records.values()))
+        response = Answer.model_validate({"claims":[proposal],"answer_status":"answered",
+            "explanation":proposal["sentence"],"unresolved_evidence_ids":[]})
+        decisions,_ = validate(response,records,query)
+        if any(state != "supported" for state in dependency_states):
+            answer = ("unsupported",record.value)
+        elif decisions[0].state == "supported":
+            answer = ("supported",record.value)
+        else:
+            contradicted = any(reason in {"wrong_numeric_value_or_interval","wrong_difference","evidence_is_available"}
+                               for reason in decisions[0].reasons)
+            answer = ("contradicted" if contradicted else "unsupported",record.value)
     elif not record.source_ids:
         answer = ("supported", record.value)
     else:
@@ -97,8 +122,13 @@ def apply_revision(store, revision: Record, method: str) -> dict:
     if method == "B0" or revision.supersedes_id is None:
         return {"affected": [], "assessments": {}, "seconds": time.perf_counter() - started}
     transitive = method in {"M1", "B3"}
-    affected = store.dependents(revision.supersedes_id, revision.ingested_at_seconds, transitive)
     records = store.snapshot(revision.ingested_at_seconds)
+    # Citations remain immutable across multiple revisions. Revisit dependencies
+    # on every earlier version, including claims that still cite v1 after v2.
+    predecessors=[r.record_id for r in records.values() if r.logical_id==revision.logical_id
+                  and r.version<revision.version]
+    affected=set().union(*(store.dependents(identifier,revision.ingested_at_seconds,transitive)
+                          for identifier in predecessors))
     assessments = {}
     for identifier in dependency_order(records, set(affected)):
         if records[identifier].record_type in {"claim", "explanation", "feature"}:

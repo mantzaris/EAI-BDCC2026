@@ -82,3 +82,14 @@ def test_wrong_subject_is_not_runtime_evidence():
     events = [record("a", 1), replace(record("b", 2), subject_id="other")]
     query = Query("synthetic", "V101", "symbolic", 0, 10, 10)
     assert [r.record_id for r in admissible_evidence(events, query)] == ["a"]
+
+
+def test_third_version_revisits_claims_citing_first_version():
+    store=RelationalStore()
+    records,revision=correction_fixture()
+    store.put_many(records)
+    assert apply_revision(store,revision,"B3")["assessments"]["direct_claim"]["state"]=="contradicted"
+    restored=replace(revision,record_id="a/v3",version=3,value=2,supersedes_id=revision.record_id,ingested_at_seconds=30)
+    result=apply_revision(store,restored,"B3")
+    assert result["assessments"]["direct_claim"]["state"]=="supported"
+    assert result["assessments"]["downstream_claim"]["state"]=="supported"

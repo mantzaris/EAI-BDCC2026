@@ -1,20 +1,20 @@
 # Study status
 
-Updated: 2026-09-28. Overall completion: **23%** (estimated against the eight stage gates).
+Updated: 2026-09-28. Overall completion: **27%** (estimated against the eight stage gates).
 
 | Stage | State |
 |---|---|
-| 0 Environment and acquisition | CUDA BF16 verified; all three sources acquired and inventoried; pinned model downloaded; live Neo4j / vLLM installation underway |
+| 0 Environment and acquisition | CUDA BF16 verified; all three sources acquired and inventoried; pinned model downloaded; Neo4j running; vLLM dependencies installing |
 | 1 Synthetic correctness | Immutable replay and five-condition fixtures pass; live Neo4j parity check pending |
 | 2 GPU generation and five conditions | Output contract, GPU guard, bounded repair client and validation implemented; live fixture pending |
-| 3 Real data adapters | Both adapters, original metadata, fixed participant splits, and 100 prepared base episodes available; final development audit pending |
+| 3 Real data adapters | Development unit/provenance audit completed; fixed splits and 100 prepared episodes rebuilt; replay arrays separately hashed |
 | 4 Freeze and development pilot | Pending |
 | 5 Locked experiments | Pending: 3,600 initial calls, at most 2,880 repairs |
-| 6 Analysis and interface | Pending |
+| 6 Analysis and interface | Independent exact evaluator and correctness tests implemented; aggregation and interface pending |
 | 7 Manuscript package | Pending |
 
 All changes are committed and pushed to `main`, without branches, as instructed.
-No test generations or research results exist yet. Twenty-five correctness tests pass.
+No test generations or research results exist yet. Thirty-six correctness tests pass.
 Sixty prepared base episodes are held out; forty are for development. No protocol
 freeze has occurred. Slow package downloads remain an operational delay, not a data
 access blocker. The user confirmed continuing with the current pod.
