@@ -170,3 +170,8 @@
   tests cover unequal episode denominators and disjoint conditional eligibility.
   This changes no experimental inputs or runtime predicates. The historical
   pilot-v3 analysis predates this reporting repair and remains preserved as such.
+- Add a descriptive accounting category for persistent claims whose sole later
+  exact-check error is `dependency`. This exposes the distinction between a
+  generator-declared prerequisite and an independently necessary derivation.
+  Do not change the frozen support contract, primary correction metrics, or
+  bootstrap contrasts; do not infer semantic necessity from graph membership.

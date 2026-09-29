@@ -96,6 +96,7 @@ def generate():
     dependency_counts = Counter()
     reasons = Counter()
     request_errors = Counter()
+    dependency_only = Counter()
     for path in Path("artifacts/runs/minimum_v1/cases").glob("*.json"):
         output = read_json(path)
         for phase in ("initial","repair"):
@@ -107,6 +108,11 @@ def generate():
             dependency_counts[(output["case"]["method"], "claims")] += 1
             dependency_counts[(output["case"]["method"], "parent_claims")] += bool(claim["depends_on_claim_ids"])
         scored = read_json(Path("artifacts/evaluation/minimum_v1/cases")/path.name)
+        for item in scored["persistent"]:
+            if item["required_change"] and set(item["reasons"]) == {"dependency"}:
+                key = (output["case"]["dataset"],output["case"]["method"])
+                dependency_only[(*key,"required")] += 1
+                dependency_only[(*key,"retained" if item["active"] else "withdrawn")] += 1
         for claim in scored["claims"]:
             for reason in claim["reasons"]:
                 reasons[(output["case"]["dataset"],output["case"]["method"],reason)] += 1
@@ -256,10 +262,14 @@ def generate():
               "reason_components":[{"dataset":key[0],"method":key[1],"reason":key[2],"count":value} for key,value in sorted(reasons.items())],
               "generated_dependencies":[{"method":method,"claims":dependency_counts[(method,"claims")],
                                          "claims_with_parents":dependency_counts[(method,"parent_claims")]} for method in METHODS],
+              "dependency_only_changes":[{"dataset":source,"method":method,
+                  **{key:dependency_only[(source,method,key)] for key in ("required","withdrawn","retained")}}
+                  for source in SOURCES for method in METHODS],
               "database_accounting":database,"resources":resources,"automated_audit":audit,
               "audit_details":audit_details,
               "notes":["Reason components overlap; they cannot be summed into an error total",
                        "The saved metric named initial_parse_failure includes all initial request/format errors; request_error_types preserves their logged categories",
+                       "Dependency-only changes are descriptive counts of initially valid persistent claims whose later sole exact-check error is a declared parent dependency; the edge's semantic necessity is not independently established",
                        "Claims requiring correction are conditional on initially generated content",
                        "All model families and sources retained, including failures and negative findings"]}
     write_json("artifacts/analysis/publication.json",report)

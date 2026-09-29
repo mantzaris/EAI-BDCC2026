@@ -28,6 +28,11 @@ def generate():
     table('Persistent displays', ['Source','Method','Corrected/required','Completeness %','Residual','Collateral/unaffected'],
           [[SOURCES[r['dataset']],r['method'],fraction(r['correction_completeness']),percent(r['correction_completeness']['value']),
             r['residual_incorrect']['numerator'],fraction(r['collateral_revision'])] for r in ordered])
+    table('Descriptive parent-only changes', ['Source','Method','Required under declared dependencies','Withdrawn','Retained'],
+          [[SOURCES[r['dataset']],r['method'],r['required'],r['withdrawn'],r['retained']] for r in publication['dependency_only_changes']])
+    lines.extend(['These claim-checkpoint counts isolate cases whose sole later exact-check error is a parent dependency. '
+                  'The declared link is treated as a prerequisite; its semantic necessity is not independently established. '
+                  'This descriptive breakdown leaves the frozen correction metrics unchanged.', ''])
     table('Paired differences', ['Source','Contrast','Outcome','Subjects/episodes','Difference (pp)','Pointwise 95% interval (pp)','Principal'],
           [[SOURCES[r['dataset']],r['left']+' − '+r['right'],r['metric'],f"{r['subjects']}/{r['eligible_episodes']}",
             number(None if r['difference'] is None else 100*r['difference']),
