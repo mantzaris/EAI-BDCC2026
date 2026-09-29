@@ -1,0 +1,314 @@
+{
+  "accepted": [
+    {
+      "claim_id": "c1",
+      "proposition": "A_first_2",
+      "sentence": "The eda_median is greater than or equal to 5.41636425 uS and the eda_iqr is greater than or equal to 0.389628675 uS during the interval [2295.0, 2325.0].",
+      "value": true,
+      "witnesses": [
+        [
+          "A1",
+          "A2"
+        ]
+      ]
+    },
+    {
+      "claim_id": "c2",
+      "proposition": "A_first_4",
+      "sentence": "The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0].",
+      "value": true,
+      "witnesses": [
+        [
+          "A1",
+          "A2",
+          "A3",
+          "A4"
+        ]
+      ]
+    },
+    {
+      "claim_id": "c3",
+      "proposition": "answer",
+      "sentence": "The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0].",
+      "value": true,
+      "witnesses": [
+        [
+          "A1",
+          "A2",
+          "A3",
+          "A4"
+        ]
+      ]
+    }
+  ],
+  "adequate_answer": true,
+  "case_id": "ppg_dalia-S5-e0-d3-single",
+  "completed_at": "2026-09-29T09:02:27.008041+00:00",
+  "decisions": [
+    {
+      "accepted": true,
+      "claim_id": "c1",
+      "complete_witness_family": true,
+      "expanded_witnesses": [
+        [
+          "A1",
+          "A2"
+        ]
+      ],
+      "reasons": []
+    },
+    {
+      "accepted": true,
+      "claim_id": "c2",
+      "complete_witness_family": true,
+      "expanded_witnesses": [
+        [
+          "A1",
+          "A2",
+          "A3",
+          "A4"
+        ]
+      ],
+      "reasons": []
+    },
+    {
+      "accepted": true,
+      "claim_id": "c3",
+      "complete_witness_family": true,
+      "expanded_witnesses": [
+        [
+          "A1",
+          "A2",
+          "A3",
+          "A4"
+        ]
+      ],
+      "reasons": []
+    }
+  ],
+  "final_candidate": {
+    "claims": [
+      {
+        "claim_id": "c1",
+        "proposition": "A_first_2",
+        "sentence": "The eda_median is greater than or equal to 5.41636425 uS and the eda_iqr is greater than or equal to 0.389628675 uS during the interval [2295.0, 2325.0].",
+        "value": true,
+        "witnesses": [
+          [
+            "A1",
+            "A2"
+          ]
+        ]
+      },
+      {
+        "claim_id": "c2",
+        "proposition": "A_first_4",
+        "sentence": "The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0].",
+        "value": true,
+        "witnesses": [
+          [
+            "A1",
+            "A2",
+            "A3",
+            "A4"
+          ]
+        ]
+      },
+      {
+        "claim_id": "c3",
+        "proposition": "answer",
+        "sentence": "The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0].",
+        "value": true,
+        "witnesses": [
+          [
+            "A1",
+            "A2",
+            "A3",
+            "A4"
+          ]
+        ]
+      }
+    ],
+    "explanation": "The eda_median is greater than or equal to 5.41636425 uS and the eda_iqr is greater than or equal to 0.389628675 uS during the interval [2295.0, 2325.0]. The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0]. The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0]."
+  },
+  "initial": {
+    "case_id": "ppg_dalia-S5-e0-d3-single",
+    "event": "finished",
+    "finished_at": "2026-09-29T09:02:26.984678+00:00",
+    "http_status": 200,
+    "phase": "initial",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "ProgramClaim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "proposition": {
+                "title": "Proposition",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "value": {
+                "title": "Value",
+                "type": "boolean"
+              },
+              "witnesses": {
+                "items": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 4,
+                "minItems": 1,
+                "title": "Witnesses",
+                "type": "array"
+              }
+            },
+            "required": [
+              "claim_id",
+              "proposition",
+              "value",
+              "witnesses",
+              "sentence"
+            ],
+            "title": "ProgramClaim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/ProgramClaim"
+            },
+            "maxItems": 16,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          }
+        },
+        "required": [
+          "claims",
+          "explanation"
+        ],
+        "title": "ProgramAnswer",
+        "type": "object"
+      },
+      "max_tokens": 4096,
+      "messages": [
+        {
+          "content": "You explain explicit numerical rules on recorded features, without diagnoses.\nReturn compact JSON with exactly claims and explanation. A claim has claim_id,\nproposition, value (boolean), witnesses (array of nonempty arrays of input tokens),\nsentence. Each witness is AND; the list of witnesses is OR. Inputs may be test IDs\nor earlier claim_id values. Never invent tests or proposition names. A claim means\nexactly its supplied proposition definition, regardless of your chosen witnesses.\nUse only provided measurements. Preserve units and time labels if stating numbers.\nExplain the requested grouping through intermediate propositions where appropriate,\nthen include the answer proposition. Use at most 16 claims. Direct test citations\nare allowed. Alternative witnesses must use distinct eligible recording windows.\nWhen you use an intermediate result, reference its earlier claim_id instead of\nexpanding it back into all its tests. Proposition definitions specify meaning;\nthey are not instructions to copy their expanded tests into every witness.\nFor example, if claim c1 establishes T1, a next conjunction of T1 and T2 may use\nwitnesses [[\"c1\",\"T2\"]], and a later conjunction may use [[\"c2\",\"T3\",\"T4\"]].\nThe final existential answer may use [[\"complete_A\"],[\"complete_B\"]] if both\nroute claims were already emitted. These example IDs are illustrative only.\nEach sentence must be a complete readable natural-language statement describing\nthe window and comparisons it asserts, never merely a list of test IDs.\nThe explanation must equal the claim sentences joined with single spaces. No extra\ninterpretations, clinical claims or discussion of this instruction. JSON only.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"task\":\"Determine whether at least one eligible recording window satisfies all four specified numerical comparisons.\",\"dataset\":\"ppg_dalia\",\"subject\":\"S5\",\"knowledge_time\":2326.0,\"intended_evidence_to_answer_depth\":3,\"requested_propositions_in_order\":[\"A_first_2\",\"A_first_4\",\"answer\"],\"grouping_instruction\":\"For each route, use the preceding prefix claim and remaining tests; the answer may use complete-route claims. At depth 1 cite tests directly.\",\"tests\":{\"A1\":{\"initial_value\":6.0181825,\"interval\":[2295.0,2325.0],\"operator\":\"ge\",\"quantity\":\"eda_median\",\"source_id\":\"ppg_dalia/S5/2295-2325/eda_median/v1\",\"threshold\":5.41636425,\"unit\":\"uS\"},\"A2\":{\"initial_value\":0.4329207500000001,\"interval\":[2295.0,2325.0],\"operator\":\"ge\",\"quantity\":\"eda_iqr\",\"source_id\":\"ppg_dalia/S5/2295-2325/eda_iqr/v1\",\"threshold\":0.3896286750000001,\"unit\":\"uS\"},\"A3\":{\"initial_value\":0.3486241588481746,\"interval\":[2295.0,2325.0],\"operator\":\"ge\",\"quantity\":\"acceleration_magnitude_sd\",\"source_id\":\"ppg_dalia/S5/2295-2325/acceleration_magnitude_sd/v1\",\"threshold\":0.19086238691733123,\"unit\":\"g\"},\"A4\":{\"initial_value\":0.0,\"interval\":[2295.0,2325.0],\"operator\":\"le\",\"quantity\":\"eda_missing_fraction\",\"source_id\":\"ppg_dalia/S5/2295-2325/eda_missing_fraction/v1\",\"threshold\":0.05,\"unit\":\"fraction\"}},\"proposition_definitions_OR_of_AND_tests\":{\"A_first_2\":[[\"A1\",\"A2\"]],\"A_first_4\":[[\"A1\",\"A2\",\"A3\",\"A4\"]],\"answer\":[[\"A1\",\"A2\",\"A3\",\"A4\"]]}}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260929,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\"claims\": [{\"claim_id\": \"c1\", \"proposition\": \"A_first_2\", \"value\": true, \"witnesses\": [[\"A1\", \"A2\"]], \"sentence\": \"The eda_median is greater than or equal to 5.41636425 uS and the eda_iqr is greater than or equal to 0.389628675 uS during the interval [2295.0, 2325.0].\"}, {\"claim_id\": \"c2\", \"proposition\": \"A_first_4\", \"value\": true, \"witnesses\": [[\"A1\", \"A2\", \"A3\", \"A4\"]], \"sentence\": \"The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0].\"}, {\"claim_id\": \"c3\", \"proposition\": \"answer\", \"value\": true, \"witnesses\": [[\"A1\", \"A2\", \"A3\", \"A4\"]], \"sentence\": \"The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0].\"}], \"explanation\": \"The eda_median is greater than or equal to 5.41636425 uS and the eda_iqr is greater than or equal to 0.389628675 uS during the interval [2295.0, 2325.0]. The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0]. The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0].\"}",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790672535,
+      "id": "chatcmpl-1e804953d74a401ab21fa51062faa645",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 766,
+        "prompt_tokens": 875,
+        "prompt_tokens_details": null,
+        "total_tokens": 1641
+      }
+    },
+    "seconds": 11.00657474505715,
+    "started_at": "2026-09-29T09:02:15.977060+00:00"
+  },
+  "origin": "GPU_model_proposal",
+  "raw_candidate": {
+    "claims": [
+      {
+        "claim_id": "c1",
+        "proposition": "A_first_2",
+        "sentence": "The eda_median is greater than or equal to 5.41636425 uS and the eda_iqr is greater than or equal to 0.389628675 uS during the interval [2295.0, 2325.0].",
+        "value": true,
+        "witnesses": [
+          [
+            "A1",
+            "A2"
+          ]
+        ]
+      },
+      {
+        "claim_id": "c2",
+        "proposition": "A_first_4",
+        "sentence": "The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0].",
+        "value": true,
+        "witnesses": [
+          [
+            "A1",
+            "A2",
+            "A3",
+            "A4"
+          ]
+        ]
+      },
+      {
+        "claim_id": "c3",
+        "proposition": "answer",
+        "sentence": "The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0].",
+        "value": true,
+        "witnesses": [
+          [
+            "A1",
+            "A2",
+            "A3",
+            "A4"
+          ]
+        ]
+      }
+    ],
+    "explanation": "The eda_median is greater than or equal to 5.41636425 uS and the eda_iqr is greater than or equal to 0.389628675 uS during the interval [2295.0, 2325.0]. The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0]. The eda_median is greater than or equal to 5.41636425 uS, the eda_iqr is greater than or equal to 0.389628675 uS, the acceleration_magnitude_sd is greater than or equal to 0.19086238691733123 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2295.0, 2325.0]."
+  },
+  "repair": null
+}

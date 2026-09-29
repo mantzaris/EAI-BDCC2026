@@ -1,0 +1,257 @@
+{
+  "accepted": [
+    {
+      "claim_id": "A_first_4",
+      "proposition": "A_first_4",
+      "sentence": "The window [4525.0,4555.0] satisfies all four numerical comparisons for eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction.",
+      "value": true,
+      "witnesses": [
+        [
+          "A1",
+          "A2",
+          "A3",
+          "A4"
+        ]
+      ]
+    },
+    {
+      "claim_id": "answer",
+      "proposition": "answer",
+      "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+      "value": true,
+      "witnesses": [
+        [
+          "A_first_4"
+        ]
+      ]
+    }
+  ],
+  "adequate_answer": true,
+  "case_id": "wesad-S2-e1-d2-single",
+  "completed_at": "2026-09-29T08:55:54.406563+00:00",
+  "decisions": [
+    {
+      "accepted": true,
+      "claim_id": "A_first_4",
+      "complete_witness_family": true,
+      "expanded_witnesses": [
+        [
+          "A1",
+          "A2",
+          "A3",
+          "A4"
+        ]
+      ],
+      "reasons": []
+    },
+    {
+      "accepted": true,
+      "claim_id": "answer",
+      "complete_witness_family": true,
+      "expanded_witnesses": [
+        [
+          "A1",
+          "A2",
+          "A3",
+          "A4"
+        ]
+      ],
+      "reasons": []
+    }
+  ],
+  "final_candidate": {
+    "claims": [
+      {
+        "claim_id": "A_first_4",
+        "proposition": "A_first_4",
+        "sentence": "The window [4525.0,4555.0] satisfies all four numerical comparisons for eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction.",
+        "value": true,
+        "witnesses": [
+          [
+            "A1",
+            "A2",
+            "A3",
+            "A4"
+          ]
+        ]
+      },
+      {
+        "claim_id": "answer",
+        "proposition": "answer",
+        "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+        "value": true,
+        "witnesses": [
+          [
+            "A_first_4"
+          ]
+        ]
+      }
+    ],
+    "explanation": "The window [4525.0,4555.0] satisfies all four numerical comparisons for eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction. At least one eligible recording window satisfies all four specified numerical comparisons."
+  },
+  "initial": {
+    "case_id": "wesad-S2-e1-d2-single",
+    "event": "finished",
+    "finished_at": "2026-09-29T08:55:54.404931+00:00",
+    "http_status": 200,
+    "phase": "initial",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "ProgramClaim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "proposition": {
+                "title": "Proposition",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "value": {
+                "title": "Value",
+                "type": "boolean"
+              },
+              "witnesses": {
+                "items": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "maxItems": 4,
+                "minItems": 1,
+                "title": "Witnesses",
+                "type": "array"
+              }
+            },
+            "required": [
+              "claim_id",
+              "proposition",
+              "value",
+              "witnesses",
+              "sentence"
+            ],
+            "title": "ProgramClaim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/ProgramClaim"
+            },
+            "maxItems": 16,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          }
+        },
+        "required": [
+          "claims",
+          "explanation"
+        ],
+        "title": "ProgramAnswer",
+        "type": "object"
+      },
+      "max_tokens": 4096,
+      "messages": [
+        {
+          "content": "You explain explicit numerical rules on recorded features, without diagnoses.\nReturn compact JSON with exactly claims and explanation. A claim has claim_id,\nproposition, value (boolean), witnesses (array of nonempty arrays of input tokens),\nsentence. Each witness is AND; the list of witnesses is OR. Inputs may be test IDs\nor earlier claim_id values. Never invent tests or proposition names. A claim means\nexactly its supplied proposition definition, regardless of your chosen witnesses.\nUse only provided measurements. Preserve units and time labels if stating numbers.\nExplain the requested grouping through intermediate propositions where appropriate,\nthen include the answer proposition. Use at most 16 claims. Direct test citations\nare allowed. Alternative witnesses must use distinct eligible recording windows.\nWhen you use an intermediate result, reference its earlier claim_id instead of\nexpanding it back into all its tests. Proposition definitions specify meaning;\nthey are not instructions to copy their expanded tests into every witness.\nFor example, if claim c1 establishes T1, a next conjunction of T1 and T2 may use\nwitnesses [[\"c1\",\"T2\"]], and a later conjunction may use [[\"c2\",\"T3\",\"T4\"]].\nThe final existential answer may use [[\"complete_A\"],[\"complete_B\"]] if both\nroute claims were already emitted. These example IDs are illustrative only.\nEach sentence must be a complete readable natural-language statement describing\nthe window and comparisons it asserts, never merely a list of test IDs.\nThe explanation must equal the claim sentences joined with single spaces. No extra\ninterpretations, clinical claims or discussion of this instruction. JSON only.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"task\":\"Determine whether at least one eligible recording window satisfies all four specified numerical comparisons.\",\"dataset\":\"wesad\",\"subject\":\"S2\",\"knowledge_time\":4556.0,\"intended_evidence_to_answer_depth\":2,\"requested_propositions_in_order\":[\"A_first_4\",\"answer\"],\"grouping_instruction\":\"For each route, use the preceding prefix claim and remaining tests; the answer may use complete-route claims. At depth 1 cite tests directly.\",\"tests\":{\"A1\":{\"initial_value\":0.113024,\"interval\":[4525.0,4555.0],\"operator\":\"ge\",\"quantity\":\"eda_median\",\"source_id\":\"wesad/S2/4525-4555/eda_median/v1\",\"threshold\":0.1017216,\"unit\":\"uS\"},\"A2\":{\"initial_value\":0.006406000000000009,\"interval\":[4525.0,4555.0],\"operator\":\"ge\",\"quantity\":\"eda_iqr\",\"source_id\":\"wesad/S2/4525-4555/eda_iqr/v1\",\"threshold\":0.004612500000000017,\"unit\":\"uS\"},\"A3\":{\"initial_value\":5.295530151387743,\"interval\":[4525.0,4555.0],\"operator\":\"ge\",\"quantity\":\"acceleration_magnitude_sd\",\"source_id\":\"wesad/S2/4525-4555/acceleration_magnitude_sd/v1\",\"threshold\":3.4183789792207713,\"unit\":\"1/64g\"},\"A4\":{\"initial_value\":0.0,\"interval\":[4525.0,4555.0],\"operator\":\"le\",\"quantity\":\"eda_missing_fraction\",\"source_id\":\"wesad/S2/4525-4555/eda_missing_fraction/v1\",\"threshold\":0.05,\"unit\":\"fraction\"}},\"proposition_definitions_OR_of_AND_tests\":{\"A_first_4\":[[\"A1\",\"A2\",\"A3\",\"A4\"]],\"answer\":[[\"A1\",\"A2\",\"A3\",\"A4\"]]}}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260929,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\"claims\": [{\"claim_id\": \"A_first_4\", \"proposition\": \"A_first_4\", \"value\": true, \"witnesses\": [[\"A1\", \"A2\", \"A3\", \"A4\"]], \"sentence\": \"The window [4525.0,4555.0] satisfies all four numerical comparisons for eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction.\"}, {\"claim_id\": \"answer\", \"proposition\": \"answer\", \"value\": true, \"witnesses\": [[\"A_first_4\"]], \"sentence\": \"At least one eligible recording window satisfies all four specified numerical comparisons.\"}], \"explanation\": \"The window [4525.0,4555.0] satisfies all four numerical comparisons for eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction. At least one eligible recording window satisfies all four specified numerical comparisons.\"}",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790672151,
+      "id": "chatcmpl-ea744275a0ce4260b462c93516e1a96b",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 211,
+        "prompt_tokens": 856,
+        "prompt_tokens_details": null,
+        "total_tokens": 1067
+      }
+    },
+    "seconds": 3.059874883154407,
+    "started_at": "2026-09-29T08:55:51.344143+00:00"
+  },
+  "origin": "GPU_model_proposal",
+  "raw_candidate": {
+    "claims": [
+      {
+        "claim_id": "A_first_4",
+        "proposition": "A_first_4",
+        "sentence": "The window [4525.0,4555.0] satisfies all four numerical comparisons for eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction.",
+        "value": true,
+        "witnesses": [
+          [
+            "A1",
+            "A2",
+            "A3",
+            "A4"
+          ]
+        ]
+      },
+      {
+        "claim_id": "answer",
+        "proposition": "answer",
+        "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+        "value": true,
+        "witnesses": [
+          [
+            "A_first_4"
+          ]
+        ]
+      }
+    ],
+    "explanation": "The window [4525.0,4555.0] satisfies all four numerical comparisons for eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction. At least one eligible recording window satisfies all four specified numerical comparisons."
+  },
+  "repair": null
+}

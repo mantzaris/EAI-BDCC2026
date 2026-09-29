@@ -1,0 +1,3672 @@
+[
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 0,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a32434ed0796ead7596318b18b1b7f0ee0d5e9ca3377223dd26b81840f5fb7b0",
+    "max_depth": 3,
+    "method": "B0",
+    "missed_changes": 3,
+    "missed_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 13.862642399999999,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/necessary/B0",
+    "states": {
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.1170050129294395e-05,
+      "both_reach_queries": 0.00024469499476253986,
+      "cell": 0.0030119000002741814,
+      "insertion": 0.0004465708043426275,
+      "snapshot": 0.00021310593001544476,
+      "whole_program_evaluation": 1.2530013918876648e-05
+    },
+    "unresolved_claims": 0,
+    "xi": 0.6666666666666666
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 1,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a8770b748c0669b5865f036d4c93e2696aa97170161ef4942ab856d8a9f962a1",
+    "max_depth": 3,
+    "method": "B1",
+    "missed_changes": 2,
+    "missed_ids": [
+      "A_4",
+      "answer"
+    ],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 13.862642399999999,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_2"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/necessary/B1",
+    "states": {
+      "A_2": false,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.0003698519431054592,
+      "both_reach_queries": 0.00022977590560913086,
+      "cell": 0.0036533670499920845,
+      "insertion": 0.00038383202627301216,
+      "snapshot": 0.0002968639601022005,
+      "whole_program_evaluation": 1.2429896742105484e-05
+    },
+    "unresolved_claims": 1,
+    "xi": 0.6666666666666666
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 1,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a8770b748c0669b5865f036d4c93e2696aa97170161ef4942ab856d8a9f962a1",
+    "max_depth": 3,
+    "method": "B2",
+    "missed_changes": 2,
+    "missed_ids": [
+      "A_4",
+      "answer"
+    ],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 13.862642399999999,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_2"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/necessary/B2",
+    "states": {
+      "A_2": false,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.017809215001761913,
+      "both_reach_queries": 0.0018255540635436773,
+      "cell": 0.04161896789446473,
+      "insertion": 0.004117287928238511,
+      "snapshot": 0.0015954282134771347,
+      "whole_program_evaluation": 1.3318844139575958e-05
+    },
+    "unresolved_claims": 1,
+    "xi": 0.6666666666666666
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [],
+      "explanation": ""
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 3,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "2b2118b6bb326aaf61d2f40653df623e2ab34e22164b004bbfaaf5a244315e73",
+    "max_depth": 3,
+    "method": "M1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 13.862642399999999,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": false,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/necessary/M1",
+    "states": {
+      "A_2": false,
+      "A_4": false,
+      "answer": false
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.04202421009540558,
+      "both_reach_queries": 0.002363793086260557,
+      "cell": 0.06832020496949553,
+      "insertion": 0.004789503989741206,
+      "snapshot": 0.001987700117751956,
+      "whole_program_evaluation": 2.2409949451684952e-05
+    },
+    "unresolved_claims": 3,
+    "xi": 0.6666666666666666
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [],
+      "explanation": ""
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 3,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "2b2118b6bb326aaf61d2f40653df623e2ab34e22164b004bbfaaf5a244315e73",
+    "max_depth": 3,
+    "method": "B3",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 13.862642399999999,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": false,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/necessary/B3",
+    "states": {
+      "A_2": false,
+      "A_4": false,
+      "answer": false
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.00042779184877872467,
+      "both_reach_queries": 0.0002655051648616791,
+      "cell": 0.00672896602191031,
+      "insertion": 0.0006504170596599579,
+      "snapshot": 0.00023136497475206852,
+      "whole_program_evaluation": 1.3798940926790237e-05
+    },
+    "unresolved_claims": 3,
+    "xi": 0.6666666666666666
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 0,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a32434ed0796ead7596318b18b1b7f0ee0d5e9ca3377223dd26b81840f5fb7b0",
+    "max_depth": 3,
+    "method": "B0",
+    "missed_changes": 3,
+    "missed_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 13.862642399999999,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/route_loss/B0",
+    "states": {
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 2.7200207114219666e-05,
+      "both_reach_queries": 0.0005725680384784937,
+      "cell": 0.0036851270124316216,
+      "insertion": 0.0005565490573644638,
+      "snapshot": 0.0005257599987089634,
+      "whole_program_evaluation": 3.336998634040356e-05
+    },
+    "unresolved_claims": 0,
+    "xi": 0.6666666666666666
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 1,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a8770b748c0669b5865f036d4c93e2696aa97170161ef4942ab856d8a9f962a1",
+    "max_depth": 3,
+    "method": "B1",
+    "missed_changes": 2,
+    "missed_ids": [
+      "A_4",
+      "answer"
+    ],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 13.862642399999999,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_2"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/route_loss/B1",
+    "states": {
+      "A_2": false,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.00034584314562380314,
+      "both_reach_queries": 0.000233515165746212,
+      "cell": 0.00432272395119071,
+      "insertion": 0.00047852005809545517,
+      "snapshot": 0.00020897598005831242,
+      "whole_program_evaluation": 1.3330020010471344e-05
+    },
+    "unresolved_claims": 1,
+    "xi": 0.6666666666666666
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 1,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a8770b748c0669b5865f036d4c93e2696aa97170161ef4942ab856d8a9f962a1",
+    "max_depth": 3,
+    "method": "B2",
+    "missed_changes": 2,
+    "missed_ids": [
+      "A_4",
+      "answer"
+    ],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 13.862642399999999,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_2"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/route_loss/B2",
+    "states": {
+      "A_2": false,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.017419612035155296,
+      "both_reach_queries": 0.0018270229920744896,
+      "cell": 0.04017913690768182,
+      "insertion": 0.0038974129129201174,
+      "snapshot": 0.0013828519731760025,
+      "whole_program_evaluation": 1.3249926269054413e-05
+    },
+    "unresolved_claims": 1,
+    "xi": 0.6666666666666666
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [],
+      "explanation": ""
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 3,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "2b2118b6bb326aaf61d2f40653df623e2ab34e22164b004bbfaaf5a244315e73",
+    "max_depth": 3,
+    "method": "M1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 13.862642399999999,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": false,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/route_loss/M1",
+    "states": {
+      "A_2": false,
+      "A_4": false,
+      "answer": false
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.04256695997901261,
+      "both_reach_queries": 0.0027972038369625807,
+      "cell": 0.07244319189339876,
+      "insertion": 0.005350413033738732,
+      "snapshot": 0.0024503108579665422,
+      "whole_program_evaluation": 2.9860064387321472e-05
+    },
+    "unresolved_claims": 3,
+    "xi": 0.6666666666666666
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [],
+      "explanation": ""
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 3,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "2b2118b6bb326aaf61d2f40653df623e2ab34e22164b004bbfaaf5a244315e73",
+    "max_depth": 3,
+    "method": "B3",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 13.862642399999999,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": false,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/route_loss/B3",
+    "states": {
+      "A_2": false,
+      "A_4": false,
+      "answer": false
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.00045509100891649723,
+      "both_reach_queries": 0.00024767499417066574,
+      "cell": 0.006608268013224006,
+      "insertion": 0.0009098220616579056,
+      "snapshot": 0.0002154349349439144,
+      "whole_program_evaluation": 1.4190096408128738e-05
+    },
+    "unresolved_claims": 3,
+    "xi": 0.6666666666666666
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a32434ed0796ead7596318b18b1b7f0ee0d5e9ca3377223dd26b81840f5fb7b0",
+    "max_depth": 3,
+    "method": "B0",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 17.345631302999998,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/benign/B0",
+    "states": {
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.0849907994270325e-05,
+      "both_reach_queries": 0.0002246759831905365,
+      "cell": 0.0030736878979951143,
+      "insertion": 0.0005001898389309645,
+      "snapshot": 0.00020422600209712982,
+      "whole_program_evaluation": 1.3318844139575958e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a32434ed0796ead7596318b18b1b7f0ee0d5e9ca3377223dd26b81840f5fb7b0",
+    "max_depth": 3,
+    "method": "B1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 17.345631302999998,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_2"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/benign/B1",
+    "states": {
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.00028107408434152603,
+      "both_reach_queries": 0.00022365478798747063,
+      "cell": 0.0031083880458027124,
+      "insertion": 0.00040792208164930344,
+      "snapshot": 0.00020241597667336464,
+      "whole_program_evaluation": 1.2420117855072021e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a32434ed0796ead7596318b18b1b7f0ee0d5e9ca3377223dd26b81840f5fb7b0",
+    "max_depth": 3,
+    "method": "B2",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 17.345631302999998,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_2"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/benign/B2",
+    "states": {
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.017208575969561934,
+      "both_reach_queries": 0.001625586999580264,
+      "cell": 0.034424531972035766,
+      "insertion": 0.0038734418340027332,
+      "snapshot": 0.0014231018722057343,
+      "whole_program_evaluation": 2.013007178902626e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a32434ed0796ead7596318b18b1b7f0ee0d5e9ca3377223dd26b81840f5fb7b0",
+    "max_depth": 3,
+    "method": "M1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 17.345631302999998,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/benign/M1",
+    "states": {
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.03793714218772948,
+      "both_reach_queries": 0.0016152169555425644,
+      "cell": 0.055044609820470214,
+      "insertion": 0.0038873120211064816,
+      "snapshot": 0.0014714011922478676,
+      "whole_program_evaluation": 1.4829915016889572e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [
+      "A_2"
+    ],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a32434ed0796ead7596318b18b1b7f0ee0d5e9ca3377223dd26b81840f5fb7b0",
+    "max_depth": 3,
+    "method": "B3",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S6/3905-3935/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/eda/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 17.345631302999998,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/benign/B3",
+    "states": {
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.0003018740098923445,
+      "both_reach_queries": 0.00025857496075332165,
+      "cell": 0.0037593450397253036,
+      "insertion": 0.0004748199135065079,
+      "snapshot": 0.00021096598356962204,
+      "whole_program_evaluation": 1.4069955796003342e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a32434ed0796ead7596318b18b1b7f0ee0d5e9ca3377223dd26b81840f5fb7b0",
+    "max_depth": 3,
+    "method": "B0",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/cardiac/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/irrelevant/B0",
+    "states": {
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.0808929800987244e-05,
+      "both_reach_queries": 0.00017828703857958317,
+      "cell": 0.002746014855802059,
+      "insertion": 0.00040707201696932316,
+      "snapshot": 0.00021503493189811707,
+      "whole_program_evaluation": 1.2530013918876648e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a32434ed0796ead7596318b18b1b7f0ee0d5e9ca3377223dd26b81840f5fb7b0",
+    "max_depth": 3,
+    "method": "B1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/cardiac/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/irrelevant/B1",
+    "states": {
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 2.615898847579956e-05,
+      "both_reach_queries": 0.00044114096090197563,
+      "cell": 0.0033308928832411766,
+      "insertion": 0.0004983399994671345,
+      "snapshot": 0.0004207710735499859,
+      "whole_program_evaluation": 3.218022175133228e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a32434ed0796ead7596318b18b1b7f0ee0d5e9ca3377223dd26b81840f5fb7b0",
+    "max_depth": 3,
+    "method": "B2",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/cardiac/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/irrelevant/B2",
+    "states": {
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.0400544852018356e-06,
+      "both_reach_queries": 0.0012591748964041471,
+      "cell": 0.01428652391768992,
+      "insertion": 0.0032250951044261456,
+      "snapshot": 0.0012730150483548641,
+      "whole_program_evaluation": 1.3768905773758888e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a32434ed0796ead7596318b18b1b7f0ee0d5e9ca3377223dd26b81840f5fb7b0",
+    "max_depth": 3,
+    "method": "M1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/cardiac/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/irrelevant/M1",
+    "states": {
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 7.699709385633469e-07,
+      "both_reach_queries": 0.0013496831525117159,
+      "cell": 0.014178767101839185,
+      "insertion": 0.0031534868758171797,
+      "snapshot": 0.0012580249458551407,
+      "whole_program_evaluation": 1.3029901310801506e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "ppg_dalia-S6-e1-d3-single",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "ppg_dalia",
+    "declared_witness_counts": [
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_2": 1,
+      "A_4": 2,
+      "answer": 3
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "ppg_dalia-S6-e1",
+    "intended_depth": 3,
+    "knowledge_time": 3966.0,
+    "logical_hash": "a32434ed0796ead7596318b18b1b7f0ee0d5e9ca3377223dd26b81840f5fb7b0",
+    "max_depth": 3,
+    "method": "B3",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_2": [],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 3,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 3935.0,
+        "event_start_seconds": 3905.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3966.0,
+        "logical_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S6/3905-3935/cardiac/raw"
+        ],
+        "subject_id": "S6",
+        "supersedes_id": "ppg_dalia/S6/3905-3935/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/ppg_dalia-S6-e1-d3-single/fixture/irrelevant/B3",
+    "states": {
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S6",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.0970048606395721e-05,
+      "both_reach_queries": 0.00018379604443907738,
+      "cell": 0.002996040042489767,
+      "insertion": 0.0005562391597777605,
+      "snapshot": 0.00021305587142705917,
+      "whole_program_evaluation": 1.2829899787902832e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  }
+]

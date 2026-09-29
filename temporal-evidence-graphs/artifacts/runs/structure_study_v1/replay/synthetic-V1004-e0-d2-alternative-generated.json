@@ -1,0 +1,4073 @@
+[
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 0,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4",
+      "B_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "2bf8499dfc701e3cac12c3182cfb0c556cf85340b1fc98c7345106827b63f9c1",
+    "max_depth": 2,
+    "method": "B0",
+    "missed_changes": 3,
+    "missed_ids": [
+      "A_first_4",
+      "B_first_4",
+      "answer"
+    ],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "B_first_1": false,
+      "B_first_2": false,
+      "B_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_first_4",
+      "B_first_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      },
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 420.0,
+        "event_start_seconds": 300.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/300-420/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 120.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/300-420/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/300-420/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/300-420/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/necessary/B0",
+    "states": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.195911318063736e-05,
+      "both_reach_queries": 0.00026328512467443943,
+      "cell": 0.003950090846046805,
+      "insertion": 0.0006123080383986235,
+      "snapshot": 0.00029435381293296814,
+      "whole_program_evaluation": 1.6720034182071686e-05
+    },
+    "unresolved_claims": 0,
+    "xi": 0.3333333333333333
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 2,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4",
+      "B_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "ecb18ae9f4abd623bc91206ce0dba223f1f199d24c38085755f1314879786cdf",
+    "max_depth": 2,
+    "method": "B1",
+    "missed_changes": 1,
+    "missed_ids": [
+      "answer"
+    ],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "B_first_1": false,
+      "B_first_2": false,
+      "B_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_first_4",
+      "B_first_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      },
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 420.0,
+        "event_start_seconds": 300.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/300-420/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 120.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/300-420/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/300-420/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/300-420/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_first_4",
+      "B_first_4"
+    ],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/necessary/B1",
+    "states": {
+      "A_first_4": false,
+      "B_first_4": false,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.00043410109356045723,
+      "both_reach_queries": 0.0002621349412947893,
+      "cell": 0.004897391889244318,
+      "insertion": 0.0006291370373219252,
+      "snapshot": 0.0002855339553207159,
+      "whole_program_evaluation": 1.722993329167366e-05
+    },
+    "unresolved_claims": 2,
+    "xi": 0.3333333333333333
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 2,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4",
+      "B_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "ecb18ae9f4abd623bc91206ce0dba223f1f199d24c38085755f1314879786cdf",
+    "max_depth": 2,
+    "method": "B2",
+    "missed_changes": 1,
+    "missed_ids": [
+      "answer"
+    ],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "B_first_1": false,
+      "B_first_2": false,
+      "B_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_first_4",
+      "B_first_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      },
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 420.0,
+        "event_start_seconds": 300.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/300-420/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 120.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/300-420/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/300-420/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/300-420/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_first_4",
+      "B_first_4"
+    ],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/necessary/B2",
+    "states": {
+      "A_first_4": false,
+      "B_first_4": false,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.029286644887179136,
+      "both_reach_queries": 0.0021941871382296085,
+      "cell": 0.05833373498171568,
+      "insertion": 0.006343063898384571,
+      "snapshot": 0.0023175140377134085,
+      "whole_program_evaluation": 2.9409071430563927e-05
+    },
+    "unresolved_claims": 2,
+    "xi": 0.3333333333333333
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [],
+      "explanation": ""
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 3,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4",
+      "B_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "7ee92aec4cc59818aa1ef2c1e3e3b0f90aa1392b9dd2f3b462bdaa0767a4dd15",
+    "max_depth": 2,
+    "method": "M1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "B_first_1": false,
+      "B_first_2": false,
+      "B_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_first_4",
+      "B_first_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      },
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 420.0,
+        "event_start_seconds": 300.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/300-420/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 120.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/300-420/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/300-420/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/300-420/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": false,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_first_4",
+      "B_first_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/necessary/M1",
+    "states": {
+      "A_first_4": false,
+      "B_first_4": false,
+      "answer": false
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.034804734867066145,
+      "both_reach_queries": 0.002615487901493907,
+      "cell": 0.06819340703077614,
+      "insertion": 0.0066754070576280355,
+      "snapshot": 0.0031815259717404842,
+      "whole_program_evaluation": 4.0569109842181206e-05
+    },
+    "unresolved_claims": 3,
+    "xi": 0.3333333333333333
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [],
+      "explanation": ""
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 3,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4",
+      "B_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "7ee92aec4cc59818aa1ef2c1e3e3b0f90aa1392b9dd2f3b462bdaa0767a4dd15",
+    "max_depth": 2,
+    "method": "B3",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 4,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "B_first_1": false,
+      "B_first_2": false,
+      "B_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_first_4",
+      "B_first_4",
+      "answer"
+    ],
+    "required_changes": 3,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      },
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 420.0,
+        "event_start_seconds": 300.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/300-420/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 120.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/300-420/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/300-420/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/300-420/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": false,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_first_4",
+      "B_first_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/necessary/B3",
+    "states": {
+      "A_first_4": false,
+      "B_first_4": false,
+      "answer": false
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.0003513928968459368,
+      "both_reach_queries": 0.00028916518203914165,
+      "cell": 0.007473659934476018,
+      "insertion": 0.0010294390376657248,
+      "snapshot": 0.000304084038361907,
+      "whole_program_evaluation": 1.708907075226307e-05
+    },
+    "unresolved_claims": 3,
+    "xi": 0.3333333333333333
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 0,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "2bf8499dfc701e3cac12c3182cfb0c556cf85340b1fc98c7345106827b63f9c1",
+    "max_depth": 2,
+    "method": "B0",
+    "missed_changes": 1,
+    "missed_ids": [
+      "A_first_4"
+    ],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 3,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_first_4"
+    ],
+    "required_changes": 1,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/route_loss/B0",
+    "states": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.0800082236528397e-05,
+      "both_reach_queries": 0.00022518495097756386,
+      "cell": 0.0033086440525949,
+      "insertion": 0.0004590109456330538,
+      "snapshot": 0.000276405131444335,
+      "whole_program_evaluation": 1.6730045899748802e-05
+    },
+    "unresolved_claims": 0,
+    "xi": 0.0
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 1,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "82a6d7704c8cd94963611379004b142e2f409d0522840aee995f4f05263e668d",
+    "max_depth": 2,
+    "method": "B1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 3,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_first_4"
+    ],
+    "required_changes": 1,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_first_4"
+    ],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/route_loss/B1",
+    "states": {
+      "A_first_4": false,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.00048429984599351883,
+      "both_reach_queries": 0.000565327936783433,
+      "cell": 0.005174576072022319,
+      "insertion": 0.0005518088582903147,
+      "snapshot": 0.0006710069719702005,
+      "whole_program_evaluation": 3.862008452415466e-05
+    },
+    "unresolved_claims": 1,
+    "xi": 0.0
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 1,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "82a6d7704c8cd94963611379004b142e2f409d0522840aee995f4f05263e668d",
+    "max_depth": 2,
+    "method": "B2",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 3,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_first_4"
+    ],
+    "required_changes": 1,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_first_4"
+    ],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/route_loss/B2",
+    "states": {
+      "A_first_4": false,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.01261888793669641,
+      "both_reach_queries": 0.002043779008090496,
+      "cell": 0.036179906921461225,
+      "insertion": 0.0036362370010465384,
+      "snapshot": 0.001536369090899825,
+      "whole_program_evaluation": 1.7700018361210823e-05
+    },
+    "unresolved_claims": 1,
+    "xi": 0.0
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 1,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "82a6d7704c8cd94963611379004b142e2f409d0522840aee995f4f05263e668d",
+    "max_depth": 2,
+    "method": "M1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 3,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_first_4"
+    ],
+    "required_changes": 1,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_first_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/route_loss/M1",
+    "states": {
+      "A_first_4": false,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.025067859096452594,
+      "both_reach_queries": 0.0026152380742132664,
+      "cell": 0.057756006019189954,
+      "insertion": 0.005266573978587985,
+      "snapshot": 0.0031953761354088783,
+      "whole_program_evaluation": 3.9539067074656487e-05
+    },
+    "unresolved_claims": 1,
+    "xi": 0.0
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 1,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "82a6d7704c8cd94963611379004b142e2f409d0522840aee995f4f05263e668d",
+    "max_depth": 2,
+    "method": "B3",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 3,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_first_4"
+    ],
+    "required_changes": 1,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.1984598636627197,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_first_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/route_loss/B3",
+    "states": {
+      "A_first_4": false,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.0003532830160111189,
+      "both_reach_queries": 0.00024696486070752144,
+      "cell": 0.007143557071685791,
+      "insertion": 0.0006544969510287046,
+      "snapshot": 0.0002931940834969282,
+      "whole_program_evaluation": 1.71000137925148e-05
+    },
+    "unresolved_claims": 1,
+    "xi": 0.0
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "2bf8499dfc701e3cac12c3182cfb0c556cf85340b1fc98c7345106827b63f9c1",
+    "max_depth": 2,
+    "method": "B0",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 3,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.5745139434933662,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/benign/B0",
+    "states": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.1220108717679977e-05,
+      "both_reach_queries": 0.00022619497030973434,
+      "cell": 0.0032462049275636673,
+      "insertion": 0.0005087901372462511,
+      "snapshot": 0.00027594389393925667,
+      "whole_program_evaluation": 1.6459962353110313e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "2bf8499dfc701e3cac12c3182cfb0c556cf85340b1fc98c7345106827b63f9c1",
+    "max_depth": 2,
+    "method": "B1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 3,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.5745139434933662,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_first_4"
+    ],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/benign/B1",
+    "states": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.00023523508571088314,
+      "both_reach_queries": 0.00023417500779032707,
+      "cell": 0.0033485230524092913,
+      "insertion": 0.0004134720657020807,
+      "snapshot": 0.0002702150959521532,
+      "whole_program_evaluation": 1.637008972465992e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "2bf8499dfc701e3cac12c3182cfb0c556cf85340b1fc98c7345106827b63f9c1",
+    "max_depth": 2,
+    "method": "B2",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 3,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.5745139434933662,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_first_4"
+    ],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/benign/B2",
+    "states": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.012676247162744403,
+      "both_reach_queries": 0.0017305451910942793,
+      "cell": 0.031201796839013696,
+      "insertion": 0.003804323961958289,
+      "snapshot": 0.001586308004334569,
+      "whole_program_evaluation": 1.7629936337471008e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "2bf8499dfc701e3cac12c3182cfb0c556cf85340b1fc98c7345106827b63f9c1",
+    "max_depth": 2,
+    "method": "M1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 3,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.5745139434933662,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_first_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/benign/M1",
+    "states": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.023289103992283344,
+      "both_reach_queries": 0.0020567881874740124,
+      "cell": 0.047114089131355286,
+      "insertion": 0.005631327861919999,
+      "snapshot": 0.0022082359064370394,
+      "whole_program_evaluation": 2.738996408879757e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [
+      "A_first_4"
+    ],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "2bf8499dfc701e3cac12c3182cfb0c556cf85340b1fc98c7345106827b63f9c1",
+    "max_depth": 2,
+    "method": "B3",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 3,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "synthetic/V1004/420-450/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/eda/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "synthetic_uS",
+        "value": 1.5745139434933662,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_first_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/benign/B3",
+    "states": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.00029922393150627613,
+      "both_reach_queries": 0.0002548850607126951,
+      "cell": 0.006908921990543604,
+      "insertion": 0.0007374549750238657,
+      "snapshot": 0.00028232415206730366,
+      "whole_program_evaluation": 1.7029931768774986e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "2bf8499dfc701e3cac12c3182cfb0c556cf85340b1fc98c7345106827b63f9c1",
+    "max_depth": 2,
+    "method": "B0",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "synthetic/V1004/420-450/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/cardiac/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/irrelevant/B0",
+    "states": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.0810093954205513e-05,
+      "both_reach_queries": 0.0001908459234982729,
+      "cell": 0.0036726361140608788,
+      "insertion": 0.000902912113815546,
+      "snapshot": 0.00026991497725248337,
+      "whole_program_evaluation": 1.6560079529881477e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "2bf8499dfc701e3cac12c3182cfb0c556cf85340b1fc98c7345106827b63f9c1",
+    "max_depth": 2,
+    "method": "B1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "synthetic/V1004/420-450/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/cardiac/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/irrelevant/B1",
+    "states": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.1409865692257881e-05,
+      "both_reach_queries": 0.00024104607291519642,
+      "cell": 0.004603317938745022,
+      "insertion": 0.0009604908991605043,
+      "snapshot": 0.0004710801877081394,
+      "whole_program_evaluation": 1.6309088096022606e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "2bf8499dfc701e3cac12c3182cfb0c556cf85340b1fc98c7345106827b63f9c1",
+    "max_depth": 2,
+    "method": "B2",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "synthetic/V1004/420-450/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/cardiac/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/irrelevant/B2",
+    "states": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 9.499490261077881e-07,
+      "both_reach_queries": 0.0014810310676693916,
+      "cell": 0.018326093908399343,
+      "insertion": 0.003816494019702077,
+      "snapshot": 0.0015724680852144957,
+      "whole_program_evaluation": 1.8699094653129578e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "2bf8499dfc701e3cac12c3182cfb0c556cf85340b1fc98c7345106827b63f9c1",
+    "max_depth": 2,
+    "method": "M1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "synthetic/V1004/420-450/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/cardiac/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/irrelevant/M1",
+    "states": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.3899989426136017e-06,
+      "both_reach_queries": 0.0015118599403649569,
+      "cell": 0.01843868102878332,
+      "insertion": 0.0038090338930487633,
+      "snapshot": 0.0016884461510926485,
+      "whole_program_evaluation": 2.7938978746533394e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_first_4",
+          "proposition": "A_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "B_first_4",
+          "proposition": "B_first_4",
+          "sentence": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds.",
+          "value": true,
+          "witnesses": [
+            [
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_first_4"
+            ],
+            [
+              "B_first_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [420.0, 450.0] are all greater than or equal to their respective thresholds. The eda_median, eda_iqr, acceleration_magnitude_sd, and eda_missing_fraction values for the interval [300.0, 420.0] are all greater than or equal to their respective thresholds. At least one eligible recording window satisfies all four specified numerical comparisons."
+    },
+    "case_id": "synthetic-V1004-e0-d2-alternative",
+    "claims": 3,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "synthetic",
+    "declared_witness_counts": [
+      1,
+      1,
+      2
+    ],
+    "depths": {
+      "A_first_4": 1,
+      "B_first_4": 1,
+      "answer": 2
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "synthetic-V1004-e0",
+    "intended_depth": 2,
+    "knowledge_time": 481.0,
+    "logical_hash": "2bf8499dfc701e3cac12c3182cfb0c556cf85340b1fc98c7345106827b63f9c1",
+    "max_depth": 2,
+    "method": "B3",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "generated",
+    "parentless": 2,
+    "parents": {
+      "A_first_4": [],
+      "B_first_4": [],
+      "answer": [
+        "A_first_4",
+        "B_first_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 2,
+    "regime": "alternative",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "synthetic",
+        "event_end_seconds": 450.0,
+        "event_start_seconds": 420.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 481.0,
+        "logical_id": "synthetic/V1004/420-450/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "synthetic/V1004/420-450/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "synthetic/V1004/420-450/cardiac/raw"
+        ],
+        "subject_id": "V1004",
+        "supersedes_id": "synthetic/V1004/420-450/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/synthetic-V1004-e0-d2-alternative/generated/irrelevant/B3",
+    "states": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "subject": "V1004",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.1230120435357094e-05,
+      "both_reach_queries": 0.0001885469537228346,
+      "cell": 0.004941571969538927,
+      "insertion": 0.0006863060407340527,
+      "snapshot": 0.0003331531770527363,
+      "whole_program_evaluation": 1.6568927094340324e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  }
+]

@@ -1,0 +1,4214 @@
+[
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 0,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "4ea1702bd4180a2a39d8cc249385d8adbe96b11e896c7f8b89b9a8ace45d2a34",
+    "max_depth": 4,
+    "method": "B0",
+    "missed_changes": 4,
+    "missed_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 4,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 6.0183112,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/necessary/B0",
+    "states": {
+      "A_1": true,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.1318828910589218e-05,
+      "both_reach_queries": 0.0002265949733555317,
+      "cell": 0.0027894550003111362,
+      "insertion": 0.000420501921325922,
+      "snapshot": 0.00021433597430586815,
+      "whole_program_evaluation": 1.4269957318902016e-05
+    },
+    "unresolved_claims": 0,
+    "xi": 0.75
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 1,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "e196bd4b2fae6e15dd32dc2fda3420bffd3e7ed2af88563a9340e92fe7a439ce",
+    "max_depth": 4,
+    "method": "B1",
+    "missed_changes": 3,
+    "missed_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 4,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 6.0183112,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_1"
+    ],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/necessary/B1",
+    "states": {
+      "A_1": false,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.0003698721993714571,
+      "both_reach_queries": 0.0003395529929548502,
+      "cell": 0.004196015885099769,
+      "insertion": 0.0005041998811066151,
+      "snapshot": 0.0005880480166524649,
+      "whole_program_evaluation": 1.4669960364699364e-05
+    },
+    "unresolved_claims": 1,
+    "xi": 0.75
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 1,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "e196bd4b2fae6e15dd32dc2fda3420bffd3e7ed2af88563a9340e92fe7a439ce",
+    "max_depth": 4,
+    "method": "B2",
+    "missed_changes": 3,
+    "missed_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 4,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 6.0183112,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_1"
+    ],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/necessary/B2",
+    "states": {
+      "A_1": false,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.01058295788243413,
+      "both_reach_queries": 0.0015735281631350517,
+      "cell": 0.030048980144783854,
+      "insertion": 0.003197966143488884,
+      "snapshot": 0.0012776050716638565,
+      "whole_program_evaluation": 1.3879965990781784e-05
+    },
+    "unresolved_claims": 1,
+    "xi": 0.75
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [],
+      "explanation": ""
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 4,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "658a2a2ea305242b46f5a5012a4bb16a60971716a3f96039f61a6ab045977b8f",
+    "max_depth": 4,
+    "method": "M1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 4,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 6.0183112,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": false,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/necessary/M1",
+    "states": {
+      "A_1": false,
+      "A_2": false,
+      "A_4": false,
+      "answer": false
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.036028190050274134,
+      "both_reach_queries": 0.0018785330466926098,
+      "cell": 0.058250935981050134,
+      "insertion": 0.0038289439398795366,
+      "snapshot": 0.0019685300067067146,
+      "whole_program_evaluation": 2.104882150888443e-05
+    },
+    "unresolved_claims": 4,
+    "xi": 0.75
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [],
+      "explanation": ""
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "necessary",
+    "corrected": 4,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "658a2a2ea305242b46f5a5012a4bb16a60971716a3f96039f61a6ab045977b8f",
+    "max_depth": 4,
+    "method": "B3",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 4,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "necessary",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-necessary-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 6.0183112,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": false,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/necessary/B3",
+    "states": {
+      "A_1": false,
+      "A_2": false,
+      "A_4": false,
+      "answer": false
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.00040612206794321537,
+      "both_reach_queries": 0.0002495851367712021,
+      "cell": 0.00593492086045444,
+      "insertion": 0.0005265988875180483,
+      "snapshot": 0.0002276159357279539,
+      "whole_program_evaluation": 1.4149816706776619e-05
+    },
+    "unresolved_claims": 4,
+    "xi": 0.75
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 0,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "4ea1702bd4180a2a39d8cc249385d8adbe96b11e896c7f8b89b9a8ace45d2a34",
+    "max_depth": 4,
+    "method": "B0",
+    "missed_changes": 4,
+    "missed_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 4,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 6.0183112,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/route_loss/B0",
+    "states": {
+      "A_1": true,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.1599855497479439e-05,
+      "both_reach_queries": 0.00022437609732151031,
+      "cell": 0.002813854021951556,
+      "insertion": 0.000406831968575716,
+      "snapshot": 0.00022626505233347416,
+      "whole_program_evaluation": 2.1279091015458107e-05
+    },
+    "unresolved_claims": 0,
+    "xi": 0.75
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 1,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "e196bd4b2fae6e15dd32dc2fda3420bffd3e7ed2af88563a9340e92fe7a439ce",
+    "max_depth": 4,
+    "method": "B1",
+    "missed_changes": 3,
+    "missed_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 4,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 6.0183112,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_1"
+    ],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/route_loss/B1",
+    "states": {
+      "A_1": false,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.00025303522124886513,
+      "both_reach_queries": 0.00022856495343148708,
+      "cell": 0.003746655071154237,
+      "insertion": 0.00039388216100633144,
+      "snapshot": 0.0002508750185370445,
+      "whole_program_evaluation": 1.3299984857439995e-05
+    },
+    "unresolved_claims": 1,
+    "xi": 0.75
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 1,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "e196bd4b2fae6e15dd32dc2fda3420bffd3e7ed2af88563a9340e92fe7a439ce",
+    "max_depth": 4,
+    "method": "B2",
+    "missed_changes": 3,
+    "missed_ids": [
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 4,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 6.0183112,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_1"
+    ],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/route_loss/B2",
+    "states": {
+      "A_1": false,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.010559879010543227,
+      "both_reach_queries": 0.002120508113875985,
+      "cell": 0.03386545297689736,
+      "insertion": 0.004090138012543321,
+      "snapshot": 0.0018726619891822338,
+      "whole_program_evaluation": 2.3039989173412323e-05
+    },
+    "unresolved_claims": 1,
+    "xi": 0.75
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [],
+      "explanation": ""
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 4,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "658a2a2ea305242b46f5a5012a4bb16a60971716a3f96039f61a6ab045977b8f",
+    "max_depth": 4,
+    "method": "M1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 4,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 6.0183112,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": false,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/route_loss/M1",
+    "states": {
+      "A_1": false,
+      "A_2": false,
+      "A_4": false,
+      "answer": false
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.03633641405031085,
+      "both_reach_queries": 0.0018891820218414068,
+      "cell": 0.05982606392353773,
+      "insertion": 0.003939541056752205,
+      "snapshot": 0.002033469034358859,
+      "whole_program_evaluation": 2.290983684360981e-05
+    },
+    "unresolved_claims": 4,
+    "xi": 0.75
+  },
+  {
+    "adequate_root_after": false,
+    "after_display": {
+      "claims": [],
+      "explanation": ""
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "route_loss",
+    "corrected": 4,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "658a2a2ea305242b46f5a5012a4bb16a60971716a3f96039f61a6ab045977b8f",
+    "max_depth": 4,
+    "method": "B3",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "answer": false
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "required_changes": 4,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 6.0183112,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": false,
+    "root_truth_after": false,
+    "scheduled_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/route_loss/B3",
+    "states": {
+      "A_1": false,
+      "A_2": false,
+      "A_4": false,
+      "answer": false
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.00043089105747640133,
+      "both_reach_queries": 0.0002798340283334255,
+      "cell": 0.006186716025695205,
+      "insertion": 0.0005986879114061594,
+      "snapshot": 0.00023019500076770782,
+      "whole_program_evaluation": 1.5069963410496712e-05
+    },
+    "unresolved_claims": 4,
+    "xi": 0.75
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "4ea1702bd4180a2a39d8cc249385d8adbe96b11e896c7f8b89b9a8ace45d2a34",
+    "max_depth": 4,
+    "method": "B0",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 7.530411889,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/benign/B0",
+    "states": {
+      "A_1": true,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.1090189218521118e-05,
+      "both_reach_queries": 0.00023575592786073685,
+      "cell": 0.002899722196161747,
+      "insertion": 0.0005621390882879496,
+      "snapshot": 0.00022210506722331047,
+      "whole_program_evaluation": 1.3359123840928078e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "4ea1702bd4180a2a39d8cc249385d8adbe96b11e896c7f8b89b9a8ace45d2a34",
+    "max_depth": 4,
+    "method": "B1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 7.530411889,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_1"
+    ],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/benign/B1",
+    "states": {
+      "A_1": true,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.000203415984287858,
+      "both_reach_queries": 0.00024916487745940685,
+      "cell": 0.0030222691129893064,
+      "insertion": 0.0005175690166652203,
+      "snapshot": 0.0002205059863626957,
+      "whole_program_evaluation": 1.3539101928472519e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "4ea1702bd4180a2a39d8cc249385d8adbe96b11e896c7f8b89b9a8ace45d2a34",
+    "max_depth": 4,
+    "method": "B2",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 7.530411889,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_1"
+    ],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/benign/B2",
+    "states": {
+      "A_1": true,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.01060752896592021,
+      "both_reach_queries": 0.0020844079554080963,
+      "cell": 0.03214031783863902,
+      "insertion": 0.004018639912828803,
+      "snapshot": 0.0018652831204235554,
+      "whole_program_evaluation": 2.229004167020321e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "4ea1702bd4180a2a39d8cc249385d8adbe96b11e896c7f8b89b9a8ace45d2a34",
+    "max_depth": 4,
+    "method": "M1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 7.530411889,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/benign/M1",
+    "states": {
+      "A_1": true,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.03619292704388499,
+      "both_reach_queries": 0.0023158041294664145,
+      "cell": 0.05848869099281728,
+      "insertion": 0.004860632121562958,
+      "snapshot": 0.0024437219835817814,
+      "whole_program_evaluation": 3.1289178878068924e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "benign",
+    "corrected": 0,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [
+      "A_1"
+    ],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "4ea1702bd4180a2a39d8cc249385d8adbe96b11e896c7f8b89b9a8ace45d2a34",
+    "max_depth": 4,
+    "method": "B3",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 5,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "benign",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S7/3895-3925/eda_median/structure-benign-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/eda/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 7.530411889,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [
+      "A_1",
+      "A_2",
+      "A_4",
+      "answer"
+    ],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/benign/B3",
+    "states": {
+      "A_1": true,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 0.0003105239011347294,
+      "both_reach_queries": 0.0002636250574141741,
+      "cell": 0.006693865871056914,
+      "insertion": 0.0007499051280319691,
+      "snapshot": 0.00022444594651460648,
+      "whole_program_evaluation": 1.4569144695997238e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "4ea1702bd4180a2a39d8cc249385d8adbe96b11e896c7f8b89b9a8ace45d2a34",
+    "max_depth": 4,
+    "method": "B0",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "wesad/S7/3895-3925/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/cardiac/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/irrelevant/B0",
+    "states": {
+      "A_1": true,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.0850140824913979e-05,
+      "both_reach_queries": 0.00018165609799325466,
+      "cell": 0.002669336972758174,
+      "insertion": 0.0004171819891780615,
+      "snapshot": 0.00021601514890789986,
+      "whole_program_evaluation": 1.3800105080008507e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "4ea1702bd4180a2a39d8cc249385d8adbe96b11e896c7f8b89b9a8ace45d2a34",
+    "max_depth": 4,
+    "method": "B1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "wesad/S7/3895-3925/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/cardiac/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/irrelevant/B1",
+    "states": {
+      "A_1": true,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.1180061846971512e-05,
+      "both_reach_queries": 0.000255415216088295,
+      "cell": 0.0026249170769006014,
+      "insertion": 0.0003910020459443331,
+      "snapshot": 0.00021734600886702538,
+      "whole_program_evaluation": 1.3628974556922913e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "4ea1702bd4180a2a39d8cc249385d8adbe96b11e896c7f8b89b9a8ace45d2a34",
+    "max_depth": 4,
+    "method": "B2",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "wesad/S7/3895-3925/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/cardiac/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/irrelevant/B2",
+    "states": {
+      "A_1": true,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": true,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 6.400514394044876e-07,
+      "both_reach_queries": 0.0012401249259710312,
+      "cell": 0.014004071010276675,
+      "insertion": 0.0032276350539177656,
+      "snapshot": 0.0012737549841403961,
+      "whole_program_evaluation": 1.3589859008789062e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "4ea1702bd4180a2a39d8cc249385d8adbe96b11e896c7f8b89b9a8ace45d2a34",
+    "max_depth": 4,
+    "method": "M1",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "wesad/S7/3895-3925/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/cardiac/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/irrelevant/M1",
+    "states": {
+      "A_1": true,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 7.399357855319977e-07,
+      "both_reach_queries": 0.001313843997195363,
+      "cell": 0.013742194976657629,
+      "insertion": 0.0030523089226335287,
+      "snapshot": 0.0012907241471111774,
+      "whole_program_evaluation": 1.3960059732198715e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  },
+  {
+    "adequate_root_after": true,
+    "after_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "before_display": {
+      "claims": [
+        {
+          "claim_id": "A_1",
+          "proposition": "A_first_1",
+          "sentence": "Window A satisfies its first 1 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A1"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_2",
+          "proposition": "A_first_2",
+          "sentence": "Window A satisfies its first 2 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_1",
+              "A2"
+            ]
+          ]
+        },
+        {
+          "claim_id": "A_4",
+          "proposition": "A_first_4",
+          "sentence": "Window A satisfies its first 4 specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_2",
+              "A3",
+              "A4"
+            ]
+          ]
+        },
+        {
+          "claim_id": "answer",
+          "proposition": "answer",
+          "sentence": "At least one eligible window satisfies all four specified numerical tests.",
+          "value": true,
+          "witnesses": [
+            [
+              "A_4"
+            ]
+          ]
+        }
+      ],
+      "explanation": "Window A satisfies its first 1 specified numerical tests. Window A satisfies its first 2 specified numerical tests. Window A satisfies its first 4 specified numerical tests. At least one eligible window satisfies all four specified numerical tests."
+    },
+    "case_id": "wesad-S7-e1-d4-single",
+    "claims": 4,
+    "collateral": 0,
+    "collateral_ids": [],
+    "condition": "irrelevant",
+    "corrected": 0,
+    "dataset": "wesad",
+    "declared_witness_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "depths": {
+      "A_1": 1,
+      "A_2": 2,
+      "A_4": 3,
+      "answer": 4
+    },
+    "direct_scheduled_ids": [],
+    "episode_id": "wesad-S7-e1",
+    "intended_depth": 4,
+    "knowledge_time": 3956.0,
+    "logical_hash": "4ea1702bd4180a2a39d8cc249385d8adbe96b11e896c7f8b89b9a8ace45d2a34",
+    "max_depth": 4,
+    "method": "B3",
+    "missed_changes": 0,
+    "missed_ids": [],
+    "origin": "fixture",
+    "parentless": 1,
+    "parents": {
+      "A_1": [],
+      "A_2": [
+        "A_1"
+      ],
+      "A_4": [
+        "A_2"
+      ],
+      "answer": [
+        "A_4"
+      ]
+    },
+    "potential_affected_records": 0,
+    "predicate_truth_after": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "answer": true
+    },
+    "realized_depth": 4,
+    "regime": "single",
+    "replacement_generation": "not scheduled in this structural maintenance experiment",
+    "required_change_ids": [],
+    "required_changes": 0,
+    "revisions": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 3956.0,
+        "logical_id": "wesad/S7/3895-3925/cardiac_missing_fraction",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "irrelevant",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "cardiac_missing_fraction",
+        "record_id": "wesad/S7/3895-3925/cardiac_missing_fraction/structure-irrelevant-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S7/3895-3925/cardiac/raw"
+        ],
+        "subject_id": "S7",
+        "supersedes_id": "wesad/S7/3895-3925/cardiac_missing_fraction/v1",
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.01,
+        "version": 2
+      }
+    ],
+    "root_count": 1,
+    "root_preserved": true,
+    "root_truth_after": true,
+    "scheduled_ids": [],
+    "scope": "structure_study_v1/wesad-S7-e1-d4-single/fixture/irrelevant/B3",
+    "states": {
+      "A_1": true,
+      "A_2": true,
+      "A_4": true,
+      "answer": true
+    },
+    "subject": "S7",
+    "theory_direct_prediction_agrees": null,
+    "timing_note": "both direct and full queries measured for instrumentation; not production-only update latency",
+    "timing_seconds": {
+      "assessment_write": 1.1350028216838837e-05,
+      "both_reach_queries": 0.0001836959272623062,
+      "cell": 0.002831843914464116,
+      "insertion": 0.0004637402016669512,
+      "snapshot": 0.00022126594558358192,
+      "whole_program_evaluation": 1.2859934940934181e-05
+    },
+    "unresolved_claims": 0,
+    "xi": null
+  }
+]

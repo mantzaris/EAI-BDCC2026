@@ -125,3 +125,51 @@ def test_actual_export_projection_has_stored_and_derived_witness_ids():
     assert all(set(e["witness_edge_ids"])<=edge_ids for e in after["edges"])
     assert any(not e["directly_stored"] for e in after["edges"])
     assert all(n.get("assessment",{}).get("known_at",0)<=after["knowledge_time"] for n in after["nodes"] if n.get("assessment"))
+
+
+def test_primitive_normalization_resolves_explicit_meaning_without_adding_links():
+    from temporal_evidence.semantic.aliases import canonical_case
+    from temporal_evidence.semantic.structural_analysis import audit_program
+    episode,*_=inputs();case=build_case(episode,2,"single")
+    primitive={"claim_id":"c1","proposition":"A1","value":True,"witnesses":[["A1"]],"sentence":"The specified EDA comparison holds."}
+    candidate={"claims":[primitive],"explanation":primitive["sentence"]}
+    assert not validate(candidate,case)[0]
+    accepted,_=validate(candidate,canonical_case(case))
+    assert accepted==candidate["claims"] and accepted[0]["witnesses"]==[["A1"]]
+    assert audit_program(accepted,case)[0]["grounded"]
+    wrong=deepcopy(case)
+    for e in wrong["events"]:
+        if e["record_id"]==wrong["tests"]["A1"]["source_id"]:e["value"]=wrong["tests"]["A1"]["threshold"]-1
+    assert not audit_program(accepted,wrong)[0]["grounded"]
+
+
+def test_native_fractional_unit_is_not_an_extra_prose_number():
+    from temporal_evidence.semantic.structural_analysis import audit_program
+    episode,*_=inputs();case=build_case(episode,1,"single");t=case["tests"]["A3"]
+    c={"claim_id":"c","proposition":"A3","value":True,"witnesses":[["A3"]],
+       "sentence":f"Acceleration SD is at least {t['threshold']} 1/64g."}
+    assert not audit_program([c],case)[0]["prose_audit"]["unmatched_numbers"]
+
+
+def test_participant_names_are_scoped_to_dataset_in_uncertainty():
+    from temporal_evidence.semantic.statistics import cluster_ratio
+    rows=[{"dataset":s,"subject":"S1","episode_id":s+"e0","n":n,"d":1} for s,n in (("wesad",0),("ppg_dalia",1))]
+    result=cluster_ratio(rows,"n","d")
+    assert result["subjects"]==2 and result["mean"]==.5
+
+
+def test_historical_projection_retains_earlier_evidence_after_correction():
+    import json
+    from temporal_evidence.semantic.export import read_export
+    from temporal_evidence.semantic.projection import core,records
+    graph=read_export("artifacts/analysis/semantic_analysis_v1/exports/minimum_v1__wesad-S6-e0__correction__M1.json.gz")
+    rs=records(graph);claim=next(r for r in rs.values() if r["record_type"]=="claim" and "-c0-" in r["record_id"])
+    case=claim["record_id"].split("/claim/")[0];t=claim["metadata"]["query"]["knowledge_time"]
+    for node in graph["nodes"]:
+        if node["properties"].get("id","").startswith(case+"/claim/") and node["semantic_type"]=="claim":
+            record=json.loads(node["properties"]["payload"])
+            record["metadata"]["claim"].update(temporal_mode="historical",as_of_knowledge_time=t)
+            node["properties"]["payload"]=json.dumps(record)
+    projected=core(graph,case,t+30+.01,include_withdrawn=True)
+    assert all(e["directly_stored"] for e in projected["edges"])
+    assert all(e["resolved_knowledge_time"]==t for e in projected["edges"])

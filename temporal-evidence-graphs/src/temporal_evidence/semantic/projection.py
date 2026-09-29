@@ -47,10 +47,17 @@ def core(graph, case_id, knowledge_time, include_withdrawn=False):
         if r["record_type"] not in {"feature","claim"}: continue
         chosen[rid]=r
         if r["record_type"]!="claim": continue
+        proposition=r["metadata"].get("claim",{})
+        resolve_at=knowledge_time
+        if proposition.get("temporal_mode")=="historical":
+            resolve_at=proposition.get("as_of_knowledge_time",knowledge_time)
+            if resolve_at>knowledge_time:raise ValueError("future historical scope in semantic projection")
+        resolved_versions=current if resolve_at==knowledge_time else latest(records(graph,resolve_at))
         for source_id in r["source_ids"]:
             if source_id not in rs: continue
             original=rs[source_id]
-            resolved=current[original["logical_id"]] if original["record_type"]=="feature" else original
+            resolved=resolved_versions.get(original["logical_id"]) if original["record_type"]=="feature" else original
+            if resolved is None:continue
             target=resolved["record_id"]
             if resolved["record_type"] not in {"feature","claim"}: continue
             witness=[dbedges[(dbnodes[rid]["id"],"DEPENDS_ON",dbnodes[source_id]["id"])]["id"]]
@@ -64,6 +71,7 @@ def core(graph, case_id, knowledge_time, include_withdrawn=False):
             edges.append({"source":rid,"target":target,"type":"DEPENDS_ON" if target==source_id else "CURRENT_CITATION_PATH",
                 "directly_stored":target==source_id,"witness_edge_ids":witness,"witness_record_ids":version_ids,
                 "declared_source_id":source_id,"semantics":"declared_prerequisite" if resolved["record_type"]=="claim" else "evidence_citation",
+                "resolved_knowledge_time":resolve_at,
                 "origin":"model_parent" if resolved["record_type"]=="claim" else "model_citation"})
             agenda.append(target)
     nodes=[]; provenance={}
@@ -81,7 +89,7 @@ def core(graph, case_id, knowledge_time, include_withdrawn=False):
                     edge=dbedges.get((dbnodes[rid]["id"],"DERIVED_FROM",dbnodes[source]["id"]))
                     provenance[rid].append({"record":rs[source],"database_element_id":dbnodes[source]["id"],"edge_id":edge["id"] if edge else None})
     return {"scope":graph["scope"],"case_id":case_id,"knowledge_time":knowledge_time,
-        "projection":"latest explanation members + declared claim ancestors + current visible cited features; no SUPPORTS mirror",
+        "projection":"latest explanation members + declared claim ancestors + cited features resolved at the proposition knowledge time; no SUPPORTS mirror",
         "nodes":nodes,"edges":edges,"counts":{"nodes":len(nodes),"edges":len(edges)},
         "sidecars":{"explanation":explanation,"observation_provenance":provenance,
             "omitted_types":["subject","sensor","observation","explanation","assessment","review"],
@@ -105,3 +113,33 @@ def dependency_statistics(projected):
     return {"claims":len(claims),"features":len(nodes)-len(claims),"parentless":sum(not parents[n] for n in claims),
         "claim_parent_degrees":[len(parents[n]) for n in claims],"claim_depths":[depth(n) for n in claims],
         "direct_evidence_counts":[len(cited[n]) for n in claims],"in_degrees":list(indegree.values()),"out_degrees":list(outdegree.values())}
+
+
+def active_graph(graph, knowledge_time):
+    """Latest evidence plus current display members; provenance witnesses retained.
+
+    DEPENDS_ON alone supplies dependency degree. DERIVED_FROM is a typed provenance
+    mirror, retained for inspection but never counted twice in that degree.
+    """
+    rs=records(graph,knowledge_time); current=latest(rs)
+    selected={r["record_id"]:r for r in current.values() if r["record_type"] in {"feature","observation"}}
+    edges={}; sidecars={}
+    for r in current.values():
+        if r["record_type"]!="explanation" or not r["metadata"].get("case_id"): continue
+        c=core(graph,r["metadata"]["case_id"],knowledge_time)
+        for n in c["nodes"]: selected[n["id"]]=rs[n["id"]]
+        for e in c["edges"]: edges[(e["source"],e["type"],e["target"])]=e
+        sidecars[r["record_id"]]=c["sidecars"]
+    # Preserve actual feature provenance, including an older observation version
+    # if that is the input from which this feature was extracted.
+    for r in list(selected.values()):
+        if r["record_type"]=="feature":
+            for source in r["source_ids"]:
+                if source in rs: selected[source]=rs[source]
+    db={n["id"]:n["properties"].get("id") for n in graph["nodes"] if n["semantic_type"]!="assessment"}
+    for e in graph["edges"]:
+        a,b=db.get(e["source"]),db.get(e["target"])
+        if a in selected and b in selected and selected[a]["record_type"]=="feature" and e["type"] in {"DEPENDS_ON","DERIVED_FROM"}:
+            edges[(a,e["type"],b)]={"source":a,"target":b,"type":e["type"],"directly_stored":True,"witness_edge_ids":[e["id"]]}
+    return {"scope":graph["scope"],"knowledge_time":knowledge_time,"nodes":[{"id":k,"type":r["record_type"],"record":r} for k,r in sorted(selected.items())],
+        "edges":list(edges.values()),"sidecars":sidecars,"definition":"latest visible evidence + latest displayed claims and ancestors, with actual observation provenance; SUPPORTS mirror omitted"}

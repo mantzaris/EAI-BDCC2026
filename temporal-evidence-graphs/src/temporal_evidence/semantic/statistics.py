@@ -14,8 +14,10 @@ def csv_rows(path, rows):
 def cluster_ratio(rows,numerator,denominator,seed=20260929):
     episodes=defaultdict(lambda:[0.,0.]); subjects=defaultdict(list)
     for r in rows:
-        episodes[(r["subject"],r["episode_id"])][0]+=r[numerator]
-        episodes[(r["subject"],r["episode_id"])][1]+=r[denominator]
+        # Participant labels are scoped to a dataset (WESAD S2 is not PPG S2).
+        identity=(r.get("dataset",""),r["subject"])
+        episodes[(identity,r["episode_id"])][0]+=r[numerator]
+        episodes[(identity,r["episode_id"])][1]+=r[denominator]
     for (subject,_),(n,d) in episodes.items():
         if d: subjects[subject].append(n/d)
     values=np.array([np.mean(v) for _,v in sorted(subjects.items())])

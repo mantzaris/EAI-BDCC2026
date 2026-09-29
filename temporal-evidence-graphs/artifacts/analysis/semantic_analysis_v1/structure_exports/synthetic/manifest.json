@@ -1,0 +1,464 @@
+{
+  "exported_at": "2026-09-29T09:14:49.086028+00:00",
+  "instance": "actual retained Neo4j Community instance",
+  "layout_seed": 20260929,
+  "prefix": "structure_study_v1/synthetic-V1001-e0-d4-alternative/",
+  "queries": {
+    "counts": "MATCH (n) WHERE n.scope STARTS WITH $prefix OPTIONAL MATCH (n)-[r]->() RETURN n.scope AS scope, count(DISTINCT n) AS nodes, count(r) AS edges ORDER BY scope",
+    "edges": "MATCH (n)-[r]->(m) WHERE n.scope STARTS WITH $prefix RETURN elementId(r) AS id, elementId(n) AS source, elementId(m) AS target, type(r) AS type, properties(r) AS properties, n.scope AS scope ORDER BY scope, id",
+    "nodes": "MATCH (n) WHERE n.scope STARTS WITH $prefix RETURN elementId(n) AS id, labels(n) AS labels, properties(n) AS properties ORDER BY n.scope, id",
+    "paths": "MATCH (c:ClaimVersion {scope:$scope})-[:DEPENDS_ON]->(f:FeatureVersion)-[:DERIVED_FROM]->(o:Observation) RETURN c.id AS claim, f.id AS feature, o.id AS observation ORDER BY claim, feature, observation LIMIT 5"
+  },
+  "scopes": [
+    {
+      "edge_types": {
+        "ASSESSED_AS": 1,
+        "CONTAINS": 7,
+        "DEPENDS_ON": 31,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 14
+      },
+      "edges": 95,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__fixture__benign__B2.json.gz",
+      "node_types": {
+        "assessment": 1,
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 28,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/fixture/benign/B2",
+      "sha256": "110b3edc688c427e8ce52d4f1f555e58c7f196bf2e815012561593d824149c2f",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 4,
+        "CONTAINS": 7,
+        "DEPENDS_ON": 31,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 14
+      },
+      "edges": 98,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__fixture__benign__M1.json.gz",
+      "node_types": {
+        "assessment": 4,
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 31,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/fixture/benign/M1",
+      "sha256": "da7ab63ffefe834b50a9a9fd85ea517524c28d697f37557f8f1f7bf1c4130ebb",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "CONTAINS": 7,
+        "DEPENDS_ON": 31,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 14
+      },
+      "edges": 94,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__fixture__irrelevant__B2.json.gz",
+      "node_types": {
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 27,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/fixture/irrelevant/B2",
+      "sha256": "cd86accd658b2e152cc316b4e14a82ed569066839911b894c7ee5ab9c9f06ace",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "CONTAINS": 7,
+        "DEPENDS_ON": 31,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 14
+      },
+      "edges": 94,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__fixture__irrelevant__M1.json.gz",
+      "node_types": {
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 27,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/fixture/irrelevant/M1",
+      "sha256": "4ef195022cbddbcab8afef1cf2f4ee2a30b8ee803c37fca1e7c25d4f11898ae5",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 2,
+        "CONTAINS": 12,
+        "CONTRADICTS": 2,
+        "DEPENDS_ON": 37,
+        "DERIVED_FROM": 11,
+        "FOR_SUBJECT": 28,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 3,
+        "SUPPORTS": 14
+      },
+      "edges": 114,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__fixture__necessary__B2.json.gz",
+      "node_types": {
+        "assessment": 2,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 11,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 31,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/fixture/necessary/B2",
+      "sha256": "2e46e1d744292b3b0b8970b782c36febf723b7f9c1a9803ddb335c087cbc7d6f",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 7,
+        "CONTAINS": 7,
+        "CONTRADICTS": 7,
+        "DEPENDS_ON": 32,
+        "DERIVED_FROM": 11,
+        "FOR_SUBJECT": 28,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 3,
+        "SUPPORTS": 14
+      },
+      "edges": 114,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__fixture__necessary__M1.json.gz",
+      "node_types": {
+        "assessment": 7,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 11,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 36,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/fixture/necessary/M1",
+      "sha256": "0f8a6058f6b733c0e112ffaa01fc9ce3d5df08c3242604d5f8e9a7e022d2e71e",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 1,
+        "CONTAINS": 13,
+        "CONTRADICTS": 1,
+        "DEPENDS_ON": 37,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 27,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 2,
+        "SUPPORTS": 14
+      },
+      "edges": 110,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__fixture__route_loss__B2.json.gz",
+      "node_types": {
+        "assessment": 1,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 29,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/fixture/route_loss/B2",
+      "sha256": "808f952094e2757034adfbba33c9d25f856180bac7007f45291b4fed6ba1e74d",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 4,
+        "CONTAINS": 11,
+        "CONTRADICTS": 3,
+        "DEPENDS_ON": 35,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 27,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 2,
+        "SUPPORTS": 14
+      },
+      "edges": 111,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__fixture__route_loss__M1.json.gz",
+      "node_types": {
+        "assessment": 4,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 32,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/fixture/route_loss/M1",
+      "sha256": "dfcddbecca4eb95409e239cd059356f12082497b979e4d353a2bfb5b998c78ae",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 3,
+        "CONTAINS": 7,
+        "DEPENDS_ON": 33,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 16
+      },
+      "edges": 101,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__generated__benign__B2.json.gz",
+      "node_types": {
+        "assessment": 3,
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 30,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/generated/benign/B2",
+      "sha256": "ef94583dabcad9fc9101582cb4fbdd011007eb7a70865752e16d3907733c0c16",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 4,
+        "CONTAINS": 7,
+        "DEPENDS_ON": 33,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 16
+      },
+      "edges": 102,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__generated__benign__M1.json.gz",
+      "node_types": {
+        "assessment": 4,
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 31,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/generated/benign/M1",
+      "sha256": "6942f869f5d754e3cbf422264f5e3fea8cc3aa25be36ff9af766493e1c86f8c5",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "CONTAINS": 7,
+        "DEPENDS_ON": 33,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 16
+      },
+      "edges": 98,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__generated__irrelevant__B2.json.gz",
+      "node_types": {
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 27,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/generated/irrelevant/B2",
+      "sha256": "ff0a46e4aa92f1c9e42b77c926262cb9324c427562e4134d1e4236b7ba7dc6c7",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "CONTAINS": 7,
+        "DEPENDS_ON": 33,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 16
+      },
+      "edges": 98,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__generated__irrelevant__M1.json.gz",
+      "node_types": {
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 27,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/generated/irrelevant/M1",
+      "sha256": "c7ac9e394fc3e1e834f3649b6b907b3a28b5d16d585f859a0e8da0e75c489db1",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 6,
+        "CONTAINS": 8,
+        "CONTRADICTS": 6,
+        "DEPENDS_ON": 35,
+        "DERIVED_FROM": 11,
+        "FOR_SUBJECT": 28,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 3,
+        "SUPPORTS": 16
+      },
+      "edges": 118,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__generated__necessary__B2.json.gz",
+      "node_types": {
+        "assessment": 6,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 11,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 35,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/generated/necessary/B2",
+      "sha256": "c94183871d211757f7048d1b07f401f06b497a48e547f569f4d36575dd440981",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 7,
+        "CONTAINS": 7,
+        "CONTRADICTS": 7,
+        "DEPENDS_ON": 34,
+        "DERIVED_FROM": 11,
+        "FOR_SUBJECT": 28,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 3,
+        "SUPPORTS": 16
+      },
+      "edges": 118,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__generated__necessary__M1.json.gz",
+      "node_types": {
+        "assessment": 7,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 11,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 36,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/generated/necessary/M1",
+      "sha256": "9135b42264aac183ce95aba0b365998cf1911df281b14e9c4812a05fe002bea0",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 3,
+        "CONTAINS": 11,
+        "CONTRADICTS": 3,
+        "DEPENDS_ON": 37,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 27,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 2,
+        "SUPPORTS": 16
+      },
+      "edges": 114,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__generated__route_loss__B2.json.gz",
+      "node_types": {
+        "assessment": 3,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 31,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/generated/route_loss/B2",
+      "sha256": "4a36daecf93495ce3aa4bfdf02caab66bad11886b83c8e8ecba5786b7e0ad60a",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 4,
+        "CONTAINS": 11,
+        "CONTRADICTS": 3,
+        "DEPENDS_ON": 37,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 27,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 2,
+        "SUPPORTS": 16
+      },
+      "edges": 115,
+      "file": "structure_study_v1__synthetic-V1001-e0-d4-alternative__generated__route_loss__M1.json.gz",
+      "node_types": {
+        "assessment": 4,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 32,
+      "scope": "structure_study_v1/synthetic-V1001-e0-d4-alternative/generated/route_loss/M1",
+      "sha256": "7c02eb15764a64d4b1ae7bd8edac3814b17245d785ced3d9a51c6df509afa073",
+      "typed_errors": 0,
+      "verified_paths": 5
+    }
+  ],
+  "total_edges": 1694,
+  "total_nodes": 490
+}

@@ -1,0 +1,464 @@
+{
+  "exported_at": "2026-09-29T09:14:49.690338+00:00",
+  "instance": "actual retained Neo4j Community instance",
+  "layout_seed": 20260929,
+  "prefix": "structure_study_v1/wesad-S2-e0-d4-alternative/",
+  "queries": {
+    "counts": "MATCH (n) WHERE n.scope STARTS WITH $prefix OPTIONAL MATCH (n)-[r]->() RETURN n.scope AS scope, count(DISTINCT n) AS nodes, count(r) AS edges ORDER BY scope",
+    "edges": "MATCH (n)-[r]->(m) WHERE n.scope STARTS WITH $prefix RETURN elementId(r) AS id, elementId(n) AS source, elementId(m) AS target, type(r) AS type, properties(r) AS properties, n.scope AS scope ORDER BY scope, id",
+    "nodes": "MATCH (n) WHERE n.scope STARTS WITH $prefix RETURN elementId(n) AS id, labels(n) AS labels, properties(n) AS properties ORDER BY n.scope, id",
+    "paths": "MATCH (c:ClaimVersion {scope:$scope})-[:DEPENDS_ON]->(f:FeatureVersion)-[:DERIVED_FROM]->(o:Observation) RETURN c.id AS claim, f.id AS feature, o.id AS observation ORDER BY claim, feature, observation LIMIT 5"
+  },
+  "scopes": [
+    {
+      "edge_types": {
+        "ASSESSED_AS": 1,
+        "CONTAINS": 7,
+        "DEPENDS_ON": 31,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 14
+      },
+      "edges": 95,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__fixture__benign__B2.json.gz",
+      "node_types": {
+        "assessment": 1,
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 28,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/fixture/benign/B2",
+      "sha256": "ec0af238fe386ec4f64375f508c353e4cab7d13027ad84360d053ab8bad11c7b",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 4,
+        "CONTAINS": 7,
+        "DEPENDS_ON": 31,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 14
+      },
+      "edges": 98,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__fixture__benign__M1.json.gz",
+      "node_types": {
+        "assessment": 4,
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 31,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/fixture/benign/M1",
+      "sha256": "29466ebe5f2f8762a0f97d46bae1f088319d2cbfdf70be5ce67834b4fca0f0b5",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "CONTAINS": 7,
+        "DEPENDS_ON": 31,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 14
+      },
+      "edges": 94,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__fixture__irrelevant__B2.json.gz",
+      "node_types": {
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 27,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/fixture/irrelevant/B2",
+      "sha256": "f6bd42fed472ac3ba545cbfefe336d781259297c39e2f3db847b586d83979b66",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "CONTAINS": 7,
+        "DEPENDS_ON": 31,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 14
+      },
+      "edges": 94,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__fixture__irrelevant__M1.json.gz",
+      "node_types": {
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 27,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/fixture/irrelevant/M1",
+      "sha256": "29e7ae98e96222701039931fdb5e533ea120d31e46191993f5be3f50de68da1f",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 2,
+        "CONTAINS": 12,
+        "CONTRADICTS": 2,
+        "DEPENDS_ON": 37,
+        "DERIVED_FROM": 11,
+        "FOR_SUBJECT": 28,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 3,
+        "SUPPORTS": 14
+      },
+      "edges": 114,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__fixture__necessary__B2.json.gz",
+      "node_types": {
+        "assessment": 2,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 11,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 31,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/fixture/necessary/B2",
+      "sha256": "427d55f16c38c3e15a554b4066e02310ae787fd451270bf01087c618f4871f42",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 7,
+        "CONTAINS": 7,
+        "CONTRADICTS": 7,
+        "DEPENDS_ON": 32,
+        "DERIVED_FROM": 11,
+        "FOR_SUBJECT": 28,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 3,
+        "SUPPORTS": 14
+      },
+      "edges": 114,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__fixture__necessary__M1.json.gz",
+      "node_types": {
+        "assessment": 7,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 11,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 36,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/fixture/necessary/M1",
+      "sha256": "85f68d2c7f5f90360ba6cad07d5664b8f41a60c178bd51f7ba2582fb4ae65cd2",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 1,
+        "CONTAINS": 13,
+        "CONTRADICTS": 1,
+        "DEPENDS_ON": 37,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 27,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 2,
+        "SUPPORTS": 14
+      },
+      "edges": 110,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__fixture__route_loss__B2.json.gz",
+      "node_types": {
+        "assessment": 1,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 29,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/fixture/route_loss/B2",
+      "sha256": "cf1f19522e0d5b3886b7f53f05e33ac9258e0561a08edd1078b5bb5a1cc741ea",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 4,
+        "CONTAINS": 11,
+        "CONTRADICTS": 3,
+        "DEPENDS_ON": 35,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 27,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 2,
+        "SUPPORTS": 14
+      },
+      "edges": 111,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__fixture__route_loss__M1.json.gz",
+      "node_types": {
+        "assessment": 4,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 32,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/fixture/route_loss/M1",
+      "sha256": "b7e36b66c3c5450f7ea70e4710aadc1950dac89b46ff4dbc575118ff50fb358f",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 3,
+        "CONTAINS": 7,
+        "DEPENDS_ON": 33,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 16
+      },
+      "edges": 101,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__generated__benign__B2.json.gz",
+      "node_types": {
+        "assessment": 3,
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 30,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/generated/benign/B2",
+      "sha256": "e34faf0c9cf9daa6d221118d343bf921b2509267b3823eb726888cbce9516b0e",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 4,
+        "CONTAINS": 7,
+        "DEPENDS_ON": 33,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 16
+      },
+      "edges": 102,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__generated__benign__M1.json.gz",
+      "node_types": {
+        "assessment": 4,
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 31,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/generated/benign/M1",
+      "sha256": "5adacdc34c612550879924fee31f16e0722a3efcb9468cb5ce1b5d6c547285bd",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "CONTAINS": 7,
+        "DEPENDS_ON": 33,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 16
+      },
+      "edges": 98,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__generated__irrelevant__B2.json.gz",
+      "node_types": {
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 27,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/generated/irrelevant/B2",
+      "sha256": "c08906f6c03b0e4a6edfeb9f07cae8b5997a505fb99033effe150fe95fac9ba9",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "CONTAINS": 7,
+        "DEPENDS_ON": 33,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 26,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 1,
+        "SUPPORTS": 16
+      },
+      "edges": 98,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__generated__irrelevant__M1.json.gz",
+      "node_types": {
+        "claim": 7,
+        "explanation": 1,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 27,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/generated/irrelevant/M1",
+      "sha256": "979d1f79ed54a749946b81c9b7024cd6a129a93e079d20b742fe71d4d3d00c77",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 6,
+        "CONTAINS": 8,
+        "CONTRADICTS": 6,
+        "DEPENDS_ON": 35,
+        "DERIVED_FROM": 11,
+        "FOR_SUBJECT": 28,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 3,
+        "SUPPORTS": 16
+      },
+      "edges": 118,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__generated__necessary__B2.json.gz",
+      "node_types": {
+        "assessment": 6,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 11,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 35,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/generated/necessary/B2",
+      "sha256": "3659bfe1b66017a038a9df95ed34c9c34e27e9ed7dd1a5a322c0c5643cdddbe9",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 7,
+        "CONTAINS": 7,
+        "CONTRADICTS": 7,
+        "DEPENDS_ON": 34,
+        "DERIVED_FROM": 11,
+        "FOR_SUBJECT": 28,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 3,
+        "SUPPORTS": 16
+      },
+      "edges": 118,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__generated__necessary__M1.json.gz",
+      "node_types": {
+        "assessment": 7,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 11,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 36,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/generated/necessary/M1",
+      "sha256": "4c782883df6b718004f3d04eb44e355d5d61278227d08538609a0c4f3f381d85",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 3,
+        "CONTAINS": 11,
+        "CONTRADICTS": 3,
+        "DEPENDS_ON": 37,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 27,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 2,
+        "SUPPORTS": 16
+      },
+      "edges": 114,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__generated__route_loss__B2.json.gz",
+      "node_types": {
+        "assessment": 3,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 31,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/generated/route_loss/B2",
+      "sha256": "f099537dbd1127635601b261dee28380bb04fcc7916fb7bc52608983230292f8",
+      "typed_errors": 0,
+      "verified_paths": 5
+    },
+    {
+      "edge_types": {
+        "ASSESSED_AS": 4,
+        "CONTAINS": 11,
+        "CONTRADICTS": 3,
+        "DEPENDS_ON": 37,
+        "DERIVED_FROM": 10,
+        "FOR_SUBJECT": 27,
+        "OBSERVED_BY": 5,
+        "SUPERSEDES": 2,
+        "SUPPORTS": 16
+      },
+      "edges": 115,
+      "file": "structure_study_v1__wesad-S2-e0-d4-alternative__generated__route_loss__M1.json.gz",
+      "node_types": {
+        "assessment": 4,
+        "claim": 7,
+        "explanation": 2,
+        "feature": 10,
+        "observation": 5,
+        "sensor": 3,
+        "subject": 1
+      },
+      "nodes": 32,
+      "scope": "structure_study_v1/wesad-S2-e0-d4-alternative/generated/route_loss/M1",
+      "sha256": "339187199b7d1843c0f259b510d6d115fc4a7f128690ef6c233fe1c7a240aca2",
+      "typed_errors": 0,
+      "verified_paths": 5
+    }
+  ],
+  "total_edges": 1694,
+  "total_nodes": 490
+}

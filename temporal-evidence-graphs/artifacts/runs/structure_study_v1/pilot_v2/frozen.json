@@ -1,0 +1,90 @@
+{
+  "cases_sha256": "0ba407ebc3cd3c57e6f0633e5746d3cf32eceb6dc698c4adb7e1be47b9a99568",
+  "config": {
+    "concurrency": 4,
+    "max_calls": 24,
+    "max_input_tokens": 8192,
+    "max_tokens": 4096,
+    "model": "Qwen/Qwen3-8B",
+    "seed": 20260929,
+    "temperature": 0.7,
+    "top_k": 20,
+    "top_p": 0.8
+  },
+  "schema": {
+    "$defs": {
+      "ProgramClaim": {
+        "additionalProperties": false,
+        "properties": {
+          "claim_id": {
+            "title": "Claim Id",
+            "type": "string"
+          },
+          "proposition": {
+            "title": "Proposition",
+            "type": "string"
+          },
+          "sentence": {
+            "title": "Sentence",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "boolean"
+          },
+          "witnesses": {
+            "items": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "maxItems": 4,
+            "minItems": 1,
+            "title": "Witnesses",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claim_id",
+          "proposition",
+          "value",
+          "witnesses",
+          "sentence"
+        ],
+        "title": "ProgramClaim",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "claims": {
+        "items": {
+          "$ref": "#/$defs/ProgramClaim"
+        },
+        "maxItems": 16,
+        "title": "Claims",
+        "type": "array"
+      },
+      "explanation": {
+        "title": "Explanation",
+        "type": "string"
+      }
+    },
+    "required": [
+      "claims",
+      "explanation"
+    ],
+    "title": "ProgramAnswer",
+    "type": "object"
+  },
+  "sources": {
+    "src/temporal_evidence/structure/__init__.py": "2b98c92a6eeb9567bb1c9fd321e3d00ea62eb6746fc371672806d9ad8957b004",
+    "src/temporal_evidence/structure/generate.py": "77550b95e3ca3cb06a9159ca9c2cdf753a96cb24c4e0bdfe81a1a048901e504d",
+    "src/temporal_evidence/structure/gpu_worker.py": "d1cb3aae2f0d3733611e840a87ad1b39d7eaec6b0eaffb1127243d5e2493408b",
+    "src/temporal_evidence/structure/oracle.py": "8218e536318917012c224d10eb3f280f9d1f79e8208fe43fa36d366182525127",
+    "src/temporal_evidence/structure/program.py": "848b13041c926371a403021c4994491be13f892e21bbe6cad854bd87b96db3fa",
+    "src/temporal_evidence/structure/replay.py": "c371c46dbfb77f68edc85c691a24c22d154587441c3a9de7019f15495ed578ab"
+  },
+  "system_prompt": "You explain explicit numerical rules on recorded features, without diagnoses.\nReturn compact JSON with exactly claims and explanation. A claim has claim_id,\nproposition, value (boolean), witnesses (array of nonempty arrays of input tokens),\nsentence. Each witness is AND; the list of witnesses is OR. Inputs may be test IDs\nor earlier claim_id values. Never invent tests or proposition names. A claim means\nexactly its supplied proposition definition, regardless of your chosen witnesses.\nUse only provided measurements. Preserve units and time labels if stating numbers.\nExplain the requested grouping through intermediate propositions where appropriate,\nthen include the answer proposition. Use at most 16 claims. Direct test citations\nare allowed. Alternative witnesses must use distinct eligible recording windows.\nWhen you use an intermediate result, reference its earlier claim_id instead of\nexpanding it back into all its tests. Proposition definitions specify meaning;\nthey are not instructions to copy their expanded tests into every witness.\nFor example, if claim c1 establishes T1, a next conjunction of T1 and T2 may use\nwitnesses [[\"c1\",\"T2\"]], and a later conjunction may use [[\"c2\",\"T3\",\"T4\"]].\nThe final existential answer may use [[\"complete_A\"],[\"complete_B\"]] if both\nroute claims were already emitted. These example IDs are illustrative only.\nEach sentence must be a complete readable natural-language statement describing\nthe window and comparisons it asserts, never merely a list of test IDs.\nThe explanation must equal the claim sentences joined with single spaces. No extra\ninterpretations, clinical claims or discussion of this instruction. JSON only.\n"
+}

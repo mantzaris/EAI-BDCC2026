@@ -199,6 +199,8 @@ def run():
     outputs=[read_json(p) for p in sorted(Path("artifacts/runs/minimum_v1/cases").glob("*.json"))]
     episodes={eid:read_json(f"artifacts/prepared/{eid}.json") for eid in {o["case"]["episode_id"] for o in outputs}}
     semantic_scores(outputs,episodes);graph_analysis(outputs,episodes)
+    from temporal_evidence.semantic.additional_statistics import run as additional
+    additional(outputs)
     write_json(ROOT/"analysis_manifest.json",{"namespace":"semantic_analysis_v1","original_run":"minimum_v1","cases":len(outputs),
         "oracle_inputs":"immutable prepared events and fixed task specification, never database support flags",
         "source_hashes":{str(p):digest_file(p) for p in sorted(Path("src/temporal_evidence/semantic").glob("*.py"))},

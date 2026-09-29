@@ -1,5 +1,6 @@
 """Descriptive ontology of the implemented adapters, not ontology learning."""
 from pathlib import Path
+import json
 from temporal_evidence.io import write_json
 
 TYPES = ("subject", "sensor", "observation", "feature", "claim", "explanation", "review", "assessment", "placeholder")
@@ -38,7 +39,9 @@ def kind(node):
 
 def node_origin(node):
     k = kind(node)
-    if k == "claim": return "model_proposal_persisted"
+    if k == "claim":
+        payload=json.loads(node["properties"].get("payload","{}"))
+        return "compiler_fixture" if payload.get("metadata",{}).get("origin")=="fixture" else "model_proposal_persisted"
     if k == "assessment": return "support_evaluation"
     if k in {"subject", "sensor", "explanation", "review", "placeholder"}: return "administrative"
     return "recording_or_availability_construction"
@@ -49,6 +52,8 @@ def edge_origin(edge, nodes):
     if typ in {"ASSESSED_AS", "CONTRADICTS"}: return "support_evaluation"
     if typ == "SUPPORTS": return "accepted_citation_mirror"
     if typ == "DEPENDS_ON" and source == "claim":
+        if node_origin(nodes[edge["source"]])=="compiler_fixture":
+            return "compiler_fixture_parent" if target=="claim" else "compiler_fixture_test_reference"
         return "declared_parent" if target == "claim" else "model_evidence_citation"
     if typ in {"DEPENDS_ON", "DERIVED_FROM", "OBSERVED_BY"} and source in {"feature", "observation"}:
         return "deterministic_provenance"

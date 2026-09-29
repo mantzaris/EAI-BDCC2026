@@ -116,3 +116,18 @@ offload. One common candidate per case, at most one repair: at most 480 core
 calls. Keep every raw response, failure, repair, prompt, hash and replay outcome.
 No additional post-correction GPU generation is planned. Main benchmark GPU
 requests are not repeated.
+
+## Post-core normalization correction (29 September 2026)
+
+The completed extension's admission table includes compound proposition names
+but omits primitive test names as claim propositions. Some model outputs state
+those explicitly defined comparisons correctly, yet lose them and dependent
+roots to `unknown_proposition` / `unaccepted_parent`. Preserve that completed
+run and its 209 admitted roots out of 240. The independent semantic scorer maps
+a primitive test name to the comparator already supplied in the task, keeping
+grounding separate from this admission restriction. A separately labeled
+`primitive_alias_replication` repeats database maintenance with this explicit
+normalization, the same final candidates and unchanged witness/parent tokens.
+It makes no new GPU calls and does not alter either original results namespace.
+Raw realized topology is retained, including undefined depths for malformed
+references. The corrected replication is reported separately from the core.
