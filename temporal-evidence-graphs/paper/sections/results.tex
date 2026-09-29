@@ -117,19 +117,23 @@ source. Differences are M1 minus the control in percentage points, computed
 within subjects. Negative case-error differences favor M1; positive recall and
 correction differences favor M1. The table keeps these outcomes separate so
 error reductions cannot hide lost information. Conditional correction contrasts
-disclose their eligible subject count. Pointwise bootstrap intervals quantify
+disclose their eligible subject and episode counts. Pointwise bootstrap intervals quantify
 participant-level variability within this fixed generation run; they do not
 measure variability across model seeds or remove shared measurement error.
 
 \begin{table}[t]
 \caption{Principal paired differences with 2,000 subject-cluster resamples.
 The M1--B1 reliability contrast is interpreted jointly for error and recall.
+N (S/E) gives retained subjects/episodes.
 Intervals are pointwise 95\%; no hypothesis-test $p$-values are reported.}
 \label{tab:contrasts}
 \centering\small\setlength{\tabcolsep}{3pt}
 \input{generated/contrasts_table}
 \end{table}
 
+All checked conditions use the same fresh-answer checks and repair policy on
+matched evidence. Small M1--B1 differences therefore do not isolate an additional
+fresh-answer mechanism; persistent displays supply the maintenance comparison.
 The M1--B3 differences in Table~\ref{tab:relational} compare generated outcomes
 under equivalent support semantics. Fresh outputs can still differ under the
 same requested seed because scheduling and batching are not bitwise identical.
@@ -139,7 +143,8 @@ attributed to graph storage alone.
 
 \begin{table}[t]
 \caption{Separate graph-versus-relational comparison of generated outcomes.
-Differences are M1--B3 in percentage points with pointwise 95\% paired intervals.}
+Differences are M1--B3 in percentage points with pointwise 95\% paired intervals;
+N (S/E) gives retained subjects/episodes.}
 \label{tab:relational}
 \centering\small
 \input{generated/relational_contrasts_table}
@@ -197,6 +202,11 @@ required numerical slots. These counts do not replace the frozen metrics.}
 \end{table}
 
 Table~\ref{tab:hardware} records the hardware and effective model configuration.
+The concurrency-one development workload has median and p95 generation
+latencies of \PilotInteractiveP50{} and \PilotInteractiveP95{} seconds, including
+bounded repairs. The separate batched pilot completes \PilotBatchRate{} initial
+cases per second, including repair and database cost. These are different workloads;
+batch throughput does not establish low interactive latency.
 The primary worker verifies all parameters and first-forward tensors on CUDA,
 with no CPU weight offload. The systems track makes \SystemsCalls{} requests,
 within its separate 472-request ceiling. Table~\ref{tab:cost} includes retained

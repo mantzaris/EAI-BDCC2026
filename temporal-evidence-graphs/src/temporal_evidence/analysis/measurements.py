@@ -28,8 +28,8 @@ def generate():
     table('Persistent displays', ['Source','Method','Corrected/required','Completeness %','Residual','Collateral/unaffected'],
           [[SOURCES[r['dataset']],r['method'],fraction(r['correction_completeness']),percent(r['correction_completeness']['value']),
             r['residual_incorrect']['numerator'],fraction(r['collateral_revision'])] for r in ordered])
-    table('Paired differences', ['Source','Contrast','Outcome','Subjects','Difference (pp)','Pointwise 95% interval (pp)','Principal'],
-          [[SOURCES[r['dataset']],r['left']+' − '+r['right'],r['metric'],r['subjects'],
+    table('Paired differences', ['Source','Contrast','Outcome','Subjects/episodes','Difference (pp)','Pointwise 95% interval (pp)','Principal'],
+          [[SOURCES[r['dataset']],r['left']+' − '+r['right'],r['metric'],f"{r['subjects']}/{r['eligible_episodes']}",
             number(None if r['difference'] is None else 100*r['difference']),
             '--' if r['ci95'] is None else '['+', '.join(number(100*v) for v in r['ci95'])+']',r['principal']] for r in study['contrasts']])
     table('Open-loop systems', ['Events/s','Method','Flag p50/p95 ms','Replacement p50/p95 s','Flag misses','Replacement misses','Peak event/answer queue','Achieved events/s'],

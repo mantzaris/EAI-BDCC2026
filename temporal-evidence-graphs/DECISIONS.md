@@ -161,3 +161,12 @@
   numerical values and report replacements that were adequate for their request
   snapshot but stale at completion. Preserve the frozen request-snapshot adequacy
   and deadline metrics unchanged. This is additional reporting, not a tuned metric.
+- Before scoring held-out outcomes, a reporting review identified that the initial
+  bootstrap implementation pooled conditional denominators within subjects. Match
+  the prospective plan literally: compute each metric within a base episode, pair
+  methods on that episode, average paired differences within subjects, then sample
+  subjects. For conditional correction, retain only episodes with defined
+  denominators in both methods; disclose eligible episodes and subjects. Targeted
+  tests cover unequal episode denominators and disjoint conditional eligibility.
+  This changes no experimental inputs or runtime predicates. The historical
+  pilot-v3 analysis predates this reporting repair and remains preserved as such.

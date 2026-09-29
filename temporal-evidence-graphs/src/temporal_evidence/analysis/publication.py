@@ -117,14 +117,14 @@ def generate():
            for source in SOURCES for method in METHODS for r in [index[(source,method)]]])
     labels = {"correction_completeness":"Correction", "case_error":"Case error", "fact_recall":"Fact recall"}
     table("contrasts_table.tex", "lllrrl",
-          ["Source","Contrast","Outcome","Subjects",r"Difference (pp)",r"95\% interval (pp)"],
-          [[SOURCES[r["dataset"]],f"{r['left']}--{r['right']}",labels[r["metric"]],r["subjects"],
+          ["Source","Contrast","Outcome","N (S/E)",r"Difference (pp)",r"95\% interval (pp)"],
+          [[SOURCES[r["dataset"]],f"{r['left']}--{r['right']}",labels[r["metric"]],f"{r['subjects']}/{r['eligible_episodes']}",
             number(None if r["difference"] is None else 100*r["difference"]),
             "--" if r["ci95"] is None else "["+", ".join(number(100*v) for v in r["ci95"])+"]"]
            for r in summary["contrasts"] if r["principal"]])
     table("relational_contrasts_table.tex", "llrrl",
-          ["Source","Outcome","Subjects",r"M1--B3 (pp)",r"95\% interval (pp)"],
-          [[SOURCES[r["dataset"]],labels[r["metric"]],r["subjects"],number(None if r["difference"] is None else 100*r["difference"]),
+          ["Source","Outcome","N (S/E)",r"M1--B3 (pp)",r"95\% interval (pp)"],
+          [[SOURCES[r["dataset"]],labels[r["metric"]],f"{r['subjects']}/{r['eligible_episodes']}",number(None if r["difference"] is None else 100*r["difference"]),
             "--" if r["ci95"] is None else "["+", ".join(number(100*v) for v in r["ci95"])+"]"]
            for r in summary["contrasts"] if not r["principal"]])
     fixture_rows = []
@@ -194,7 +194,11 @@ def generate():
             percent(r["abstained"]["value"]),percent(r["reference_validity"]["value"])]
            for source in SOURCES for method in METHODS for r in [index[(source,method)]]])
 
+    final_pilot = read_json("artifacts/runs/pilot_v4/summary.json")
     macros = {"TotalInitial":"3,600", "TotalRepairs":f"{repairs:,}", "TotalRequests":f"{3600+repairs:,}",
+              "PilotInteractiveP50":number(final_pilot["interactive_p50"],2),
+              "PilotInteractiveP95":number(final_pilot["interactive_p95"],2),
+              "PilotBatchRate":number(final_pilot["initial_cases_per_second_including_repairs_and_database"],3),
               "TotalFailed":str(failures), "TotalTruncated":str(truncations),
               "MainHours":number(stages["matched_held_out_run"]["wall_seconds"]/3600,2),
               "AuditFlagged":str(audit["flagged"]), "AuditParsed":str(audit["parsed"]),

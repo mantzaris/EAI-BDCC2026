@@ -169,11 +169,15 @@ track measures arrival-to-completion latency separately.
 Two prospective principal contrasts are M1 versus B2 for correction completeness,
 and M1 versus B1 for case error jointly with required-fact recall. M1 versus B3
 is a separate implementation comparison. Paired observations stay grouped by
-subject, preserving all episode variants and checkpoints. We use 2,000 paired
+subject, preserving all episode variants and checkpoints. First, each metric is
+computed within a base episode across its variants and checkpoints; paired episode
+differences are averaged within each subject. We use 2,000 paired
 subject-cluster bootstrap resamples and pointwise 95\% intervals, with ten
 independent held-out subjects per source. Conditional correction contrasts
-include only subjects with defined denominators in both methods and disclose
-the retained count. We report effect sizes without hypothesis-test $p$-values;
+include only episodes with defined denominators in both methods and subjects with
+at least one such pair. We disclose both retained counts and give subjects equal
+weight. Pooled descriptive rates use their displayed denominators and need not
+equal the paired estimand. We report effect sizes without hypothesis-test $p$-values;
 the intervals do not provide simultaneous family-wise coverage. Waveform samples,
 duplicated events, and repeated prompts do not increase the participant count.
 

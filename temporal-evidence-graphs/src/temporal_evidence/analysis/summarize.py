@@ -38,36 +38,48 @@ def aggregate_abstentions(rows):
     return {"cases":len(rows),"abstained":sum(row["abstained"] for row in rows),"partial":sum(row["partial"] for row in rows)}
 
 
-def subject_values(rows,metric):
-    subjects=defaultdict(list)
+def episode_values(rows,metric):
+    episodes=defaultdict(list)
     for row in rows:
-        subjects[row["subject"]].append(row)
+        episodes[(row["subject"],row["episode_id"])].append(row)
     result={}
-    for subject,items in subjects.items():
+    for episode,items in episodes.items():
         if metric in RATIOS:
             numerator,denominator=RATIOS[metric]
             total=sum(row[denominator] for row in items)
-            result[subject]=sum(row[numerator] for row in items)/total if total else None
+            result[episode]=sum(row[numerator] for row in items)/total if total else None
         else:
-            # Balanced episode/checkpoint counts make this equal to first averaging
-            # within each base episode, then within participant.
-            result[subject]=float(np.mean([row[metric] for row in items]))
+            result[episode]=float(np.mean([row[metric] for row in items]))
     return result
 
 
+def subject_values(rows,metric):
+    subjects=defaultdict(list)
+    for (subject,_),value in episode_values(rows,metric).items():
+        subjects[subject].append(value)
+    return {subject:float(np.mean(defined)) if (defined := [value for value in values if value is not None]) else None
+            for subject,values in subjects.items()}
+
+
 def paired_interval(rows,left,right,metric,resamples=2000):
-    a=subject_values([r for r in rows if r["method"]==left],metric)
-    b=subject_values([r for r in rows if r["method"]==right],metric)
-    subjects=sorted(a.keys()&b.keys())
-    eligible=[subject for subject in subjects if a[subject] is not None and b[subject] is not None]
-    differences=np.array([a[subject]-b[subject] for subject in eligible])
+    a=episode_values([r for r in rows if r["method"]==left],metric)
+    b=episode_values([r for r in rows if r["method"]==right],metric)
+    paired=sorted(a.keys()&b.keys())
+    eligible=[episode for episode in paired if a[episode] is not None and b[episode] is not None]
+    subjects={subject for subject,_ in paired}
+    within_subject=defaultdict(list)
+    for episode in eligible:
+        within_subject[episode[0]].append(a[episode]-b[episode])
+    differences=np.array([np.mean(within_subject[subject]) for subject in sorted(within_subject)])
+    report={"left":left,"right":right,"metric":metric,"subjects":len(within_subject),
+            "excluded_subjects":len(subjects)-len(within_subject),"eligible_episodes":len(eligible),
+            "excluded_episodes":len(paired)-len(eligible),"resamples":resamples,
+            "estimand":"equal-subject mean of equal-episode paired differences; each retained episode has defined denominators in both methods"}
     if not len(differences):
-        return {"left":left,"right":right,"metric":metric,"subjects":0,"difference":None,"ci95":None}
+        return {**report,"difference":None,"ci95":None}
     rng=np.random.Generator(np.random.PCG64(20260928))
     samples=differences[rng.integers(0,len(differences),size=(resamples,len(differences)))].mean(axis=1)
-    return {"left":left,"right":right,"metric":metric,"subjects":len(eligible),"excluded_subjects":len(subjects)-len(eligible),
-            "difference":float(differences.mean()),"ci95":np.quantile(samples,[.025,.975]).tolist(),
-            "resamples":resamples,"estimand":"equal-subject mean of within-subject paired differences"}
+    return {**report,"difference":float(differences.mean()),"ci95":np.quantile(samples,[.025,.975]).tolist()}
 
 
 def export_csv(path,rows):
