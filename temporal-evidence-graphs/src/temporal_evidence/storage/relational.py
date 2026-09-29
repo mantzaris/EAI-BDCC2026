@@ -61,32 +61,37 @@ class RelationalStore:
         return {identifier: Record.from_dict(json.loads(payload)) for identifier, payload in rows}
 
     def dependents(self, identifier, knowledge_time, transitive=True):
-        root = self.get(identifier)
-        if root is None or root.ingested_at_seconds > knowledge_time:
-            return set()
+        return self.dependents_many([identifier],knowledge_time,transitive)
+
+    def dependents_many(self, identifiers, knowledge_time, transitive=True):
+        identifiers=[identifier for identifier in identifiers if identifier in self._records
+                     and self._records[identifier].ingested_at_seconds<=knowledge_time]
+        roots=json.dumps(identifiers)
         if not transitive:
             rows = self.connection.execute("""SELECT d.dependent FROM dependencies d JOIN records r
                 ON r.scope=d.scope AND r.id=d.dependent
-                WHERE d.scope=? AND d.required=? AND d.relation='DEPENDS_ON' AND r.ingested<=?""",
-                (self.scope, identifier, knowledge_time))
+                WHERE d.scope=? AND d.required IN (SELECT value FROM json_each(?)) AND d.relation='DEPENDS_ON' AND r.ingested<=?""",
+                (self.scope, roots, knowledge_time))
         else:
             rows = self.connection.execute("""WITH RECURSIVE affected(id) AS (
                 SELECT d.dependent FROM dependencies d JOIN records r ON r.scope=d.scope AND r.id=d.dependent
-                WHERE d.scope=? AND d.required=? AND d.relation='DEPENDS_ON' AND r.ingested<=?
+                WHERE d.scope=? AND d.required IN (SELECT value FROM json_each(?)) AND d.relation='DEPENDS_ON' AND r.ingested<=?
                 UNION
                 SELECT d.dependent FROM dependencies d JOIN affected a ON d.required=a.id
                   JOIN records r ON r.scope=d.scope AND r.id=d.dependent
                 WHERE d.scope=? AND d.relation='DEPENDS_ON' AND r.ingested<=?) SELECT id FROM affected""",
-                (self.scope, identifier, knowledge_time, self.scope, knowledge_time))
+                (self.scope, roots, knowledge_time, self.scope, knowledge_time))
         return {row[0] for row in rows}
 
     def assess(self, identifier, known_at, state, value, trigger):
+        self.assess_many({identifier:{"state":state,"value":value}},known_at,trigger)
+
+    def assess_many(self,assessments,known_at,trigger):
         with self.connection:
-            self.connection.execute("INSERT OR IGNORE INTO assessments VALUES(?,?,?,?,?,?)",
-                                    (self.scope, identifier, known_at, state, value, trigger))
-            if state=="contradicted":
-                self.connection.execute("INSERT OR IGNORE INTO dependencies VALUES(?,?,?,?)",
-                                        (self.scope,trigger,identifier,"CONTRADICTS"))
+            self.connection.executemany("INSERT OR IGNORE INTO assessments VALUES(?,?,?,?,?,?)",
+                [(self.scope,identifier,known_at,item["state"],item["value"],trigger) for identifier,item in assessments.items()])
+            self.connection.executemany("INSERT OR IGNORE INTO dependencies VALUES(?,?,?,?)",
+                [(self.scope,trigger,identifier,"CONTRADICTS") for identifier,item in assessments.items() if item["state"]=="contradicted"])
 
     def close(self):
         self.connection.close()

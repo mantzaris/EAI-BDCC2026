@@ -1,8 +1,14 @@
-offered_events_per_second: [1, 5, 20]
+run_id: streaming_v1
+rates: [1, 5, 20]
 duration_seconds: 60
 explanation_every_events: 20
-methods: [M1, B3]
+generation_concurrency: 4
 flag_deadline_seconds: 1
 repair_deadline_seconds: 5
-arrival_mode: open_loop
-concurrency: 4
+method_orders: [[M1, B3], [B3, M1], [M1, B3]]
+study_config: configs/minimum_study.yaml
+workload: symbolic_fixture_with_immutable_revisions_and_gpu_explanations
+maximum_initial_explanations: 156
+maximum_affected_repair_requests: 80
+maximum_validation_repairs: 236
+maximum_total_gpu_calls: 472

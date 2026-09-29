@@ -11,7 +11,7 @@ shopt -s nullglob
 local_wheels=(.runtime/wheels/*.whl)
 .venv/bin/python -m pip install "${local_wheels[@]}" -e '.[gpu,dashboard]'
 .venv/bin/python -m pip freeze > artifacts/manifests/requirements.actual.txt
-uv pip compile pyproject.toml --extra gpu --extra dashboard --generate-hashes -o requirements.lock
+.venv/bin/python scripts/export_lock.py
 bash scripts/setup_database.sh
 if [ ! -f artifacts/manifests/model.json ]; then
   .venv/bin/python scripts/prepare_model.py

@@ -1,0 +1,86 @@
+{
+  "claims": [],
+  "metrics": {
+    "abstained": 1,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 0,
+    "case_id": "wesad-S3-e1-channel_fault-c1-M1",
+    "checkpoint": 1,
+    "claim_count": 0,
+    "claim_errors": 0,
+    "collateral_withdrawn": 0,
+    "corrected": 1,
+    "corrected_by_5s": 1,
+    "correction_required": 1,
+    "database_update_seconds": 0.269538349006325,
+    "dataset": "wesad",
+    "end_to_end_seconds": 13.997116639977321,
+    "episode_id": "wesad-S3-e1",
+    "failed": 1,
+    "family": "evidence_sufficiency",
+    "generation_seconds": 13.701875506201759,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 2941,
+    "knowledge_time": 4896.0,
+    "method": "M1",
+    "output_tokens": 975,
+    "paragraph_discrepancy": 0,
+    "partial": 0,
+    "reference_count": 0,
+    "repair_calls": 1,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.016065191943198442,
+    "split": "development",
+    "subject": "S3",
+    "supplied_slots": 0,
+    "timeout_calls": 0,
+    "unaffected": 1,
+    "useful_complete": 0,
+    "useful_eligible": 1,
+    "valid_reference_count": 0,
+    "variant": "channel_fault"
+  },
+  "persistent": [
+    {
+      "active": false,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "record_id": "wesad-S3-e1-channel_fault-c0-M1/claim/eda_median",
+      "required_change": true,
+      "transition": {
+        "flag_seconds": 0.06993003305979073,
+        "trigger_id": "wesad/S3/4835-4865/eda_median/v2"
+      }
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "wesad-S3-e1-channel_fault-c0-M1/claim/eda_missing_fraction",
+      "required_change": false,
+      "transition": {}
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": false,
+      "value": 0.864143
+    },
+    {
+      "kind": "direct",
+      "quantity": "eda_missing_fraction",
+      "slot": "eda_missing_fraction",
+      "supplied": false,
+      "value": 0.0
+    }
+  ]
+}

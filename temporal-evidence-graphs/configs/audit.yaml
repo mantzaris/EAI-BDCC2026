@@ -1,0 +1,16 @@
+model: Qwen/Qwen2.5-3B-Instruct
+manifest: artifacts/manifests/audit_model.json
+samples_per_method_source: 4
+sources: [synthetic, wesad, ppg_dalia]
+methods: [B0, B1, B2, M1, B3]
+selection_seed: 20260928
+max_input_tokens: 4096
+max_output_tokens: 512
+dtype: bfloat16
+batch_size: 4
+do_sample: false
+main_audit_calls: 60
+development_calibration_calls: 4
+maximum_calls: 64
+selection: seeded_permutation_of_checkpoint_two_nonempty_final_explanations_per_stratum
+label: automated_auxiliary_fidelity_audit_not_human_annotation

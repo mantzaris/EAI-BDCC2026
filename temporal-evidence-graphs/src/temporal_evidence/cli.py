@@ -31,6 +31,12 @@ def main():
     run.add_argument("--resume",action="store_true")
     evaluation=commands.add_parser("evaluate")
     evaluation.add_argument("--run-id",default="minimum_v1")
+    analysis=commands.add_parser("analyze")
+    analysis.add_argument("--run-id",default="minimum_v1")
+    streaming=commands.add_parser("benchmark-streaming")
+    streaming.add_argument("--config",default="configs/streaming.yaml")
+    audit=commands.add_parser("audit")
+    audit.add_argument("--run-id",default="minimum_v1")
     args=parser.parse_args()
     if args.command=="check-environment":
         from temporal_evidence.environment import check_environment
@@ -75,6 +81,17 @@ def main():
     elif args.command=="evaluate":
         from temporal_evidence.evaluation.exact import evaluate
         print(json.dumps(evaluate(args.run_id),indent=2))
+    elif args.command=="analyze":
+        from temporal_evidence.analysis.summarize import analyze
+        report=analyze(args.run_id)
+        print(f"Analyzed {report['cases']} cases")
+    elif args.command=="benchmark-streaming":
+        import asyncio
+        from temporal_evidence.streaming import benchmark
+        print(json.dumps(asyncio.run(benchmark(args.config)),indent=2))
+    elif args.command=="audit":
+        from temporal_evidence.evaluation.audit import run_audit
+        print(json.dumps(run_audit(args.run_id),indent=2))
 
 
 if __name__=="__main__":

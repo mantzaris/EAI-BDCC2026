@@ -1,0 +1,470 @@
+{
+  "case": {
+    "case_id": "ppg_dalia-S4-e1-channel_fault-c0-M1",
+    "checkpoint": 0,
+    "dataset": "ppg_dalia",
+    "episode_id": "ppg_dalia-S4-e1",
+    "family": "evidence_sufficiency",
+    "knowledge_time": 6861.0,
+    "method": "M1",
+    "split": "development",
+    "subject": "S4",
+    "variant": "channel_fault"
+  },
+  "completed_at": "2026-09-29T00:21:52.963445+00:00",
+  "database_update_seconds": 0.08346034702844918,
+  "display": null,
+  "end_to_end_seconds": 14.286539952969179,
+  "evidence_hash": "e06fc85e47ec497c22736da24f1b586faf260a3b85a059df9f5a3ec58cb00342",
+  "failure_reason": "ValidationError: 1 validation error for Answer\n  Invalid JSON: EOF while parsing a string at line 57 column 57 [type=json_invalid, input_value='{\\n  \"claims\": [\\n    {\\...s approximately_equal 3', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.11/v/json_invalid",
+  "final_candidate": null,
+  "initial": {
+    "case_id": "ppg_dalia-S4-e1-channel_fault-c0-M1",
+    "error": "ValidationError: 1 validation error for Answer\n  Invalid JSON: EOF while parsing a string at line 56 column 35 [type=json_invalid, input_value='{\\n  \"claims\": [\\n    {\\...on\": \"The EDA median is', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.11/v/json_invalid",
+    "event": "finished",
+    "http_status": 200,
+    "phase": "initial",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "Claim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "claim_type": {
+                "enum": [
+                  "numeric_observation",
+                  "trend",
+                  "comparison",
+                  "evidence_conflict",
+                  "missing_evidence",
+                  "revision_effect"
+                ],
+                "title": "Claim Type",
+                "type": "string"
+              },
+              "depends_on_claim_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Depends On Claim Ids",
+                "type": "array"
+              },
+              "event_end_seconds": {
+                "title": "Event End Seconds",
+                "type": "number"
+              },
+              "event_start_seconds": {
+                "title": "Event Start Seconds",
+                "type": "number"
+              },
+              "evidence_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Evidence Ids",
+                "type": "array"
+              },
+              "operator": {
+                "enum": [
+                  "approximately_equal",
+                  "difference",
+                  "greater_than",
+                  "less_than",
+                  "missing",
+                  "disagrees",
+                  "remains_supported",
+                  "revised"
+                ],
+                "title": "Operator",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "subject_id": {
+                "title": "Subject Id",
+                "type": "string"
+              },
+              "unit": {
+                "title": "Unit",
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Value"
+              }
+            },
+            "required": [
+              "claim_id",
+              "claim_type",
+              "subject_id",
+              "quantity",
+              "event_start_seconds",
+              "event_end_seconds",
+              "operator",
+              "value",
+              "unit",
+              "evidence_ids",
+              "depends_on_claim_ids",
+              "sentence"
+            ],
+            "title": "Claim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "answer_status": {
+            "enum": [
+              "answered",
+              "partially_answered",
+              "insufficient_evidence"
+            ],
+            "title": "Answer Status",
+            "type": "string"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/Claim"
+            },
+            "maxItems": 6,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "unresolved_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolved Evidence Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claims",
+          "answer_status",
+          "explanation",
+          "unresolved_evidence_ids"
+        ],
+        "title": "Answer",
+        "type": "object"
+      },
+      "max_tokens": 512,
+      "messages": [
+        {
+          "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"evidence\":[{\"event_end_seconds\":6830.0,\"event_start_seconds\":6710.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":6831.0,\"quantity\":\"eda_median\",\"record_id\":\"ppg_dalia/S4/6710-6830/eda_median/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":4.2316255,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":6861.0,\"quantity\":\"acceleration_magnitude_sd\",\"record_id\":\"ppg_dalia/S4/6830-6860/acceleration_magnitude_sd/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"g\",\"value\":0.22832931001191326,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":6861.0,\"quantity\":\"eda_clipping_fraction\",\"record_id\":\"ppg_dalia/S4/6830-6860/eda_clipping_fraction/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.008333333333333333,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":6861.0,\"quantity\":\"eda_iqr\",\"record_id\":\"ppg_dalia/S4/6830-6860/eda_iqr/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":0.1658925,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":6861.0,\"quantity\":\"eda_median\",\"record_id\":\"ppg_dalia/S4/6830-6860/eda_median/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":3.436828,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":6861.0,\"quantity\":\"eda_missing_fraction\",\"record_id\":\"ppg_dalia/S4/6830-6860/eda_missing_fraction/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.0,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"missing\",\"ingested_at_seconds\":6861.0,\"quantity\":\"pulse_frequency_bpm\",\"record_id\":\"ppg_dalia/S4/6830-6860/pulse_frequency_bpm/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":null,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"missing\",\"ingested_at_seconds\":6861.0,\"quantity\":\"respiration_frequency_per_min\",\"record_id\":\"ppg_dalia/S4/6830-6860/respiration_frequency_per_min/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":null,\"version\":1}],\"knowledge_time\":6861.0,\"question\":\"Report the target EDA median and EDA missing fraction. State which requested value is unavailable instead of guessing.\",\"subject_id\":\"S4\",\"target_interval\":[6830.0,6860.0]}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260928,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "length",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\n  \"claims\": [\n    {\n      \"claim_id\": \"eda_median\",\n      \"claim_type\": \"numeric_observation\",\n      \"subject_id\": \"S4\",\n      \"quantity\": \"eda_median\",\n      \"event_start_seconds\": 6830.0,\n      \"event_end_seconds\": 6860.0,\n      \"operator\": \"approximately_equal\",\n      \"value\": 3.436828,\n      \"unit\": \"uS\",\n      \"evidence_ids\": [\"ppg_dalia/S4/6830-6860/eda_median/v1\"]\n    ,\n    \"depends_on_claim_ids\": []\n    ,\n    \"sentence\": \"The EDA median is approximately equal to 3.436828 uS.\"\n    },\n    {\n      \"claim_id\": \"eda_missing_fraction\",\n      \"claim_type\": \"numeric_observation\",\n      \"subject_id\": \"S4\",\n      \"quantity\": \"eda_missing_fraction\",\n      \"event_start_seconds\": 6830.0,\n      \"event_end_seconds\": 6860.0,\n      \"operator\": \"approximately_equal\",\n      \"value\": 0.0,\n      \"unit\": \"fraction\",\n      \"evidence_ids\": [\"ppg_dalia/S4/6830-6860/eda_missing_fraction/v1\"]\n    ,\n    \"depends_on_claim_ids\": []\n    ,\n    \"sentence\": \"The EDA missing fraction is approximately equal to 0.0 fraction.\"\n    },\n    {\n      \"claim_id\": \"pulse_frequency_bpm\",\n      \"claim_type\": \"missing_evidence\",\n      \"subject_id\": \"S4\",\n      \"quantity\": \"pulse_frequency_bpm\",\n      \"event_start_seconds\": 6830.0,\n      \"event_end_seconds\": 6860.0,\n      \"operator\": \"missing\",\n      \"value\": null,\n      \"unit\": \"per_min\",\n      \"evidence_ids\": [\"ppg_dalia/S4/6830-6860/pulse_frequency_bpm/v1\"]\n    ,\n    \"depends_on_claim_ids\": []\n    ,\n    \"sentence\": \"The pulse frequency is missing.\"\n    }\n  ]\n  \n  ,\n  \"answer_status\": \"partially_answered\"\n  ,\n  \"explanation\": \"The EDA median is",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790641298,
+      "id": "chatcmpl-1da15ffa4fc1496da01a95331d086312",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 512,
+        "prompt_tokens": 1123,
+        "prompt_tokens_details": null,
+        "total_tokens": 1635
+      }
+    },
+    "seconds": 7.1238767078612,
+    "started_at": "2026-09-29T00:21:38.778752+00:00",
+    "truncated": true
+  },
+  "paragraph_discrepancies": [],
+  "persistent_before": {},
+  "query": {
+    "dataset_id": "ppg_dalia",
+    "event_end_seconds": 6860.0,
+    "event_start_seconds": 6830.0,
+    "family": "evidence_sufficiency",
+    "freshness_seconds": null,
+    "knowledge_time": 6861.0,
+    "question": "Report the target EDA median and EDA missing fraction. State which requested value is unavailable instead of guessing.",
+    "session_id": "session_1",
+    "subject_id": "S4"
+  },
+  "raw_candidate": null,
+  "repair": {
+    "case_id": "ppg_dalia-S4-e1-channel_fault-c0-M1",
+    "error": "ValidationError: 1 validation error for Answer\n  Invalid JSON: EOF while parsing a string at line 57 column 57 [type=json_invalid, input_value='{\\n  \"claims\": [\\n    {\\...s approximately_equal 3', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.11/v/json_invalid",
+    "event": "finished",
+    "http_status": 200,
+    "phase": "repair",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "Claim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "claim_type": {
+                "enum": [
+                  "numeric_observation",
+                  "trend",
+                  "comparison",
+                  "evidence_conflict",
+                  "missing_evidence",
+                  "revision_effect"
+                ],
+                "title": "Claim Type",
+                "type": "string"
+              },
+              "depends_on_claim_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Depends On Claim Ids",
+                "type": "array"
+              },
+              "event_end_seconds": {
+                "title": "Event End Seconds",
+                "type": "number"
+              },
+              "event_start_seconds": {
+                "title": "Event Start Seconds",
+                "type": "number"
+              },
+              "evidence_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Evidence Ids",
+                "type": "array"
+              },
+              "operator": {
+                "enum": [
+                  "approximately_equal",
+                  "difference",
+                  "greater_than",
+                  "less_than",
+                  "missing",
+                  "disagrees",
+                  "remains_supported",
+                  "revised"
+                ],
+                "title": "Operator",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "subject_id": {
+                "title": "Subject Id",
+                "type": "string"
+              },
+              "unit": {
+                "title": "Unit",
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Value"
+              }
+            },
+            "required": [
+              "claim_id",
+              "claim_type",
+              "subject_id",
+              "quantity",
+              "event_start_seconds",
+              "event_end_seconds",
+              "operator",
+              "value",
+              "unit",
+              "evidence_ids",
+              "depends_on_claim_ids",
+              "sentence"
+            ],
+            "title": "Claim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "answer_status": {
+            "enum": [
+              "answered",
+              "partially_answered",
+              "insufficient_evidence"
+            ],
+            "title": "Answer Status",
+            "type": "string"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/Claim"
+            },
+            "maxItems": 6,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "unresolved_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolved Evidence Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claims",
+          "answer_status",
+          "explanation",
+          "unresolved_evidence_ids"
+        ],
+        "title": "Answer",
+        "type": "object"
+      },
+      "max_tokens": 512,
+      "messages": [
+        {
+          "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"evidence\":[{\"event_end_seconds\":6830.0,\"event_start_seconds\":6710.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":6831.0,\"quantity\":\"eda_median\",\"record_id\":\"ppg_dalia/S4/6710-6830/eda_median/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":4.2316255,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":6861.0,\"quantity\":\"acceleration_magnitude_sd\",\"record_id\":\"ppg_dalia/S4/6830-6860/acceleration_magnitude_sd/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"g\",\"value\":0.22832931001191326,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":6861.0,\"quantity\":\"eda_clipping_fraction\",\"record_id\":\"ppg_dalia/S4/6830-6860/eda_clipping_fraction/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.008333333333333333,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":6861.0,\"quantity\":\"eda_iqr\",\"record_id\":\"ppg_dalia/S4/6830-6860/eda_iqr/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":0.1658925,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":6861.0,\"quantity\":\"eda_median\",\"record_id\":\"ppg_dalia/S4/6830-6860/eda_median/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":3.436828,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":6861.0,\"quantity\":\"eda_missing_fraction\",\"record_id\":\"ppg_dalia/S4/6830-6860/eda_missing_fraction/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.0,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"missing\",\"ingested_at_seconds\":6861.0,\"quantity\":\"pulse_frequency_bpm\",\"record_id\":\"ppg_dalia/S4/6830-6860/pulse_frequency_bpm/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":null,\"version\":1},{\"event_end_seconds\":6860.0,\"event_start_seconds\":6830.0,\"evidence_state\":\"missing\",\"ingested_at_seconds\":6861.0,\"quantity\":\"respiration_frequency_per_min\",\"record_id\":\"ppg_dalia/S4/6830-6860/respiration_frequency_per_min/v1\",\"subject_id\":\"S4\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":null,\"version\":1}],\"knowledge_time\":6861.0,\"question\":\"Report the target EDA median and EDA missing fraction. State which requested value is unavailable instead of guessing.\",\"subject_id\":\"S4\",\"target_interval\":[6830.0,6860.0]}",
+          "role": "user"
+        },
+        {
+          "content": "Repair this answer using only the same evidence. Checks: {\"validation\": [], \"paragraph\": [], \"format_error\": \"ValidationError: 1 validation error for Answer\\n  Invalid JSON: EOF while parsing a string at line 56 column 35 [type=json_invalid, input_value='{\\\\n  \\\"claims\\\": [\\\\n    {\\\\...on\\\": \\\"The EDA median is', input_type=str]\\n    For further information visit https://errors.pydantic.dev/2.11/v/json_invalid\"}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260928,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "length",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\n  \"claims\": [\n    {\n      \"claim_id\": \"eda_median\",\n      \"claim_type\": \"numeric_observation\",\n      \"subject_id\": \"S4\",\n      \"quantity\": \"eda_median\",\n      \"event_start_seconds\": 6830.0,\n      \"event_end_seconds\": 6860.0,\n      \"operator\": \"approximately_equal\",\n      \"value\": 3.436828,\n      \"unit\": \"uS\",\n      \"evidence_ids\": [\"ppg_dalia/S4/6830-6860/eda_median/v1\"]\n    ,\n    \"depends_on_claim_ids\": []\n    ,\n    \"sentence\": \"The EDA median is approximately_equal 3.436828 uS\"\n    },\n    {\n      \"claim_id\": \"eda_missing_fraction\",\n      \"claim_type\": \"numeric_observation\",\n      \"subject_id\": \"S4\",\n      \"quantity\": \"eda_missing_fraction\",\n      \"event_start_seconds\": 6830.0,\n      \"event_end_seconds\": 6860.0,\n      \"operator\": \"approximately_equal\",\n      \"value\": 0.0,\n      \"unit\": \"fraction\",\n      \"evidence_ids\": [\"ppg_dalia/S4/6830-6860/eda_missing_fraction/v1\"]\n    ,\n    \"depends_on_claim_ids\": []\n    ,\n    \"sentence\": \"The EDA missing fraction is approximately_equal 0.0 fraction\"\n    },\n    {\n      \"claim_id\": \"pulse_frequency_bpm_missing\",\n      \"claim_type\": \"missing_evidence\",\n      \"subject_id\": \"S4\",\n      \"quantity\": \"pulse_frequency_bpm\",\n      \"event_start_seconds\": 6830.0,\n      \"event_end_seconds\": 6860.0,\n      \"operator\": \"missing\",\n      \"value\": null,\n      \"unit\": \"per_min\",\n      \"evidence_ids\": [\"ppg_dalia/S4/6830-6860/pulse_frequency_bpm/v1\"]\n    ,\n    \"depends_on_claim_ids\": []\n    ,\n    \"sentence\": \"The pulse frequency is missing with value null per_min\"\n    }\n  ]\n  \n  ,\n  \"answer_status\": \"partially_answered\"\n  \n  ,\n  \"explanation\": \"The EDA median is approximately_equal 3",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790641305,
+      "id": "chatcmpl-8ee460db6c6a438dbabefc86fbd4b781",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 512,
+        "prompt_tokens": 1235,
+        "prompt_tokens_details": null,
+        "total_tokens": 1747
+      }
+    },
+    "seconds": 7.057812656043097,
+    "started_at": "2026-09-29T00:21:45.904403+00:00",
+    "truncated": true
+  },
+  "retrieval_seconds": 0.013930184999480844,
+  "revisions": [
+    {
+      "kind": "ordinary_ingestion",
+      "records": 168,
+      "seconds": 0.06910961004905403
+    }
+  ],
+  "seconds": 14.181689363904297,
+  "status": "failed",
+  "validation": []
+}

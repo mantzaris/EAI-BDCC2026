@@ -1,10 +1,15 @@
 {
+  "assignment_streams": {
+    "fault": 2,
+    "question": 3
+  },
   "dataset": "wesad",
   "end": 1305.0,
   "episode_id": "wesad-S11-e0",
   "family": "conflict_timing",
-  "feature_extraction_seconds": 0.02486969899473479,
-  "raw_samples_processed": 155520,
+  "feature_extraction_seconds": 0.022090769998612814,
+  "raw_samples_processed": 311040,
+  "sample_count_note": "Scalar channel values: 120s baseline + seven 30s update windows + one 30s replay extraction; unique original interval spans 150s",
   "sampling_rates": {
     "cardiac": 64,
     "eda": 4,
@@ -15,18 +20,19 @@
   "split": "test",
   "start": 1275.0,
   "subject": "S11",
+  "unique_source_scalar_samples": 129600,
   "variants": {
     "channel_fault": {
       "evaluator_only": {
-        "dropout_seconds": 15,
-        "fault_family": "missingness",
+        "dropout_seconds": 0,
+        "fault_family": "corruption",
         "intervention_interval": [
           1275.0,
           1305.0
         ],
         "intervention_subject": "S11",
-        "observable_fault": true,
-        "offset": 0,
+        "observable_fault": false,
+        "offset": 0.5,
         "variant": "channel_fault"
       },
       "events": [
@@ -4471,11 +4477,11 @@
           "logical_id": "wesad/S11/1275-1305/eda/raw",
           "metadata": {
             "channel": "eda",
-            "file_sha256": "d8f1f83765a9d8c93f657a95b3dbab98407a807dffcee7a19597205d2f1d6ff0",
+            "file_sha256": "f2ef3d5604d891b6314fb3be00e12a98fdac0a84c04cecf317db628e707f8023",
             "original_file_sha256": "f39557a8d660b10154936f51debf2926aea7ebb9b26a168858f59502f914d8f7",
             "original_sample_start": 5100,
             "original_sample_stop": 5220,
-            "path": "data/derived/windows/d8f1f83765a9d8c93f657a95b3dbab98407a807dffcee7a19597205d2f1d6ff0.npy",
+            "path": "data/derived/windows/f2ef3d5604d891b6314fb3be00e12a98fdac0a84c04cecf317db628e707f8023.npy",
             "rate_hz": 4,
             "sample_start": 0,
             "sample_stop": 120
@@ -4544,7 +4550,7 @@
           "supersedes_id": "wesad/S11/1275-1305/eda_missing_fraction/v1",
           "support_mode": "AND",
           "unit": "fraction",
-          "value": 0.5,
+          "value": 0.0,
           "version": 2
         },
         {
@@ -4596,7 +4602,7 @@
           "supersedes_id": "wesad/S11/1275-1305/eda_clipping_fraction/v1",
           "support_mode": "AND",
           "unit": "fraction",
-          "value": 0.016666666666666666,
+          "value": 0.008333333333333333,
           "version": 2
         },
         {
@@ -4648,7 +4654,7 @@
           "supersedes_id": "wesad/S11/1275-1305/eda_median/v1",
           "support_mode": "AND",
           "unit": "uS",
-          "value": 2.3622505,
+          "value": 2.9083034999999997,
           "version": 2
         },
         {
@@ -4700,7 +4706,7 @@
           "supersedes_id": "wesad/S11/1275-1305/eda_iqr/v1",
           "support_mode": "AND",
           "unit": "uS",
-          "value": 0.09410100000000021,
+          "value": 0.10361900000000013,
           "version": 2
         },
         {

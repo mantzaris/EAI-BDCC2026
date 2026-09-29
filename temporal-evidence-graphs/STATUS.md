@@ -1,29 +1,31 @@
 # Study status
 
-Updated: 2026-09-28. Overall completion: **27%** (estimated against the eight stage gates).
+Updated: 2026-09-28 (local). Overall completion: **35%** (estimated against the eight stage gates).
 
 | Stage | State |
 |---|---|
-| 0 Environment and acquisition | CUDA BF16 verified; all three sources acquired and inventoried; pinned model downloaded; Neo4j running; vLLM dependencies installing |
-| 1 Synthetic correctness | Immutable replay and five-condition fixtures pass; live Neo4j parity check pending |
-| 2 GPU generation and five conditions | Output contract, GPU guard, bounded repair client and validation implemented; live fixture pending |
+| 0 Environment and acquisition | Complete: all sources, live Neo4j, CUDA inference, parameter/tensor placement and 171-package dependency lock |
+| 1 Synthetic correctness | Local tests and live Neo4j/relational parity passed; immutable displayed-text maintenance added |
+| 2 GPU generation and five conditions | All five conditions executed on GPU; format failures found in development and retained |
 | 3 Real data adapters | Development unit/provenance audit completed; fixed splits and 100 prepared episodes rebuilt; replay arrays separately hashed |
-| 4 Freeze and development pilot | Pending |
+| 4 Freeze and development pilot | Pilot v1 complete but fails format gate; v2 diagnostic run underway; final balanced schedule prepared for v3 |
 | 5 Locked experiments | Pending: 3,600 initial calls, at most 2,880 repairs |
-| 6 Analysis and interface | Independent exact evaluator and correctness tests implemented; aggregation and interface pending |
+| 6 Analysis and interface | Independent evaluator, clustered bootstrap, plotting, open-loop workload and automated audit implemented; execution/interface pending |
 | 7 Manuscript package | Pending |
 
 All changes are committed and pushed to `main`, without branches, as instructed.
-No test generations or research results exist yet. Thirty-six correctness tests pass.
+No held-out generations or research results exist yet. Forty correctness tests pass.
 Sixty prepared base episodes are held out; forty are for development. No protocol
-freeze has occurred. Slow package downloads remain an operational delay, not a data
-access blocker. The user confirmed continuing with the current pod.
+freeze has occurred. The user confirmed continuing with the current pod.
+Pilot v1 had 100 initial cases, 69 bounded repairs, and 20 interactive requests;
+67 initial outputs truncated and 71 final cases failed. All failures are retained.
+The second development run tests a larger limit. Final format instructions explicitly
+name every required JSON field, and the schema enforces at most three claims.
 
 Next executable step (on the pod in `/workspace/temporal-evidence-graphs`):
 
 ```sh
-python -m temporal_evidence.cli check-environment
-python -m temporal_evidence.cli validate-core --graph
+.venv/bin/python -m temporal_evidence.cli pilot --run-id pilot_v3
 ```
 
 The supplied research plan is the governing prospective protocol. Deviations and

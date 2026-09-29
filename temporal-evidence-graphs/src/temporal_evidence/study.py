@@ -62,7 +62,7 @@ def protocol_files():
     files=list(Path("configs").glob("*.yaml"))+[Path("pyproject.toml")]
     for part in ["data","features","generation","replay","storage","validation","synthetic","evaluation"]:
         files.extend(Path(f"src/temporal_evidence/{part}").glob("*.py"))
-    files += [Path(f"src/temporal_evidence/{name}.py") for name in ["schema","study","experiment","io"]]
+    files += [Path(f"src/temporal_evidence/{name}.py") for name in ["schema","study","experiment","streaming","io"]]
     return {str(path):digest_file(path) for path in sorted(files)}
 
 
@@ -75,17 +75,21 @@ def freeze(config_path="configs/minimum_study.yaml"):
     core=read_json("artifacts/manifests/core_validation.json")
     pilot=read_json("artifacts/manifests/pilot.json")
     model=read_json("artifacts/manifests/model.json")
+    audit_model=read_json("artifacts/manifests/audit_model.json")
     assert core["passed"] and core["real_neo4j"]
-    assert pilot["initial_cases"]>=100 and pilot["all_methods_produced_output"]
+    assert pilot["initial_cases"]>=100 and pilot["all_methods_produced_output"] and pilot["interactive_requests"]==20
     assert pilot["config_sha256"]==digest_file(config_path)
+    assert pilot["config"]==config and pilot["runtime_source_hashes"]==protocol_files()
+    assert pilot["truncated_initial"]==0 and pilot["failed_cases"]<=5,"Development format gate failed"
     assert model["status"]=="downloaded" and model["revision"]==config["model"]["revision"]
+    assert audit_model["status"]=="downloaded"
     cases=make_cases("test")
     assert len(cases)==3600 and len({case["case_id"] for case in cases})==3600
     assert all(sum(case["dataset"]==source for case in cases)==1200 for source in config["datasets"])
     for row in episode_rows("test"):
         assert digest_file(row["path"])==row["sha256"]
     frozen={"run_id":"minimum_v1","frozen_at":utc_now(),"config":config,"config_sha256":digest_file(config_path),
-            "source_hashes":protocol_files(),"model":model,"environment":environment,"cases":cases,
+            "source_hashes":protocol_files(),"model":model,"auxiliary_audit_model":audit_model,"environment":environment,"cases":cases,
             "initial_calls":len(cases),"maximum_repair_calls":sum(case["method"]!="B0" for case in cases),
             "principal_contrasts":[["M1","B2","correction"],["M1","B1","case_error_and_fact_recall"]],
             "systems_contrast":["M1","B3"],"uncertainty":"2000 paired subject-cluster bootstrap resamples; pointwise 95% intervals; no p-values"}

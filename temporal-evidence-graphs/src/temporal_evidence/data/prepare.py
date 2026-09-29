@@ -19,7 +19,27 @@ def revised(record, time, version, **changes):
                    ingested_at_seconds=time,supersedes_id=record.record_id,**changes)
 
 
-def make_variants(dataset, entry, signals, rates, units, end, index):
+def episode_assignments(dataset,entries):
+    """Independent seeded ranks balance families and faults without outcome access."""
+    groups={}
+    for entry in entries:
+        seed=int(entry["subject"].lstrip("SV"))
+        root=np.random.SeedSequence(seed if dataset=="synthetic" else [20260928,{"wesad":1,"ppg_dalia":2}[dataset],seed])
+        streams=root.spawn(4)
+        fault_scores=np.random.default_rng(streams[2]).random(2)
+        question_scores=np.random.default_rng(streams[3]).random(2)
+        for index in range(2):
+            groups.setdefault(entry["split"],[]).append((entry["subject"],index,fault_scores[index],question_scores[index]))
+    assignments={}
+    for items in groups.values():
+        for rank,item in enumerate(sorted(items,key=lambda row:row[2])):
+            assignments[(item[0],item[1])] = {"fault_family":"missingness" if rank<len(items)//2 else "corruption"}
+        for rank,item in enumerate(sorted(items,key=lambda row:row[3])):
+            assignments[(item[0],item[1])]["family"]=FAMILIES[rank%4]
+    return assignments
+
+
+def make_variants(dataset, entry, signals, rates, units, end, index, fault_family=None):
     start = end-30
     base, extraction_seconds = window_records(dataset,entry,signals,rates,units,start-120,start)
     updates=[]
@@ -52,7 +72,7 @@ def make_variants(dataset, entry, signals, rates, units, end, index):
         else:
             rate=rates["eda"]
             altered=np.array(signals["eda"][round(start*rate):round(end*rate)],dtype=float,copy=True)
-            family="missingness" if index%2==0 else "corruption"
+            family=fault_family or ("missingness" if index%2==0 else "corruption")
             if family=="missingness":
                 altered[-15*rate:]=np.nan
             else:
@@ -103,6 +123,7 @@ def prepare(config_path="configs/minimum_study.yaml", datasets=None):
         inventories[dataset]=read_json(path)
     report=[]
     for dataset,inventory in inventories.items():
+        assignments=episode_assignments(dataset,inventory["subjects"])
         for entry in inventory["subjects"]:
             signals,rates,units=load_signals(dataset,entry)
             duration=min(len(signals[channel])/rates[channel] for channel in signals)
@@ -112,12 +133,15 @@ def prepare(config_path="configs/minimum_study.yaml", datasets=None):
             for episode_index,fraction in enumerate(config["episode_fractions"]):
                 end=float(5*np.floor(duration*fraction/5))
                 episode_id=f"{dataset}-{entry['subject']}-e{episode_index}"
-                variants,seconds=make_variants(dataset,entry,signals,rates,units,end,subject_position*2+episode_index)
+                assignment=assignments[(entry["subject"],episode_index)]
+                variants,seconds=make_variants(dataset,entry,signals,rates,units,end,subject_position*2+episode_index,assignment["fault_family"])
                 payload={"episode_id":episode_id,"dataset":dataset,"subject":entry["subject"],"split":entry["split"],
-                         "family":FAMILIES[(subject_position*2+episode_index)%4],"start":end-30,"end":end,
+                         "family":assignment["family"],"assignment_streams":{"fault":2,"question":3},"start":end-30,"end":end,
                          "source_sha256":entry["sha256"],"variants":variants,"feature_extraction_seconds":seconds,
-                         "sampling_rates":rates,"raw_samples_processed":sum(round(180*rates[c])*np.asarray(signals[c]).shape[-1]
-                            if np.asarray(signals[c]).ndim==2 else round(180*rates[c]) for c in signals)}
+                         "sampling_rates":rates,
+                         "raw_samples_processed":sum(round(360*rates[c])*(np.asarray(signals[c]).shape[-1] if np.asarray(signals[c]).ndim==2 else 1) for c in signals),
+                         "unique_source_scalar_samples":sum(round(150*rates[c])*(np.asarray(signals[c]).shape[-1] if np.asarray(signals[c]).ndim==2 else 1) for c in signals),
+                         "sample_count_note":"Scalar channel values: 120s baseline + seven 30s update windows + one 30s replay extraction; unique original interval spans 150s"}
                 path=directory/f"{episode_id}.json"
                 write_json(path,payload)
                 report.append({key:payload[key] for key in ("episode_id","dataset","subject","split","family","start","end","feature_extraction_seconds")}

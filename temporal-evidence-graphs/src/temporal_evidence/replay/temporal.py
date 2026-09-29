@@ -127,13 +127,12 @@ def apply_revision(store, revision: Record, method: str) -> dict:
     # on every earlier version, including claims that still cite v1 after v2.
     predecessors=[r.record_id for r in records.values() if r.logical_id==revision.logical_id
                   and r.version<revision.version]
-    affected=set().union(*(store.dependents(identifier,revision.ingested_at_seconds,transitive)
-                          for identifier in predecessors))
+    affected=store.dependents_many(predecessors,revision.ingested_at_seconds,transitive)
     assessments = {}
     for identifier in dependency_order(records, set(affected)):
         if records[identifier].record_type in {"claim", "explanation", "feature"}:
             state, value = support_state(identifier, records)
-            store.assess(identifier, revision.ingested_at_seconds, state, value, revision.record_id)
             assessments[identifier] = {"state": state, "value": value}
+    store.assess_many(assessments,revision.ingested_at_seconds,revision.record_id)
     return {"affected": sorted(affected), "assessments": assessments,
             "seconds": time.perf_counter() - started}

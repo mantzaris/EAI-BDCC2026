@@ -20,7 +20,7 @@ class Claim(BaseModel):
 
 class Answer(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    claims: list[Claim] = Field(max_length=6)
+    claims: list[Claim] = Field(max_length=3)
     answer_status: Literal["answered", "partially_answered", "insufficient_evidence"]
     explanation: str
     unresolved_evidence_ids: list[str]

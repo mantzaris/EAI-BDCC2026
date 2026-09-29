@@ -1,10 +1,15 @@
 {
+  "assignment_streams": {
+    "fault": 2,
+    "question": 3
+  },
   "dataset": "ppg_dalia",
   "end": 5950.0,
   "episode_id": "ppg_dalia-S15-e1",
   "family": "evidence_sufficiency",
-  "feature_extraction_seconds": 0.022430686993175186,
-  "raw_samples_processed": 155520,
+  "feature_extraction_seconds": 0.0215649659949122,
+  "raw_samples_processed": 311040,
+  "sample_count_note": "Scalar channel values: 120s baseline + seven 30s update windows + one 30s replay extraction; unique original interval spans 150s",
   "sampling_rates": {
     "cardiac": 64,
     "eda": 4,
@@ -15,18 +20,19 @@
   "split": "development",
   "start": 5920.0,
   "subject": "S15",
+  "unique_source_scalar_samples": 129600,
   "variants": {
     "channel_fault": {
       "evaluator_only": {
-        "dropout_seconds": 0,
-        "fault_family": "corruption",
+        "dropout_seconds": 15,
+        "fault_family": "missingness",
         "intervention_interval": [
           5920.0,
           5950.0
         ],
         "intervention_subject": "S15",
-        "observable_fault": false,
-        "offset": 0.5,
+        "observable_fault": true,
+        "offset": 0,
         "variant": "channel_fault"
       },
       "events": [
@@ -4471,11 +4477,11 @@
           "logical_id": "ppg_dalia/S15/5920-5950/eda/raw",
           "metadata": {
             "channel": "eda",
-            "file_sha256": "7b20d3d6fde12414a8683ece9f7df331ee953ddc76a0ab64564dd854bf456fc8",
+            "file_sha256": "e9417356a2844094d940b95e484e8d27c3cdbbcd3240f7ab27b5c9c61d7c963f",
             "original_file_sha256": "1f080cbce67be7a0638787e745c3a73a50bab7db4be0da3b6c84288d42aa3497",
             "original_sample_start": 23680,
             "original_sample_stop": 23800,
-            "path": "data/derived/windows/7b20d3d6fde12414a8683ece9f7df331ee953ddc76a0ab64564dd854bf456fc8.npy",
+            "path": "data/derived/windows/e9417356a2844094d940b95e484e8d27c3cdbbcd3240f7ab27b5c9c61d7c963f.npy",
             "rate_hz": 4,
             "sample_start": 0,
             "sample_stop": 120
@@ -4544,7 +4550,7 @@
           "supersedes_id": "ppg_dalia/S15/5920-5950/eda_missing_fraction/v1",
           "support_mode": "AND",
           "unit": "fraction",
-          "value": 0.0,
+          "value": 0.5,
           "version": 2
         },
         {
@@ -4596,7 +4602,7 @@
           "supersedes_id": "ppg_dalia/S15/5920-5950/eda_clipping_fraction/v1",
           "support_mode": "AND",
           "unit": "fraction",
-          "value": 0.008333333333333333,
+          "value": 0.016666666666666666,
           "version": 2
         },
         {
@@ -4648,7 +4654,7 @@
           "supersedes_id": "ppg_dalia/S15/5920-5950/eda_median/v1",
           "support_mode": "AND",
           "unit": "uS",
-          "value": 5.730358000000001,
+          "value": 5.450695,
           "version": 2
         },
         {
@@ -4700,7 +4706,7 @@
           "supersedes_id": "ppg_dalia/S15/5920-5950/eda_iqr/v1",
           "support_mode": "AND",
           "unit": "uS",
-          "value": 0.5202340000000003,
+          "value": 0.23218549999999993,
           "version": 2
         },
         {

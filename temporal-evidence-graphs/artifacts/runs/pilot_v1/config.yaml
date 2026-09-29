@@ -1,0 +1,35 @@
+study_id: minimum_v1
+datasets: [synthetic, wesad, ppg_dalia]
+methods: [B0, B1, B2, M1, B3]
+variants: [clean, channel_fault, delayed, correction]
+window_seconds: 30
+update_seconds: 5
+comparison_seconds: 120
+episode_fractions: [0.25, 0.75]
+checkpoint_offsets: [1, 31, 91]
+split_seed: 20260928
+generation_seed: 20260928
+initial_calls: 3600
+maximum_repair_calls: 2880
+numeric_absolute_tolerance: 0.000001
+numeric_relative_tolerance: 0.01
+spectral_concentration_threshold: 0.5
+bootstrap_resamples: 2000
+model:
+  name: Qwen/Qwen3-8B
+  revision: b968826d9c46dd6066d109eabc6255188de91218
+  dtype: bfloat16
+  temperature: 0.7
+  top_p: 0.8
+  top_k: 20
+  max_input_tokens: 4096
+  max_output_tokens: 512
+  enable_thinking: false
+  cpu_offload_gb: 0
+faults:
+  dropout_seconds: 15
+  eda_offset: 0.5
+  packet_delay_seconds: 60
+  correction_offset: 0.5
+  repair_deadline_seconds: 5
+  flag_deadline_seconds: 1

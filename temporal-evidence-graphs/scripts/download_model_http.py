@@ -4,6 +4,7 @@ Range requests allow progress despite a poor single-connection path. No credenti
 are sent; the exact public model revision and every completed file are recorded.
 """
 import concurrent.futures
+import argparse
 import json
 import os
 from pathlib import Path
@@ -13,13 +14,21 @@ import urllib.request
 
 from temporal_evidence.io import digest_file, read_json, utc_now, write_json
 
-MODEL_ID = "Qwen/Qwen3-8B"
-manifest = Path("artifacts/manifests/model.json")
-directory = Path(".runtime/models/Qwen3-8B")
+parser=argparse.ArgumentParser()
+parser.add_argument("--model",default="Qwen/Qwen3-8B")
+parser.add_argument("--manifest",default="artifacts/manifests/model.json")
+args=parser.parse_args()
+MODEL_ID = args.model
+manifest = Path(args.manifest)
+directory = Path(".runtime/models") / MODEL_ID.split("/")[-1]
 directory.mkdir(parents=True, exist_ok=True)
 with urllib.request.urlopen(f"https://huggingface.co/api/models/{MODEL_ID}", timeout=60) as response:
     info = json.load(response)
 revision = read_json(manifest)["revision"] if manifest.exists() else info["sha"]
+if manifest.exists():
+    assert read_json(manifest)["model_id"]==MODEL_ID
+with urllib.request.urlopen(f"https://huggingface.co/api/models/{MODEL_ID}/revision/{revision}",timeout=60) as response:
+    info=json.load(response)
 metadata = {"model_id": MODEL_ID, "revision": revision, "tokenizer_revision": revision,
             "resolved_at": utc_now(), "status": "downloading", "local_path": str(directory.resolve()), "files": []}
 write_json(manifest, metadata)

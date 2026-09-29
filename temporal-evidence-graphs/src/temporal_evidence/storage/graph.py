@@ -71,20 +71,28 @@ class GraphStore:
         return {row["id"]: Record.from_dict(json.loads(row["payload"])) for row in rows}
 
     def dependents(self, identifier, knowledge_time, transitive=True):
+        return self.dependents_many([identifier],knowledge_time,transitive)
+
+    def dependents_many(self, identifiers, knowledge_time, transitive=True):
         reach = "*1.." if transitive else ""
-        rows, _, _ = self.driver.execute_query(f"""MATCH p=(r:Record {{scope:$scope}})-[:DEPENDS_ON{reach}]->(s:Record {{scope:$scope,id:$id}})
+        rows, _, _ = self.driver.execute_query(f"""UNWIND $ids AS root_id
+            MATCH p=(r:Record {{scope:$scope}})-[:DEPENDS_ON{reach}]->(s:Record {{scope:$scope,id:root_id}})
             WHERE all(n IN nodes(p) WHERE n.ingested <= $time)
-            RETURN DISTINCT r.id AS id""", scope=self.scope, id=identifier, time=knowledge_time)
+            RETURN DISTINCT r.id AS id""", scope=self.scope, ids=list(identifiers), time=knowledge_time)
         return {row["id"] for row in rows}
 
     def assess(self, identifier, known_at, state, value, trigger):
-        self.driver.execute_query("""MATCH (r:Record {scope:$scope,id:$id})
-            MERGE (a:SupportAssessment {scope:$scope,id:$id,known_at:$known_at,trigger_id:$trigger})
-            ON CREATE SET a.state=$state,a.value=$value MERGE (r)-[:ASSESSED_AS]->(a)""",
-            scope=self.scope, id=identifier, known_at=known_at, trigger=trigger, state=state, value=value)
-        if state=="contradicted":
-            self.driver.execute_query("""MATCH (t:Record {scope:$scope,id:$trigger}),(r:Record {scope:$scope,id:$id})
-                MERGE (t)-[:CONTRADICTS]->(r)""",scope=self.scope,trigger=trigger,id=identifier)
+        self.assess_many({identifier:{"state":state,"value":value}},known_at,trigger)
+
+    def assess_many(self,assessments,known_at,trigger):
+        rows=[{"id":identifier,**value} for identifier,value in assessments.items()]
+        if not rows:
+            return
+        self.driver.execute_query("""UNWIND $rows AS row MATCH (r:Record {scope:$scope,id:row.id})
+            MERGE (a:SupportAssessment {scope:$scope,id:row.id,known_at:$known_at,trigger_id:$trigger})
+            ON CREATE SET a.state=row.state,a.value=row.value MERGE (r)-[:ASSESSED_AS]->(a)
+            WITH row,r WHERE row.state='contradicted' MATCH (t:Record {scope:$scope,id:$trigger})
+            MERGE (t)-[:CONTRADICTS]->(r)""",scope=self.scope,rows=rows,known_at=known_at,trigger=trigger)
 
     def close(self):
         if self.owns_driver:

@@ -4,6 +4,7 @@ import asyncio
 from dataclasses import asdict,replace
 from pathlib import Path
 import time
+import shutil
 import numpy as np
 
 from temporal_evidence.generation.client import GPUClient
@@ -11,7 +12,7 @@ from temporal_evidence.io import digest_file,digest_object,read_json,write_json,
 from temporal_evidence.replay.temporal import apply_revision,current_versions
 from temporal_evidence.schema import Record
 from temporal_evidence.storage.relational import RelationalStore
-from temporal_evidence.study import METHODS,VARIANTS,episode_rows,load_config,make_cases,query_evidence,verify_frozen
+from temporal_evidence.study import METHODS,VARIANTS,episode_rows,load_config,make_cases,query_evidence,verify_frozen,protocol_files
 
 
 def displayed_records(display,case,query,store):
@@ -92,7 +93,39 @@ def ingest_until(store,events,known_at,method,ingested,displays):
                     if source in visible else source for source in displays[identifier]["claim"]["evidence_ids"]]
                 if old!=assessment["state"]:
                     displays[identifier]["last_transition"]={"trigger_id":result["trigger_id"],"flag_seconds":result["seconds"]}
+    if method!="B0":
+        versions=maintain_explanations(store,displays,known_at)
+        if versions:
+            results.append({"kind":"explanation_maintenance","versions":[r.to_dict() for r in versions]})
     return results
+
+
+def maintain_explanations(store,displays,known_at):
+    """Persist the actual revised display text, retaining immutable earlier text."""
+    groups={}
+    for identifier,item in displays.items():
+        groups.setdefault(identifier.split("/claim/")[0]+"/explanation",[]).append((identifier,item))
+    current=current_versions(store.snapshot(known_at))
+    revisions=[]
+    for logical_id,items in groups.items():
+        previous=current[logical_id]
+        retained=[(identifier,item) for identifier,item in items if item["state"] in {"supported","unverified","pending"}]
+        display={"claims":[item["claim"] for _,item in retained],
+                 "explanation":" ".join(item["claim"]["sentence"] for _,item in retained),
+                 "answer_status":"answered" if len(retained)==len(items) else "partially_answered" if retained else "insufficient_evidence",
+                 "unresolved_evidence_ids":[]}
+        old=previous.metadata["display"]
+        if old["claims"]==display["claims"] and old["explanation"]==display["explanation"]:
+            continue
+        change=replace(previous,record_id=f"{logical_id}/maintenance/{known_at:g}",version=previous.version+1,
+                       ingested_at_seconds=known_at+1e-7,supersedes_id=previous.record_id,
+                       source_ids=tuple(identifier for identifier,_ in retained),metadata={
+                           **previous.metadata,"display":display,"maintenance_action":"recompose_from_currently_supported_claims",
+                           "withdrawn_claim_ids":[identifier for identifier,item in items if item["state"] not in {"supported","unverified","pending"}]})
+        revisions.append(change)
+    if revisions:
+        store.put_many(revisions)
+    return revisions
 
 
 async def scenario(episode_row,variant,checkpoints,run_id,config,client,semaphore,graph_driver=None):
@@ -164,6 +197,9 @@ async def scenario(episode_row,variant,checkpoints,run_id,config,client,semaphor
 
 async def pilot(config_path="configs/minimum_study.yaml",run_id="pilot_v1"):
     config=load_config(config_path)
+    config_hash=digest_file(config_path)
+    source_hashes=protocol_files()
+    write_json(f"artifacts/runs/{run_id}/configuration.json",{"config":config,"config_sha256":config_hash,"source_hashes":source_hashes})
     from neo4j import GraphDatabase
     driver=GraphDatabase.driver("bolt://127.0.0.1:7687",auth=None)
     Path(".local").mkdir(exist_ok=True)
@@ -172,14 +208,27 @@ async def pilot(config_path="configs/minimum_study.yaml",run_id="pilot_v1"):
     selected=[]
     for index in range(8):
         dataset=("synthetic","wesad","ppg_dalia")[index%3]
-        candidates=[row for row in rows if row["dataset"]==dataset]
-        selected.append((candidates[index%len(candidates)],VARIANTS[index%4],(0,1,2) if index<6 else (0,)))
+        family=("current_evidence","evidence_sufficiency","conflict_timing","revision_impact")[index%4]
+        candidates=[row for row in rows if row["dataset"]==dataset and row["family"]==family]
+        selected.append((candidates[index%len(candidates)],VARIANTS[(index+index//4)%4],(0,1,2) if index<6 else (0,)))
+    input_directory=Path(f"artifacts/runs/{run_id}/input_episodes")
+    input_directory.mkdir(parents=True,exist_ok=True)
+    for row,_,_ in selected:
+        destination=input_directory/Path(row["path"]).name
+        if destination.exists():
+            assert digest_file(destination)==row["sha256"]
+        else:
+            shutil.copyfile(row["path"],destination)
     semaphore=asyncio.Semaphore(4)
     started=time.perf_counter()
     results=[]
     try:
-        for row,variant,checkpoints in selected:
-            results.extend(await scenario(row,variant,checkpoints,run_id,config,client,semaphore,driver))
+        # Independent scenarios share the four-request GPU semaphore. A scenario
+        # still completes each checkpoint before exposing its own next checkpoint.
+        for offset in range(0,len(selected),4):
+            group=await asyncio.gather(*(scenario(row,variant,checkpoints,run_id,config,client,semaphore,driver)
+                                         for row,variant,checkpoints in selected[offset:offset+4]))
+            results.extend(result for batch in group for result in batch)
             print(f"Pilot: {len(results)}/100 initial cases accounted for",flush=True)
         seconds=time.perf_counter()-started
         interactive=[]
@@ -203,7 +252,7 @@ async def pilot(config_path="configs/minimum_study.yaml",run_id="pilot_v1"):
                 "truncated_initial":sum(r["initial"].get("truncated",False) for r in results),
                 "all_methods_produced_output":all(any(r["case"]["method"]==method and r["display"] is not None for r in results) for method in METHODS),
                 "estimated_minimum_seconds_including_repairs_and_database":seconds/len(results)*3600,
-                "config_sha256":digest_file(config_path),"completed_at":utc_now()}
+                "config_sha256":config_hash,"runtime_source_hashes":source_hashes,"config":config,"completed_at":utc_now()}
         report.update(interactive_requests=len(interactive),interactive_concurrency=1,
                       interactive_p50=float(np.quantile([r["seconds"] for r in interactive],.5)),
                       interactive_p95=float(np.quantile([r["seconds"] for r in interactive],.95)))
@@ -232,10 +281,10 @@ async def run(manifest_path="artifacts/manifests/minimum_run.json"):
         # Randomize scenario order once, independently of outcomes.
         work=[(row,variant) for row in rows for variant in VARIANTS]
         order=np.random.default_rng(20260928).permutation(len(work))
-        for position,index in enumerate(order):
-            row,variant=work[int(index)]
-            await scenario(row,variant,(0,1,2),run_id,config,client,semaphore,driver)
-            print(f"Locked run: {position+1}/{len(work)} scenarios accounted for",flush=True)
+        for offset in range(0,len(order),4):
+            group=[work[int(index)] for index in order[offset:offset+4]]
+            await asyncio.gather(*(scenario(row,variant,(0,1,2),run_id,config,client,semaphore,driver) for row,variant in group))
+            print(f"Locked run: {min(offset+4,len(work))}/{len(work)} scenarios accounted for",flush=True)
         outputs=Path(f"artifacts/runs/{run_id}/cases")
         actual={path.stem for path in outputs.glob("*.json")}
         expected={case["case_id"] for case in manifest["cases"]}

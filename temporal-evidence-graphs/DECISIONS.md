@@ -77,3 +77,39 @@
 - The pilot includes 100 batched development cases plus a separate 20-request
   concurrency-one workload. Both include actual bounded-repair costs. No hourly
   price has been supplied, so report observed time and tokens without invented cost.
+
+## 2026-09-28 — Live pilot and prospective design corrections
+
+- CUDA verification measured 8,190,735,360 BF16 parameters and first-forward tensors
+  on cuda:0. Neo4j Community 5.26.0 and indexed SQLite produce identical full
+  correction assessments. Both batch revision lookups and assessment writes.
+- Pilot v1 (512 output tokens) produced 67 truncated initial outputs and 71 failed
+  final cases out of 100. Retain all candidates, repairs and failures. A completion-time
+  config hash originally captured the later development config; preserve the emitted
+  summary and an explicitly corrected hash verified against all recorded requests.
+  Subsequent pilots snapshot configuration and source hashes before any requests.
+- Pilot v2 increases the common limit to 1,024 tokens. Development inspection finds
+  whitespace loops after the claims array: decoder grammar alone does not explain
+  the remaining required keys to the model. Add those keys and all claim fields to
+  the shared prompt; enforce the intended maximum of three claims in the schema.
+  Use a uniform 1,536-token ceiling for the final development pilot and prospective
+  run, with a 4,096-token input budget. No test generations have been inspected.
+- Replace deterministic even/odd fault and question assignments with independent
+  seeded rank schedules. Every source retains 20 test episodes, five of each family,
+  and ten missingness/ten corruption interventions. Both fault types occur in every
+  held-out source/family group. Store the complete assignment table before testing.
+- Correct raw scalar sample accounting: feature computations process 360 seconds
+  per channel including repeated windows and the fault replay; the unique original
+  recording interval spans 150 seconds. These counts exclude full-file decoding and
+  must not be confused with ingested derived events or independent participants.
+- Batch four independent scenarios through a shared four-request semaphore; retain
+  sequential checkpoints within each scenario. The final pilot measures this exact
+  schedule. Interactive requests remain concurrency one.
+- Persist actual recomposed explanation versions when unsupported claims are
+  withdrawn or restored, with links to the previous immutable text.
+- Use a separate systems workload at 1, 5 and 20 events/s, 60 seconds per cell,
+  independently scheduled arrivals, database-specific retrieval, and four concurrent
+  GPU requests. Its separate maximum is 472 GPU calls including validation repairs.
+- The auxiliary verifier is separately pinned Qwen2.5-3B-Instruct, BF16 on CUDA,
+  with 60 stratified final explanations and four calibration examples. Report this
+  as automated annotation; sharing the Qwen family limits verifier independence.

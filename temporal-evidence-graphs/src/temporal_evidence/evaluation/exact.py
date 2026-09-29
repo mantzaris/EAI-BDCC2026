@@ -252,7 +252,8 @@ def evaluate(run_id="minimum_v1"):
         output=read_json(path)
         identifier=output["case"]["episode_id"]
         if identifier not in episodes:
-            episodes[identifier]=read_json(f"artifacts/prepared/{identifier}.json")
+            archived=Path(f"artifacts/runs/{run_id}/input_episodes/{identifier}.json")
+            episodes[identifier]=read_json(archived if archived.exists() else f"artifacts/prepared/{identifier}.json")
         result=score_case(output,episodes[identifier])
         metrics.append(result["metrics"])
         write_json(f"artifacts/evaluation/{run_id}/cases/{path.name}",result)

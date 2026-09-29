@@ -1,0 +1,472 @@
+{
+  "case": {
+    "case_id": "synthetic-V101-e0-clean-c1-B3",
+    "checkpoint": 1,
+    "dataset": "synthetic",
+    "episode_id": "synthetic-V101-e0",
+    "family": "current_evidence",
+    "knowledge_time": 481.0,
+    "method": "B3",
+    "split": "development",
+    "subject": "V101",
+    "variant": "clean"
+  },
+  "completed_at": "2026-09-29T00:17:24.036798+00:00",
+  "database_update_seconds": 0.011194231919944286,
+  "display": null,
+  "end_to_end_seconds": 20.469924706965685,
+  "evidence_hash": "1c24d6e2ec0038c9791d9200356132fb4ba0fe23bc3ddca825352a4bf0679587",
+  "failure_reason": "ValidationError: 1 validation error for Answer\n  Invalid JSON: EOF while parsing a string at line 45 column 41 [type=json_invalid, input_value='{\\n  \"claims\": [\\n    {\\...s\": [\"synthetic/V101/42', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.11/v/json_invalid",
+  "final_candidate": null,
+  "initial": {
+    "case_id": "synthetic-V101-e0-clean-c1-B3",
+    "error": "ValidationError: 1 validation error for Answer\n  Invalid JSON: EOF while parsing a string at line 40 column 141 [type=json_invalid, input_value='{\\n  \"claims\": [\\n    {\\...etic_uS. The difference', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.11/v/json_invalid",
+    "event": "finished",
+    "http_status": 200,
+    "phase": "initial",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "Claim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "claim_type": {
+                "enum": [
+                  "numeric_observation",
+                  "trend",
+                  "comparison",
+                  "evidence_conflict",
+                  "missing_evidence",
+                  "revision_effect"
+                ],
+                "title": "Claim Type",
+                "type": "string"
+              },
+              "depends_on_claim_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Depends On Claim Ids",
+                "type": "array"
+              },
+              "event_end_seconds": {
+                "title": "Event End Seconds",
+                "type": "number"
+              },
+              "event_start_seconds": {
+                "title": "Event Start Seconds",
+                "type": "number"
+              },
+              "evidence_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Evidence Ids",
+                "type": "array"
+              },
+              "operator": {
+                "enum": [
+                  "approximately_equal",
+                  "difference",
+                  "greater_than",
+                  "less_than",
+                  "missing",
+                  "disagrees",
+                  "remains_supported",
+                  "revised"
+                ],
+                "title": "Operator",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "subject_id": {
+                "title": "Subject Id",
+                "type": "string"
+              },
+              "unit": {
+                "title": "Unit",
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Value"
+              }
+            },
+            "required": [
+              "claim_id",
+              "claim_type",
+              "subject_id",
+              "quantity",
+              "event_start_seconds",
+              "event_end_seconds",
+              "operator",
+              "value",
+              "unit",
+              "evidence_ids",
+              "depends_on_claim_ids",
+              "sentence"
+            ],
+            "title": "Claim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "answer_status": {
+            "enum": [
+              "answered",
+              "partially_answered",
+              "insufficient_evidence"
+            ],
+            "title": "Answer Status",
+            "type": "string"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/Claim"
+            },
+            "maxItems": 6,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "unresolved_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolved Evidence Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claims",
+          "answer_status",
+          "explanation",
+          "unresolved_evidence_ids"
+        ],
+        "title": "Answer",
+        "type": "object"
+      },
+      "max_tokens": 512,
+      "messages": [
+        {
+          "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"evidence\":[{\"event_end_seconds\":420.0,\"event_start_seconds\":300.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":421.0,\"quantity\":\"eda_median\",\"record_id\":\"synthetic/V101/300-420/eda_median/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"synthetic_uS\",\"value\":1.6485363841056824,\"version\":1},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":451.0,\"quantity\":\"acceleration_magnitude_sd\",\"record_id\":\"synthetic/V101/420-450/acceleration_magnitude_sd/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"synthetic_g\",\"value\":0.009738717731728961,\"version\":1},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":451.0,\"quantity\":\"eda_clipping_fraction\",\"record_id\":\"synthetic/V101/420-450/eda_clipping_fraction/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.004166666666666667,\"version\":1},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":451.0,\"quantity\":\"eda_iqr\",\"record_id\":\"synthetic/V101/420-450/eda_iqr/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"synthetic_uS\",\"value\":0.019631385803222656,\"version\":1},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":481.0,\"quantity\":\"eda_median\",\"record_id\":\"synthetic/V101/420-450/eda_median/v2\",\"subject_id\":\"V101\",\"supersedes_id\":\"synthetic/V101/420-450/eda_median/v1\",\"unit\":\"synthetic_uS\",\"value\":1.7418752312660217,\"version\":2},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":451.0,\"quantity\":\"eda_missing_fraction\",\"record_id\":\"synthetic/V101/420-450/eda_missing_fraction/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.0,\"version\":1},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":451.0,\"quantity\":\"pulse_frequency_bpm\",\"record_id\":\"synthetic/V101/420-450/pulse_frequency_bpm/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":74.0,\"version\":1},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":451.0,\"quantity\":\"respiration_frequency_per_min\",\"record_id\":\"synthetic/V101/420-450/respiration_frequency_per_min/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":18.0,\"version\":1}],\"knowledge_time\":481.0,\"question\":\"Report the target EDA median and its difference from the preceding 120-second EDA median (target minus earlier).\",\"subject_id\":\"V101\",\"target_interval\":[420.0,450.0]}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260928,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "length",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\n  \"claims\": [\n    {\n      \"claim_id\": \"claim_1\",\n      \"claim_type\": \"numeric_observation\",\n      \"subject_id\": \"V101\",\n      \"quantity\": \"eda_median\",\n      \"event_start_seconds\": 420.0,\n      \"event_end_seconds\": 450.0,\n      \"operator\": \"approximately_equal\",\n      \"value\": 1.7418752312660217,\n      \"unit\": \"synthetic_uS\",\n      \"evidence_ids\": [\"synthetic/V101/420-450/eda_median/v2\"]\n    ,\n    \"depends_on_claim_ids\": []\n    ,\n    \"sentence\": \"The EDA median during the interval [420.0, 450.0] is approximately equal to 1.7418752312660217 synthetic_uS.\"\n    },\n    {\n      \"claim_id\": \"claim_2\",\n      \"claim_type\": \"trend\",\n      \"subject_id\": \"V101\",\n      \"quantity\": \"eda_median\",\n      \"event_start_seconds\": 300.0,\n      \"event_end_seconds\": 420.0,\n      \"operator\": \"difference\",\n      \"value\": 0.0933388471603392,\n      \"unit\": \"synthetic_uS\",\n      \"evidence_ids\": [\"synthetic/V101/300-420/eda_median/v1\"],\n      \"depends_on_claim_ids\": [\"claim_1\"]\n    ,\n      \"sentence\": \"The difference between the EDA median during [420.0, 450.0] and the preceding 120-second interval [300.0, 420.0] is 0.0933388471603392 synthetic_uS.\"\n    }\n  ]\n  \n  ,\n  \"answer_status\": \"partially_answered\"\n  \n  ,\n  \"explanation\": \"The EDA median during the interval [420.0, 450.0] is approximately equal to 1.7418752312660217 synthetic_uS. The difference",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790641030,
+      "id": "chatcmpl-a736b787fbaa45548f493226f058a91c",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 512,
+        "prompt_tokens": 1165,
+        "prompt_tokens_details": null,
+        "total_tokens": 1677
+      }
+    },
+    "seconds": 7.0630745980888605,
+    "started_at": "2026-09-29T00:17:10.644254+00:00",
+    "truncated": true
+  },
+  "paragraph_discrepancies": [],
+  "persistent_before": {},
+  "query": {
+    "dataset_id": "synthetic",
+    "event_end_seconds": 450.0,
+    "event_start_seconds": 420.0,
+    "family": "current_evidence",
+    "freshness_seconds": null,
+    "knowledge_time": 481.0,
+    "question": "Report the target EDA median and its difference from the preceding 120-second EDA median (target minus earlier).",
+    "session_id": "session_1",
+    "subject_id": "V101"
+  },
+  "raw_candidate": null,
+  "repair": {
+    "case_id": "synthetic-V101-e0-clean-c1-B3",
+    "error": "ValidationError: 1 validation error for Answer\n  Invalid JSON: EOF while parsing a string at line 45 column 41 [type=json_invalid, input_value='{\\n  \"claims\": [\\n    {\\...s\": [\"synthetic/V101/42', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.11/v/json_invalid",
+    "event": "finished",
+    "http_status": 200,
+    "phase": "repair",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "Claim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "claim_type": {
+                "enum": [
+                  "numeric_observation",
+                  "trend",
+                  "comparison",
+                  "evidence_conflict",
+                  "missing_evidence",
+                  "revision_effect"
+                ],
+                "title": "Claim Type",
+                "type": "string"
+              },
+              "depends_on_claim_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Depends On Claim Ids",
+                "type": "array"
+              },
+              "event_end_seconds": {
+                "title": "Event End Seconds",
+                "type": "number"
+              },
+              "event_start_seconds": {
+                "title": "Event Start Seconds",
+                "type": "number"
+              },
+              "evidence_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Evidence Ids",
+                "type": "array"
+              },
+              "operator": {
+                "enum": [
+                  "approximately_equal",
+                  "difference",
+                  "greater_than",
+                  "less_than",
+                  "missing",
+                  "disagrees",
+                  "remains_supported",
+                  "revised"
+                ],
+                "title": "Operator",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "subject_id": {
+                "title": "Subject Id",
+                "type": "string"
+              },
+              "unit": {
+                "title": "Unit",
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Value"
+              }
+            },
+            "required": [
+              "claim_id",
+              "claim_type",
+              "subject_id",
+              "quantity",
+              "event_start_seconds",
+              "event_end_seconds",
+              "operator",
+              "value",
+              "unit",
+              "evidence_ids",
+              "depends_on_claim_ids",
+              "sentence"
+            ],
+            "title": "Claim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "answer_status": {
+            "enum": [
+              "answered",
+              "partially_answered",
+              "insufficient_evidence"
+            ],
+            "title": "Answer Status",
+            "type": "string"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/Claim"
+            },
+            "maxItems": 6,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "unresolved_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolved Evidence Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claims",
+          "answer_status",
+          "explanation",
+          "unresolved_evidence_ids"
+        ],
+        "title": "Answer",
+        "type": "object"
+      },
+      "max_tokens": 512,
+      "messages": [
+        {
+          "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"evidence\":[{\"event_end_seconds\":420.0,\"event_start_seconds\":300.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":421.0,\"quantity\":\"eda_median\",\"record_id\":\"synthetic/V101/300-420/eda_median/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"synthetic_uS\",\"value\":1.6485363841056824,\"version\":1},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":451.0,\"quantity\":\"acceleration_magnitude_sd\",\"record_id\":\"synthetic/V101/420-450/acceleration_magnitude_sd/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"synthetic_g\",\"value\":0.009738717731728961,\"version\":1},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":451.0,\"quantity\":\"eda_clipping_fraction\",\"record_id\":\"synthetic/V101/420-450/eda_clipping_fraction/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.004166666666666667,\"version\":1},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":451.0,\"quantity\":\"eda_iqr\",\"record_id\":\"synthetic/V101/420-450/eda_iqr/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"synthetic_uS\",\"value\":0.019631385803222656,\"version\":1},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":481.0,\"quantity\":\"eda_median\",\"record_id\":\"synthetic/V101/420-450/eda_median/v2\",\"subject_id\":\"V101\",\"supersedes_id\":\"synthetic/V101/420-450/eda_median/v1\",\"unit\":\"synthetic_uS\",\"value\":1.7418752312660217,\"version\":2},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":451.0,\"quantity\":\"eda_missing_fraction\",\"record_id\":\"synthetic/V101/420-450/eda_missing_fraction/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.0,\"version\":1},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":451.0,\"quantity\":\"pulse_frequency_bpm\",\"record_id\":\"synthetic/V101/420-450/pulse_frequency_bpm/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":74.0,\"version\":1},{\"event_end_seconds\":450.0,\"event_start_seconds\":420.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":451.0,\"quantity\":\"respiration_frequency_per_min\",\"record_id\":\"synthetic/V101/420-450/respiration_frequency_per_min/v1\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":18.0,\"version\":1}],\"knowledge_time\":481.0,\"question\":\"Report the target EDA median and its difference from the preceding 120-second EDA median (target minus earlier).\",\"subject_id\":\"V101\",\"target_interval\":[420.0,450.0]}",
+          "role": "user"
+        },
+        {
+          "content": "Repair this answer using only the same evidence. Checks: {\"validation\": [], \"paragraph\": [], \"format_error\": \"ValidationError: 1 validation error for Answer\\n  Invalid JSON: EOF while parsing a string at line 40 column 141 [type=json_invalid, input_value='{\\\\n  \\\"claims\\\": [\\\\n    {\\\\...etic_uS. The difference', input_type=str]\\n    For further information visit https://errors.pydantic.dev/2.11/v/json_invalid\"}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260928,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "length",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\n  \"claims\": [\n    {\n      \"claim_id\": \"eda_median_target\",\n      \"claim_type\": \"numeric_observation\",\n      \"subject_id\": \"V101\",\n      \"quantity\": \"eda_median\",\n      \"event_start_seconds\": 420.0,\n      \"event_end_seconds\": 450.0,\n      \"operator\": \"approximately_equal\",\n      \"value\": 1.7418752312660217,\n      \"unit\": \"synthetic_uS\",\n      \"evidence_ids\": [\"synthetic/V101/420-450/eda_median/v2\"]\n    ,\n    \"depends_on_claim_ids\": []\n    ,\n    \"sentence\": \"The target EDA median is approximately equal to 1.7418752312660217 synthetic_uS.\"\n    },\n    {\n      \"claim_id\": \"eda_median_earlier\",\n      \"claim_type\": \"numeric_observation\",\n      \"subject_id\": \"V101\",\n      \"quantity\": \"eda_median\",\n      \"event_start_seconds\": 300.0,\n      \"event_end_seconds\": 420.0,\n      \"operator\": \"approximately_equal\",\n      \"value\": 1.6485363841056824,\n      \"unit\": \"synthetic_uS\",\n      \"evidence_ids\": [\"synthetic/V101/300-420/eda_median/v1\"]\n    ,\n    \"depends_on_claim_ids\": []\n    ,\n    \"sentence\": \"The preceding 120-second EDA median is approximately equal to 1.6485363841056824 synthetic_uS.\"\n    },\n    {\n      \"claim_id\": \"eda_median_difference\",\n      \"claim_type\": \"trend\",\n      \"subject_id\": \"V101\",\n      \"quantity\": \"eda_median\",\n      \"event_start_seconds\": 420.0,\n      \"event_end_seconds\": 450.0,\n      \"operator\": \"difference\",\n      \"value\": 0.0933388471603393,\n      \"unit\": \"synthetic_uS\",\n      \"evidence_ids\": [\"synthetic/V101/42",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790641037,
+      "id": "chatcmpl-7da1d1c09739465eaec0228e20cd9fdd",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 512,
+        "prompt_tokens": 1276,
+        "prompt_tokens_details": null,
+        "total_tokens": 1788
+      }
+    },
+    "seconds": 6.321800688048825,
+    "started_at": "2026-09-29T00:17:17.713174+00:00",
+    "truncated": true
+  },
+  "retrieval_seconds": 0.0038582810666412115,
+  "revisions": [
+    {
+      "affected": [],
+      "assessments": {},
+      "ingested_at": 481.0,
+      "seconds": 0.006627504015341401,
+      "trigger_id": "synthetic/V101/420-450/eda_median/v2"
+    }
+  ],
+  "seconds": 13.384875286137685,
+  "status": "failed",
+  "validation": []
+}
