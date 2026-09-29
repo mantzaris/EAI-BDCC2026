@@ -1,0 +1,108 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 0,
+    "case_id": "synthetic-V1005-e0-channel_fault-c2-B1",
+    "checkpoint": 2,
+    "claim_count": 1,
+    "claim_errors": 0,
+    "collateral_withdrawn": 0,
+    "corrected": 1,
+    "corrected_by_5s": 1,
+    "correction_required": 1,
+    "database_update_seconds": 0.01862113899551332,
+    "dataset": "synthetic",
+    "end_to_end_seconds": 54.76996942795813,
+    "episode_id": "synthetic-V1005-e0",
+    "failed": 0,
+    "family": "current_evidence",
+    "generation_seconds": 17.023701990954578,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 3579,
+    "knowledge_time": 541.0,
+    "method": "B1",
+    "output_tokens": 1210,
+    "paragraph_discrepancy": 0,
+    "partial": 1,
+    "reference_count": 1,
+    "repair_calls": 1,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.0017503849230706692,
+    "split": "test",
+    "subject": "V1005",
+    "supplied_slots": 1,
+    "timeout_calls": 0,
+    "unaffected": 2,
+    "useful_complete": 0,
+    "useful_eligible": 1,
+    "valid_reference_count": 1,
+    "variant": "channel_fault"
+  },
+  "persistent": [
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "synthetic-V1005-e0-channel_fault-c0-B1/claim/claim_1",
+      "required_change": false,
+      "transition": {
+        "flag_seconds": 0.002978899981826544,
+        "trigger_id": "synthetic/V1005/420-450/eda_median/v3"
+      }
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "synthetic-V1005-e0-channel_fault-c0-B1/claim/claim_2",
+      "required_change": false,
+      "transition": {
+        "flag_seconds": 0.002978899981826544,
+        "trigger_id": "synthetic/V1005/420-450/eda_median/v3"
+      }
+    },
+    {
+      "active": false,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "record_id": "synthetic-V1005-e0-channel_fault-c1-B1/claim/claim_1",
+      "required_change": true,
+      "transition": {
+        "flag_seconds": 0.002978899981826544,
+        "trigger_id": "synthetic/V1005/420-450/eda_median/v3"
+      }
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 1.2264018654823303
+    },
+    {
+      "kind": "difference",
+      "quantity": "eda_median",
+      "slot": "eda_difference",
+      "supplied": false,
+      "value": 0.1150517463684082
+    }
+  ]
+}

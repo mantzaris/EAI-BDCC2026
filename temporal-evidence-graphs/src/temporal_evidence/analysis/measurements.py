@@ -28,6 +28,13 @@ def generate():
     table('Persistent displays', ['Source','Method','Corrected/required','Completeness %','Residual','Collateral/unaffected'],
           [[SOURCES[r['dataset']],r['method'],fraction(r['correction_completeness']),percent(r['correction_completeness']['value']),
             r['residual_incorrect']['numerator'],fraction(r['collateral_revision'])] for r in ordered])
+    table('Post-hoc contract-scope breakdown', ['Source','B0 contract-invalid claims','Off-target facts supported at their stated interval'],
+          [[SOURCES[r['dataset']],r['contract_invalid'],r['off_target_locally_supported']]
+           for r in publication['contract_scope']['rows'] if r['method']=='B0'])
+    lines.extend(['This descriptive breakdown leaves the frozen scores unchanged. Correctly labelled baseline facts '
+                  'can violate the strict target-interval contract. A comparison can also fail when it declares '
+                  'such a fact as a parent. The primary error and recall metrics therefore measure contract compliance, '
+                  'not unrestricted factual accuracy or hallucination prevalence.', ''])
     table('Descriptive parent-only changes', ['Source','Method','Required under declared dependencies','Withdrawn','Retained'],
           [[SOURCES[r['dataset']],r['method'],r['required'],r['withdrawn'],r['retained']] for r in publication['dependency_only_changes']])
     lines.extend(['These claim-checkpoint counts isolate cases whose sole later exact-check error is a parent dependency. '
@@ -35,17 +42,22 @@ def generate():
                   'This descriptive breakdown leaves the frozen correction metrics unchanged.', ''])
     table('Paired differences', ['Source','Contrast','Outcome','Subjects/episodes','Difference (pp)','Pointwise 95% interval (pp)','Principal'],
           [[SOURCES[r['dataset']],r['left']+' − '+r['right'],r['metric'],f"{r['subjects']}/{r['eligible_episodes']}",
-            number(None if r['difference'] is None else 100*r['difference']),
-            '--' if r['ci95'] is None else '['+', '.join(number(100*v) for v in r['ci95'])+']',r['principal']] for r in study['contrasts']])
-    table('Open-loop systems', ['Events/s','Method','Flag p50/p95 ms','Replacement p50/p95 s','Flag misses','Replacement misses','Peak event/answer queue','Achieved events/s'],
+            number(None if r['difference'] is None else 100*r['difference'],2),
+            '--' if r['ci95'] is None else '['+', '.join(number(100*v,2) for v in r['ci95'])+']',r['principal']] for r in study['contrasts']])
+    table('Open-loop systems', ['Events/s','Method','Flag p50/p95 ms','Candidate p50/p95 s','Flag misses','Replacement misses','Peak event/answer queue','Achieved events/s'],
           [[r['offered_events_per_second'],r['method'],
             '/'.join(number(1000*r['event_to_flag'][q]) for q in ('p50','p95')),
             '/'.join(number(r['event_to_generated_repair'][q]) for q in ('p50','p95')),
             f"{r['flag_misses']}/{r['flag_denominator']}", f"{r['repair_misses']}/{r['repair_denominator']}",
             f"{r['peak_event_backlog']}/{r['peak_pending_explanations']}",number(r['achieved_events_per_second_including_drain'],2)] for r in systems['cells']])
     lines.extend(['Flag and replacement targets are one and five seconds, respectively. '
+                  'Candidate latency measures completion of an affected-repair generation attempt, regardless of adequacy. '
                   'Replacement adequacy in the frozen benchmark refers to the input snapshot. '
                   'Each cell schedules arrivals for 60 seconds and then drains.', ''])
+    lines.extend([f"All {publication['macros']['SystemsWithoutDifference']}/{publication['macros']['SystemsExplanations']} "
+                  'systems displays omit the required difference. Each contains one direct numerical observation. '
+                  'No adequate replacement is observed, so successful-replacement latency is undefined and '
+                  'the zero adequate-then-stale count provides no evidence that delayed answers stay useful.', ''])
     table('Descriptive completion-time adequacy', ['Events/s','Method','Explanations','Input adequate','Completion adequate','Adequate then stale'],
           [[r['offered_events_per_second'],r['method'],r['completion_audited'],r['adequate_at_request'],
             r['adequate_at_completion'],r['adequate_then_stale']] for r in systems['cells']])
@@ -57,9 +69,10 @@ def generate():
     lines.extend([f"Initial request/format failures: {publication['macros']['TotalInitialErrors']}; "
                   f"client timeout attempts across initial and repair phases: {publication['macros']['ClientTimeouts']}. "
                   'Truncation and request/format failure counts can overlap.', ''])
-    table('Measured workload costs', ['Workload','Requests','Input tokens','Output tokens','Wall minutes'],
-          [[r['name'],f"{r['calls']:,}",f"{r['input_tokens']:,}",f"{r['output_tokens']:,}",number(r['seconds']/60)] for r in publication['workloads']])
+    table('Measured workload costs', ['Workload','Requests','No returned usage','Input tokens','Output tokens','Wall minutes'],
+          [[r['name'],f"{r['calls']:,}",r['usage_unavailable_requests'],f"{r['input_tokens']:,}",f"{r['output_tokens']:,}",number(r['seconds']/60)] for r in publication['workloads']])
     lines.extend(['These are observed GPU-backed workload wall times, including host processing. '
+                  'Token totals sum available returned usage; missing usage is unknown server-side cost, not zero. '
                   'They exclude downloads, initial server compilation, and unlogged gaps. '
                   'They are neither CUDA kernel time nor total billable pod time. No account price was supplied.', ''])
     table('Automated auxiliary audit', ['Source','Method','Sampled','Parsed','Flagged','Exact supported','Disagreements'],

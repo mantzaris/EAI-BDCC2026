@@ -1,0 +1,772 @@
+{
+  "case": {
+    "case_id": "wesad-S14-e1-correction-c2-M1",
+    "checkpoint": 2,
+    "dataset": "wesad",
+    "episode_id": "wesad-S14-e1",
+    "family": "evidence_sufficiency",
+    "knowledge_time": 4251.0,
+    "method": "M1",
+    "split": "test",
+    "subject": "S14",
+    "variant": "correction"
+  },
+  "completed_at": "2026-09-29T03:44:10.292129+00:00",
+  "database_update_seconds": 0.03479031892493367,
+  "display": {
+    "answer_status": "partially_answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/eda_median/v3"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 0.327755 uS.",
+        "subject_id": "S14",
+        "unit": "uS",
+        "value": 0.327755
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/eda_missing_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The EDA missing-sample fraction is approximately equal to 0.0 fraction.",
+        "subject_id": "S14",
+        "unit": "fraction",
+        "value": 0.0
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_type": "missing_evidence",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/pulse_frequency_bpm/v1"
+        ],
+        "operator": "missing",
+        "quantity": "pulse_frequency_bpm",
+        "sentence": "The pulse frequency is missing.",
+        "subject_id": "S14",
+        "unit": "per_min",
+        "value": null
+      }
+    ],
+    "explanation": "The EDA median is approximately equal to 0.327755 uS. The EDA missing-sample fraction is approximately equal to 0.0 fraction. The pulse frequency is missing.",
+    "unresolved_evidence_ids": [
+      "wesad/S14/4130-4160/pulse_frequency_bpm/v1"
+    ]
+  },
+  "end_to_end_seconds": 43.08553855097853,
+  "evidence_hash": "044b52e9d8591f8cd5c060023ff4064481e94a335798d2526dd70d72cc9342a1",
+  "final_candidate": {
+    "answer_status": "partially_answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/eda_median/v3"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 0.327755 uS.",
+        "subject_id": "S14",
+        "unit": "uS",
+        "value": 0.327755
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/eda_missing_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The EDA missing-sample fraction is approximately equal to 0.0 fraction.",
+        "subject_id": "S14",
+        "unit": "fraction",
+        "value": 0.0
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_type": "missing_evidence",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/pulse_frequency_bpm/v1"
+        ],
+        "operator": "missing",
+        "quantity": "pulse_frequency_bpm",
+        "sentence": "The pulse frequency is missing.",
+        "subject_id": "S14",
+        "unit": "per_min",
+        "value": null
+      }
+    ],
+    "explanation": "The EDA median is approximately equal to 0.327755 uS. The EDA missing-sample fraction is approximately equal to 0.0 fraction. The pulse frequency is missing.",
+    "unresolved_evidence_ids": [
+      "wesad/S14/4130-4160/pulse_frequency_bpm/v1"
+    ]
+  },
+  "initial": {
+    "case_id": "wesad-S14-e1-correction-c2-M1",
+    "event": "finished",
+    "http_status": 200,
+    "phase": "initial",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "Claim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "claim_type": {
+                "enum": [
+                  "numeric_observation",
+                  "trend",
+                  "comparison",
+                  "evidence_conflict",
+                  "missing_evidence",
+                  "revision_effect"
+                ],
+                "title": "Claim Type",
+                "type": "string"
+              },
+              "depends_on_claim_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Depends On Claim Ids",
+                "type": "array"
+              },
+              "event_end_seconds": {
+                "title": "Event End Seconds",
+                "type": "number"
+              },
+              "event_start_seconds": {
+                "title": "Event Start Seconds",
+                "type": "number"
+              },
+              "evidence_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Evidence Ids",
+                "type": "array"
+              },
+              "operator": {
+                "enum": [
+                  "approximately_equal",
+                  "difference",
+                  "greater_than",
+                  "less_than",
+                  "missing",
+                  "disagrees",
+                  "remains_supported",
+                  "revised"
+                ],
+                "title": "Operator",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "subject_id": {
+                "title": "Subject Id",
+                "type": "string"
+              },
+              "unit": {
+                "title": "Unit",
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Value"
+              }
+            },
+            "required": [
+              "claim_id",
+              "claim_type",
+              "subject_id",
+              "quantity",
+              "event_start_seconds",
+              "event_end_seconds",
+              "operator",
+              "value",
+              "unit",
+              "evidence_ids",
+              "depends_on_claim_ids",
+              "sentence"
+            ],
+            "title": "Claim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "answer_status": {
+            "enum": [
+              "answered",
+              "partially_answered",
+              "insufficient_evidence"
+            ],
+            "title": "Answer Status",
+            "type": "string"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/Claim"
+            },
+            "maxItems": 3,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "unresolved_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolved Evidence Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claims",
+          "answer_status",
+          "explanation",
+          "unresolved_evidence_ids"
+        ],
+        "title": "Answer",
+        "type": "object"
+      },
+      "max_tokens": 1536,
+      "messages": [
+        {
+          "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nThe top-level JSON object has exactly four required keys, in this order: claims,\nanswer_status, explanation, unresolved_evidence_ids. After closing the claims array,\nwrite the remaining three keys. answer_status is answered, partially_answered, or\ninsufficient_evidence; explanation is a string; unresolved_evidence_ids is an array\nof unavailable evidence IDs, or []. Each claim has all of these fields: claim_id,\nclaim_type, subject_id, quantity, event_start_seconds, event_end_seconds, operator,\nvalue, unit, evidence_ids, depends_on_claim_ids, sentence. Never pad with whitespace.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nKeep every claim's event_start_seconds and event_end_seconds equal to the requested\ntarget interval, including comparisons whose earlier operand covers another interval.\nReport only requested facts; the baseline is an operand, not an additional claim.\nUse one short sentence per claim and compact JSON. Round reported numbers to six\nsignificant digits. A revision_effect claim uses revised for an explicitly revised\nfeature; an unchanged feature can be reported as an ordinary numeric_observation.\ndepends_on_claim_ids contains only claim_id values of earlier claims, never evidence IDs.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"evidence\":[{\"event_end_seconds\":4130.0,\"event_start_seconds\":4010.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":4131.0,\"quantity\":\"eda_median\",\"record_id\":\"wesad/S14/4010-4130/eda_median/v1\",\"subject_id\":\"S14\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":0.322638,\"version\":1},{\"event_end_seconds\":4160.0,\"event_start_seconds\":4130.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":4161.0,\"quantity\":\"acceleration_magnitude_sd\",\"record_id\":\"wesad/S14/4130-4160/acceleration_magnitude_sd/v1\",\"subject_id\":\"S14\",\"supersedes_id\":null,\"unit\":\"1/64g\",\"value\":1.286566967269586,\"version\":1},{\"event_end_seconds\":4160.0,\"event_start_seconds\":4130.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":4161.0,\"quantity\":\"eda_clipping_fraction\",\"record_id\":\"wesad/S14/4130-4160/eda_clipping_fraction/v1\",\"subject_id\":\"S14\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.025,\"version\":1},{\"event_end_seconds\":4160.0,\"event_start_seconds\":4130.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":4161.0,\"quantity\":\"eda_iqr\",\"record_id\":\"wesad/S14/4130-4160/eda_iqr/v1\",\"subject_id\":\"S14\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":0.0012790000000000301,\"version\":1},{\"event_end_seconds\":4160.0,\"event_start_seconds\":4130.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":4251.0,\"quantity\":\"eda_median\",\"record_id\":\"wesad/S14/4130-4160/eda_median/v3\",\"subject_id\":\"S14\",\"supersedes_id\":\"wesad/S14/4130-4160/eda_median/v2\",\"unit\":\"uS\",\"value\":0.327755,\"version\":3},{\"event_end_seconds\":4160.0,\"event_start_seconds\":4130.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":4161.0,\"quantity\":\"eda_missing_fraction\",\"record_id\":\"wesad/S14/4130-4160/eda_missing_fraction/v1\",\"subject_id\":\"S14\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.0,\"version\":1},{\"event_end_seconds\":4160.0,\"event_start_seconds\":4130.0,\"evidence_state\":\"missing\",\"ingested_at_seconds\":4161.0,\"quantity\":\"pulse_frequency_bpm\",\"record_id\":\"wesad/S14/4130-4160/pulse_frequency_bpm/v1\",\"subject_id\":\"S14\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":null,\"version\":1},{\"event_end_seconds\":4160.0,\"event_start_seconds\":4130.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":4161.0,\"quantity\":\"respiration_frequency_per_min\",\"record_id\":\"wesad/S14/4130-4160/respiration_frequency_per_min/v1\",\"subject_id\":\"S14\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":20.0,\"version\":1}],\"knowledge_time\":4251.0,\"question\":\"Which requested measurements are available? Give the window's EDA median and its missing-sample fraction, identifying unavailable values explicitly.\",\"subject_id\":\"S14\",\"target_interval\":[4130.0,4160.0]}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260928,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\"claims\": [{\"claim_id\": \"claim_1\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"S14\", \"quantity\": \"eda_median\", \"event_start_seconds\": 4130.0, \"event_end_seconds\": 4160.0, \"operator\": \"approximately_equal\", \"value\": 0.327755, \"unit\": \"uS\", \"evidence_ids\": [\"wesad/S14/4130-4160/eda_median/v3\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA median is approximately equal to 0.327755 uS.\"}, {\"claim_id\": \"claim_2\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"S14\", \"quantity\": \"eda_missing_fraction\", \"event_start_seconds\": 4130.0, \"event_end_seconds\": 4160.0, \"operator\": \"approximately_equal\", \"value\": 0.0, \"unit\": \"fraction\", \"evidence_ids\": [\"wesad/S14/4130-4160/eda_missing_fraction/v1\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA missing-sample fraction is approximately equal to 0.0 fraction.\"}, {\"claim_id\": \"claim_3\", \"claim_type\": \"missing_evidence\", \"subject_id\": \"S14\", \"quantity\": \"pulse_frequency_bpm\", \"event_start_seconds\": 4130.0, \"event_end_seconds\": 4160.0, \"operator\": \"missing\", \"value\": null, \"unit\": \"per_min\", \"evidence_ids\": [\"wesad/S14/4130-4160/pulse_frequency_bpm/v1\"], \"depends_on_claim_ids\": [], \"sentence\": \"The pulse frequency is missing.\"}], \"answer_status\": \"partially_answered\", \"explanation\": \"The EDA median is approximately equal to 0.327755 uS. The EDA missing-sample fraction is approximately equal to 0.0 fraction. The pulse frequency is missing.\", \"unresolved_evidence_ids\": [\"wesad/S14/4130-4160/pulse_frequency_bpm/v1\"]}",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790653443,
+      "id": "chatcmpl-5ccc1cadc385440c984d84cb2cfe9d0c",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 507,
+        "prompt_tokens": 1384,
+        "prompt_tokens_details": null,
+        "total_tokens": 1891
+      }
+    },
+    "seconds": 6.795150900958106,
+    "started_at": "2026-09-29T03:44:03.494413+00:00",
+    "truncated": false
+  },
+  "paragraph_discrepancies": [],
+  "persistent_before": {
+    "wesad-S14-e1-correction-c0-M1/claim/claim_1": {
+      "claim": {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 0.327755 uS.",
+        "subject_id": "S14",
+        "unit": "uS",
+        "value": 0.327755
+      },
+      "created_at": 4161.0,
+      "current_evidence_ids": [
+        "wesad/S14/4130-4160/eda_median/v3"
+      ],
+      "last_transition": {
+        "flag_seconds": 0.01921173301525414,
+        "trigger_id": "wesad/S14/4130-4160/eda_median/v3"
+      },
+      "state": "supported"
+    },
+    "wesad-S14-e1-correction-c0-M1/claim/claim_2": {
+      "claim": {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/eda_missing_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The EDA missing-sample fraction is approximately equal to 0.0 fraction.",
+        "subject_id": "S14",
+        "unit": "fraction",
+        "value": 0.0
+      },
+      "created_at": 4161.0,
+      "current_evidence_ids": [
+        "wesad/S14/4130-4160/eda_missing_fraction/v1"
+      ],
+      "last_transition": null,
+      "state": "supported"
+    },
+    "wesad-S14-e1-correction-c0-M1/claim/claim_3": {
+      "claim": {
+        "claim_id": "claim_3",
+        "claim_type": "missing_evidence",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/pulse_frequency_bpm/v1"
+        ],
+        "operator": "missing",
+        "quantity": "pulse_frequency_bpm",
+        "sentence": "The pulse frequency is missing.",
+        "subject_id": "S14",
+        "unit": "per_min",
+        "value": null
+      },
+      "created_at": 4161.0,
+      "current_evidence_ids": [
+        "wesad/S14/4130-4160/pulse_frequency_bpm/v1"
+      ],
+      "last_transition": null,
+      "state": "supported"
+    },
+    "wesad-S14-e1-correction-c1-M1/claim/claim_1": {
+      "claim": {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/eda_median/v2"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 0.827755 uS.",
+        "subject_id": "S14",
+        "unit": "uS",
+        "value": 0.827755
+      },
+      "created_at": 4191.0,
+      "current_evidence_ids": [
+        "wesad/S14/4130-4160/eda_median/v3"
+      ],
+      "last_transition": {
+        "flag_seconds": 0.01921173301525414,
+        "trigger_id": "wesad/S14/4130-4160/eda_median/v3"
+      },
+      "state": "contradicted"
+    },
+    "wesad-S14-e1-correction-c1-M1/claim/claim_2": {
+      "claim": {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/eda_missing_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The EDA missing-sample fraction is approximately equal to 0.0 fraction.",
+        "subject_id": "S14",
+        "unit": "fraction",
+        "value": 0.0
+      },
+      "created_at": 4191.0,
+      "current_evidence_ids": [
+        "wesad/S14/4130-4160/eda_missing_fraction/v1"
+      ],
+      "last_transition": null,
+      "state": "supported"
+    },
+    "wesad-S14-e1-correction-c1-M1/claim/claim_3": {
+      "claim": {
+        "claim_id": "claim_3",
+        "claim_type": "missing_evidence",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/pulse_frequency_bpm/v1"
+        ],
+        "operator": "missing",
+        "quantity": "pulse_frequency_bpm",
+        "sentence": "The pulse frequency is missing.",
+        "subject_id": "S14",
+        "unit": "per_min",
+        "value": null
+      },
+      "created_at": 4191.0,
+      "current_evidence_ids": [
+        "wesad/S14/4130-4160/pulse_frequency_bpm/v1"
+      ],
+      "last_transition": null,
+      "state": "supported"
+    }
+  },
+  "query": {
+    "dataset_id": "wesad",
+    "event_end_seconds": 4160.0,
+    "event_start_seconds": 4130.0,
+    "family": "evidence_sufficiency",
+    "freshness_seconds": null,
+    "knowledge_time": 4251.0,
+    "question": "Which requested measurements are available? Give the window's EDA median and its missing-sample fraction, identifying unavailable values explicitly.",
+    "session_id": "session_1",
+    "subject_id": "S14"
+  },
+  "raw_candidate": {
+    "answer_status": "partially_answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/eda_median/v3"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 0.327755 uS.",
+        "subject_id": "S14",
+        "unit": "uS",
+        "value": 0.327755
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/eda_missing_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The EDA missing-sample fraction is approximately equal to 0.0 fraction.",
+        "subject_id": "S14",
+        "unit": "fraction",
+        "value": 0.0
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_type": "missing_evidence",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 4160.0,
+        "event_start_seconds": 4130.0,
+        "evidence_ids": [
+          "wesad/S14/4130-4160/pulse_frequency_bpm/v1"
+        ],
+        "operator": "missing",
+        "quantity": "pulse_frequency_bpm",
+        "sentence": "The pulse frequency is missing.",
+        "subject_id": "S14",
+        "unit": "per_min",
+        "value": null
+      }
+    ],
+    "explanation": "The EDA median is approximately equal to 0.327755 uS. The EDA missing-sample fraction is approximately equal to 0.0 fraction. The pulse frequency is missing.",
+    "unresolved_evidence_ids": [
+      "wesad/S14/4130-4160/pulse_frequency_bpm/v1"
+    ]
+  },
+  "repair": null,
+  "retrieval_seconds": 0.006100456928834319,
+  "revisions": [
+    {
+      "affected": [
+        "wesad-S14-e1-correction-c0-M1/claim/claim_1",
+        "wesad-S14-e1-correction-c0-M1/explanation",
+        "wesad-S14-e1-correction-c1-M1/claim/claim_1",
+        "wesad-S14-e1-correction-c1-M1/explanation"
+      ],
+      "assessments": {
+        "wesad-S14-e1-correction-c0-M1/claim/claim_1": {
+          "state": "supported",
+          "value": 0.327755
+        },
+        "wesad-S14-e1-correction-c0-M1/explanation": {
+          "state": "supported",
+          "value": null
+        },
+        "wesad-S14-e1-correction-c1-M1/claim/claim_1": {
+          "state": "contradicted",
+          "value": 0.827755
+        },
+        "wesad-S14-e1-correction-c1-M1/explanation": {
+          "state": "unsupported",
+          "value": null
+        }
+      },
+      "ingested_at": 4251.0,
+      "seconds": 0.01921173301525414,
+      "trigger_id": "wesad/S14/4130-4160/eda_median/v3"
+    },
+    {
+      "kind": "explanation_maintenance",
+      "versions": [
+        {
+          "dataset_id": "wesad",
+          "event_end_seconds": 4160.0,
+          "event_start_seconds": 4130.0,
+          "evidence_state": "available",
+          "ingested_at_seconds": 4251.0000001,
+          "logical_id": "wesad-S14-e1-correction-c0-M1/explanation",
+          "metadata": {
+            "case_id": "wesad-S14-e1-correction-c0-M1",
+            "display": {
+              "answer_status": "answered",
+              "claims": [
+                {
+                  "claim_id": "claim_1",
+                  "claim_type": "numeric_observation",
+                  "depends_on_claim_ids": [],
+                  "event_end_seconds": 4160.0,
+                  "event_start_seconds": 4130.0,
+                  "evidence_ids": [
+                    "wesad/S14/4130-4160/eda_median/v1"
+                  ],
+                  "operator": "approximately_equal",
+                  "quantity": "eda_median",
+                  "sentence": "The EDA median is approximately equal to 0.327755 uS.",
+                  "subject_id": "S14",
+                  "unit": "uS",
+                  "value": 0.327755
+                },
+                {
+                  "claim_id": "claim_2",
+                  "claim_type": "numeric_observation",
+                  "depends_on_claim_ids": [],
+                  "event_end_seconds": 4160.0,
+                  "event_start_seconds": 4130.0,
+                  "evidence_ids": [
+                    "wesad/S14/4130-4160/eda_missing_fraction/v1"
+                  ],
+                  "operator": "approximately_equal",
+                  "quantity": "eda_missing_fraction",
+                  "sentence": "The EDA missing-sample fraction is approximately equal to 0.0 fraction.",
+                  "subject_id": "S14",
+                  "unit": "fraction",
+                  "value": 0.0
+                },
+                {
+                  "claim_id": "claim_3",
+                  "claim_type": "missing_evidence",
+                  "depends_on_claim_ids": [],
+                  "event_end_seconds": 4160.0,
+                  "event_start_seconds": 4130.0,
+                  "evidence_ids": [
+                    "wesad/S14/4130-4160/pulse_frequency_bpm/v1"
+                  ],
+                  "operator": "missing",
+                  "quantity": "pulse_frequency_bpm",
+                  "sentence": "The pulse frequency is missing.",
+                  "subject_id": "S14",
+                  "unit": "per_min",
+                  "value": null
+                }
+              ],
+              "explanation": "The EDA median is approximately equal to 0.327755 uS. The EDA missing-sample fraction is approximately equal to 0.0 fraction. The pulse frequency is missing.",
+              "unresolved_evidence_ids": []
+            },
+            "maintenance_action": "recompose_from_currently_supported_claims",
+            "withdrawn_claim_ids": []
+          },
+          "operator": "identity",
+          "quantity": "",
+          "record_id": "wesad-S14-e1-correction-c0-M1/explanation/maintenance/4251",
+          "record_type": "explanation",
+          "session_id": "session_1",
+          "source_ids": [
+            "wesad-S14-e1-correction-c0-M1/claim/claim_1",
+            "wesad-S14-e1-correction-c0-M1/claim/claim_2",
+            "wesad-S14-e1-correction-c0-M1/claim/claim_3"
+          ],
+          "subject_id": "S14",
+          "supersedes_id": "wesad-S14-e1-correction-c0-M1/explanation/maintenance/4191",
+          "support_mode": "AND",
+          "unit": "",
+          "value": null,
+          "version": 3
+        },
+        {
+          "dataset_id": "wesad",
+          "event_end_seconds": 4160.0,
+          "event_start_seconds": 4130.0,
+          "evidence_state": "available",
+          "ingested_at_seconds": 4251.0000001,
+          "logical_id": "wesad-S14-e1-correction-c1-M1/explanation",
+          "metadata": {
+            "case_id": "wesad-S14-e1-correction-c1-M1",
+            "display": {
+              "answer_status": "partially_answered",
+              "claims": [
+                {
+                  "claim_id": "claim_2",
+                  "claim_type": "numeric_observation",
+                  "depends_on_claim_ids": [],
+                  "event_end_seconds": 4160.0,
+                  "event_start_seconds": 4130.0,
+                  "evidence_ids": [
+                    "wesad/S14/4130-4160/eda_missing_fraction/v1"
+                  ],
+                  "operator": "approximately_equal",
+                  "quantity": "eda_missing_fraction",
+                  "sentence": "The EDA missing-sample fraction is approximately equal to 0.0 fraction.",
+                  "subject_id": "S14",
+                  "unit": "fraction",
+                  "value": 0.0
+                },
+                {
+                  "claim_id": "claim_3",
+                  "claim_type": "missing_evidence",
+                  "depends_on_claim_ids": [],
+                  "event_end_seconds": 4160.0,
+                  "event_start_seconds": 4130.0,
+                  "evidence_ids": [
+                    "wesad/S14/4130-4160/pulse_frequency_bpm/v1"
+                  ],
+                  "operator": "missing",
+                  "quantity": "pulse_frequency_bpm",
+                  "sentence": "The pulse frequency is missing.",
+                  "subject_id": "S14",
+                  "unit": "per_min",
+                  "value": null
+                }
+              ],
+              "explanation": "The EDA missing-sample fraction is approximately equal to 0.0 fraction. The pulse frequency is missing.",
+              "unresolved_evidence_ids": []
+            },
+            "maintenance_action": "recompose_from_currently_supported_claims",
+            "withdrawn_claim_ids": [
+              "wesad-S14-e1-correction-c1-M1/claim/claim_1"
+            ]
+          },
+          "operator": "identity",
+          "quantity": "",
+          "record_id": "wesad-S14-e1-correction-c1-M1/explanation/maintenance/4251",
+          "record_type": "explanation",
+          "session_id": "session_1",
+          "source_ids": [
+            "wesad-S14-e1-correction-c1-M1/claim/claim_2",
+            "wesad-S14-e1-correction-c1-M1/claim/claim_3"
+          ],
+          "subject_id": "S14",
+          "supersedes_id": "wesad-S14-e1-correction-c1-M1/explanation",
+          "support_mode": "AND",
+          "unit": "",
+          "value": null,
+          "version": 2
+        }
+      ]
+    }
+  ],
+  "seconds": 6.795150900958106,
+  "status": "completed",
+  "validation": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "state": "supported"
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [],
+      "state": "supported"
+    },
+    {
+      "claim_id": "claim_3",
+      "reasons": [],
+      "state": "supported"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 0,
+    "case_id": "synthetic-V1007-e1-correction-c1-M1",
+    "checkpoint": 1,
+    "claim_count": 2,
+    "claim_errors": 0,
+    "collateral_withdrawn": 0,
+    "corrected": 1,
+    "corrected_by_5s": 1,
+    "correction_required": 1,
+    "database_update_seconds": 0.0328725459985435,
+    "dataset": "synthetic",
+    "end_to_end_seconds": 60.68739242688753,
+    "episode_id": "synthetic-V1007-e1",
+    "failed": 0,
+    "family": "revision_impact",
+    "generation_seconds": 5.391640841029584,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 1790,
+    "knowledge_time": 1381.0,
+    "method": "M1",
+    "output_tokens": 376,
+    "paragraph_discrepancy": 0,
+    "partial": 0,
+    "reference_count": 2,
+    "repair_calls": 0,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.005688544828444719,
+    "split": "test",
+    "subject": "V1007",
+    "supplied_slots": 2,
+    "timeout_calls": 0,
+    "unaffected": 1,
+    "useful_complete": 1,
+    "useful_eligible": 1,
+    "valid_reference_count": 2,
+    "variant": "correction"
+  },
+  "persistent": [
+    {
+      "active": false,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "record_id": "synthetic-V1007-e1-correction-c0-M1/claim/claim_1",
+      "required_change": true,
+      "transition": {
+        "flag_seconds": 0.017179714050143957,
+        "trigger_id": "synthetic/V1007/1320-1350/eda_median/v2"
+      }
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "synthetic-V1007-e1-correction-c0-M1/claim/claim_2",
+      "required_change": false,
+      "transition": {}
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 3.055965542793274
+    },
+    {
+      "kind": "direct",
+      "quantity": "acceleration_magnitude_sd",
+      "slot": "acceleration_magnitude_sd",
+      "supplied": true,
+      "value": 0.010242294015013831
+    }
+  ]
+}

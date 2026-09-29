@@ -1,0 +1,607 @@
+{
+  "adequacy_scope": "request_snapshot",
+  "adequate": false,
+  "arrival_to_complete_seconds": 125.39358831103891,
+  "completed_after_event_index": 1200,
+  "deadline_missed": false,
+  "failed": false,
+  "generation_seconds": 12.416253559989855,
+  "index": 600,
+  "input_tokens": 1769,
+  "kind": "scheduled",
+  "output_tokens": 890,
+  "queue_seconds": 103.63625942287035,
+  "result": {
+    "display": {
+      "answer_status": "partially_answered",
+      "claims": [
+        {
+          "claim_id": "claim_1",
+          "claim_type": "numeric_observation",
+          "depends_on_claim_ids": [],
+          "event_end_seconds": 10.0,
+          "event_start_seconds": 0.0,
+          "evidence_ids": [
+            "a/v601"
+          ],
+          "operator": "approximately_equal",
+          "quantity": "eda_median",
+          "sentence": "The EDA median is approximately equal to 2.0 synthetic_unit.",
+          "subject_id": "V101",
+          "unit": "synthetic_unit",
+          "value": 2.0
+        }
+      ],
+      "explanation": "The EDA median is approximately equal to 2.0 synthetic_unit.",
+      "unresolved_evidence_ids": []
+    },
+    "final_candidate": {
+      "answer_status": "answered",
+      "claims": [
+        {
+          "claim_id": "claim_1",
+          "claim_type": "numeric_observation",
+          "depends_on_claim_ids": [],
+          "event_end_seconds": 10.0,
+          "event_start_seconds": 0.0,
+          "evidence_ids": [
+            "a/v601"
+          ],
+          "operator": "approximately_equal",
+          "quantity": "eda_median",
+          "sentence": "The EDA median is approximately equal to 2.0 synthetic_unit.",
+          "subject_id": "V101",
+          "unit": "synthetic_unit",
+          "value": 2.0
+        },
+        {
+          "claim_id": "claim_2",
+          "claim_type": "numeric_observation",
+          "depends_on_claim_ids": [],
+          "event_end_seconds": 0.0,
+          "event_start_seconds": -120.0,
+          "evidence_ids": [
+            "b"
+          ],
+          "operator": "approximately_equal",
+          "quantity": "eda_median",
+          "sentence": "The EDA median is approximately equal to 1.0 synthetic_unit.",
+          "subject_id": "V101",
+          "unit": "synthetic_unit",
+          "value": 1.0
+        },
+        {
+          "claim_id": "claim_3",
+          "claim_type": "trend",
+          "depends_on_claim_ids": [
+            "claim_1",
+            "claim_2"
+          ],
+          "event_end_seconds": 10.0,
+          "event_start_seconds": 0.0,
+          "evidence_ids": [
+            "a/v601",
+            "b"
+          ],
+          "operator": "difference",
+          "quantity": "eda_median",
+          "sentence": "The difference between the target EDA median and the preceding 120-second median is 1.0 synthetic_unit.",
+          "subject_id": "V101",
+          "unit": "synthetic_unit",
+          "value": 1.0
+        }
+      ],
+      "explanation": "The EDA median is approximately equal to 2.0 synthetic_unit. The EDA median is approximately equal to 1.0 synthetic_unit. The difference between the target EDA median and the preceding 120-second median is 1.0 synthetic_unit.",
+      "unresolved_evidence_ids": []
+    },
+    "initial": {
+      "case_id": "M1-20eps-600-scheduled",
+      "event": "finished",
+      "http_status": 200,
+      "phase": "initial",
+      "request": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "guided_json": {
+          "$defs": {
+            "Claim": {
+              "additionalProperties": false,
+              "properties": {
+                "claim_id": {
+                  "title": "Claim Id",
+                  "type": "string"
+                },
+                "claim_type": {
+                  "enum": [
+                    "numeric_observation",
+                    "trend",
+                    "comparison",
+                    "evidence_conflict",
+                    "missing_evidence",
+                    "revision_effect"
+                  ],
+                  "title": "Claim Type",
+                  "type": "string"
+                },
+                "depends_on_claim_ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Depends On Claim Ids",
+                  "type": "array"
+                },
+                "event_end_seconds": {
+                  "title": "Event End Seconds",
+                  "type": "number"
+                },
+                "event_start_seconds": {
+                  "title": "Event Start Seconds",
+                  "type": "number"
+                },
+                "evidence_ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Evidence Ids",
+                  "type": "array"
+                },
+                "operator": {
+                  "enum": [
+                    "approximately_equal",
+                    "difference",
+                    "greater_than",
+                    "less_than",
+                    "missing",
+                    "disagrees",
+                    "remains_supported",
+                    "revised"
+                  ],
+                  "title": "Operator",
+                  "type": "string"
+                },
+                "quantity": {
+                  "title": "Quantity",
+                  "type": "string"
+                },
+                "sentence": {
+                  "title": "Sentence",
+                  "type": "string"
+                },
+                "subject_id": {
+                  "title": "Subject Id",
+                  "type": "string"
+                },
+                "unit": {
+                  "title": "Unit",
+                  "type": "string"
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Value"
+                }
+              },
+              "required": [
+                "claim_id",
+                "claim_type",
+                "subject_id",
+                "quantity",
+                "event_start_seconds",
+                "event_end_seconds",
+                "operator",
+                "value",
+                "unit",
+                "evidence_ids",
+                "depends_on_claim_ids",
+                "sentence"
+              ],
+              "title": "Claim",
+              "type": "object"
+            }
+          },
+          "additionalProperties": false,
+          "properties": {
+            "answer_status": {
+              "enum": [
+                "answered",
+                "partially_answered",
+                "insufficient_evidence"
+              ],
+              "title": "Answer Status",
+              "type": "string"
+            },
+            "claims": {
+              "items": {
+                "$ref": "#/$defs/Claim"
+              },
+              "maxItems": 3,
+              "title": "Claims",
+              "type": "array"
+            },
+            "explanation": {
+              "title": "Explanation",
+              "type": "string"
+            },
+            "unresolved_evidence_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unresolved Evidence Ids",
+              "type": "array"
+            }
+          },
+          "required": [
+            "claims",
+            "answer_status",
+            "explanation",
+            "unresolved_evidence_ids"
+          ],
+          "title": "Answer",
+          "type": "object"
+        },
+        "max_tokens": 1536,
+        "messages": [
+          {
+            "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nThe top-level JSON object has exactly four required keys, in this order: claims,\nanswer_status, explanation, unresolved_evidence_ids. After closing the claims array,\nwrite the remaining three keys. answer_status is answered, partially_answered, or\ninsufficient_evidence; explanation is a string; unresolved_evidence_ids is an array\nof unavailable evidence IDs, or []. Each claim has all of these fields: claim_id,\nclaim_type, subject_id, quantity, event_start_seconds, event_end_seconds, operator,\nvalue, unit, evidence_ids, depends_on_claim_ids, sentence. Never pad with whitespace.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nKeep every claim's event_start_seconds and event_end_seconds equal to the requested\ntarget interval, including comparisons whose earlier operand covers another interval.\nReport only requested facts; the baseline is an operand, not an additional claim.\nUse one short sentence per claim and compact JSON. Round reported numbers to six\nsignificant digits. A revision_effect claim uses revised for an explicitly revised\nfeature; an unchanged feature can be reported as an ordinary numeric_observation.\ndepends_on_claim_ids contains only claim_id values of earlier claims, never evidence IDs.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+            "role": "system"
+          },
+          {
+            "content": "{\"evidence\":[{\"event_end_seconds\":10,\"event_start_seconds\":0,\"evidence_state\":\"available\",\"ingested_at_seconds\":130.0,\"quantity\":\"eda_median\",\"record_id\":\"a/v601\",\"subject_id\":\"V101\",\"supersedes_id\":\"a/v600\",\"unit\":\"synthetic_unit\",\"value\":2.0,\"version\":601},{\"event_end_seconds\":0,\"event_start_seconds\":-120,\"evidence_state\":\"available\",\"ingested_at_seconds\":10,\"quantity\":\"eda_median\",\"record_id\":\"b\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"synthetic_unit\",\"value\":1,\"version\":1}],\"knowledge_time\":130.0,\"question\":\"Report the target EDA median and its difference from the preceding 120-second median (target minus earlier).\",\"subject_id\":\"V101\",\"target_interval\":[0,10]}",
+            "role": "user"
+          }
+        ],
+        "model": "Qwen/Qwen3-8B",
+        "seed": 20260928,
+        "temperature": 0.7,
+        "top_k": 20,
+        "top_p": 0.8
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"claims\": [{\"claim_id\": \"claim_1\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"V101\", \"quantity\": \"eda_median\", \"event_start_seconds\": 0, \"event_end_seconds\": 10, \"operator\": \"approximately_equal\", \"value\": 2.0, \"unit\": \"synthetic_unit\", \"evidence_ids\": [\"a/v601\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA median is approximately equal to 2.0 synthetic_unit.\"}, {\"claim_id\": \"claim_2\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"V101\", \"quantity\": \"eda_median\", \"event_start_seconds\": -120, \"event_end_seconds\": 0, \"operator\": \"approximately_equal\", \"value\": 1.0, \"unit\": \"synthetic_unit\", \"evidence_ids\": [\"b\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA median is approximately equal to 1.0 synthetic_unit.\"}, {\"claim_id\": \"claim_3\", \"claim_type\": \"trend\", \"subject_id\": \"V101\", \"quantity\": \"eda_median\", \"event_start_seconds\": 0, \"event_end_seconds\": 10, \"operator\": \"difference\", \"value\": 1.0, \"unit\": \"synthetic_unit\", \"evidence_ids\": [\"a/v601\", \"b\"], \"depends_on_claim_ids\": [\"claim_1\", \"claim_2\"], \"sentence\": \"The difference between the target EDA median and the preceding 120-second median is 1.0 synthetic_unit.\"}], \"answer_status\": \"answered\", \"explanation\": \"The EDA median is approximately equal to 2.0 synthetic_unit. The EDA median is approximately equal to 1.0 synthetic_unit. The difference between the target EDA median and the preceding 120-second median is 1.0 synthetic_unit.\", \"unresolved_evidence_ids\": []}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1790655332,
+        "id": "chatcmpl-6f1d414ebfca43fdbe8b625f3944c52e",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen3-8B",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 439,
+          "prompt_tokens": 644,
+          "prompt_tokens_details": null,
+          "total_tokens": 1083
+        }
+      },
+      "seconds": 6.065606274874881,
+      "started_at": "2026-09-29T04:15:32.876308+00:00",
+      "truncated": false
+    },
+    "paragraph_discrepancies": [],
+    "raw_candidate": {
+      "answer_status": "answered",
+      "claims": [
+        {
+          "claim_id": "claim_1",
+          "claim_type": "numeric_observation",
+          "depends_on_claim_ids": [],
+          "event_end_seconds": 10.0,
+          "event_start_seconds": 0.0,
+          "evidence_ids": [
+            "a/v601"
+          ],
+          "operator": "approximately_equal",
+          "quantity": "eda_median",
+          "sentence": "The EDA median is approximately equal to 2.0 synthetic_unit.",
+          "subject_id": "V101",
+          "unit": "synthetic_unit",
+          "value": 2.0
+        },
+        {
+          "claim_id": "claim_2",
+          "claim_type": "numeric_observation",
+          "depends_on_claim_ids": [],
+          "event_end_seconds": 0.0,
+          "event_start_seconds": -120.0,
+          "evidence_ids": [
+            "b"
+          ],
+          "operator": "approximately_equal",
+          "quantity": "eda_median",
+          "sentence": "The EDA median is approximately equal to 1.0 synthetic_unit.",
+          "subject_id": "V101",
+          "unit": "synthetic_unit",
+          "value": 1.0
+        },
+        {
+          "claim_id": "claim_3",
+          "claim_type": "trend",
+          "depends_on_claim_ids": [
+            "claim_1",
+            "claim_2"
+          ],
+          "event_end_seconds": 10.0,
+          "event_start_seconds": 0.0,
+          "evidence_ids": [
+            "a/v601",
+            "b"
+          ],
+          "operator": "difference",
+          "quantity": "eda_median",
+          "sentence": "The difference between the target EDA median and the preceding 120-second median is 1.0 synthetic_unit.",
+          "subject_id": "V101",
+          "unit": "synthetic_unit",
+          "value": 1.0
+        }
+      ],
+      "explanation": "The EDA median is approximately equal to 2.0 synthetic_unit. The EDA median is approximately equal to 1.0 synthetic_unit. The difference between the target EDA median and the preceding 120-second median is 1.0 synthetic_unit.",
+      "unresolved_evidence_ids": []
+    },
+    "repair": {
+      "case_id": "M1-20eps-600-scheduled",
+      "event": "finished",
+      "http_status": 200,
+      "phase": "repair",
+      "request": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "guided_json": {
+          "$defs": {
+            "Claim": {
+              "additionalProperties": false,
+              "properties": {
+                "claim_id": {
+                  "title": "Claim Id",
+                  "type": "string"
+                },
+                "claim_type": {
+                  "enum": [
+                    "numeric_observation",
+                    "trend",
+                    "comparison",
+                    "evidence_conflict",
+                    "missing_evidence",
+                    "revision_effect"
+                  ],
+                  "title": "Claim Type",
+                  "type": "string"
+                },
+                "depends_on_claim_ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Depends On Claim Ids",
+                  "type": "array"
+                },
+                "event_end_seconds": {
+                  "title": "Event End Seconds",
+                  "type": "number"
+                },
+                "event_start_seconds": {
+                  "title": "Event Start Seconds",
+                  "type": "number"
+                },
+                "evidence_ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Evidence Ids",
+                  "type": "array"
+                },
+                "operator": {
+                  "enum": [
+                    "approximately_equal",
+                    "difference",
+                    "greater_than",
+                    "less_than",
+                    "missing",
+                    "disagrees",
+                    "remains_supported",
+                    "revised"
+                  ],
+                  "title": "Operator",
+                  "type": "string"
+                },
+                "quantity": {
+                  "title": "Quantity",
+                  "type": "string"
+                },
+                "sentence": {
+                  "title": "Sentence",
+                  "type": "string"
+                },
+                "subject_id": {
+                  "title": "Subject Id",
+                  "type": "string"
+                },
+                "unit": {
+                  "title": "Unit",
+                  "type": "string"
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Value"
+                }
+              },
+              "required": [
+                "claim_id",
+                "claim_type",
+                "subject_id",
+                "quantity",
+                "event_start_seconds",
+                "event_end_seconds",
+                "operator",
+                "value",
+                "unit",
+                "evidence_ids",
+                "depends_on_claim_ids",
+                "sentence"
+              ],
+              "title": "Claim",
+              "type": "object"
+            }
+          },
+          "additionalProperties": false,
+          "properties": {
+            "answer_status": {
+              "enum": [
+                "answered",
+                "partially_answered",
+                "insufficient_evidence"
+              ],
+              "title": "Answer Status",
+              "type": "string"
+            },
+            "claims": {
+              "items": {
+                "$ref": "#/$defs/Claim"
+              },
+              "maxItems": 3,
+              "title": "Claims",
+              "type": "array"
+            },
+            "explanation": {
+              "title": "Explanation",
+              "type": "string"
+            },
+            "unresolved_evidence_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unresolved Evidence Ids",
+              "type": "array"
+            }
+          },
+          "required": [
+            "claims",
+            "answer_status",
+            "explanation",
+            "unresolved_evidence_ids"
+          ],
+          "title": "Answer",
+          "type": "object"
+        },
+        "max_tokens": 1536,
+        "messages": [
+          {
+            "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nThe top-level JSON object has exactly four required keys, in this order: claims,\nanswer_status, explanation, unresolved_evidence_ids. After closing the claims array,\nwrite the remaining three keys. answer_status is answered, partially_answered, or\ninsufficient_evidence; explanation is a string; unresolved_evidence_ids is an array\nof unavailable evidence IDs, or []. Each claim has all of these fields: claim_id,\nclaim_type, subject_id, quantity, event_start_seconds, event_end_seconds, operator,\nvalue, unit, evidence_ids, depends_on_claim_ids, sentence. Never pad with whitespace.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nKeep every claim's event_start_seconds and event_end_seconds equal to the requested\ntarget interval, including comparisons whose earlier operand covers another interval.\nReport only requested facts; the baseline is an operand, not an additional claim.\nUse one short sentence per claim and compact JSON. Round reported numbers to six\nsignificant digits. A revision_effect claim uses revised for an explicitly revised\nfeature; an unchanged feature can be reported as an ordinary numeric_observation.\ndepends_on_claim_ids contains only claim_id values of earlier claims, never evidence IDs.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+            "role": "system"
+          },
+          {
+            "content": "{\"evidence\":[{\"event_end_seconds\":10,\"event_start_seconds\":0,\"evidence_state\":\"available\",\"ingested_at_seconds\":130.0,\"quantity\":\"eda_median\",\"record_id\":\"a/v601\",\"subject_id\":\"V101\",\"supersedes_id\":\"a/v600\",\"unit\":\"synthetic_unit\",\"value\":2.0,\"version\":601},{\"event_end_seconds\":0,\"event_start_seconds\":-120,\"evidence_state\":\"available\",\"ingested_at_seconds\":10,\"quantity\":\"eda_median\",\"record_id\":\"b\",\"subject_id\":\"V101\",\"supersedes_id\":null,\"unit\":\"synthetic_unit\",\"value\":1,\"version\":1}],\"knowledge_time\":130.0,\"question\":\"Report the target EDA median and its difference from the preceding 120-second median (target minus earlier).\",\"subject_id\":\"V101\",\"target_interval\":[0,10]}",
+            "role": "user"
+          },
+          {
+            "content": "{\"claims\":[{\"claim_id\":\"claim_1\",\"claim_type\":\"numeric_observation\",\"subject_id\":\"V101\",\"quantity\":\"eda_median\",\"event_start_seconds\":0.0,\"event_end_seconds\":10.0,\"operator\":\"approximately_equal\",\"value\":2.0,\"unit\":\"synthetic_unit\",\"evidence_ids\":[\"a/v601\"],\"depends_on_claim_ids\":[],\"sentence\":\"The EDA median is approximately equal to 2.0 synthetic_unit.\"},{\"claim_id\":\"claim_2\",\"claim_type\":\"numeric_observation\",\"subject_id\":\"V101\",\"quantity\":\"eda_median\",\"event_start_seconds\":-120.0,\"event_end_seconds\":0.0,\"operator\":\"approximately_equal\",\"value\":1.0,\"unit\":\"synthetic_unit\",\"evidence_ids\":[\"b\"],\"depends_on_claim_ids\":[],\"sentence\":\"The EDA median is approximately equal to 1.0 synthetic_unit.\"},{\"claim_id\":\"claim_3\",\"claim_type\":\"trend\",\"subject_id\":\"V101\",\"quantity\":\"eda_median\",\"event_start_seconds\":0.0,\"event_end_seconds\":10.0,\"operator\":\"difference\",\"value\":1.0,\"unit\":\"synthetic_unit\",\"evidence_ids\":[\"a/v601\",\"b\"],\"depends_on_claim_ids\":[\"claim_1\",\"claim_2\"],\"sentence\":\"The difference between the target EDA median and the preceding 120-second median is 1.0 synthetic_unit.\"}],\"answer_status\":\"answered\",\"explanation\":\"The EDA median is approximately equal to 2.0 synthetic_unit. The EDA median is approximately equal to 1.0 synthetic_unit. The difference between the target EDA median and the preceding 120-second median is 1.0 synthetic_unit.\",\"unresolved_evidence_ids\":[]}",
+            "role": "assistant"
+          },
+          {
+            "content": "Repair this answer using only the same evidence. Checks: {\"validation\": [{\"claim_id\": \"claim_1\", \"state\": \"supported\", \"reasons\": []}, {\"claim_id\": \"claim_2\", \"state\": \"needs_review\", \"reasons\": [\"wrong_time\"]}, {\"claim_id\": \"claim_3\", \"state\": \"needs_review\", \"reasons\": [\"unsupported_or_cyclic_dependency\"]}], \"paragraph\": [], \"format_error\": null}",
+            "role": "user"
+          }
+        ],
+        "model": "Qwen/Qwen3-8B",
+        "seed": 20260928,
+        "temperature": 0.7,
+        "top_k": 20,
+        "top_p": 0.8
+      },
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"claims\": [{\"claim_id\": \"claim_1\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"V101\", \"quantity\": \"eda_median\", \"event_start_seconds\": 0.0, \"event_end_seconds\": 10.0, \"operator\": \"approximately_equal\", \"value\": 2.0, \"unit\": \"synthetic_unit\", \"evidence_ids\": [\"a/v601\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA median is approximately equal to 2.0 synthetic_unit.\"}, {\"claim_id\": \"claim_2\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"V101\", \"quantity\": \"eda_median\", \"event_start_seconds\": -120.0, \"event_end_seconds\": 0.0, \"operator\": \"approximately_equal\", \"value\": 1.0, \"unit\": \"synthetic_unit\", \"evidence_ids\": [\"b\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA median is approximately equal to 1.0 synthetic_unit.\"}, {\"claim_id\": \"claim_3\", \"claim_type\": \"trend\", \"subject_id\": \"V101\", \"quantity\": \"eda_median\", \"event_start_seconds\": 0.0, \"event_end_seconds\": 10.0, \"operator\": \"difference\", \"value\": 1.0, \"unit\": \"synthetic_unit\", \"evidence_ids\": [\"a/v601\", \"b\"], \"depends_on_claim_ids\": [\"claim_1\", \"claim_2\"], \"sentence\": \"The difference between the target EDA median and the preceding 120-second median is 1.0 synthetic_unit.\"}], \"answer_status\": \"answered\", \"explanation\": \"The EDA median is approximately equal to 2.0 synthetic_unit. The EDA median is approximately equal to 1.0 synthetic_unit. The difference between the target EDA median and the preceding 120-second median is 1.0 synthetic_unit.\", \"unresolved_evidence_ids\": []}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1790655338,
+        "id": "chatcmpl-2a950c4390534d8b90382e6da7495445",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen3-8B",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 451,
+          "prompt_tokens": 1125,
+          "prompt_tokens_details": null,
+          "total_tokens": 1576
+        }
+      },
+      "seconds": 6.350647285114974,
+      "started_at": "2026-09-29T04:15:38.945807+00:00",
+      "truncated": false
+    },
+    "seconds": 12.416253559989855,
+    "validation": [
+      {
+        "claim_id": "claim_1",
+        "reasons": [],
+        "state": "supported"
+      },
+      {
+        "claim_id": "claim_2",
+        "reasons": [
+          "wrong_time"
+        ],
+        "state": "needs_review"
+      },
+      {
+        "claim_id": "claim_3",
+        "reasons": [
+          "unsupported_or_cyclic_dependency"
+        ],
+        "state": "needs_review"
+      }
+    ]
+  },
+  "validation_repair_calls": 1
+}

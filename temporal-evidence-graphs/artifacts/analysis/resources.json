@@ -1,0 +1,93 @@
+{
+  "currency_cost": null,
+  "hourly_price": null,
+  "inputs": {
+    "artifacts/manifests/execution_stages.jsonl": "0be12f88f49c8bfedfc0252aefb636e917c42a924e2b86b892c0308b119a7388",
+    "artifacts/runs/resources.jsonl": "f977eb8e5e916a54be7a1766e2c2486961a4dc8be5627bfe3babe35d7d5fe38b"
+  },
+  "notes": [
+    "Stage wall time includes host work and GPU idle gaps; it is not CUDA kernel time",
+    "One-second GPU telemetry can miss brief peaks",
+    "Cgroup memory includes the whole pod and file cache, not per-method private memory",
+    "Measured workload wall time excludes downloads, initial model-server compilation and unlogged gaps; it is not total billable pod time",
+    "No account hourly rate was supplied; no monetary cost estimated"
+  ],
+  "stages": [
+    {
+      "mean_gpu_utilization_percent": 88.89839572192513,
+      "peak_gpu_memory_mib": 27934.0,
+      "peak_host_cgroup_memory_bytes": 29083635712,
+      "stage": "final_development_pilot",
+      "telemetry_samples": 561,
+      "wall_seconds": 561.4610585540067
+    },
+    {
+      "mean_gpu_utilization_percent": 89.0,
+      "peak_gpu_memory_mib": 27934.0,
+      "peak_host_cgroup_memory_bytes": 29039063040,
+      "stage": "final_live_core_validation",
+      "telemetry_samples": 1,
+      "wall_seconds": 1.0410451528150588
+    },
+    {
+      "mean_gpu_utilization_percent": null,
+      "peak_gpu_memory_mib": null,
+      "peak_host_cgroup_memory_bytes": null,
+      "stage": "development_evaluation",
+      "telemetry_samples": 0,
+      "wall_seconds": 0.15868190303444862
+    },
+    {
+      "mean_gpu_utilization_percent": null,
+      "peak_gpu_memory_mib": null,
+      "peak_host_cgroup_memory_bytes": null,
+      "stage": "protocol_freeze",
+      "telemetry_samples": 0,
+      "wall_seconds": 0.1527786240912974
+    },
+    {
+      "mean_gpu_utilization_percent": 88.65634019626708,
+      "peak_gpu_memory_mib": 28441.0,
+      "peak_host_cgroup_memory_bytes": 30554497024,
+      "stage": "matched_held_out_run",
+      "telemetry_samples": 10394,
+      "wall_seconds": 10394.55197577388
+    },
+    {
+      "mean_gpu_utilization_percent": 29.666666666666668,
+      "peak_gpu_memory_mib": 27934.0,
+      "peak_host_cgroup_memory_bytes": 30421164032,
+      "stage": "independent_evaluation",
+      "telemetry_samples": 3,
+      "wall_seconds": 3.6000236589461565
+    },
+    {
+      "mean_gpu_utilization_percent": 0.0,
+      "peak_gpu_memory_mib": 27934.0,
+      "peak_host_cgroup_memory_bytes": 30502891520,
+      "stage": "paired_analysis",
+      "telemetry_samples": 3,
+      "wall_seconds": 2.154515521135181
+    },
+    {
+      "mean_gpu_utilization_percent": 84.26321585903084,
+      "peak_gpu_memory_mib": 28441.0,
+      "peak_host_cgroup_memory_bytes": 30633259008,
+      "stage": "isolated_streaming_benchmark",
+      "telemetry_samples": 908,
+      "wall_seconds": 908.2425334630534
+    },
+    {
+      "mean_gpu_utilization_percent": 65.44117647058823,
+      "peak_gpu_memory_mib": 8450.0,
+      "peak_host_cgroup_memory_bytes": 29628690432,
+      "stage": "automated_cuda_fidelity_audit",
+      "telemetry_samples": 34,
+      "wall_seconds": 33.77694226289168
+    }
+  ],
+  "telemetry_finished_at": "2026-09-29T04:23:57.317260+00:00",
+  "telemetry_samples": 14840,
+  "telemetry_span_seconds": 14840.523528,
+  "telemetry_started_at": "2026-09-29T00:16:36.793732+00:00"
+}

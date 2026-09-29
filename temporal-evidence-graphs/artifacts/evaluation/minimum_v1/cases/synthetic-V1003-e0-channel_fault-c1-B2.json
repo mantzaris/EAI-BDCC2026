@@ -1,0 +1,100 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 0,
+    "case_id": "synthetic-V1003-e0-channel_fault-c1-B2",
+    "checkpoint": 1,
+    "claim_count": 1,
+    "claim_errors": 0,
+    "collateral_withdrawn": 0,
+    "corrected": 2,
+    "corrected_by_5s": 2,
+    "correction_required": 2,
+    "database_update_seconds": 0.09554413007572293,
+    "dataset": "synthetic",
+    "end_to_end_seconds": 60.50821525603533,
+    "episode_id": "synthetic-V1003-e0",
+    "failed": 0,
+    "family": "current_evidence",
+    "generation_seconds": 17.28873389097862,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 3584,
+    "knowledge_time": 481.0,
+    "method": "B2",
+    "output_tokens": 1220,
+    "paragraph_discrepancy": 0,
+    "partial": 1,
+    "reference_count": 1,
+    "repair_calls": 1,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.005820482969284058,
+    "split": "test",
+    "subject": "V1003",
+    "supplied_slots": 1,
+    "timeout_calls": 0,
+    "unaffected": 0,
+    "useful_complete": 0,
+    "useful_eligible": 1,
+    "valid_reference_count": 1,
+    "variant": "channel_fault"
+  },
+  "persistent": [
+    {
+      "active": false,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "record_id": "synthetic-V1003-e0-channel_fault-c0-B2/claim/claim_1",
+      "required_change": true,
+      "transition": {
+        "flag_seconds": 0.01727392105385661,
+        "trigger_id": "synthetic/V1003/420-450/eda_median/v2"
+      }
+    },
+    {
+      "active": false,
+      "current_valid": false,
+      "reasons": [
+        "dependency",
+        "numeric_difference"
+      ],
+      "record_id": "synthetic-V1003-e0-channel_fault-c0-B2/claim/claim_2",
+      "required_change": true,
+      "transition": {
+        "flag_seconds": 0.01727392105385661,
+        "trigger_id": "synthetic/V1003/420-450/eda_median/v2"
+      }
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 2.9008370637893677
+    },
+    {
+      "kind": "difference",
+      "quantity": "eda_median",
+      "slot": "eda_difference",
+      "supplied": false,
+      "value": 0.5876916646957397
+    }
+  ]
+}

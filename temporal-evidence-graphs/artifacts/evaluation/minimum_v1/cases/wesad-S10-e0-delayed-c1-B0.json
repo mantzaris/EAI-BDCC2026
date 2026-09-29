@@ -1,0 +1,131 @@
+{
+  "claims": [
+    {
+      "claim_id": "C1",
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "reference_count": 1,
+      "valid": false,
+      "valid_reference_count": 0
+    },
+    {
+      "claim_id": "C2",
+      "reasons": [
+        "numeric_or_interval",
+        "wrong_time"
+      ],
+      "reference_count": 1,
+      "valid": false,
+      "valid_reference_count": 0
+    },
+    {
+      "claim_id": "C3",
+      "reasons": [
+        "comparison_operand",
+        "dependency",
+        "reference_absent"
+      ],
+      "reference_count": 2,
+      "valid": false,
+      "valid_reference_count": 0
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 0,
+    "answerable_slots": 0,
+    "case_error": 1,
+    "case_id": "wesad-S10-e0-delayed-c1-B0",
+    "checkpoint": 1,
+    "claim_count": 3,
+    "claim_errors": 3,
+    "collateral_withdrawn": 0,
+    "corrected": 0,
+    "corrected_by_5s": 0,
+    "correction_required": 0,
+    "database_update_seconds": 0.0025379080325365067,
+    "dataset": "wesad",
+    "end_to_end_seconds": 27.473075529094785,
+    "episode_id": "wesad-S10-e0",
+    "failed": 0,
+    "family": "current_evidence",
+    "generation_seconds": 7.873600832885131,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 3,
+    "input_tokens": 1264,
+    "knowledge_time": 1401.0,
+    "method": "B0",
+    "output_tokens": 554,
+    "paragraph_discrepancy": 0,
+    "partial": 0,
+    "reference_count": 4,
+    "repair_calls": 0,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.0023665418848395348,
+    "split": "test",
+    "subject": "S10",
+    "supplied_slots": 0,
+    "timeout_calls": 0,
+    "unaffected": 0,
+    "useful_complete": 0,
+    "useful_eligible": 0,
+    "valid_reference_count": 0,
+    "variant": "delayed"
+  },
+  "persistent": [
+    {
+      "active": true,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "record_id": "wesad-S10-e0-delayed-c0-B0/claim/C1/0",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": true,
+      "current_valid": false,
+      "reasons": [
+        "dependency",
+        "numeric_or_interval",
+        "wrong_time"
+      ],
+      "record_id": "wesad-S10-e0-delayed-c0-B0/claim/C2/1",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": true,
+      "current_valid": false,
+      "reasons": [
+        "dependency",
+        "numeric_or_interval",
+        "quantity_or_unit",
+        "reference_absent"
+      ],
+      "record_id": "wesad-S10-e0-delayed-c0-B0/claim/C3/2",
+      "required_change": false,
+      "transition": {}
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": false,
+      "value": null
+    },
+    {
+      "kind": "difference",
+      "quantity": "eda_median",
+      "slot": "eda_difference",
+      "supplied": false,
+      "value": null
+    }
+  ]
+}

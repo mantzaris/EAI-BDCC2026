@@ -12,18 +12,31 @@ repair phases. The matched experiment takes \MainHours{} hours on the
 recorded hardware. Failed, empty, and partially answered cases remain in their
 fixed denominators. Table~\ref{tab:reliability} reports case error together with
 claim error, required-fact recall, and useful coverage for each source and method.
-Each source/method cell contains 240 query checkpoints.
+Each source/method cell contains 240 query checkpoints. The three failed requests
+are transport ReadErrors in B0, one per source; they were retained without retries.
 
 \begin{table}[t]
 \caption{Fresh displayed answers by source. All rates are percentages. Recall
 counts answerable required slots; coverage requires all such slots. An empty
-answer contributes no checkable claims and reduces coverage.}
+answer contributes no checkable claims and reduces coverage. Errors are violations
+of the bounded query contract, including interval scope.}
 \label{tab:reliability}
 \centering\small\setlength{\tabcolsep}{3.2pt}
 \input{generated/reliability_table}
 \end{table}
 
 \input{generated/reliability_findings}
+
+The distinction between contract compliance and factual correctness materially
+affects these results. A post-hoc descriptive check finds that
+\OffTargetSupportedClaims{} of B0's \BaselineInvalidClaims{} invalid claims are
+direct numerical background statements that pass the same exact checks at their
+own stated interval. For example, a correctly labelled preceding-window EDA
+median violates the target-interval rule. A comparison declaring that statement
+as a parent can consequently fail the dependency check despite correct arithmetic.
+Table~\ref{tab:contractscope} gives source-wise counts. The frozen primary scores
+are unchanged; their error reductions must not be read as equivalent reductions
+in hallucinations, and their recall also depends on this contract.
 
 These comparisons describe the final displayed content after the common bounded
 repair policy. A low error rate cannot alone establish useful answering: removing
@@ -36,22 +49,13 @@ answer/abstention counts are available in the reproducible analysis tables.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{minimum_v1_reliability.pdf}
-\caption{Case error (top) and required-fact recall (bottom) for the three
+\caption{Query-contract case violations (top) and required-fact recall (bottom) for the three
 waveform sources. The five bars within each panel use the same evidence and
 generation settings. Lower error is desirable only alongside retained recall.
 These are aggregate proportions; paired subject-cluster intervals are reported
 for the prospective contrasts in Table~\ref{tab:contrasts}.}
 \label{fig:reliability}
 \end{figure}
-
-\begin{table}[t]
-\caption{Generation behavior and supported-reference rates. Failed and truncated
-columns are counts out of 240 cases per row; repairs count additional requests.
-Reference validity requires a cited source to support its associated statement.}
-\label{tab:failures}
-\centering\small\setlength{\tabcolsep}{3.5pt}
-\input{generated/failure_table}
-\end{table}
 
 \subsection{Required Changes and Retained Content}
 
@@ -84,6 +88,12 @@ their number can differ across methods because initial answers differ. Initially
 incorrect content is tracked separately rather than credited as correctable
 content that the method once supported validly.
 
+All four checked methods correct every eligible generated claim and have no
+collateral withdrawals in this run. Thus, the waveform task supplies no measured
+correction advantage for transitive propagation over direct checking. B0 retains
+every eligible outdated claim. The symbolic and generated results answer different
+questions and should not be pooled.
+
 \begin{table}[t]
 \caption{Persistent generated displays. Completeness is conditional on an initially
 valid claim requiring change. Residual counts those still active; collateral
@@ -110,7 +120,8 @@ evidence references. This structure constrains the opportunity for transitive
 maintenance to add value over direct checking in the waveform task. The common
 fixture demonstrates a deliberately necessary transitive path; its result should
 not be substituted for an empirical advantage across unrestricted generated
-reasoning chains.
+reasoning chains. No generated persistent claim has a declared parent dependency
+as its sole later exact-check error in this run.
 
 \subsection{Paired Contrasts}
 
@@ -122,6 +133,9 @@ error reductions cannot hide lost information. Conditional correction contrasts
 disclose their eligible subject and episode counts. Pointwise bootstrap intervals quantify
 participant-level variability within this fixed generation run; they do not
 measure variability across model seeds or remove shared measurement error.
+The zero differences and zero-width intervals for the principal correction and
+case-error contrasts arise because all observed paired subject differences are
+identical. They do not establish universal equivalence or a zero error probability.
 
 \begin{table}[t]
 \caption{Principal paired differences with 2,000 subject-cluster resamples.
@@ -143,30 +157,32 @@ The deterministic fixtures and systems assessment hashes supply the separate
 test of logical equivalence. Differences in generated answers must not be
 attributed to graph storage alone.
 
-\begin{table}[t]
-\caption{Separate graph-versus-relational comparison of generated outcomes.
-Differences are M1--B3 in percentage points with pointwise 95\% paired intervals;
-N (S/E) gives retained subjects/episodes.}
-\label{tab:relational}
-\centering\small
-\input{generated/relational_contrasts_table}
-\end{table}
-
 \subsection{Open-Loop Latency and Resource Use}
 
 All six systems cells complete, and graph/relational logical assessment hashes
-agree for every offered rate. Table~\ref{tab:streaming} reports arrival-to-flag
-and arrival-to-generated-replacement latency, deadline misses, and peak queues.
+agree for every offered rate. Table~\ref{tab:streaming} reports flag latency,
+time until candidate completion, deadline misses, and peak queues from arrival.
 Figure~\ref{fig:streaming} displays the load dependence. The M1 implementation
 misses \GraphFlagMisses{} of \SystemsRepairTargets{} flag targets and
 \GraphRepairMisses{} of \SystemsRepairTargets{} adequate-replacement targets.
 Replacement failure includes inadequate content as well as lateness. Fast
 withdrawal therefore does not imply a useful replacement within five seconds.
+All \SystemsExplanations{} systems displays contain a single target observation
+and omit the required difference, even after the bounded repair attempt.
+Successful-replacement latency is therefore undefined; the reported candidate
+latency measures when these incomplete attempts finish.
+
+At one and five events/s, both backends meet every flag deadline, and the
+relational implementation has lower p95 flag latency. At 20 events/s both
+accumulate event and answer queues and miss flag deadlines. M1 has lower p95
+flag and candidate latency at that rate, but more flag misses. This reversal
+across summaries cautions against a single storage-engine ranking.
 
 \begin{table}[t]
 \caption{Open-loop systems results. Each cell offers events for 60 seconds and
 then drains. Q columns are peak queued events and pending explanations. Flag
-and repair columns show misses/opportunities for one- and five-second targets.}
+and repair columns show misses/opportunities for one- and five-second targets.
+Candidate latency includes inadequate outputs; no complete replacement is observed.}
 \label{tab:streaming}
 \centering\small\setlength{\tabcolsep}{2.4pt}
 \input{generated/streaming_table}
@@ -175,7 +191,7 @@ and repair columns show misses/opportunities for one- and five-second targets.}
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{streaming.pdf}
-\caption{Offered load versus p95 flag and generated-replacement latency and peak
+\caption{Offered load versus p95 flag and candidate-completion latency and peak
 queues for M1 and B3. Dotted lines mark the one-second flag and five-second
 replacement targets. The flag axis is logarithmic. The independent producer
 continues scheduling events while requests wait or generate; measurements
@@ -183,29 +199,16 @@ include the resulting backlog.}
 \label{fig:streaming}
 \end{figure}
 
-The frozen replacement adequacy check uses the request snapshot. A separate
-descriptive analysis uses the recorded completion event index to remap evidence
-versions and recheck numerical content at completion (Table~\ref{tab:staleness}).
-A replacement may be accurate for its input snapshot yet arrive after its target
-value has changed. This check leaves the original deadline results unchanged
-and separates queued snapshot answering from maintaining a currently adequate
-display. A practical asynchronous system would need to check again before
-publishing a replacement and potentially coalesce obsolete pending requests.
-That scheduling policy is not evaluated here.
+The frozen adequacy check uses the request snapshot. A descriptive check also
+remaps evidence to the latest ingested versions at completion
+(Table~\ref{tab:staleness}), preserving the original scores. With no adequate
+input-snapshot answers, zero answers ``became stale''; this is uninformative about
+preserving useful replacements. Rechecking before publication and coalescing
+obsolete requests remain unevaluated scheduling policies.
 
-\begin{table}[t]
-\caption{Descriptive completion-time adequacy. Each explanation is checked against
-its request snapshot and the latest ingested event when it completes. ``Adequate
-then stale'' counts request-adequate answers that no longer satisfy the two
-required numerical slots. These counts do not replace the frozen metrics.}
-\label{tab:staleness}
-\centering\small\setlength{\tabcolsep}{2.4pt}
-\input{generated/staleness_table}
-\end{table}
-
-Table~\ref{tab:hardware} records the hardware and effective model configuration.
-The concurrency-one development workload has median and p95 generation
-latencies of \PilotInteractiveP50{} and \PilotInteractiveP95{} seconds, including
+The experiment uses one RTX 5090; Table~\ref{tab:hardware} gives hardware and model
+details. The development workload with one concurrent request has median and p95 generation
+latencies of \PilotInteractivePFifty{} and \PilotInteractivePNinetyFive{} seconds, including
 bounded repairs. The separate batched pilot completes \PilotBatchRate{} initial
 cases per second, including repair and database cost. These are different workloads;
 batch throughput does not establish low interactive latency.
@@ -222,19 +225,13 @@ equal-content compression comparison. No hourly account price was available;
 we report time and tokens without an invented monetary cost.
 
 \begin{table}[t]
-\caption{Recorded hardware and model settings. GPU and host peaks are observed
-over the matched held-out stage; one-second sampling can miss short peaks.}
-\label{tab:hardware}
-\centering\small
-\input{generated/hardware_table}
-\end{table}
-
-\begin{table}[t]
 \caption{Measured request and token accounting. Pilot rows include their separate
 interactive workload. Systems pilot v1 includes requests from its failed scoring
-smoke test. Wall time excludes package/model downloads and manuscript work.}
+smoke test. ``No usage'' counts attempts without returned token counts: their
+server-side cost is unknown, not zero. Token sums include available usage only.
+Wall time excludes package/model downloads and manuscript work.}
 \label{tab:cost}
-\centering\small\setlength{\tabcolsep}{4pt}
+\centering\small\setlength{\tabcolsep}{2.8pt}
 \input{generated/cost_table}
 \end{table}
 
@@ -248,6 +245,12 @@ not a validated estimate of semantic accuracy. Selection is stratified across
 methods and sources and conditional on a nonempty checkpoint-2 display. Empty
 outputs are already represented in coverage and abstention metrics. Raw audit
 prompts and responses permit inspection of both flags and apparent false alarms.
+The verifier accepts \AuditAcceptedInvalid{} exact-invalid outputs, including
+incorrect differences and absent citations as well as interval-contract violations.
+It flags \AuditFlaggedValid{} exact-valid outputs; its rationales include treating
+a null measurement as present and rejecting rounding within the stated tolerance.
+These visible failures limit its value as a semantic check despite passing the
+four simple diagnostics.
 
 The local review dashboard demonstrates the maintenance operations in an isolated
 workspace. An issue queue prioritizes explicit evidence problems and downstream

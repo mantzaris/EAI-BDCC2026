@@ -1,0 +1,691 @@
+{
+  "case": {
+    "case_id": "ppg_dalia-S7-e0-channel_fault-c2-B1",
+    "checkpoint": 2,
+    "dataset": "ppg_dalia",
+    "episode_id": "ppg_dalia-S7-e0",
+    "family": "evidence_sufficiency",
+    "knowledge_time": 2426.0,
+    "method": "B1",
+    "split": "test",
+    "subject": "S7",
+    "variant": "channel_fault"
+  },
+  "completed_at": "2026-09-29T03:41:00.158696+00:00",
+  "database_update_seconds": 0.018831900088116527,
+  "display": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 2335.0,
+        "event_start_seconds": 2305.0,
+        "evidence_ids": [
+          "ppg_dalia/S7/2305-2335/eda_median/v3"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median during the window is approximately equal to 4.489459 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": 4.489459
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 2335.0,
+        "event_start_seconds": 2305.0,
+        "evidence_ids": [
+          "ppg_dalia/S7/2305-2335/eda_missing_fraction/v3"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.",
+        "subject_id": "S7",
+        "unit": "fraction",
+        "value": 0.0
+      }
+    ],
+    "explanation": "The EDA median during the window is approximately equal to 4.489459 uS. The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.",
+    "unresolved_evidence_ids": []
+  },
+  "end_to_end_seconds": 51.25668665789999,
+  "evidence_hash": "db7ae7582acff7f7b53531c2dea49091ec4aeca4729296982b20265a84982b4c",
+  "final_candidate": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 2335.0,
+        "event_start_seconds": 2305.0,
+        "evidence_ids": [
+          "ppg_dalia/S7/2305-2335/eda_median/v3"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median during the window is approximately equal to 4.489459 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": 4.489459
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 2335.0,
+        "event_start_seconds": 2305.0,
+        "evidence_ids": [
+          "ppg_dalia/S7/2305-2335/eda_missing_fraction/v3"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.",
+        "subject_id": "S7",
+        "unit": "fraction",
+        "value": 0.0
+      }
+    ],
+    "explanation": "The EDA median during the window is approximately equal to 4.489459 uS. The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.",
+    "unresolved_evidence_ids": []
+  },
+  "initial": {
+    "case_id": "ppg_dalia-S7-e0-channel_fault-c2-B1",
+    "event": "finished",
+    "http_status": 200,
+    "phase": "initial",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "Claim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "claim_type": {
+                "enum": [
+                  "numeric_observation",
+                  "trend",
+                  "comparison",
+                  "evidence_conflict",
+                  "missing_evidence",
+                  "revision_effect"
+                ],
+                "title": "Claim Type",
+                "type": "string"
+              },
+              "depends_on_claim_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Depends On Claim Ids",
+                "type": "array"
+              },
+              "event_end_seconds": {
+                "title": "Event End Seconds",
+                "type": "number"
+              },
+              "event_start_seconds": {
+                "title": "Event Start Seconds",
+                "type": "number"
+              },
+              "evidence_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Evidence Ids",
+                "type": "array"
+              },
+              "operator": {
+                "enum": [
+                  "approximately_equal",
+                  "difference",
+                  "greater_than",
+                  "less_than",
+                  "missing",
+                  "disagrees",
+                  "remains_supported",
+                  "revised"
+                ],
+                "title": "Operator",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "subject_id": {
+                "title": "Subject Id",
+                "type": "string"
+              },
+              "unit": {
+                "title": "Unit",
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Value"
+              }
+            },
+            "required": [
+              "claim_id",
+              "claim_type",
+              "subject_id",
+              "quantity",
+              "event_start_seconds",
+              "event_end_seconds",
+              "operator",
+              "value",
+              "unit",
+              "evidence_ids",
+              "depends_on_claim_ids",
+              "sentence"
+            ],
+            "title": "Claim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "answer_status": {
+            "enum": [
+              "answered",
+              "partially_answered",
+              "insufficient_evidence"
+            ],
+            "title": "Answer Status",
+            "type": "string"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/Claim"
+            },
+            "maxItems": 3,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "unresolved_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolved Evidence Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claims",
+          "answer_status",
+          "explanation",
+          "unresolved_evidence_ids"
+        ],
+        "title": "Answer",
+        "type": "object"
+      },
+      "max_tokens": 1536,
+      "messages": [
+        {
+          "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nThe top-level JSON object has exactly four required keys, in this order: claims,\nanswer_status, explanation, unresolved_evidence_ids. After closing the claims array,\nwrite the remaining three keys. answer_status is answered, partially_answered, or\ninsufficient_evidence; explanation is a string; unresolved_evidence_ids is an array\nof unavailable evidence IDs, or []. Each claim has all of these fields: claim_id,\nclaim_type, subject_id, quantity, event_start_seconds, event_end_seconds, operator,\nvalue, unit, evidence_ids, depends_on_claim_ids, sentence. Never pad with whitespace.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nKeep every claim's event_start_seconds and event_end_seconds equal to the requested\ntarget interval, including comparisons whose earlier operand covers another interval.\nReport only requested facts; the baseline is an operand, not an additional claim.\nUse one short sentence per claim and compact JSON. Round reported numbers to six\nsignificant digits. A revision_effect claim uses revised for an explicitly revised\nfeature; an unchanged feature can be reported as an ordinary numeric_observation.\ndepends_on_claim_ids contains only claim_id values of earlier claims, never evidence IDs.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"evidence\":[{\"event_end_seconds\":2305.0,\"event_start_seconds\":2185.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":2306.0,\"quantity\":\"eda_median\",\"record_id\":\"ppg_dalia/S7/2185-2305/eda_median/v1\",\"subject_id\":\"S7\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":4.3145880000000005,\"version\":1},{\"event_end_seconds\":2335.0,\"event_start_seconds\":2305.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":2336.0,\"quantity\":\"acceleration_magnitude_sd\",\"record_id\":\"ppg_dalia/S7/2305-2335/acceleration_magnitude_sd/v1\",\"subject_id\":\"S7\",\"supersedes_id\":null,\"unit\":\"g\",\"value\":0.4470532093028999,\"version\":1},{\"event_end_seconds\":2335.0,\"event_start_seconds\":2305.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":2426.0,\"quantity\":\"eda_clipping_fraction\",\"record_id\":\"ppg_dalia/S7/2305-2335/eda_clipping_fraction/v3\",\"subject_id\":\"S7\",\"supersedes_id\":\"ppg_dalia/S7/2305-2335/eda_clipping_fraction/v2\",\"unit\":\"fraction\",\"value\":0.008333333333333333,\"version\":3},{\"event_end_seconds\":2335.0,\"event_start_seconds\":2305.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":2426.0,\"quantity\":\"eda_iqr\",\"record_id\":\"ppg_dalia/S7/2305-2335/eda_iqr/v3\",\"subject_id\":\"S7\",\"supersedes_id\":\"ppg_dalia/S7/2305-2335/eda_iqr/v2\",\"unit\":\"uS\",\"value\":0.3272490000000001,\"version\":3},{\"event_end_seconds\":2335.0,\"event_start_seconds\":2305.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":2426.0,\"quantity\":\"eda_median\",\"record_id\":\"ppg_dalia/S7/2305-2335/eda_median/v3\",\"subject_id\":\"S7\",\"supersedes_id\":\"ppg_dalia/S7/2305-2335/eda_median/v2\",\"unit\":\"uS\",\"value\":4.4894585,\"version\":3},{\"event_end_seconds\":2335.0,\"event_start_seconds\":2305.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":2426.0,\"quantity\":\"eda_missing_fraction\",\"record_id\":\"ppg_dalia/S7/2305-2335/eda_missing_fraction/v3\",\"subject_id\":\"S7\",\"supersedes_id\":\"ppg_dalia/S7/2305-2335/eda_missing_fraction/v2\",\"unit\":\"fraction\",\"value\":0.0,\"version\":3},{\"event_end_seconds\":2335.0,\"event_start_seconds\":2305.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":2336.0,\"quantity\":\"pulse_frequency_bpm\",\"record_id\":\"ppg_dalia/S7/2305-2335/pulse_frequency_bpm/v1\",\"subject_id\":\"S7\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":122.0,\"version\":1},{\"event_end_seconds\":2335.0,\"event_start_seconds\":2305.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":2336.0,\"quantity\":\"respiration_frequency_per_min\",\"record_id\":\"ppg_dalia/S7/2305-2335/respiration_frequency_per_min/v1\",\"subject_id\":\"S7\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":36.0,\"version\":1}],\"knowledge_time\":2426.0,\"question\":\"Which requested measurements are available? Give the window's EDA median and its missing-sample fraction, identifying unavailable values explicitly.\",\"subject_id\":\"S7\",\"target_interval\":[2305.0,2335.0]}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260928,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\"claims\": [{\"claim_id\": \"claim_1\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"S7\", \"quantity\": \"eda_median\", \"event_start_seconds\": 2305.0, \"event_end_seconds\": 2335.0, \"operator\": \"approximately_equal\", \"value\": 4.489459, \"unit\": \"uS\", \"evidence_ids\": [\"ppg_dalia/S7/2305-2335/eda_median/v3\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA median during the window is approximately equal to 4.489459 uS.\"}, {\"claim_id\": \"claim_2\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"S7\", \"quantity\": \"eda_missing_fraction\", \"event_start_seconds\": 2305.0, \"event_end_seconds\": 2335.0, \"operator\": \"approximately_equal\", \"value\": 0.0, \"unit\": \"fraction\", \"evidence_ids\": [\"ppg_dalia/S7/2305-2335/eda_missing_fraction/v3\"], \"depends_on_claim_ids\": [], \"sentence\": \"The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.\"}], \"answer_status\": \"answered\", \"explanation\": \"The EDA median during the window is approximately equal to 4.489459 uS. The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.\", \"unresolved_evidence_ids\": []}",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790653255,
+      "id": "chatcmpl-8552fd05e12d434989fcfe411c99ff61",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 359,
+        "prompt_tokens": 1463,
+        "prompt_tokens_details": null,
+        "total_tokens": 1822
+      }
+    },
+    "seconds": 5.051992099033669,
+    "started_at": "2026-09-29T03:40:55.105287+00:00",
+    "truncated": false
+  },
+  "paragraph_discrepancies": [],
+  "persistent_before": {
+    "ppg_dalia-S7-e0-channel_fault-c0-B1/claim/claim_1": {
+      "claim": {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 2335.0,
+        "event_start_seconds": 2305.0,
+        "evidence_ids": [
+          "ppg_dalia/S7/2305-2335/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The window's EDA median is approximately equal to 4.489459 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": 4.489459
+      },
+      "created_at": 2336.0,
+      "current_evidence_ids": [
+        "ppg_dalia/S7/2305-2335/eda_median/v3"
+      ],
+      "last_transition": {
+        "flag_seconds": 0.0029435709584504366,
+        "trigger_id": "ppg_dalia/S7/2305-2335/eda_median/v3"
+      },
+      "state": "supported"
+    },
+    "ppg_dalia-S7-e0-channel_fault-c0-B1/claim/claim_2": {
+      "claim": {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 2335.0,
+        "event_start_seconds": 2305.0,
+        "evidence_ids": [
+          "ppg_dalia/S7/2305-2335/eda_missing_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The window's EDA missing-sample fraction is approximately equal to 0.0 fraction.",
+        "subject_id": "S7",
+        "unit": "fraction",
+        "value": 0.0
+      },
+      "created_at": 2336.0,
+      "current_evidence_ids": [
+        "ppg_dalia/S7/2305-2335/eda_missing_fraction/v3"
+      ],
+      "last_transition": {
+        "flag_seconds": 0.002894642064347863,
+        "trigger_id": "ppg_dalia/S7/2305-2335/eda_missing_fraction/v3"
+      },
+      "state": "supported"
+    },
+    "ppg_dalia-S7-e0-channel_fault-c1-B1/claim/claim_1": {
+      "claim": {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 2335.0,
+        "event_start_seconds": 2305.0,
+        "evidence_ids": [
+          "ppg_dalia/S7/2305-2335/eda_median/v2"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 4.328680 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": 4.3286805
+      },
+      "created_at": 2366.0,
+      "current_evidence_ids": [
+        "ppg_dalia/S7/2305-2335/eda_median/v3"
+      ],
+      "last_transition": {
+        "flag_seconds": 0.0029435709584504366,
+        "trigger_id": "ppg_dalia/S7/2305-2335/eda_median/v3"
+      },
+      "state": "contradicted"
+    },
+    "ppg_dalia-S7-e0-channel_fault-c1-B1/claim/claim_2": {
+      "claim": {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 2335.0,
+        "event_start_seconds": 2305.0,
+        "evidence_ids": [
+          "ppg_dalia/S7/2305-2335/eda_missing_fraction/v2"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The EDA missing-sample fraction is approximately equal to 0.5 fraction.",
+        "subject_id": "S7",
+        "unit": "fraction",
+        "value": 0.5
+      },
+      "created_at": 2366.0,
+      "current_evidence_ids": [
+        "ppg_dalia/S7/2305-2335/eda_missing_fraction/v3"
+      ],
+      "last_transition": {
+        "flag_seconds": 0.002894642064347863,
+        "trigger_id": "ppg_dalia/S7/2305-2335/eda_missing_fraction/v3"
+      },
+      "state": "contradicted"
+    }
+  },
+  "query": {
+    "dataset_id": "ppg_dalia",
+    "event_end_seconds": 2335.0,
+    "event_start_seconds": 2305.0,
+    "family": "evidence_sufficiency",
+    "freshness_seconds": null,
+    "knowledge_time": 2426.0,
+    "question": "Which requested measurements are available? Give the window's EDA median and its missing-sample fraction, identifying unavailable values explicitly.",
+    "session_id": "session_1",
+    "subject_id": "S7"
+  },
+  "raw_candidate": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 2335.0,
+        "event_start_seconds": 2305.0,
+        "evidence_ids": [
+          "ppg_dalia/S7/2305-2335/eda_median/v3"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median during the window is approximately equal to 4.489459 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": 4.489459
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 2335.0,
+        "event_start_seconds": 2305.0,
+        "evidence_ids": [
+          "ppg_dalia/S7/2305-2335/eda_missing_fraction/v3"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.",
+        "subject_id": "S7",
+        "unit": "fraction",
+        "value": 0.0
+      }
+    ],
+    "explanation": "The EDA median during the window is approximately equal to 4.489459 uS. The missing-sample fraction of EDA during the window is approximately equal to 0.0 fraction.",
+    "unresolved_evidence_ids": []
+  },
+  "repair": null,
+  "retrieval_seconds": 0.001749094808474183,
+  "revisions": [
+    {
+      "affected": [
+        "ppg_dalia/S7/2305-2335/eda_clipping_fraction/v1",
+        "ppg_dalia/S7/2305-2335/eda_clipping_fraction/v2",
+        "ppg_dalia/S7/2305-2335/eda_iqr/v1",
+        "ppg_dalia/S7/2305-2335/eda_iqr/v2",
+        "ppg_dalia/S7/2305-2335/eda_median/v1",
+        "ppg_dalia/S7/2305-2335/eda_median/v2",
+        "ppg_dalia/S7/2305-2335/eda_missing_fraction/v1",
+        "ppg_dalia/S7/2305-2335/eda_missing_fraction/v2"
+      ],
+      "assessments": {
+        "ppg_dalia/S7/2305-2335/eda_clipping_fraction/v1": {
+          "state": "supported",
+          "value": 0.016666666666666666
+        },
+        "ppg_dalia/S7/2305-2335/eda_clipping_fraction/v2": {
+          "state": "supported",
+          "value": 0.016666666666666666
+        },
+        "ppg_dalia/S7/2305-2335/eda_iqr/v1": {
+          "state": "supported",
+          "value": 0.18223650000000013
+        },
+        "ppg_dalia/S7/2305-2335/eda_iqr/v2": {
+          "state": "supported",
+          "value": 0.18223650000000013
+        },
+        "ppg_dalia/S7/2305-2335/eda_median/v1": {
+          "state": "supported",
+          "value": 4.3286805
+        },
+        "ppg_dalia/S7/2305-2335/eda_median/v2": {
+          "state": "supported",
+          "value": 4.3286805
+        },
+        "ppg_dalia/S7/2305-2335/eda_missing_fraction/v1": {
+          "state": "supported",
+          "value": 0.5
+        },
+        "ppg_dalia/S7/2305-2335/eda_missing_fraction/v2": {
+          "state": "supported",
+          "value": 0.5
+        }
+      },
+      "ingested_at": 2426.0,
+      "seconds": 0.003194065997377038,
+      "trigger_id": "ppg_dalia/S7/2305-2335/eda/raw/v3"
+    },
+    {
+      "affected": [],
+      "assessments": {},
+      "ingested_at": 2426.0,
+      "seconds": 0.002526829019188881,
+      "trigger_id": "ppg_dalia/S7/2305-2335/eda_clipping_fraction/v3"
+    },
+    {
+      "affected": [],
+      "assessments": {},
+      "ingested_at": 2426.0,
+      "seconds": 0.0024675598833709955,
+      "trigger_id": "ppg_dalia/S7/2305-2335/eda_iqr/v3"
+    },
+    {
+      "affected": [
+        "ppg_dalia-S7-e0-channel_fault-c0-B1/claim/claim_1",
+        "ppg_dalia-S7-e0-channel_fault-c1-B1/claim/claim_1"
+      ],
+      "assessments": {
+        "ppg_dalia-S7-e0-channel_fault-c0-B1/claim/claim_1": {
+          "state": "supported",
+          "value": 4.489459
+        },
+        "ppg_dalia-S7-e0-channel_fault-c1-B1/claim/claim_1": {
+          "state": "contradicted",
+          "value": 4.3286805
+        }
+      },
+      "ingested_at": 2426.0,
+      "seconds": 0.0029435709584504366,
+      "trigger_id": "ppg_dalia/S7/2305-2335/eda_median/v3"
+    },
+    {
+      "affected": [
+        "ppg_dalia-S7-e0-channel_fault-c0-B1/claim/claim_2",
+        "ppg_dalia-S7-e0-channel_fault-c1-B1/claim/claim_2"
+      ],
+      "assessments": {
+        "ppg_dalia-S7-e0-channel_fault-c0-B1/claim/claim_2": {
+          "state": "supported",
+          "value": 0.0
+        },
+        "ppg_dalia-S7-e0-channel_fault-c1-B1/claim/claim_2": {
+          "state": "contradicted",
+          "value": 0.5
+        }
+      },
+      "ingested_at": 2426.0,
+      "seconds": 0.002894642064347863,
+      "trigger_id": "ppg_dalia/S7/2305-2335/eda_missing_fraction/v3"
+    },
+    {
+      "kind": "explanation_maintenance",
+      "versions": [
+        {
+          "dataset_id": "ppg_dalia",
+          "event_end_seconds": 2335.0,
+          "event_start_seconds": 2305.0,
+          "evidence_state": "available",
+          "ingested_at_seconds": 2426.0000001,
+          "logical_id": "ppg_dalia-S7-e0-channel_fault-c0-B1/explanation",
+          "metadata": {
+            "case_id": "ppg_dalia-S7-e0-channel_fault-c0-B1",
+            "display": {
+              "answer_status": "answered",
+              "claims": [
+                {
+                  "claim_id": "claim_1",
+                  "claim_type": "numeric_observation",
+                  "depends_on_claim_ids": [],
+                  "event_end_seconds": 2335.0,
+                  "event_start_seconds": 2305.0,
+                  "evidence_ids": [
+                    "ppg_dalia/S7/2305-2335/eda_median/v1"
+                  ],
+                  "operator": "approximately_equal",
+                  "quantity": "eda_median",
+                  "sentence": "The window's EDA median is approximately equal to 4.489459 uS.",
+                  "subject_id": "S7",
+                  "unit": "uS",
+                  "value": 4.489459
+                },
+                {
+                  "claim_id": "claim_2",
+                  "claim_type": "numeric_observation",
+                  "depends_on_claim_ids": [],
+                  "event_end_seconds": 2335.0,
+                  "event_start_seconds": 2305.0,
+                  "evidence_ids": [
+                    "ppg_dalia/S7/2305-2335/eda_missing_fraction/v1"
+                  ],
+                  "operator": "approximately_equal",
+                  "quantity": "eda_missing_fraction",
+                  "sentence": "The window's EDA missing-sample fraction is approximately equal to 0.0 fraction.",
+                  "subject_id": "S7",
+                  "unit": "fraction",
+                  "value": 0.0
+                }
+              ],
+              "explanation": "The window's EDA median is approximately equal to 4.489459 uS. The window's EDA missing-sample fraction is approximately equal to 0.0 fraction.",
+              "unresolved_evidence_ids": []
+            },
+            "maintenance_action": "recompose_from_currently_supported_claims",
+            "withdrawn_claim_ids": []
+          },
+          "operator": "identity",
+          "quantity": "",
+          "record_id": "ppg_dalia-S7-e0-channel_fault-c0-B1/explanation/maintenance/2426",
+          "record_type": "explanation",
+          "session_id": "session_1",
+          "source_ids": [
+            "ppg_dalia-S7-e0-channel_fault-c0-B1/claim/claim_1",
+            "ppg_dalia-S7-e0-channel_fault-c0-B1/claim/claim_2"
+          ],
+          "subject_id": "S7",
+          "supersedes_id": "ppg_dalia-S7-e0-channel_fault-c0-B1/explanation/maintenance/2366",
+          "support_mode": "AND",
+          "unit": "",
+          "value": null,
+          "version": 3
+        },
+        {
+          "dataset_id": "ppg_dalia",
+          "event_end_seconds": 2335.0,
+          "event_start_seconds": 2305.0,
+          "evidence_state": "available",
+          "ingested_at_seconds": 2426.0000001,
+          "logical_id": "ppg_dalia-S7-e0-channel_fault-c1-B1/explanation",
+          "metadata": {
+            "case_id": "ppg_dalia-S7-e0-channel_fault-c1-B1",
+            "display": {
+              "answer_status": "insufficient_evidence",
+              "claims": [],
+              "explanation": "",
+              "unresolved_evidence_ids": []
+            },
+            "maintenance_action": "recompose_from_currently_supported_claims",
+            "withdrawn_claim_ids": [
+              "ppg_dalia-S7-e0-channel_fault-c1-B1/claim/claim_1",
+              "ppg_dalia-S7-e0-channel_fault-c1-B1/claim/claim_2"
+            ]
+          },
+          "operator": "identity",
+          "quantity": "",
+          "record_id": "ppg_dalia-S7-e0-channel_fault-c1-B1/explanation/maintenance/2426",
+          "record_type": "explanation",
+          "session_id": "session_1",
+          "source_ids": [],
+          "subject_id": "S7",
+          "supersedes_id": "ppg_dalia-S7-e0-channel_fault-c1-B1/explanation",
+          "support_mode": "AND",
+          "unit": "",
+          "value": null,
+          "version": 2
+        }
+      ]
+    }
+  ],
+  "seconds": 5.051992099033669,
+  "status": "completed",
+  "validation": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "state": "supported"
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [],
+      "state": "supported"
+    }
+  ]
+}

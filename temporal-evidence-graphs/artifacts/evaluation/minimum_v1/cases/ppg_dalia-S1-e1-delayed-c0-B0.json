@@ -1,0 +1,96 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "reference_count": 1,
+      "valid": false,
+      "valid_reference_count": 0
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [
+        "numeric_or_interval",
+        "wrong_time"
+      ],
+      "reference_count": 1,
+      "valid": false,
+      "valid_reference_count": 0
+    },
+    {
+      "claim_id": "claim_3",
+      "reasons": [
+        "comparison_operand",
+        "dependency",
+        "quantity_or_unit",
+        "reference_absent"
+      ],
+      "reference_count": 2,
+      "valid": false,
+      "valid_reference_count": 0
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 0,
+    "answerable_slots": 0,
+    "case_error": 1,
+    "case_id": "ppg_dalia-S1-e1-delayed-c0-B0",
+    "checkpoint": 0,
+    "claim_count": 3,
+    "claim_errors": 3,
+    "collateral_withdrawn": 0,
+    "corrected": 0,
+    "corrected_by_5s": 0,
+    "correction_required": 0,
+    "database_update_seconds": 0.009367821970954537,
+    "dataset": "ppg_dalia",
+    "end_to_end_seconds": 13.004748896928504,
+    "episode_id": "ppg_dalia-S1-e1",
+    "failed": 0,
+    "family": "conflict_timing",
+    "generation_seconds": 7.438008737983182,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 1270,
+    "knowledge_time": 6906.0,
+    "method": "B0",
+    "output_tokens": 533,
+    "paragraph_discrepancy": 1,
+    "partial": 0,
+    "reference_count": 4,
+    "repair_calls": 0,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.0015025788452476263,
+    "split": "test",
+    "subject": "S1",
+    "supplied_slots": 0,
+    "timeout_calls": 0,
+    "unaffected": 0,
+    "useful_complete": 0,
+    "useful_eligible": 0,
+    "valid_reference_count": 0,
+    "variant": "delayed"
+  },
+  "persistent": [],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": false,
+      "value": null
+    },
+    {
+      "kind": "difference",
+      "quantity": "eda_median",
+      "slot": "eda_difference",
+      "supplied": false,
+      "value": null
+    }
+  ]
+}

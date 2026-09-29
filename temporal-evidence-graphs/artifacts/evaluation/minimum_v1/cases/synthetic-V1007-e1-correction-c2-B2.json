@@ -1,0 +1,120 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 0,
+    "case_id": "synthetic-V1007-e1-correction-c2-B2",
+    "checkpoint": 2,
+    "claim_count": 2,
+    "claim_errors": 0,
+    "collateral_withdrawn": 0,
+    "corrected": 1,
+    "corrected_by_5s": 1,
+    "correction_required": 1,
+    "database_update_seconds": 0.03673093905672431,
+    "dataset": "synthetic",
+    "end_to_end_seconds": 63.23881805408746,
+    "episode_id": "synthetic-V1007-e1",
+    "failed": 0,
+    "family": "revision_impact",
+    "generation_seconds": 5.502408373868093,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 1790,
+    "knowledge_time": 1441.0,
+    "method": "B2",
+    "output_tokens": 388,
+    "paragraph_discrepancy": 0,
+    "partial": 0,
+    "reference_count": 2,
+    "repair_calls": 0,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.00610949588008225,
+    "split": "test",
+    "subject": "V1007",
+    "supplied_slots": 2,
+    "timeout_calls": 0,
+    "unaffected": 3,
+    "useful_complete": 1,
+    "useful_eligible": 1,
+    "valid_reference_count": 2,
+    "variant": "correction"
+  },
+  "persistent": [
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "synthetic-V1007-e1-correction-c0-B2/claim/claim_1",
+      "required_change": false,
+      "transition": {
+        "flag_seconds": 0.01913795410655439,
+        "trigger_id": "synthetic/V1007/1320-1350/eda_median/v3"
+      }
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "synthetic-V1007-e1-correction-c0-B2/claim/claim_2",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": false,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "record_id": "synthetic-V1007-e1-correction-c1-B2/claim/claim_1",
+      "required_change": true,
+      "transition": {
+        "flag_seconds": 0.01913795410655439,
+        "trigger_id": "synthetic/V1007/1320-1350/eda_median/v3"
+      }
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "synthetic-V1007-e1-correction-c1-B2/claim/claim_2",
+      "required_change": false,
+      "transition": {}
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 2.555965542793274
+    },
+    {
+      "kind": "direct",
+      "quantity": "acceleration_magnitude_sd",
+      "slot": "acceleration_magnitude_sd",
+      "supplied": true,
+      "value": 0.010242294015013831
+    }
+  ]
+}

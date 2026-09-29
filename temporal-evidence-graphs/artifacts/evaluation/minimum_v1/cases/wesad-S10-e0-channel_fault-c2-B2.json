@@ -1,0 +1,97 @@
+{
+  "claims": [
+    {
+      "claim_id": "C1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 0,
+    "case_id": "wesad-S10-e0-channel_fault-c2-B2",
+    "checkpoint": 2,
+    "claim_count": 1,
+    "claim_errors": 0,
+    "collateral_withdrawn": 0,
+    "corrected": 1,
+    "corrected_by_5s": 1,
+    "correction_required": 1,
+    "database_update_seconds": 0.10559630603529513,
+    "dataset": "wesad",
+    "end_to_end_seconds": 67.00443174201064,
+    "episode_id": "wesad-S10-e0",
+    "failed": 0,
+    "family": "current_evidence",
+    "generation_seconds": 16.597411229042336,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 3522,
+    "knowledge_time": 1461.0,
+    "method": "B2",
+    "output_tokens": 1174,
+    "paragraph_discrepancy": 0,
+    "partial": 1,
+    "reference_count": 1,
+    "repair_calls": 1,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.006398599129170179,
+    "split": "test",
+    "subject": "S10",
+    "supplied_slots": 1,
+    "timeout_calls": 0,
+    "unaffected": 1,
+    "useful_complete": 0,
+    "useful_eligible": 1,
+    "valid_reference_count": 1,
+    "variant": "channel_fault"
+  },
+  "persistent": [
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "wesad-S10-e0-channel_fault-c0-B2/claim/C1",
+      "required_change": false,
+      "transition": {
+        "flag_seconds": 0.016167131019756198,
+        "trigger_id": "wesad/S10/1340-1370/eda_median/v3"
+      }
+    },
+    {
+      "active": false,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "record_id": "wesad-S10-e0-channel_fault-c1-B2/claim/claim_1",
+      "required_change": true,
+      "transition": {
+        "flag_seconds": 0.016167131019756198,
+        "trigger_id": "wesad/S10/1340-1370/eda_median/v3"
+      }
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 0.346923
+    },
+    {
+      "kind": "difference",
+      "quantity": "eda_median",
+      "slot": "eda_difference",
+      "supplied": false,
+      "value": -0.08927600000000002
+    }
+  ]
+}

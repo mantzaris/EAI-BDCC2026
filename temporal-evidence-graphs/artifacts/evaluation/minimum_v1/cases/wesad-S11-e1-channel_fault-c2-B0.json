@@ -1,0 +1,153 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [
+        "numeric_or_interval",
+        "wrong_time"
+      ],
+      "reference_count": 1,
+      "valid": false,
+      "valid_reference_count": 0
+    },
+    {
+      "claim_id": "claim_3",
+      "reasons": [
+        "dependency"
+      ],
+      "reference_count": 2,
+      "valid": false,
+      "valid_reference_count": 0
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 1,
+    "case_id": "wesad-S11-e1-channel_fault-c2-B0",
+    "checkpoint": 2,
+    "claim_count": 3,
+    "claim_errors": 2,
+    "collateral_withdrawn": 0,
+    "corrected": 0,
+    "corrected_by_5s": 0,
+    "correction_required": 0,
+    "database_update_seconds": 0.005285063060000539,
+    "dataset": "wesad",
+    "end_to_end_seconds": 41.15149883693084,
+    "episode_id": "wesad-S11-e1",
+    "failed": 0,
+    "family": "conflict_timing",
+    "generation_seconds": 10.000222955131903,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 4,
+    "input_tokens": 1457,
+    "knowledge_time": 4011.0,
+    "method": "B0",
+    "output_tokens": 706,
+    "paragraph_discrepancy": 0,
+    "partial": 0,
+    "reference_count": 4,
+    "repair_calls": 0,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.0017808438278734684,
+    "split": "test",
+    "subject": "S11",
+    "supplied_slots": 1,
+    "timeout_calls": 0,
+    "unaffected": 2,
+    "useful_complete": 0,
+    "useful_eligible": 1,
+    "valid_reference_count": 1,
+    "variant": "channel_fault"
+  },
+  "persistent": [
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "wesad-S11-e1-channel_fault-c0-B0/claim/claim_1/0",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": true,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval",
+        "wrong_time"
+      ],
+      "record_id": "wesad-S11-e1-channel_fault-c0-B0/claim/claim_2/1",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": true,
+      "current_valid": false,
+      "reasons": [
+        "dependency",
+        "numeric_difference"
+      ],
+      "record_id": "wesad-S11-e1-channel_fault-c0-B0/claim/claim_3/2",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "wesad-S11-e1-channel_fault-c1-B0/claim/claim_1/0",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": true,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval",
+        "wrong_time"
+      ],
+      "record_id": "wesad-S11-e1-channel_fault-c1-B0/claim/claim_2/1",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": true,
+      "current_valid": false,
+      "reasons": [
+        "dependency",
+        "numeric_difference",
+        "prose_number"
+      ],
+      "record_id": "wesad-S11-e1-channel_fault-c1-B0/claim/claim_3/2",
+      "required_change": false,
+      "transition": {}
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 2.821167
+    },
+    {
+      "kind": "difference",
+      "quantity": "eda_median",
+      "slot": "eda_difference",
+      "supplied": false,
+      "value": -0.052449999999999886
+    }
+  ]
+}

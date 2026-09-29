@@ -1,112 +1,76 @@
 \section{Discussion and Limitations}
 
-The study separates three operations that are often compressed into a single
-notion of a reliable explanation: validating a newly generated answer, maintaining
-an existing display after evidence changes, and producing a useful replacement
-under load. Direct checks constrain fresh numerical content. Explicit dependencies
-identify old content requiring attention. Generation then determines whether
-the withdrawn information can be replaced with an adequate answer. Their costs
-and failure modes must be measured separately. The paired reliability tables,
-conditional correction denominators, and open-loop queues make these distinctions
-observable rather than assuming that a graph or a citation solves all three.
+Direct checking suffices for the measured generated-answer corrections in this
+bounded task. Full graph propagation matches the simpler controls on contract
+errors and correction completeness, while many answers remain incomplete. The
+symbolic fixture demonstrates necessary transitive maintenance; the waveform
+answers usually cite operands directly, leaving little opportunity for added
+benefit. A comparison can be withdrawn through its own citation even when it
+also lists a parent. Future studies should prospectively vary dependency depth
+and independent support while keeping candidates and answerable facts matched.
 
-The common symbolic fixture establishes the behavior of transitive maintenance
-and alternative support for a known dependency structure. The generated waveform
-task is narrower. Every numerical claim is encouraged to cite its operands
-directly, limiting the number of situations where a transitive path provides
-additional detection. A comparison statement can be withdrawn through its own
-direct citation even when it also lists a parent claim. A benefit in a deliberately
-deep fixture cannot establish a corresponding gain across naturally generated
-multi-step interpretations. Conversely, a small difference between M1 and B2 in
-this task does not prove that dependency depth never matters. Future studies
-could prospectively vary depth and independent support while keeping candidates
-and answerable facts matched.
+Generated parent links are declared prerequisites, not independently proven
+necessary derivations. A redundant link can cause withdrawal even when direct
+source checks pass. The waveform evaluation measures maintenance of accepted
+declarations, not discovery of semantically necessary reasoning graphs. The
+common fixture supplies the stronger test under identical, known dependencies.
 
-Generated parent links are treated as declared prerequisites, not independently
-proven necessary derivations. Redundant links can therefore cause withdrawals
-under the contract even when a claim's direct source checks still pass. The
-artifact report separately counts persistent claims whose only later error is
-a declared parent dependency. The symbolic fixture provides a known necessary
-transitive path; the waveform evaluation measures maintenance of the accepted
-declarations, not the discovery of semantically necessary reasoning graphs.
+The indexed relational control uses the same support predicates and agrees on
+logical outcomes. Latency includes an in-process SQLite engine versus a local
+Neo4j service, a small dependency structure, growing revision chains, and shared
+host resources. It cannot establish a general ranking for distributed graphs,
+concurrent writers, richer queries, or separately optimized deployments. One
+60-second cell per method and rate supports descriptive measurements only.
 
-The relational implementation is a substantive control, with indexes, recursive
-traversal, the same immutable data, and the same support predicates. Logical
-agreement supports attribution of maintenance behavior to the predicates and
-dependencies, rather than to a graph product. The observed latency comparison
-includes an in-process SQLite implementation and a local Neo4j service, a small
-symbolic dependency structure, growing revision chains, and shared host resources.
-It does not determine which storage engine wins for large distributed graphs,
-concurrent writers, richer query patterns, or separately optimized deployments.
-There is one 60-second cell per method and offered rate; the systems results are
-descriptive measurements, not population-level statistical estimates.
+The independent evaluator implements the same strict query contract as the
+runtime. Its rejection of correctly labelled baseline facts restricts both
+error and recall interpretation. A future protocol should distinguish useful
+background evidence from misleading time attribution. Recorded-value agreement
+establishes source faithfulness, not physiological truth. Lexical checks can
+miss unsupported interpretations or reject equivalent paraphrases. The auxiliary
+verifier shares the generator's model family, examines only 60 nonempty outputs,
+and makes visible errors despite passing four simple diagnostics. There is no
+human annotation gold standard or evidence of comprehensive semantic fidelity.
 
-Several measurement limits affect reliability claims. The numerical oracle is
-independent code reconstructing immutable events, but it implements the same
-published task contract. Agreement with a recorded value establishes source
-faithfulness, not physiological truth. Lexical prose checks can miss an unsupported
-interpretation or reject a semantically equivalent paraphrase. The smaller
-automated verifier supplies additional evidence, but shares the generator's
-model family, uses only 60 nonempty final outputs, and is tested on four simple
-diagnostic examples. No human annotation gold standard was collected. Neither
-exact checks nor the automated audit justify claims of unrestricted language
-understanding, clinical safety, or comprehensive explanation fidelity.
+Controlled faults at one severity do not estimate natural fault prevalence.
+Runtime has no evaluator-only corruption label. The waveform matrix fixes target
+intervals while knowledge changes; historical scope and out-of-order arrivals
+are correctness fixtures, not a broad evaluation of moving current-state queries.
+Optional spectral summaries have no physiological accuracy validation. Ten
+held-out subjects per source, two episodes per subject, related wearable hardware,
+one generator, and one seed limit generalization. Subject resampling respects
+dependence but cannot overcome those limits; conditional correction also depends
+on what each method originally generated.
 
-The interventions are controlled replays at one severity. Missingness and offsets
-are deliberately imposed on derived windows; they do not estimate the natural
-prevalence of sensor faults. A hidden corruption cannot be detected with access
-to an evaluator-only label, and our runtime never receives one. The waveform
-matrix holds target event intervals fixed while knowledge changes across three
-checkpoints. Historical/current scope and out-of-order arrivals are tested in
-correctness fixtures, but the experiment does not cover every continuously moving
-current-state query or long-term monitoring policy. The optional spectral features
-are simple summaries without a physiological accuracy study, and no readiness,
-stress-causation, or diagnostic classifier is evaluated.
-
-Statistical precision is limited by ten held-out subjects per source and two
-episodes per subject. Both real datasets use related wearable hardware and
-collection traditions. Windows, variants, calls, and thousands of raw samples
-do not create additional independent participants. Subject-cluster intervals
-retain this dependence but cannot compensate for a small cohort, one generator,
-one generation seed, or a restricted question contract. Conditional correction
-rates additionally depend on what the method originally generated; the common
-fixture is the stronger test of maintenance logic under identical candidates.
-
-The interface demonstrates how a review action changes evidence and displayed
-text. It does not certify that a reviewer-supplied value is true. The scripted
-false-rejection example makes that distinction visible: a mistaken review can
-remove valid content. Evaluating ranking policies, actual reviewer accuracy,
-and review time would require separately designed studies. Likewise, deployment
-policies for coalescing stale requests, retaining a useful prior answer during
-replacement, and rechecking outputs immediately before publication remain
-prospective engineering questions.
+The dashboard shows consequences of review actions without certifying a supplied
+correction. A mistaken rejection can remove valid content. Ranking policies,
+review accuracy and speed require separate studies. Likewise, retaining useful
+prior text, coalescing stale requests, and checking replacements immediately before
+publication remain prospective engineering work. Here, prompt withdrawal and
+complete regeneration are distinct outcomes, and the latter fails in the systems
+workload.
 
 \section{Conclusion}
 
-Temporal evidence maintenance makes revisions to generated monitoring explanations
-inspectable and testable. Immutable versions preserve what an earlier answer
-used, dependency predicates determine which statements require attention, and
-alternative support prevents indiscriminate withdrawal. The completed evaluation
-reports these behaviors alongside retained information, generated replacements,
-and implementation cost on one synthetic and two real waveform sources. Its
-scope is evidence-linked explanation maintenance. The relational control,
-independent event-log evaluation, preserved failures, and explicit latency targets
-keep claims about reliability and graph storage tied to measured outcomes.
+The three-source evaluation finds no correction benefit from transitive
+propagation over direct checking in generated waveform answers. All checked
+methods satisfy the exact display contract, with limited useful coverage and
+no general factuality guarantee. Full graph and relational maintenance agree on
+known symbolic dependencies. Flagging succeeds at the two lower offered rates,
+but the systems workload yields no complete generated replacements. The
+contribution is an auditable benchmark and bounded maintenance implementation;
+the results do not establish an intrinsic reliability advantage for graph storage.
 
 \paragraph{Artifacts and reproducibility.}
-The accompanying package contains the prospective plan, acquisition and split
-manifests, frozen source/model hashes, raw generation and repair journals,
-independent case scores, participant-level analyses, resource traces, and scripts
-for every table and figure. Original recordings are obtained from their providers
-under their recorded usage terms and are not redistributed with source code.
-The package includes an executable local review demonstration and exact commands
-for CUDA reproduction. The accompanying reproducibility report maps each written
-result to its saved inputs and generation command.
+The package includes the prospective plan, acquisition and split manifests,
+frozen hashes, raw requests and failures, independent scores, analyses, resource
+traces, figure scripts, and an isolated review demonstration. Provider recordings
+are obtained under their recorded terms and are not redistributed. Setup commands
+and a report map results to saved inputs.
 
 \paragraph{Acknowledgements and use of generative AI.}
-An AI coding assistant assisted implementation, debugging, analysis scripting,
-literature organization, and manuscript drafting. Qwen3-8B generated experimental
-answers, and a separately pinned Qwen2.5-3B-Instruct model performed the explicitly
-labeled automated audit. Automated assistance is not attributed authorship or
-human annotation. Human authors retain responsibility for reviewing the evidence,
-verifying interpretations and references, and approving any submission.
+An AI coding assistant assisted implementation, analysis scripting, literature
+organization, and drafting. Qwen3-8B generated experimental answers;
+Qwen2.5-3B-Instruct performed the automated audit. Neither system supplies human
+annotation or authorship. Human authors retain responsibility for checking the
+evidence, interpretations and references and approving any submission.

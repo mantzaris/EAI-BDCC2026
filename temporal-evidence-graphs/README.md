@@ -1,7 +1,9 @@
-# Temporal Evidence Graphs
+# Temporal Evidence Maintenance for Revisable Monitoring Explanations
 
-Working project for a new paper for [EAI BDCC 2026](https://bdcc-conf.eai-conferences.org/2026/).
-The title is provisional. The governing prospective protocol is
+Completed minimum study and manuscript draft for [EAI BDCC 2026](https://bdcc-conf.eai-conferences.org/2026/).
+Read the [paper PDF](paper/temporal_evidence_maintenance.pdf),
+[implementation report](REPORT.md), or [measured results](artifacts/analysis/measurements.md).
+The governing prospective protocol is
 [Temporal_Evidence_Graphs_Codex_Research_Plan.md](Temporal_Evidence_Graphs_Codex_Research_Plan.md).
 
 ## Research question
@@ -10,9 +12,8 @@ The title is provisional. The governing prospective protocol is
 > can a temporal evidence graph identify and repair the generated explanations
 > that depend on it, while preserving useful answers and keeping latency low?
 
-The initial direction is to use graph databases to build knowledge graphs with
-temporal evidence and dependencies between observations and generated explanations.
-The minimum study uses Neo4j Community and a strong indexed relational control,
+The study uses graph databases to represent temporal evidence and dependencies
+between observations and generated explanations. It includes Neo4j Community and a strong indexed relational control,
 with synthetic physiology, WESAD, and PPG-DaLiA. Five conditions distinguish fresh
 generation, direct checking, and transitive maintenance.
 
@@ -20,9 +21,15 @@ generation, direct checking, and transitive maintenance.
 
 RunPod gateway and direct SSH access verified on 28 September 2026. See
 [connection instructions and environment observations](docs/runpod.md).
-The protocol is frozen and the minimum held-out study is running. [STATUS.md](STATUS.md)
-records completion gates, commands, and remaining work; [DECISIONS.md](DECISIONS.md)
+The frozen study accounts for all 3,600 initial cases, 1,620 repairs, six systems
+cells, and a 60-explanation automated audit. [STATUS.md](STATUS.md)
+records completed gates and commands; [DECISIONS.md](DECISIONS.md)
 records protocol choices. All development pilots and failures are retained.
+
+Direct checking matches full propagation on the generated waveform task. Error
+rates measure a strict query contract that also rejects correctly labelled
+background facts. Useful coverage is limited, and no complete replacement is
+produced in the systems workload. The paper preserves these negative findings.
 
 This directory contains the new paper's work within the shared repository. The
 previous paper is in [`../congestion-onset-graphs/`](../congestion-onset-graphs/README.md).
@@ -44,20 +51,23 @@ are isolated from experimental artifacts. No human-performance result is claimed
 
 ## Recompute the completed results
 
-After the final artifacts are present, these commands regenerate exact case
+These commands regenerate exact case
 scores, paired subject-level analysis, scientific figures and manuscript numbers:
 
 ```sh
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.cli evaluate --run-id minimum_v1
-PYTHONPATH=src .venv/bin/python -m temporal_evidence.cli analyze --run-id minimum_v1
+MPLCONFIGDIR=.local/matplotlib PYTHONPATH=src .venv/bin/python -m temporal_evidence.cli analyze --run-id minimum_v1
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.analysis.publication
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.analysis.measurements
 bash paper/build.sh
+PYTHONPATH=src .venv/bin/python scripts/check_manuscript.py
 ```
 
 The publication builder requires every planned case, all six systems cells,
 the 60-explanation audit, and matching frozen hashes. It refuses partial results.
-The compiled PDF will be `paper/temporal_evidence_maintenance.pdf`. Conference requirements and
+The compiled PDF is `paper/temporal_evidence_maintenance.pdf` (20 main pages, 23 total).
+Building it requires `latexmk`, pdfLaTeX with the standard LaTeX packages, and
+Poppler's `pdfinfo`, `pdffonts`, and `pdftotext` for validation. Conference requirements and
 the official template provenance are in [docs/conference.md](docs/conference.md).
 
 ## GPU reproduction
@@ -67,20 +77,22 @@ Qwen3-8B BF16, an RTX 5090, Neo4j Community 5.26.0, and indexed SQLite.
 `requirements.lock` is the tested GPU dependency closure; `requirements-dashboard.lock`
 describes the separate Python 3.10 local reporting/interface environment.
 
-On a CUDA pod, bootstrap the fixed packages and downloaded model revisions with
+On Linux x86_64 with Python 3.12, a compatible NVIDIA driver, `uv`, `curl` and `tar`
+available, bootstrap the fixed packages and downloaded model revisions with
 `bash scripts/bootstrap_pod.sh`. This uses the existing system CUDA installation
 through a virtual environment, installs the local database, and binds services
 to loopback. Run `PYTHONPATH=src .venv/bin/python scripts/serve_model.py` in a
 dedicated process. Its worker verifies parameter and first-forward tensor placement
 on CUDA. There is no CPU inference fallback. The provided pod is already configured.
 
-The frozen run is resumable on its existing workspace:
+The original experiment is complete and its model process has stopped. If an
+incomplete copy must be resumed after restoring the CUDA server, the command is:
 
 ```sh
 .venv/bin/python -m temporal_evidence.cli run --resume
 ```
 
-Do not launch a second runner while the pipeline is active. A completed run will
+Run only one runner per namespace. A completed run will
 reuse its saved case identifiers. A new inference replication must use an isolated
 workspace or a new replication namespace and preserve the original outputs,
 source hashes, and prepared inputs. After starting the CUDA server, a separately

@@ -1,0 +1,116 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    },
+    {
+      "claim_id": "claim_3",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 0,
+    "case_id": "wesad-S15-e0-correction-c1-B1",
+    "checkpoint": 1,
+    "claim_count": 3,
+    "claim_errors": 0,
+    "collateral_withdrawn": 0,
+    "corrected": 1,
+    "corrected_by_5s": 1,
+    "correction_required": 1,
+    "database_update_seconds": 0.007357630878686905,
+    "dataset": "wesad",
+    "end_to_end_seconds": 42.32912609400228,
+    "episode_id": "wesad-S15-e0",
+    "failed": 0,
+    "family": "revision_impact",
+    "generation_seconds": 7.541406207019463,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 1882,
+    "knowledge_time": 1341.0,
+    "method": "B1",
+    "output_tokens": 536,
+    "paragraph_discrepancy": 0,
+    "partial": 1,
+    "reference_count": 3,
+    "repair_calls": 0,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.0016420769970864058,
+    "split": "test",
+    "subject": "S15",
+    "supplied_slots": 2,
+    "timeout_calls": 0,
+    "unaffected": 2,
+    "useful_complete": 1,
+    "useful_eligible": 1,
+    "valid_reference_count": 3,
+    "variant": "correction"
+  },
+  "persistent": [
+    {
+      "active": false,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "record_id": "wesad-S15-e0-correction-c0-B1/claim/claim_1",
+      "required_change": true,
+      "transition": {
+        "flag_seconds": 0.0030649080872535706,
+        "trigger_id": "wesad/S15/1280-1310/eda_median/v2"
+      }
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "wesad-S15-e0-correction-c0-B1/claim/claim_2",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "wesad-S15-e0-correction-c0-B1/claim/claim_3",
+      "required_change": false,
+      "transition": {}
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 0.8136829999999999
+    },
+    {
+      "kind": "direct",
+      "quantity": "acceleration_magnitude_sd",
+      "slot": "acceleration_magnitude_sd",
+      "supplied": true,
+      "value": 5.997158079099521
+    }
+  ]
+}

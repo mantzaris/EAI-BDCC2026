@@ -175,3 +175,43 @@
   generator-declared prerequisite and an independently necessary derivation.
   Do not change the frozen support contract, primary correction metrics, or
   bootstrap contrasts; do not infer semantic necessity from graph membership.
+
+## 2026-09-29 — Completed main run and interpretation
+
+- All 3,600 planned cases are accounted for: 3,597 completed and three retained
+  transport ReadErrors, one per source in B0. The request journal contains 5,220
+  attempts, including 1,620 bounded repairs. Do not retry the failed cases or tune
+  the frozen runtime. Direct and transitive checked methods have identical
+  correction completeness in this generated waveform task.
+- Inspection after the locked main run shows that the target-interval contract
+  rejects some **correctly labelled** baseline statements, not only misleading
+  time attribution. Add a clearly post-hoc descriptive breakdown: direct numeric
+  observations with only `wrong_time`/`numeric_or_interval` errors that pass the
+  same exact checks at their own stated interval and original knowledge time.
+  These account for 107/254 synthetic, 115/278 WESAD, and 111/267 PPG-DaLiA B0
+  invalid claims. Declared dependencies can propagate this rejection to otherwise
+  correct comparisons. Preserve all original metrics and clarify in the abstract,
+  results, discussion and report that they are contract-compliance measures, not
+  unrestricted factuality or hallucination estimates.
+- Token accounting now explicitly counts attempts without returned usage. Their
+  server-side token cost is unknown; reported token sums include available usage
+  only. This is a reporting clarification and does not change any case outcome.
+- Move supplementary generation, scope-breakdown, storage-outcome and completion-
+  staleness tables into an appendix while retaining all principal outcomes in the
+  main manuscript. Zero-width bootstrap intervals are described as resampling
+  identical observed subject differences, not proof of equivalence.
+- All six systems cells complete with logical graph/relational agreement. Every
+  one of 236 displays contains only the target observation, omitting the requested
+  difference; none is an adequate replacement. Label the measured latency as
+  candidate completion, with successful-replacement latency undefined. The
+  descriptive staleness count cannot demonstrate retained usefulness in this case.
+- The 60-output verifier audit parses completely and passes four diagnostics, but
+  has 14 disagreements with exact checks, including visible null/rounding mistakes
+  and missed numerical/reference errors. Retain all annotations and describe the
+  verifier's limited value rather than treating it as semantic ground truth.
+- Preserve both local author-archive and pod UCI PPG-DaLiA acquisition manifests.
+  Their ZIP bytes differ, but all 15 subject pickles and the shared README have
+  identical hashes. The frozen prepared feature inputs are unchanged.
+- The completed manuscript uses the official template with 20 main pages and
+  three additional reference/appendix pages. Mechanical and visual checks are
+  recorded separately from scientific author review and conference submission.

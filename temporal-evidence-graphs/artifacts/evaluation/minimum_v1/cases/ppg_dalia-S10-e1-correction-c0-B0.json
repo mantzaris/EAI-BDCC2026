@@ -1,0 +1,91 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [
+        "numeric_or_interval",
+        "wrong_time"
+      ],
+      "reference_count": 1,
+      "valid": false,
+      "valid_reference_count": 0
+    },
+    {
+      "claim_id": "claim_3",
+      "reasons": [
+        "dependency"
+      ],
+      "reference_count": 2,
+      "valid": false,
+      "valid_reference_count": 0
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 1,
+    "case_id": "ppg_dalia-S10-e1-correction-c0-B0",
+    "checkpoint": 0,
+    "claim_count": 3,
+    "claim_errors": 2,
+    "collateral_withdrawn": 0,
+    "corrected": 0,
+    "corrected_by_5s": 0,
+    "correction_required": 0,
+    "database_update_seconds": 0.009471158031374216,
+    "dataset": "ppg_dalia",
+    "end_to_end_seconds": 44.21884335903451,
+    "episode_id": "ppg_dalia-S10-e1",
+    "failed": 0,
+    "family": "conflict_timing",
+    "generation_seconds": 9.798144706059247,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 1391,
+    "knowledge_time": 7986.0,
+    "method": "B0",
+    "output_tokens": 701,
+    "paragraph_discrepancy": 0,
+    "partial": 0,
+    "reference_count": 4,
+    "repair_calls": 0,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.0015122198965400457,
+    "split": "test",
+    "subject": "S10",
+    "supplied_slots": 1,
+    "timeout_calls": 0,
+    "unaffected": 0,
+    "useful_complete": 0,
+    "useful_eligible": 1,
+    "valid_reference_count": 1,
+    "variant": "correction"
+  },
+  "persistent": [],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 0.206549
+    },
+    {
+      "kind": "difference",
+      "quantity": "eda_median",
+      "slot": "eda_difference",
+      "supplied": false,
+      "value": -0.002561999999999981
+    }
+  ]
+}

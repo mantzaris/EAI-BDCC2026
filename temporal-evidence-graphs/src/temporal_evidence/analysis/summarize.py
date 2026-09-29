@@ -134,7 +134,7 @@ def figure_tables(report,directory):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    plt.rcParams.update({"font.size":11,"pdf.fonttype":42,"svg.fonttype":"none"})
+    plt.rcParams.update({"font.size":12,"pdf.fonttype":42,"svg.fonttype":"none"})
     figures=Path("artifacts/figures");figures.mkdir(parents=True,exist_ok=True)
     colors=["#747474","#e69f00","#56b4e9","#0072b2","#009e73"]
     for names,title in [(("case_error","fact_recall"),"reliability"),
@@ -150,8 +150,8 @@ def figure_tables(report,directory):
                     if value is None:
                         ax.text(x,.025,"n/a",ha="center")
                 ax.set_ylim(0,1.05);ax.spines[["top","right"]].set_visible(False)
-                if ri==0:ax.set_title(source.replace("_","-"))
-                if col==0:ax.set_ylabel(metric.replace("_"," "))
+                if ri==0:ax.set_title({"synthetic":"Synthetic","wesad":"WESAD","ppg_dalia":"PPG-DaLiA"}[source])
+                if col==0:ax.set_ylabel("case violations" if metric=="case_error" else metric.replace("_"," "))
         fig.tight_layout()
         for suffix in ("pdf","svg","png"):
             fig.savefig(figures/f"{report['run_id']}_{title}.{suffix}",dpi=180,bbox_inches="tight")

@@ -1,0 +1,101 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 0,
+    "case_id": "synthetic-V1007-e0-channel_fault-c1-B3",
+    "checkpoint": 1,
+    "claim_count": 2,
+    "claim_errors": 0,
+    "collateral_withdrawn": 0,
+    "corrected": 1,
+    "corrected_by_5s": 1,
+    "correction_required": 1,
+    "database_update_seconds": 0.019507682183757424,
+    "dataset": "synthetic",
+    "end_to_end_seconds": 51.80690496088937,
+    "episode_id": "synthetic-V1007-e0",
+    "failed": 0,
+    "family": "evidence_sufficiency",
+    "generation_seconds": 5.216097441967577,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 1470,
+    "knowledge_time": 481.0,
+    "method": "B3",
+    "output_tokens": 349,
+    "paragraph_discrepancy": 0,
+    "partial": 0,
+    "reference_count": 2,
+    "repair_calls": 0,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.0016487969551235437,
+    "split": "test",
+    "subject": "V1007",
+    "supplied_slots": 2,
+    "timeout_calls": 0,
+    "unaffected": 1,
+    "useful_complete": 1,
+    "useful_eligible": 1,
+    "valid_reference_count": 2,
+    "variant": "channel_fault"
+  },
+  "persistent": [
+    {
+      "active": false,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "record_id": "synthetic-V1007-e0-channel_fault-c0-B3/claim/claim_1",
+      "required_change": true,
+      "transition": {
+        "flag_seconds": 0.00295524881221354,
+        "trigger_id": "synthetic/V1007/420-450/eda_median/v2"
+      }
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "synthetic-V1007-e0-channel_fault-c0-B3/claim/claim_2",
+      "required_change": false,
+      "transition": {}
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 3.1474534273147583
+    },
+    {
+      "kind": "direct",
+      "quantity": "eda_missing_fraction",
+      "slot": "eda_missing_fraction",
+      "supplied": true,
+      "value": 0.0
+    }
+  ]
+}

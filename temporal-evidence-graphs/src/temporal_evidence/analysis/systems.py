@@ -49,8 +49,16 @@ def analyze_streaming(run_id="streaming_v1"):
     for cell in report["cells"]:
         location = directory/cell["cell_id"]
         explanations = []
+        display_statuses = Counter()
+        single_numeric_only = 0
+        difference_present = 0
         for path in sorted(location.glob("explanation-*.json")):
             row = read_json(path)
+            display = row["result"]["display"] or {}
+            claims = display.get("claims", [])
+            display_statuses[display.get("answer_status", "no_display")] += 1
+            single_numeric_only += len(claims) == 1 and claims[0]["claim_type"] == "numeric_observation"
+            difference_present += any(claim["operator"] == "difference" for claim in claims)
             item = {"cell_id": cell["cell_id"], "index": row["index"], "kind": row["kind"],
                     "adequate_at_request": row["adequate"], **completion_adequacy(row, cell["offered_events_per_second"])}
             explanations.append(item); details.append(item); inputs.append(path)
@@ -58,8 +66,13 @@ def analyze_streaming(run_id="streaming_v1"):
         finished = [row for row in journals if row["event"] == "finished"]
         assert len(finished) == cell["initial_gpu_calls"] + cell["validation_repairs"], "Unaccounted systems model calls"
         cells.append({**cell, "adequate_at_request": sum(r["adequate_at_request"] for r in explanations),
+                      "usage_unavailable_requests": sum(not all(key in row.get("response", {}).get("usage", {})
+                          for key in ("prompt_tokens", "completion_tokens")) for row in finished),
                       "adequate_at_completion": sum(r["adequate_at_completion"] for r in explanations),
                       "adequate_then_stale": sum(r["adequate_at_request"] and not r["adequate_at_completion"] for r in explanations),
+                      "display_statuses": dict(display_statuses),
+                      "single_numeric_only": single_numeric_only,
+                      "difference_present": difference_present,
                       "target_changed_before_completion": sum(r["target_value_changed"] for r in explanations),
                       "completion_audited": len(explanations)})
     result = {"run_id": run_id, "cells": cells, "logical_parity": report["logical_parity"],

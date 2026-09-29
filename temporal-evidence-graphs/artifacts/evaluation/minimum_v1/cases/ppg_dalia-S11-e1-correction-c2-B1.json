@@ -1,0 +1,143 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    },
+    {
+      "claim_id": "claim_3",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 0,
+    "case_id": "ppg_dalia-S11-e1-correction-c2-B1",
+    "checkpoint": 2,
+    "claim_count": 3,
+    "claim_errors": 0,
+    "collateral_withdrawn": 0,
+    "corrected": 1,
+    "corrected_by_5s": 1,
+    "correction_required": 1,
+    "database_update_seconds": 0.008034685859456658,
+    "dataset": "ppg_dalia",
+    "end_to_end_seconds": 70.92170696612448,
+    "episode_id": "ppg_dalia-S11-e1",
+    "failed": 0,
+    "family": "revision_impact",
+    "generation_seconds": 7.920396597124636,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 1902,
+    "knowledge_time": 6876.0,
+    "method": "B1",
+    "output_tokens": 563,
+    "paragraph_discrepancy": 0,
+    "partial": 1,
+    "reference_count": 3,
+    "repair_calls": 0,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.001697115832939744,
+    "split": "test",
+    "subject": "S11",
+    "supplied_slots": 2,
+    "timeout_calls": 0,
+    "unaffected": 5,
+    "useful_complete": 1,
+    "useful_eligible": 1,
+    "valid_reference_count": 3,
+    "variant": "correction"
+  },
+  "persistent": [
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "ppg_dalia-S11-e1-correction-c0-B1/claim/claim_1",
+      "required_change": false,
+      "transition": {
+        "flag_seconds": 0.003270064014941454,
+        "trigger_id": "ppg_dalia/S11/6755-6785/eda_median/v3"
+      }
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "ppg_dalia-S11-e1-correction-c0-B1/claim/claim_2",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "ppg_dalia-S11-e1-correction-c0-B1/claim/claim_3",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": false,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "record_id": "ppg_dalia-S11-e1-correction-c1-B1/claim/claim_1",
+      "required_change": true,
+      "transition": {
+        "flag_seconds": 0.003270064014941454,
+        "trigger_id": "ppg_dalia/S11/6755-6785/eda_median/v3"
+      }
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "ppg_dalia-S11-e1-correction-c1-B1/claim/claim_2",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "ppg_dalia-S11-e1-correction-c1-B1/claim/claim_3",
+      "required_change": false,
+      "transition": {}
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 0.285952
+    },
+    {
+      "kind": "direct",
+      "quantity": "acceleration_magnitude_sd",
+      "slot": "acceleration_magnitude_sd",
+      "supplied": true,
+      "value": 0.16220637218672265
+    }
+  ]
+}

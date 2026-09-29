@@ -75,4 +75,8 @@ Stop the tunnel with Ctrl+C.
 
 These are setup observations, not experimental results or a GPU execution test.
 Filesystem capacity does not establish persistence or the account's storage quota.
-The software stack for the new paper remains to be selected from the research plan.
+The completed experiment's stack and results are recorded in
+[REPORT.md](../REPORT.md) and the frozen environment manifest. At the final check
+on 29 September 2026, all study inference and the dedicated resource monitor had
+finished; the GPU reported 2 MiB used and 0% utilization. Neo4j and the provided
+pod remain available. The pod itself was not terminated.

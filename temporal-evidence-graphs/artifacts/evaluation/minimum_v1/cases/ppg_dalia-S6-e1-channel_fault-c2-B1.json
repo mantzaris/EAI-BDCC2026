@@ -1,0 +1,143 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    },
+    {
+      "claim_id": "claim_3",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 0,
+    "case_id": "ppg_dalia-S6-e1-channel_fault-c2-B1",
+    "checkpoint": 2,
+    "claim_count": 3,
+    "claim_errors": 0,
+    "collateral_withdrawn": 0,
+    "corrected": 1,
+    "corrected_by_5s": 1,
+    "correction_required": 1,
+    "database_update_seconds": 0.02514110109768808,
+    "dataset": "ppg_dalia",
+    "end_to_end_seconds": 39.792872592108324,
+    "episode_id": "ppg_dalia-S6-e1",
+    "failed": 0,
+    "family": "evidence_sufficiency",
+    "generation_seconds": 7.0840764220338315,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 1448,
+    "knowledge_time": 4026.0,
+    "method": "B1",
+    "output_tokens": 504,
+    "paragraph_discrepancy": 0,
+    "partial": 0,
+    "reference_count": 3,
+    "repair_calls": 0,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.0018012439832091331,
+    "split": "test",
+    "subject": "S6",
+    "supplied_slots": 2,
+    "timeout_calls": 0,
+    "unaffected": 5,
+    "useful_complete": 1,
+    "useful_eligible": 1,
+    "valid_reference_count": 3,
+    "variant": "channel_fault"
+  },
+  "persistent": [
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "ppg_dalia-S6-e1-channel_fault-c0-B1/claim/claim_1",
+      "required_change": false,
+      "transition": {
+        "flag_seconds": 0.0028042530175298452,
+        "trigger_id": "ppg_dalia/S6/3905-3935/eda_median/v3"
+      }
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "ppg_dalia-S6-e1-channel_fault-c0-B1/claim/claim_2",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "ppg_dalia-S6-e1-channel_fault-c0-B1/claim/claim_3",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": false,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "record_id": "ppg_dalia-S6-e1-channel_fault-c1-B1/claim/claim_1",
+      "required_change": true,
+      "transition": {
+        "flag_seconds": 0.0028042530175298452,
+        "trigger_id": "ppg_dalia/S6/3905-3935/eda_median/v3"
+      }
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "ppg_dalia-S6-e1-channel_fault-c1-B1/claim/claim_2",
+      "required_change": false,
+      "transition": {}
+    },
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "ppg_dalia-S6-e1-channel_fault-c1-B1/claim/claim_3",
+      "required_change": false,
+      "transition": {}
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 17.328303
+    },
+    {
+      "kind": "direct",
+      "quantity": "eda_missing_fraction",
+      "slot": "eda_missing_fraction",
+      "supplied": true,
+      "value": 0.0
+    }
+  ]
+}

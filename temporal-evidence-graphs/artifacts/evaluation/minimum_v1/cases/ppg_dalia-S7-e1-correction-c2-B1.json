@@ -1,0 +1,97 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 0,
+    "case_id": "ppg_dalia-S7-e1-correction-c2-B1",
+    "checkpoint": 2,
+    "claim_count": 1,
+    "claim_errors": 0,
+    "collateral_withdrawn": 0,
+    "corrected": 1,
+    "corrected_by_5s": 1,
+    "correction_required": 1,
+    "database_update_seconds": 0.00859081489033997,
+    "dataset": "ppg_dalia",
+    "end_to_end_seconds": 59.16983660496771,
+    "episode_id": "ppg_dalia-S7-e1",
+    "failed": 0,
+    "family": "conflict_timing",
+    "generation_seconds": 19.358821665868163,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 3509,
+    "knowledge_time": 7096.0,
+    "method": "B1",
+    "output_tokens": 1372,
+    "paragraph_discrepancy": 0,
+    "partial": 1,
+    "reference_count": 1,
+    "repair_calls": 1,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.0016374669503420591,
+    "split": "test",
+    "subject": "S7",
+    "supplied_slots": 1,
+    "timeout_calls": 0,
+    "unaffected": 1,
+    "useful_complete": 0,
+    "useful_eligible": 1,
+    "valid_reference_count": 1,
+    "variant": "correction"
+  },
+  "persistent": [
+    {
+      "active": true,
+      "current_valid": true,
+      "reasons": [],
+      "record_id": "ppg_dalia-S7-e1-correction-c0-B1/claim/claim_1",
+      "required_change": false,
+      "transition": {
+        "flag_seconds": 0.0032850028946995735,
+        "trigger_id": "ppg_dalia/S7/6975-7005/eda_median/v3"
+      }
+    },
+    {
+      "active": false,
+      "current_valid": false,
+      "reasons": [
+        "numeric_or_interval"
+      ],
+      "record_id": "ppg_dalia-S7-e1-correction-c1-B1/claim/claim_1",
+      "required_change": true,
+      "transition": {
+        "flag_seconds": 0.0032850028946995735,
+        "trigger_id": "ppg_dalia/S7/6975-7005/eda_median/v3"
+      }
+    }
+  ],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 1.963279
+    },
+    {
+      "kind": "difference",
+      "quantity": "eda_median",
+      "slot": "eda_difference",
+      "supplied": false,
+      "value": -0.05658399999999997
+    }
+  ]
+}

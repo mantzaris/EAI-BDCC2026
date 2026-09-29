@@ -1,0 +1,91 @@
+{
+  "claims": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "reference_count": 1,
+      "valid": true,
+      "valid_reference_count": 1
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [
+        "numeric_or_interval",
+        "wrong_time"
+      ],
+      "reference_count": 1,
+      "valid": false,
+      "valid_reference_count": 0
+    },
+    {
+      "claim_id": "claim_3",
+      "reasons": [
+        "dependency"
+      ],
+      "reference_count": 2,
+      "valid": false,
+      "valid_reference_count": 0
+    }
+  ],
+  "metrics": {
+    "abstained": 0,
+    "all_slots_answerable": 1,
+    "answerable_slots": 2,
+    "case_error": 1,
+    "case_id": "synthetic-V1009-e0-correction-c1-B0",
+    "checkpoint": 1,
+    "claim_count": 3,
+    "claim_errors": 2,
+    "collateral_withdrawn": 0,
+    "corrected": 0,
+    "corrected_by_5s": 0,
+    "correction_required": 0,
+    "database_update_seconds": 0.0024813299532979727,
+    "dataset": "synthetic",
+    "end_to_end_seconds": 51.05989269702695,
+    "episode_id": "synthetic-V1009-e0",
+    "failed": 0,
+    "family": "current_evidence",
+    "generation_seconds": 8.600783214904368,
+    "initial_parse_failure": 0,
+    "initial_truncation": 0,
+    "initially_incorrect": 0,
+    "input_tokens": 1412,
+    "knowledge_time": 481.0,
+    "method": "B0",
+    "output_tokens": 607,
+    "paragraph_discrepancy": 0,
+    "partial": 0,
+    "reference_count": 4,
+    "repair_calls": 0,
+    "required_slots": 2,
+    "residual_incorrect": 0,
+    "retrieval_seconds": 0.0015308680012822151,
+    "split": "test",
+    "subject": "V1009",
+    "supplied_slots": 1,
+    "timeout_calls": 0,
+    "unaffected": 0,
+    "useful_complete": 0,
+    "useful_eligible": 1,
+    "valid_reference_count": 1,
+    "variant": "correction"
+  },
+  "persistent": [],
+  "required_slots": [
+    {
+      "kind": "direct",
+      "quantity": "eda_median",
+      "slot": "target_eda",
+      "supplied": true,
+      "value": 3.1787115335464478
+    },
+    {
+      "kind": "difference",
+      "quantity": "eda_median",
+      "slot": "eda_difference",
+      "supplied": false,
+      "value": 0.5799747705459595
+    }
+  ]
+}
