@@ -1,0 +1,266 @@
+{
+  "constraint_scope": "descriptive adapter domains, immutable IDs and acyclic source_ids; no OWL/SHACL engine",
+  "relations": {
+    "ASSESSED_AS": [
+      [
+        "subject",
+        "sensor",
+        "observation",
+        "feature",
+        "claim",
+        "explanation",
+        "review"
+      ],
+      [
+        "assessment"
+      ],
+      "Record has a time-indexed support assessment",
+      "GraphStore.assess_many",
+      "validated outcome"
+    ],
+    "CONTAINS": [
+      [
+        "explanation"
+      ],
+      [
+        "subject",
+        "sensor",
+        "observation",
+        "feature",
+        "claim",
+        "explanation",
+        "review",
+        "placeholder"
+      ],
+      "Display membership",
+      "explanation.source_ids",
+      "administrative"
+    ],
+    "CONTRADICTS": [
+      [
+        "subject",
+        "sensor",
+        "observation",
+        "feature",
+        "claim",
+        "explanation",
+        "review"
+      ],
+      [
+        "subject",
+        "sensor",
+        "observation",
+        "feature",
+        "claim",
+        "explanation",
+        "review"
+      ],
+      "Revision triggered a contradicted assessment",
+      "assess_many(state=contradicted)",
+      "validated outcome; time in assessment"
+    ],
+    "DEPENDS_ON": [
+      [
+        "subject",
+        "sensor",
+        "observation",
+        "feature",
+        "claim",
+        "explanation",
+        "review"
+      ],
+      [
+        "subject",
+        "sensor",
+        "observation",
+        "feature",
+        "claim",
+        "explanation",
+        "review",
+        "placeholder"
+      ],
+      "Dependent to declared input; does not certify necessity",
+      "record.source_ids",
+      "deterministic or model proposal"
+    ],
+    "DERIVED_FROM": [
+      [
+        "feature"
+      ],
+      [
+        "subject",
+        "sensor",
+        "observation",
+        "feature",
+        "claim",
+        "explanation",
+        "review",
+        "placeholder"
+      ],
+      "Feature extraction provenance",
+      "feature.source_ids",
+      "deterministic"
+    ],
+    "FOR_SUBJECT": [
+      [
+        "sensor",
+        "observation",
+        "feature",
+        "claim",
+        "explanation",
+        "review"
+      ],
+      [
+        "subject"
+      ],
+      "Scope membership, not reasoning",
+      "with_entities and record_relations",
+      "administrative"
+    ],
+    "OBSERVED_BY": [
+      [
+        "observation"
+      ],
+      [
+        "sensor"
+      ],
+      "Recording channel association",
+      "observation.metadata.channel",
+      "deterministic"
+    ],
+    "REVIEWED_BY_EVENT": [
+      [
+        "subject",
+        "sensor",
+        "observation",
+        "feature",
+        "claim",
+        "explanation",
+        "review",
+        "placeholder"
+      ],
+      [
+        "review"
+      ],
+      "Item acted on by review event",
+      "review.source_ids",
+      "administrative"
+    ],
+    "SUPERSEDES": [
+      [
+        "subject",
+        "sensor",
+        "observation",
+        "feature",
+        "claim",
+        "explanation",
+        "review"
+      ],
+      [
+        "subject",
+        "sensor",
+        "observation",
+        "feature",
+        "claim",
+        "explanation",
+        "review",
+        "placeholder"
+      ],
+      "New immutable version to previous ID",
+      "supersedes_id",
+      "administrative versioning"
+    ],
+    "SUPPORTS": [
+      [
+        "subject",
+        "sensor",
+        "observation",
+        "feature",
+        "claim",
+        "explanation",
+        "review",
+        "placeholder"
+      ],
+      [
+        "claim"
+      ],
+      "Accepted-at-insertion citation/prerequisite mirror",
+      "accepted claim.source_ids",
+      "checked at insertion; not perpetual support"
+    ]
+  },
+  "types": [
+    [
+      "subject",
+      "Subject",
+      "Dataset participant identity",
+      "with_entities: dataset/subject",
+      "record scope",
+      "administrative"
+    ],
+    [
+      "sensor",
+      "Sensor",
+      "Session channel identity",
+      "with_entities: observation metadata.channel",
+      "recording channel",
+      "administrative"
+    ],
+    [
+      "observation",
+      "Observation",
+      "Hashed recording window and sampling coordinates",
+      "adapter/extractor",
+      "recording hash and sample range",
+      "deterministic"
+    ],
+    [
+      "feature",
+      "FeatureVersion",
+      "Numerical feature or explicit availability watch",
+      "extractor or watch subscription",
+      "source_ids, extractor and units",
+      "deterministic"
+    ],
+    [
+      "claim",
+      "ClaimVersion",
+      "Generated bounded proposition and declared inputs",
+      "displayed_records; accepted flag for checked methods",
+      "raw candidate, query, claim fields",
+      "proposed/checked"
+    ],
+    [
+      "explanation",
+      "ExplanationVersion",
+      "Immutable displayed text and member claims",
+      "generation or maintenance recomposition",
+      "case_id, previous version, withdrawn IDs",
+      "administrative"
+    ],
+    [
+      "review",
+      "ReviewEvent",
+      "Recorded reviewer action",
+      "isolated dashboard action",
+      "action metadata and source_ids",
+      "administrative"
+    ],
+    [
+      "assessment",
+      "SupportAssessment",
+      "Support outcome at a knowledge time",
+      "GraphStore.assess_many",
+      "record ID, known_at, trigger_id, state, value",
+      "validated outcome"
+    ],
+    [
+      "placeholder",
+      "Record (no payload)",
+      "Unresolved referenced ID, if present",
+      "GraphStore MERGE of source endpoint",
+      "referencing record",
+      "administrative/unresolved"
+    ]
+  ]
+}

@@ -1,0 +1,50 @@
+\appendix
+\section{Additional Descriptive Results}
+
+\begin{table}[!ht]
+\caption{Recorded hardware and model settings. GPU and host peaks are observed
+over the matched held-out stage; one-second sampling can miss short peaks.}
+\label{tab:hardware}
+\centering\small
+\input{generated/hardware_table}
+\end{table}
+
+\begin{table}[!ht]
+\caption{Generation behavior and supported-reference rates. Failed and truncated
+columns are counts out of 240 cases per row; repairs count additional requests.
+Reference validity requires support under the strict query contract.}
+\label{tab:failures}
+\centering\small\setlength{\tabcolsep}{3.5pt}
+\input{generated/failure_table}
+\end{table}
+
+\begin{table}[!ht]
+\caption{Post-hoc contract-scope breakdown. The last column counts direct numerical
+observations with only interval-related errors that pass the existing exact checks
+at their own stated interval and original knowledge time. These source-faithful
+background facts remain errors in the unchanged primary metric. This narrow
+breakdown does not exhaust the consequences of interval scope, including failures
+propagated to dependent comparisons.}
+\label{tab:contractscope}
+\centering\small\setlength{\tabcolsep}{3pt}
+\input{generated/contract_scope_table}
+\end{table}
+
+\begin{table}[!ht]
+\caption{Separate graph-versus-relational comparison of generated outcomes.
+Differences are M1--B3 in percentage points with pointwise 95\% paired intervals;
+N (S/E) gives retained subjects/episodes.}
+\label{tab:relational}
+\centering\small
+\input{generated/relational_contrasts_table}
+\end{table}
+
+\begin{table}[!ht]
+\caption{Descriptive completion-time adequacy. Each explanation is checked against
+its request snapshot and the latest ingested event when it completes. ``Became
+stale'' counts request-adequate answers that no longer satisfy the two required
+numerical slots. These counts do not replace the frozen metrics.}
+\label{tab:staleness}
+\centering\small\setlength{\tabcolsep}{2.4pt}
+\input{generated/staleness_table}
+\end{table}

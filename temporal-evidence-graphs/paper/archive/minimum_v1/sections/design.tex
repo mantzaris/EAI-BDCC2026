@@ -1,0 +1,207 @@
+\section{Experimental Design}
+\label{sec:design}
+
+\subsection{Three Sources and Participant-Level Partitions}
+
+The synthetic benchmark generates 30-minute sessions with pulse-like cardiac
+signals, respiratory oscillations, slow EDA components with response-like events,
+and three-axis motion. Subject offsets and noise vary; motion and the latent
+physiological-style process use separate random streams. Sampling rates are
+128, 32, 8, and 32 Hz for cardiac, respiratory, EDA, and motion channels,
+respectively. These are generator choices, not a validated physiological
+simulator. Seeds 101--110 define development subjects and 1001--1010 define
+held-out subjects. Separate seeded streams determine waveform generation,
+fault assignment, and question assignment. Latent values and intervention
+labels remain outside runtime prompts and validation.
+
+WESAD provides laboratory recordings from 15 participants with chest and wrist
+signals~\cite{schmidt2018,wesad}. PPG-DaLiA provides recordings from 15 participants
+during daily activities~\cite{reiss2019,ppgdalia}. We inventory the original synchronized
+files and retain their acquisition URLs, hashes, documentation, and stated usage
+terms. Neither laboratory protocol labels nor activity annotations enter the
+generator. PPG-DaLiA reference heart-rate targets and R peaks are also withheld.
+The recordings supply evidence values; replay revisions do not imply that the
+original investigators published erroneous measurements.
+
+For each real source, naturally sorted subject identifiers are permuted with
+NumPy PCG64 seed 20260928. Five subjects form the development partition and ten
+form the held-out partition. Every episode, variant, and checkpoint from a
+subject remains in that partition. The synthetic benchmark similarly has ten
+development and ten test subjects. We select two target windows at 25\% and
+75\% of each session's common channel duration, rounding down to a five-second
+grid. Eligibility requires at least 600 seconds of synchronized coverage; all
+acquired sessions qualify. The selected contexts do not overlap within a
+session. Selection uses recording duration, not model performance or hidden
+condition labels. Table~\ref{tab:data} is generated from the saved inventories
+and held-out episode manifests.
+
+\begin{table}[t]
+\caption{Data and evaluation inventory. A case is one method at one checkpoint.
+Raw scalar values count feature-processing inputs, including overlapping windows
+and replay extraction; they are not independent observations.}
+\label{tab:data}
+\centering\small
+\input{generated/inventory_table}
+\end{table}
+
+\subsection{Windowed Features and Controlled Replays}
+
+Features use native rates and fully observed completed windows. A 30-second
+target is compared with the immediately preceding 120-second interval. Seven
+overlapping update windows end at five-second increments leading to the target.
+We compute EDA median and interquartile range, missing fraction, a repeated-extrema
+quality cue, and acceleration-magnitude standard deviation. Wrist EDA uses
+microsiemens. Synchronized WESAD acceleration uses recorded $1/64g$ units,
+whereas PPG-DaLiA's synchronized acceleration uses $g$; a development alignment
+check against 300 original acceleration samples verified the latter scaling.
+
+Optional spectral summaries of cardiac and respiratory signals use a Hann-windowed
+periodogram restricted to declared bands. A rate is withheld when data are
+insufficient, nonfinite, or lack the required spectral concentration of 0.5.
+These summaries are available context, not independently validated physiological
+estimates; the required answer slots rely on directly verifiable EDA, missingness,
+and motion features. Motion alone does not establish sensor failure. Numerical
+extraction uses NumPy on the host, with a fixed-sample CUDA quantile cross-check;
+there is no learned feature model or neural CPU fallback.
+
+Every base episode has four paired variants:
+\begin{enumerate}
+\item \emph{Clean}: same-value target EDA revisions at matched times.
+\item \emph{Channel fault}: either the last 15 seconds of EDA become missing or
+an offset of 0.5 is added to the window. Altered arrays are separate hashed files;
+derived feature versions cite their actual replay observation versions.
+\item \emph{Delayed}: the target EDA feature packet arrives 60 seconds later,
+while retaining its original event interval.
+\item \emph{Correction}: the target median receives an explicit value revision
+of $+0.5$, followed by restoration of the original value.
+\end{enumerate}
+Checkpoints are at 1, 31, and 91 seconds after the target window ends. Fault
+and correction revisions appear at the latter two checkpoints; the delayed
+packet arrives at offset 61 seconds. The clean variant follows the same
+checkpoint schedule. Channel faults are split evenly into missingness and
+corruption within each source. Independent seeded rankings balance question
+families and fault types, with both fault types present in each source/family
+group. A hidden offset is not assumed detectable before an explicit correction:
+faithful reporting of the currently ingested value is not scored as omniscient
+recognition of corruption.
+
+\subsection{Questions, Conditions, and Call Budget}
+
+Each source has five episodes in each of four question families. Current-evidence
+and conflict/timing questions require the target EDA median and its signed
+difference from the prior median. Sufficiency questions require the target median
+and missing fraction. Revision-impact questions ask about the prior display after
+an update; their scored numerical slots are the current median and target motion
+variability. Fact recall does not separately score completeness of the revision
+narrative; persistent-display scores measure changes to earlier statements.
+Development and test wordings differ while retaining these fixed answer slots.
+All methods receive the same current evidence serialization. For revision-impact
+questions, the preceding B0 display is common context across methods; it is an
+observed candidate answer, not a supplied gold answer.
+
+\begin{table}[t]
+\caption{Five matched conditions. ``Direct'' means revisiting direct references
+when their evidence changes. Full maintenance includes transitive dependencies
+and alternative-support evaluation.}
+\label{tab:methods}
+\centering\small
+\input{generated/method_table}
+\end{table}
+
+Table~\ref{tab:methods} separates fresh generation from maintenance of earlier
+displays. B0 receives structured recent evidence but no post-generation semantic
+checks and does not update old answers. B1 uses checked flat evidence and direct
+reference maintenance. B2 applies those same checks over graph storage with
+transitive propagation disabled. M1 and B3 enable full maintenance in graph and
+relational storage, respectively. All checked methods receive the same one-repair
+allowance. Their fresh generations need not be identical because a fixed seed
+does not remove hardware and batching effects; logical correctness is therefore
+also tested with a common fixed candidate fixture.
+
+The held-out matrix comprises $60\times4\times3\times5=3{,}600$ initial calls.
+At most 2,880 validation repair calls are possible, for a hard ceiling of 6,480.
+Four independent scenarios share a four-request semaphore; each scenario must
+finish its current checkpoint before exposing its next one. Scenario order is
+a fixed seeded permutation. Manifests, episode hashes, prompts, configuration,
+runtime source hashes, and model revisions are frozen before held-out generation.
+Interrupted requests with unknown outcomes are recorded rather than silently
+regenerated. Resumption uses immutable case identifiers and request journals.
+
+The final configuration uses Qwen3-8B in BF16, non-thinking mode, temperature
+0.7, top-$p$ 0.8, top-$k$ 20, and seed 20260928. The input allowance is 4,096
+tokens and the common output ceiling is 1,536 tokens. Development pilots exposed
+truncation and constrained-decoder whitespace loops at smaller budgets; their
+failures are retained. The final prompt explicitly names every required field,
+and xgrammar emits compact JSON. No model weights are trained or tuned for this
+study. The final pilot comprises 100 development cases and a separate 20-request
+concurrency-one latency workload. Hardware and measured costs are reported with
+the results.
+
+\subsection{Independent Outcomes and Uncertainty}
+
+The evaluator reconstructs visible versions and required answer slots directly
+from immutable replay logs. It does not import runtime validation or use stored
+support status as gold truth. It checks claims, evidence references, query scope,
+numbers, units, dependencies, and limited sentence/paragraph consistency. A
+second, separately pinned CUDA model audits 60 nonempty final explanations,
+four per method/source, sampled by a fixed permutation at checkpoint 2. Four
+additional diagnostic examples test the verifier. We retain prompts, outputs,
+parse failures, and disagreements with exact checks. This is automated annotation
+using Qwen2.5-3B-Instruct~\cite{qwen25}; common model-family errors remain possible.
+
+For fresh answers, case error is the fraction with any contract-invalid displayed
+claim or paragraph discrepancy. Claim error divides contract-invalid claims by
+emitted checkable claims. Required-fact recall divides correctly supplied slots
+by slots answerable from the current snapshot. Useful coverage requires all
+currently answerable slots in an eligible query. We report abstentions,
+partial answers, parse/truncation failures, timeouts, and repair calls. Claim
+error is undefined for an empty answer, and a failed or empty case remains in
+the fixed case denominator and coverage metrics. Faithfulness to ingested
+evidence is explicitly separate from physiological estimation accuracy.
+
+For persistent displays, a claim requires change if it was valid when created
+and becomes invalid under the current snapshot. Correction completeness counts
+those claims withdrawn or revised appropriately; residual incorrect display
+counts those still active. Collateral revision counts withdrawal of content
+that remains valid. Initially incorrect claims are recorded separately. An
+absent required-change denominator yields an undefined correction rate, not a
+perfect score. Replay service times exclude offered-load queues; the systems
+track measures arrival-to-completion latency separately.
+
+Two prospective principal contrasts are M1 versus B2 for correction completeness,
+and M1 versus B1 for case error jointly with required-fact recall. M1 versus B3
+is a separate implementation comparison. Paired observations stay grouped by
+subject, preserving all episode variants and checkpoints. First, each metric is
+computed within a base episode across its variants and checkpoints; paired episode
+differences are averaged within each subject. We use 2,000 paired
+subject-cluster bootstrap resamples and pointwise 95\% intervals, with ten
+independent held-out subjects per source. Conditional correction contrasts
+include only episodes with defined denominators in both methods and subjects with
+at least one such pair. We disclose both retained counts and give subjects equal
+weight. Pooled descriptive rates use their displayed denominators and need not
+equal the paired estimand. We report effect sizes without hypothesis-test $p$-values;
+the intervals do not provide simultaneous family-wise coverage. Waveform samples,
+duplicated events, and repeated prompts do not increase the participant count.
+
+\subsection{Open-Loop Systems Workload}
+
+The systems track gives M1 and B3 the same immutable symbolic fixture, including
+an AND-dependent comparison and surviving OR support. A producer thread schedules
+arrivals independently of completions at 1, 5, and 20 derived events per second,
+for 60 seconds per cell. Method order alternates across rates. The target value
+switches between 2 and 4 every 20 events after an initial ten-event offset.
+Each implementation performs its own database retrieval and updates. A scheduled
+explanation is requested every 20 events, plus a replacement when a formerly
+supported claim becomes contradicted. Four requests may generate concurrently;
+queues are allowed to grow and then drain.
+
+The separate ceiling is 156 scheduled explanations, 80 affected-explanation
+requests, and at most 236 validation repairs. We record arrival-to-flag time,
+arrival-to-generated-replacement time, database and retrieval time, pending
+explanations, event backlog, throughput including drain, and tokens. Flagging
+within one second and an adequate replacement within five seconds are measured
+soft targets. Replacement adequacy is initially checked against the request
+snapshot; completion-time event indices permit a separate stale-answer check.
+Logical assessment hashes must agree between databases for the common sequence.
+These repeated symbolic events measure system load, not additional physiological
+subjects or raw waveform throughput.

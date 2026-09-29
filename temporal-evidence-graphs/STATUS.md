@@ -1,5 +1,19 @@
 # Study status
 
+## Semantic revision — in progress (20%)
+
+The requested representation/theory revision is separate from the completed
+minimum study below. Actual Neo4j exports, ontology documentation, a semantic
+projection, independent scoring and a deterministic 240-case structural selection
+are implemented. Nine focused semantic/structural tests and all 56 tests pass.
+Original runtime/input hashes remain unchanged. Extension GPU inference,
+aggregate analysis, figures, manuscript/supplement and PDF checks remain pending.
+
+See the [new protocol](docs/semantic_analysis_protocol.md) and
+[original paper/report archive](paper/archive/minimum_v1/).
+
+## Preserved minimum study
+
 Updated: 2026-09-29. Minimum-study completion: **100%**.
 
 All eight core stages are complete. Optional expanded seeds, another generator,
