@@ -1,4 +1,17 @@
-# Implementation and experiment report
+# Semantic revision report
+
+The completed extension, independent semantics and new theory are summarized in
+[THEORY_RESULTS_CHANGES.md](THEORY_RESULTS_CHANGES.md), generated directly from
+the analysis outputs. Read the [revised main PDF](paper/semantic_structure_revision.pdf)
+and [separate supplement](paper/semantic_structure_supplement.pdf).
+[Reproduction commands](docs/semantic_reproduction.md) cover scoring, actual database
+exports, figures, frozen inputs and both PDF builds. Final page and integrity
+checks are recorded in artifacts/manifests/semantic_manuscript_validation.json.
+
+The report below preserves the original experiment and its interpretation.
+Its page counts and links describe the archived minimum-v1 manuscript.
+
+# Preserved minimum-v1 implementation and experiment report
 
 The minimum three-source study is complete. The result does **not** establish a
 correction advantage for transitive graph propagation on the generated waveform
@@ -6,7 +19,7 @@ answers, or a low-latency complete-repair capability. Direct checking matches th
 full methods under the frozen numerical contract. The controlled symbolic fixture
 demonstrates the narrower situation in which a necessary transitive path matters.
 
-Start with the [anonymized manuscript PDF](paper/temporal_evidence_maintenance.pdf)
+Start with the [anonymized manuscript PDF](paper/archive/minimum_v1/temporal_evidence_maintenance.pdf)
 or the [complete numerical ledger](artifacts/analysis/measurements.md). The PDF has
 20 main pages, one reference page, and two appendix pages. This is a completed
 experimental package and manuscript draft, not a conference submission.

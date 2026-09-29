@@ -1,146 +1,129 @@
-\section{Temporal Evidence Maintenance}
-\label{sec:method}
+\section{A Typed Temporal Semantic Representation}
+\label{sec:representation}
 
-\subsection{Evidence, Knowledge Time, and Query Scope}
+\subsection{Schema-Guided Ontology Instantiation}
 
-A record $r$ has an immutable identifier, a logical identity, a version number,
-an event interval $[s_r,e_r]$, and an ingestion time $\tau_r$. The event interval
-describes the observation; ingestion time describes when the system learned it.
-The snapshot available at knowledge time $t$ is
+The ontology is fixed in code; the generator proposes instances inside it.
+Formally, let
 \begin{equation}
- E_t=\{r:\tau_r\leq t\}.
+\begin{split}
+ \Omega&=(\mathcal T,\mathcal R,\operatorname{dom},\operatorname{ran},\mathcal C),\\
+ G_t&=(V_t,E_t,\vartheta_V,\vartheta_E,a_t).
+\end{split}
+\label{eq:ontology}
 \end{equation}
-For each logical identity, current queries select the greatest visible version,
-breaking ties by ingestion time and identifier. A historical query reconstructs
-the snapshot at its own knowledge time. An older version is not retrospectively
-false merely because a newer version subsequently arrived.
+Here $\mathcal T$ and $\mathcal R$ are node and relation vocabularies;
+$\vartheta_V:V_t\to\mathcal T$ and $\vartheta_E:E_t\to\mathcal R$ give their
+types. An edge of type $r$ connects allowed types in $\operatorname{dom}(r)$ and
+$\operatorname{ran}(r)$. Attributes $a_t$ include immutable and logical IDs,
+dataset/subject/session scope, event intervals, ingestion time, version, value,
+unit and evidence state. Constraints $\mathcal C$ include immutable identifiers,
+finite acyclic declared dependencies and the admission predicates below.
+Ingestion time is written $\tau_v$, distinct from the type maps $\vartheta$.
+At knowledge time $t$, only records with $\tau_v\leq t$ are visible. Current
+assessments use their recorded knowledge time for visibility. Current
+queries resolve each logical identity to its greatest visible version, breaking
+ties by ingestion time and ID; historical queries retain their specified
+knowledge time.
+Tied assessments retain their trigger IDs; conflicting states are marked ambiguous
+because the stored timestamp alone does not order triggers.
 
-A query specifies dataset, subject, session, target interval, knowledge time,
-and required quantities. Matching a current target interval is distinct from
-being a recent record in storage. In this experiment, a direct numerical claim
-must describe the requested 30-second interval. A comparison additionally
-requires the immediately preceding 120-second interval. The same baseline
-value can therefore be valid as a comparison operand and invalid as an
-unqualified answer to the target-window question. This explicit scope avoids
-using a single arbitrary expiry threshold for all facts.
+Table~\ref{tab:objects} identifies stored objects. Windows carry hashes, sample
+indices and channel metadata; raw arrays remain outside the database. Features
+carry units, extractor metadata and source IDs. The \texttt{with\_entities}
+function adds subject and channel identities. The model proposes proposition
+fields, evidence references, parent links and sentences. Checks admit bounded
+claims before immutable insertion. Neo4j additionally creates
+\texttt{SupportAssessment} nodes and \texttt{ASSESSED\_AS} edges, included in
+storage accounting. The Supplement specifies every node/relation's meaning,
+domain/range, creation rule, provenance and status, including unresolved placeholders.
 
-\subsection{Representation and Storage}
+\begin{table}[!htbp]
+\caption{Implemented object vocabulary. Checked status describes an admission or
+assessment operation; it does not establish physiological truth. The full
+node/relation construction table is in the Supplement.}
+\label{tab:objects}
+\centering\small
+\input{generated/semantic/object_table}
+\end{table}
 
-The schema contains Subject, Sensor, Observation, FeatureVersion, ClaimVersion,
-ExplanationVersion, and ReviewEvent records. Raw arrays remain outside the
-database. Observation records contain source hashes, native sample ranges,
-sampling rates, and channel identifiers. Feature records point to their
-observation windows and record extractor identity and units. A generated
-candidate is retained as a proposal; successful parsing or a model-assigned
-confidence does not promote it to verified evidence.
+The construction can be written as
+\begin{equation}
+ G_t=\Gamma_\Omega(E_{\leq t},\widehat C_{\leq t})
+ =\operatorname{Insert}_{\rm immutable}\!\left(
+ \operatorname{Check}_q\!\left(\operatorname{Normalize}_\Omega(E_{\leq t}),
+ \widehat C_{\leq t}\right)\right).
+\label{eq:construction}
+\end{equation}
+$E_{\leq t}$ is the observation/revision log; $\widehat C_{\leq t}$ contains
+model proposals generated from the normalized visible evidence. Rejected
+proposals remain in the request archive. Inserted assessments and explanation
+versions extend the instance without overwriting earlier content. This is
+schema-guided instantiation, rather than ontology discovery.
 
-\texttt{DEPENDS\_ON} points from a dependent item to a required item, so reverse
-traversal identifies potentially affected descendants. \texttt{SUPERSEDES}
-points from a new version to the previous version. \texttt{DERIVED\_FROM}
-connects features to observations; \texttt{CONTAINS} connects explanations to
-claims; \texttt{SUPPORTS} connects accepted sources to claims. Subject, sensor,
-contradiction, and review links complete the schema. Support assessments are
-append-only records indexed by item, knowledge time, and triggering revision.
+Construction determines much of the apparent topology. Each \texttt{source\_ids}
+entry creates dependent-to-input \texttt{DEPENDS\_ON}; features also receive
+\texttt{DERIVED\_FROM}, and accepted claims the opposite-direction
+\texttt{SUPPORTS} mirror. Display membership adds two relations:
+\texttt{CONTAINS} and \texttt{DEPENDS\_ON}. Subject links create
+\texttt{FOR\_SUBJECT} hubs.
+We separate these administrative, provenance and reasoning roles.
 
-The primary implementation uses Neo4j Community 5.26.0 with a compound identity
-constraint and indexes for scope, dataset, subject, session, event interval,
-ingestion time, logical identity, and version. Batch writes use UNWIND, and
-reverse dependency traversal uses variable-length paths. The relational control
-uses SQLite in WAL mode, indexed evidence and edge tables, and recursive common
-table expressions. Both implementations cache immutable record objects in the
-application process and issue database queries for snapshots and affected
-identifiers. They share support predicates and batch assessment writes. This
-is a comparison of these implementations on one host, including Neo4j's service
-boundary, not a universal comparison of graph and relational engines.
-
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=\textwidth]{architecture.pdf}
-\caption{Evidence and explanation lifecycle. Completed recording windows produce
-versioned features. A common bounded generator proposes claims; checks determine
-displayed content. Later events trigger dependency maintenance and immutable
-explanation revisions. Independent evaluation reads source/replay logs. Dashed
-boundaries separate evaluator-only labels and isolated review actions.}
-\label{fig:architecture}
+\includegraphics[width=\textwidth]{semantic_analysis_v1/ontology_construction.pdf}
+\caption{Fixed vocabulary and actual instantiation. Blue denotes deterministic
+recording/feature construction, green a checked model proposition, grey identity
+or display administration, and amber assessment/version effects. The concrete
+path comes from the exported WESAD S11 correction scope; its source hash, sample
+indices and full IDs accompany the figure. Arrows have the stored direction.
+The displayed schema is a readable subset of the complete construction table.}
+\label{fig:ontology}
 \end{figure}
 
-\subsection{Bounded Generation and Direct Validation}
+\input{generated/semantic/worked_example}
 
-All conditions use the same Qwen3-8B model revision~\cite{qwen3}, query text,
-serialized admissible evidence, sampling settings, and JSON schema. The contract
-permits at most three claims and six claim types: numerical observation, trend,
-comparison, evidence conflict, missing evidence, and revision effect. Each claim
-includes a quantity, value, unit, subject, interval, operator, evidence identifiers,
-parent-claim identifiers, and one sentence. The explanation must concatenate
-the claim sentences. The answer also declares whether it is answered, partially
-answered, or lacks sufficient evidence. Structured decoding constrains syntax,
-not correctness~\cite{vllm}.
+\subsection{Edges as Explicit Semantic Commitments}
 
-Direct checks verify reference existence, dataset, subject and session identity,
-query-relative version and interval, units, numerical agreement, required
-comparison operands, and parent-claim support. Numerical agreement uses
+A citation identifies a proposed evidence witness. A parent link declares a
+prerequisite. A deterministic extraction edge records how a feature was produced.
+Membership and co-occurrence carry neither implication. In particular, an
+LLM-proposed \texttt{DEPENDS\_ON} edge does not prove that its target is a necessary
+premise. \texttt{SUPPORTS} records acceptance at insertion, not support at every
+later time. A \texttt{CONTRADICTS} edge records an adverse assessment triggered by
+a revision; its associated assessment supplies the knowledge time. Exports retain
+these origins and the distinction between proposed, accepted and displayed links.
+
+\subsection{The Query-Specific Semantic Core}
+
+We define a projection rather than discover a second ontology:
 \begin{equation}
- |v-\hat v|\leq \max(10^{-6},0.01|\hat v|),
+ K_{q,t}=\pi_{q,\Omega}(G_t),\qquad
+ V(K_{q,t})=C_{q,t}^{*}\cup F_{q,t},\quad
+ E(K_{q,t})=D_{q,t}\cup P_{q,t}.
+\label{eq:core}
 \end{equation}
-where $\hat v$ is the recorded reference value. This is a reporting tolerance,
-not a clinical decision threshold. Cyclic proposed claim dependencies are
-rejected. Explicitly invalidated evidence cannot serve as current support.
-Missingness claims are checked against currently available evidence rather than
-against an oracle fault label.
+$C_{q,t}^{*}$ contains the latest displayed answer's member claims and their
+declared claim ancestors. $F_{q,t}$ contains their visible cited feature
+propositions, including explicit availability watches. $D_{q,t}$ retains the
+corresponding stored dependency edges; $P_{q,t}$ contains labelled derived paths
+that resolve an immutable citation through a visible version chain. Each derived
+path retains its source citation and supersession witness IDs. It is never drawn
+as a directly stored Neo4j relationship.
 
-The runtime additionally checks whether the sentence contains the stated value
-and unit, flags a limited set of unsupported causal or clinical terms, and checks
-that the paragraph matches its claims. These lexical checks do not guarantee
-semantic fidelity. We retain the original prose and perform a separate automated
-fidelity audit. Checked conditions receive at most one repair generation with
-the same evidence and the failed checks. After that attempt, unsupported claims
-are removed and the paragraph is recomposed from retained sentences. Empty
-outputs remain in evaluation and reduce coverage; they do not receive a perfect
-claim-accuracy score.
+Subject/sensor identity, explanation containers, assessments and old versions are
+sidecars. Feature-to-observation provenance is retained there and may be expanded
+in a drawing. Claim scope comes from the asserted proposition fields, rather than
+the storage wrapper's query interval. Full IDs, raw sentences, original versions
+and assessment times remain recoverable. Thus the projection preserves the
+explicit commitments needed for the answer and its revision; its smaller size
+is a consequence of a specified selection rule.
 
-\subsection{Revision Propagation and Persistent Explanations}
-
-For a revision, the system appends the new record, preserves the old citation,
-and traverses reverse dependencies of every earlier version of the same logical
-item. Considering all earlier versions matters for a sequence $v_1\rightarrow
-v_2\rightarrow v_3$: a displayed claim may still cite $v_1$ when $v_3$ arrives.
-The affected subgraph is evaluated in dependency order. For an AND expression,
-every required operand must remain supported. For an OR expression, one
-adequate alternative suffices. Derived numeric expressions are recomputed before
-dependent claims are assessed. Reachability therefore identifies candidates for
-revision, not a set that must all be deleted.
-
-The core algorithm has the following steps:
-\begin{enumerate}
-\item Append the evidence version and its supersession link.
-\item Retrieve affected dependents, with direct or transitive reach according to
-the condition, at the event's ingestion time.
-\item Recompute their support predicates in acyclic dependency order and append
-the resulting assessments.
-\item Withdraw unsupported displayed sentences, preserve supported alternatives,
-and persist a new explanation version when its text changes.
-\end{enumerate}
-When support returns, the original immutable sentence can be restored in a later
-explanation version. Negative-evidence claims subscribe to availability records
-so a delayed packet can invalidate a prior statement of absence. Old explanation
-text remains accessible for historical inspection.
-
-Immediate maintenance is conservative text retraction or recomposition. A useful
-new numerical answer requires separate generation. In the matched replay,
-fresh generation occurs at the three scheduled checkpoints; it is not an
-asynchronous regeneration of every historic paragraph. The systems workload
-separately requests a GPU replacement after a material adverse transition.
-We report withdrawal and generated-replacement latency separately. This prevents
-a fast status update from being described as a fast complete answer.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{symbolic_correction.pdf}
-\caption{Exact fixture before and after a correction. A target changes from 2
-to 4; its difference from a baseline of 1 changes from 1 to 3. The direct and
-downstream old claims become contradicted. The OR-supported claim remains
-supported by an independent value of 2, and the baseline claim is unaffected.
-Arrows point from a dependent to its required source. This is a constructed
-correctness example, not a measured physiological event.}
-\label{fig:subgraph}
-\end{figure}
+We distinguish the complete stored graph, an active evidence-and-claim projection
+at $t$, and $K_{q,t}$. The active projection includes latest evidence and current
+display members across queries, retaining actual observation provenance. The
+core answers more focused competency questions: which window supports a value,
+which operands support a comparison, which version was known, what changed after
+correction, and whether an alternative witness survives. We evaluate answers to
+these questions against immutable input logs or exact program specifications,
+independently of database support flags.

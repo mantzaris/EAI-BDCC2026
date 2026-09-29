@@ -1,109 +1,56 @@
 \section{Introduction}
 
-A monitoring explanation can become unreliable after it has been generated.
-A delayed packet can overturn a statement that a measurement is unavailable;
-a corrected observation can invalidate a numerical comparison; and a quality
-notice can remove one of several sources supporting a statement. Generating a
-fresh answer does not, by itself, repair an earlier answer that remains on a
-screen. The system must identify which displayed statements depend on the
-changed evidence and decide whether each still has sufficient support.
+A generated explanation can become misleading when a sensor window is corrected,
+a feature fails a quality check, or a delayed observation replaces a statement
+of absence. Deleting the answer discards useful information; retaining it can
+preserve a wrong number. A temporal evidence graph exposes what was asserted,
+which observations and prerequisites were cited, and what was known when.
 
-Consider a display containing three statements: the target electrodermal activity
-(EDA) median is 2 units, its difference from an earlier median of 1 unit is 1 unit,
-and an independent source also supports a value of 2 units. If the target is
-corrected to 4 units, the first statement and the dependent comparison require
-attention. The independently supported statement can remain. A blanket deletion
-of all reachable statements loses useful content, while updating only direct
-citations can leave an incorrect downstream comparison visible. The distinction
-between direct checking, transitive maintenance, and alternative support is the
-object of this study.
+A comparison may declare a parent while also citing both operands directly;
+revising either operand then reaches it in one step. Conversely, a conjunction
+supported only through an intermediate claim can remain displayed after a direct
+checker updates that intermediate. A third case reaches a statement but preserves
+it through another admissible witness. Edge semantics and support predicates,
+rather than visual complexity, distinguish these regimes.
 
-We investigate whether an explicit temporal evidence representation improves
-the reliability and maintenance of generated monitoring explanations while
-preserving useful answers. We separately ask whether graph storage offers an
-operational advantage over indexed relational dependency tracking. These are
-different questions: a storage engine can change update cost without changing
-the semantics of support. A useful evaluation must therefore include both a
-direct-checking ablation and a relational implementation with equivalent
-maintenance capabilities.
+We study a researcher-specified, typed temporal property graph instantiated from
+recording provenance and generated propositions. The contribution has three
+parts. First, we define its construction and a query-specific semantic projection
+with mappings back to stored objects. Second, we connect an explicit support
+model to a locality result and a measurable condition for direct/full maintenance
+equivalence. Third, we evaluate that connection using actual Neo4j exports,
+independent proposition scoring, and a controlled structural extension of three
+completed benchmarks. The graph exposes commitments made by the generated
+answer; it is not a measurement of internal neural reasoning.
 
-Our experimental package uses one synthetic benchmark in two modes---exact
-symbolic maintenance fixtures and waveform replay---plus recordings from WESAD
-and PPG-DaLiA. The real recordings test evidence handling under two acquisition
-conditions, not diagnosis or physiological causation. We evaluate 60 held-out
-base episodes, four replay variants, three knowledge-time checkpoints, and five
-methods. A separate open-loop workload measures update queues and the latency
-of generated replacements. All generative and neural verification computation
-uses a CUDA GPU; runtime checks and independent exact evaluation operate on
-recorded numerical evidence.
+The completed waveform study supplies a useful contrast. Only
+\SemParentClaims{} of \SemDisplayedClaims{} M1 displayed claims declare parents,
+and direct checking matches transitive maintenance. Our structural analysis
+finds zero transitive exposure in every eligible waveform revision batch. A new
+protocol also distinguishes accurate background statements from violations of a
+strict target-only output contract. This exposes the tradeoff between grounded
+content and required-fact coverage. Finally, exact numerical programs and common
+GPU-generated candidates vary dependency depth and admissible alternative
+witnesses while preserving the underlying recordings. The resulting evidence
+identifies when propagation matters and when simpler maintenance suffices.
 
-The contribution is a controlled, auditable evaluation of evidence maintenance
-for generated explanations. It combines immutable source versions, a bounded
-claim contract, direct and transitive checks, persistent explanation versions,
-and a strong relational control. The package retains raw model responses,
-unsuccessful development runs, intervention manifests, paired case identifiers,
-and scripts producing the tables and figures. We assess errors jointly with
-answer coverage, distinguish retraction from useful replacement, and separate
-deterministic maintenance tests from outcomes that depend on generated claims.
-We do not propose a new general truth-maintenance algorithm or treat an external
-dependency graph as a reconstruction of a language model's internal reasoning.
+\subsection{Relation to Prior Work}
 
-\section{Related Work}
+Truth-maintenance systems revise justified beliefs when premises
+change~\cite{doyle1979}; incremental view maintenance updates database
+results from changes to their inputs~\cite{gupta1993}. Provenance semirings
+distinguish jointly required inputs from alternative derivations~\cite{green2007}.
+Our contribution connects these established ideas to dependencies actually
+expressed by a bounded generator and independently measured maintenance outcomes.
 
-Dependency-directed belief revision has a long history. Doyle's truth-maintenance
-system records reasons for beliefs and revises their status when assumptions
-change~\cite{doyle1979}. Incremental view maintenance studies how database query
-results can be updated after changes to their inputs, including alternative
-derivations~\cite{gupta1993}. Provenance semirings offer an algebraic account of
-contributing and alternative derivations in relational queries~\cite{green2007}.
-Our finite acyclic AND/OR predicates use these established ideas in a bounded
-explanation task. They do not replace general database provenance semantics.
-This lineage also motivates the relational control: dependency maintenance is
-not exclusive to property graph databases.
-
-GraphRAG constructs entity and community representations to support global
-question-focused summarization of text corpora~\cite{edge2025}. Its evaluated
-objective concerns answer comprehensiveness and diversity. Our endpoint concerns
-the continued validity of previously displayed numerical statements after
-evidence changes. Zep's Graphiti engine organizes conversational memory with
-temporal facts, source episodes, and contradiction-based invalidation; its
-evaluation includes Deep Memory Retrieval and LongMemEval~\cite{rasmussen2025}.
-Temporal graphs and fact invalidation are consequently prior capabilities,
-rather than novelty claims of this paper.
-
-The HEG-TKG preprint grounds rare-disease reasoning in traceable clinical
-literature and temporal disease-stage information, and evaluates citation
-verification, clinician judgments, and injected-evidence counterfactuals~\cite{ahmed2026}.
-It is a close example of evidence-linked temporal reasoning. Our experiment
-instead uses numerical sensor replay, exact dependency fixtures, paired
-coverage metrics, and a graph-versus-relational systems comparison. It neither
-reproduces that clinical system nor evaluates clinical decision quality.
-
-An evidence graph also has a limited relationship to interpretability. Turpin
-et al. show that chain-of-thought explanations can omit input factors that
-influence model answers~\cite{turpin2023}. Hu et al. construct semantic internal
-reasoning graphs from model attribution for hallucination detection~\cite{hu2026}.
-Our edges encode external evidence requirements imposed by a task contract.
-Intervening on them tests traceability and maintenance behavior; it does not
-establish that the model used those edges internally. Table~\ref{tab:position}
-summarizes these distinctions without claiming that every capability of the
-related implementations was reproduced.
-
-\begin{table}[t]
-\caption{Positioning by evaluated task. B2 in this study is a custom propagation
-ablation, not a reproduction of GraphRAG or Graphiti.}
-\label{tab:position}
-\small
-\begin{tabularx}{\textwidth}{lXX}
-\toprule
-Work & Evidence and updates & Evaluation emphasis \\
-\midrule
-Truth/view maintenance & Dependencies and alternative derivations & Correct revision of beliefs or query results \\
-GraphRAG & Entity/community summaries of text & Global summarization quality \\
-Zep/Graphiti & Temporal conversational facts and invalidation & Long-term agent memory \\
-HEG-TKG & Clinical literature and temporal anchors & Citation traceability and clinical review \\
-Internal reasoning graphs & Model attribution dependencies & Hallucination detection \\
-This study & Versioned numerical evidence and displayed claims & Correction, retained information, and storage cost \\
-\bottomrule
-\end{tabularx}
-\end{table}
+PROV-DM distinguishes entities, activities, derivation, revision and
+attribution~\cite{prov2013}. It informs our conceptual separation of recording
+provenance, generated assertions and review events. The implementation remains a
+property graph with Python admission checks and database identity constraints.
+GraphRAG constructs entity graphs and community summaries for corpus-level
+question answering~\cite{edge2025}; Graphiti, described in the Zep architecture,
+maintains temporal information for agent memory~\cite{rasmussen2025}. Here the
+unit of evaluation is a revisable numerical proposition and its admissible
+witnesses. This distinction also separates source-grounded semantic fidelity from
+the faithfulness of a model's account of its own computation, which need not
+match its actual decision process~\cite{turpin2023}.

@@ -1,0 +1,121 @@
+\section{Support, Locality and Transitive Exposure}
+\label{sec:theory}
+
+\subsection{Support Through Admissible Witnesses}
+
+For a proposition $c$, let $\mathcal W(c)$ be a finite family of admissible
+witnesses. Each $W$ is a set of jointly required evidence or prerequisite
+propositions; different $W$ are alternatives. We use
+\begin{equation}
+ \operatorname{Supported}(c,t;q)=
+ \bigvee_{W\in\mathcal W(c)}
+ \left[\psi_c(W,t;q)\land
+       \bigwedge_{u\in W}\operatorname{Valid}(u,t;q)\right].
+\label{eq:support}
+\end{equation}
+$\operatorname{Valid}$ requires observable availability and admissible temporal
+and subject scope; for a prerequisite claim it recursively requires support.
+$\psi_c$ checks the asserted interval, selected logical versions, quantity,
+normalized unit and numerical operation. Numerical agreement uses the frozen
+tolerance $|v-\widehat v|\leq\max(10^{-6},0.01|\widehat v|)$.
+A correction can therefore invalidate $\psi_c$ while leaving the source
+available. A supported historical assertion at its original knowledge time and
+a supported current assertion are different propositions.
+The extension's specified inequalities use exact floating-point comparisons.
+
+The original model supports local AND/OR composition and a two-operand
+difference. Generated numerical claims require all declared parents plus an
+admissible direct numerical witness; comparisons cite both operands. The
+extension uses explicit OR lists of AND inputs composed through an acyclic
+positive claim graph, not unrestricted Boolean formulas. Missing-evidence
+statements require a bounded producer universe and explicit availability watches;
+absence in an open graph is insufficient.
+The extension stores witness grouping in each record's semantic-program metadata;
+source IDs contain their union for traversal. Edge presence alone does not
+recover the AND/OR grouping.
+
+As in provenance and truth maintenance~\cite{green2007,doyle1979}, losing one
+route preserves support when another admissible witness survives. Our controlled
+alternatives use disjoint recording windows, not renamed copies of one
+measurement. Source independence does not imply statistical independence.
+
+\subsection{Locality of a Revision}
+
+Let $U_\delta$ contain revised input identities, all earlier versions that can
+still be cited, and any changed availability subscriptions. In the dependency
+projection, edges point from dependent to input. Define
+\begin{equation}
+ R_\delta=U_\delta\cup\operatorname{RevReach}(U_\delta),\qquad
+ B_\delta=\{c:S_{t^-}(c)\ne S_{t^+}(c)\},
+ \label{eq:locality}
+\end{equation}
+where $S_t(c)$ abbreviates Equation~\ref{eq:support}. $R_\delta$ is a candidate
+set; $B_\delta$ is the actual support-change set.
+
+\begin{proposition}[Conditional locality]
+For a finite acyclic dependency model, $B_\delta\subseteq R_\delta$ when every
+mutable input to each support predicate is explicitly represented and only
+$U_\delta$ changes between the two snapshots.
+\end{proposition}
+\noindent\emph{Proof sketch.}
+Order nodes from inputs to dependents. A node outside $R_\delta$ has no changed
+input and no prerequisite in $R_\delta$; otherwise it would be reverse reachable.
+Its scope, numerical operands and availability state are therefore unchanged.
+Induction in the acyclic order gives equal prerequisite support and equal
+predicate values, hence equal support. Considering all earlier versions covers
+immutable citations to $v_1$ after $v_2$ or $v_3$ arrives. Explicit availability
+records cover an arrival that falsifies an absence statement.\hfill$\square$
+
+Locality fails for unrecorded clock expiry, newly discovered unsubscribed
+witnesses or external predicate changes. Our fixed-target queries and controlled
+witness universes represent changes through version/availability events. Benign
+updates and surviving alternatives demonstrate why reachability is only a
+candidate set, with potentially strict inclusion $B_\delta\subset R_\delta$.
+
+Indexed adjacency traversal costs $O(|V_{R_\delta}|+|E_{R_\delta}|)$, plus current
+version lookups and witness evaluation. Actual costs also include snapshots,
+serialization, database round trips and writes. The original runtime repeatedly
+constructs version maps; structural replay evaluates the whole small program
+before scheduled writes. Neo4j variable-length queries may enumerate paths;
+SQLite uses a recursive CTE with duplicate elimination. Neither implementation
+inherits a linear-time guarantee from the abstract traversal bound.
+
+\subsection{When Direct Maintenance Suffices}
+
+Let $A_\delta$ be the independently determined set of prior admitted claims requiring
+a state change, and $D_\delta$ the claims actually scheduled by direct-only
+maintenance. For $|A_\delta|>0$, define
+\begin{equation}
+ \xi_\delta=\frac{|A_\delta\setminus D_\delta|}{|A_\delta|}.
+ \label{eq:exposure}
+\end{equation}
+We report NA when $A_\delta$ is empty. The primary measured exposure concerns
+withdrawal of initially grounded claims; restoration is recorded separately as
+a support transition. $A_\delta$ comes from the event-log/task oracle, not from
+an accepted flag or the existence of a graph path.
+
+\begin{proposition}[Direct/full equivalence and misses]
+Assume initially correct states, complete re-evaluation of $D_\delta$, dependency
+semantics consistent with the oracle, and no unrelated refresh or other mechanism
+that revisits excluded claims. Before fresh generation, direct maintenance misses
+the fraction $\xi_\delta$ of required changes. A sufficient condition for direct
+and full maintenance to agree is that every changed support predicate is directly
+scheduled. In particular, this holds when each changed input affecting an answer
+has a direct dependency edge to every affected claim and all other predicates
+remain unchanged.
+\end{proposition}
+\noindent\emph{Proof sketch.}
+Complete direct re-evaluation changes every required member of $D_\delta$.
+Excluded members retain their initial state by the no-refresh assumption, so the
+missed set is exactly $A_\delta\setminus D_\delta$. If all changed predicates
+are scheduled, both algorithms compute the same predicates from the same snapshot;
+the remaining predicates retain equal states.\hfill$\square$
+
+A nontrivial counterexample uses $c_1=$ ``test 1 holds'' and $c_2=$ ``tests 1 and
+2 hold'', with $c_2$ supported by $c_1$ and test 2. Correcting test 1 to false
+requires changing both claims. A direct scheduler reaches only $c_1$, giving
+$\xi_\delta=1/2$. If $c_2$ also directly cites test 1, it is directly scheduled
+and exposure becomes zero. If the answer has another independently sufficient
+route, losing the first route need not change the answer at all. Thus path length
+alone predicts neither a miss nor a withdrawal. The waveform exports and the
+controlled structural experiment test these distinct regimes.

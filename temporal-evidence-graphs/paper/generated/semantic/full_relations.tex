@@ -1,0 +1,16 @@
+\begingroup\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{.20\textwidth}>{\raggedright\arraybackslash}p{.20\textwidth}>{\raggedright\arraybackslash}p{.25\textwidth}>{\raggedright\arraybackslash}p{.25\textwidth}}
+\caption{Complete relation vocabulary. R denotes any Record kind; P an unresolved placeholder. Assessment is not a Record kind.}\label{tab:fullrelations}\\
+\toprule Relation & Domain $\to$ range & Meaning & Creation / status \\\midrule\endfirsthead
+\toprule Relation & Domain $\to$ range & Meaning & Creation / status \\\midrule\endhead
+DEPENDS\_\allowbreak ON & R $\to$ R/P & Dependent to declared input; does not certify necessity & record.\allowbreak{}source\_\allowbreak{}ids; deterministic or model proposal \\[3pt]
+DERIVED\_\allowbreak FROM & feature $\to$ R/P & Feature extraction provenance & feature.\allowbreak{}source\_\allowbreak{}ids; deterministic \\[3pt]
+SUPPORTS & R/P $\to$ claim & Accepted-at-insertion citation/prerequisite mirror & accepted claim.\allowbreak{}source\_\allowbreak{}ids; checked at insertion; not perpetual support \\[3pt]
+FOR\_\allowbreak SUBJECT & R $\to$ subject & Scope membership, not reasoning & with\_\allowbreak{}entities and record\_\allowbreak{}relations; administrative \\[3pt]
+OBSERVED\_\allowbreak BY & observation $\to$ sensor & Recording channel association & observation.\allowbreak{}metadata.\allowbreak{}channel; deterministic \\[3pt]
+SUPERSEDES & R $\to$ R/P & New immutable version to previous ID & supersedes\_\allowbreak{}id; administrative versioning \\[3pt]
+CONTAINS & explanation $\to$ R/P & Display membership & explanation.\allowbreak{}source\_\allowbreak{}ids; administrative \\[3pt]
+REVIEWED\_\allowbreak BY\_\allowbreak EVENT & R/P $\to$ review & Item acted on by review event & review.\allowbreak{}source\_\allowbreak{}ids; administrative \\[3pt]
+CONTRADICTS & R $\to$ R & Revision triggered a contradicted assessment & assess\_\allowbreak{}many(state=\allowbreak{}contradicted); validated outcome; time in assessment \\[3pt]
+ASSESSED\_\allowbreak AS & R $\to$ assessment & Record has a time-indexed support assessment & GraphStore.\allowbreak{}assess\_\allowbreak{}many; validated outcome \\[3pt]
+\bottomrule\end{longtable}\endgroup

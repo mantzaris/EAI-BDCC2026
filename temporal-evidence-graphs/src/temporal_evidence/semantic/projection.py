@@ -18,12 +18,21 @@ def latest(rs):
 
 
 def assessment_sidecar(graph, time):
-    answer={}
+    groups=defaultdict(list)
     for n in graph["nodes"]:
         if n["semantic_type"]!="assessment": continue
         a=n["properties"]
-        if a["known_at"]<=time and (a["id"] not in answer or a["known_at"]>answer[a["id"]]["known_at"]):
-            answer[a["id"]]={**a,"database_element_id":n["id"]}
+        if a["known_at"]<=time:groups[a["id"]].append({**a,"database_element_id":n["id"]})
+    answer={}
+    for rid,rows in groups.items():
+        known_at=max(a["known_at"] for a in rows)
+        tied=sorted((a for a in rows if a["known_at"]==known_at),key=lambda a:(a["trigger_id"],a["database_element_id"]))
+        states={a["state"] for a in tied}
+        if len(states)>1:
+            answer[rid]={"id":rid,"known_at":known_at,"state":"ambiguous_same_time","outcomes":tied,
+                "note":"Trigger order is not encoded by knowledge time; no final state is inferred from element IDs."}
+        else:
+            answer[rid]={**tied[0],"outcomes":tied}
     return answer
 
 

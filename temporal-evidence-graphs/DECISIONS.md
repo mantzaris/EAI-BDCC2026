@@ -215,3 +215,37 @@
 - The completed manuscript uses the official template with 20 main pages and
   three additional reference/appendix pages. Mechanical and visual checks are
   recorded separately from scientific author review and conference submission.
+
+
+## 2026-09-29: representation/theory revision
+
+- Preserve minimum_v1, original interpretations and archived paper/report; create
+  semantic_analysis_v1 and structure_study_v1 instead of changing frozen scores.
+- Define the ontology as researcher-specified, with deterministic provenance,
+  model-proposed claims/links, accepted-at-insertion mirrors and time-indexed
+  assessments. No ontology learning, OWL/SHACL engine or neural-state claim.
+- Use actual retained Neo4j exports with counts/paths verified. A smaller query
+  core is an explicit projection, with sidecars and witness IDs for derived paths.
+- Grounding truth comes from immutable events and task specifications, independent
+  of stored outcomes. Separate source correctness, required coverage and contract
+  compliance; preserve raw and final proposals, admissions and displays.
+- Register 30 reused base episodes crossed with four depths and two source-disjoint
+  support regimes. Keep exact compiler fixtures separate from model proposals.
+  Pilot v2 is a prospectively documented development amendment, not a core retry.
+- Preserve all 325 core GPU calls, 85 repairs and 9,600 original replay cells.
+  Never insert model parent links. Actual admitted roots realize only depths 1–2.
+- The primitive proposition-name admission omission is corrected in a separate
+  4,800-cell CPU replication using identical final candidates and links, with
+  no extra GPU calls. Original extension outcomes remain archived unchanged.
+- Scope participant IDs by dataset for pooled new-analysis uncertainty. Historical
+  projection resolves its explicit knowledge time. These analysis fixes do not
+  alter frozen minimum-v1 code, events or scores.
+- Keep latency and adequate replacement distinct; zero original systems candidates
+  are adequate. Retain detailed costs and original tables in the supplement.
+- Use five vector main figures, seven central equations and two conditional
+  propositions. Build separate main/supplement PDFs in the official template.
+- Preserve all assessments sharing a record/knowledge time. Final provenance
+  review found conflicting states from distinct triggers without an encoded
+  within-time sequence. Correct only the new projection's arbitrary tie summary:
+  expose all outcomes and mark conflicts ambiguous. This changes no frozen
+  support assessment, independent score, display membership or GPU output.

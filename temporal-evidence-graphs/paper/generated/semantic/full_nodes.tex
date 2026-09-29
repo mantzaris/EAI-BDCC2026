@@ -1,0 +1,15 @@
+\begingroup\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{.16\textwidth}>{\raggedright\arraybackslash}p{.26\textwidth}>{\raggedright\arraybackslash}p{.28\textwidth}>{\raggedright\arraybackslash}p{.20\textwidth}}
+\caption{Complete stored node vocabulary. Nodes have a type, not an edge domain/range.}\label{tab:fullnodes}\\
+\toprule Type / label & Meaning & Creation and provenance & Status \\\midrule\endfirsthead
+\toprule Type / label & Meaning & Creation and provenance & Status \\\midrule\endhead
+Subject & Dataset participant identity & with\_\allowbreak{}entities: dataset/\allowbreak{}subject; record scope & administrative \\[3pt]
+Sensor & Session channel identity & with\_\allowbreak{}entities: observation metadata.\allowbreak{}channel; recording channel & administrative \\[3pt]
+Observation & Hashed recording window and sampling coordinates & adapter/\allowbreak{}extractor; recording hash and sample range & deterministic \\[3pt]
+Feature Version & Numerical feature or explicit availability watch & extractor or watch subscription; source\_\allowbreak{}ids, extractor and units & deterministic \\[3pt]
+Claim Version & Generated bounded proposition and declared inputs & displayed\_\allowbreak{}records; accepted flag for checked methods; raw candidate, query, claim fields & proposed/\allowbreak{}checked \\[3pt]
+Explanation Version & Immutable displayed text and member claims & generation or maintenance recomposition; case\_\allowbreak{}id, previous version, withdrawn IDs & administrative \\[3pt]
+Review Event & Recorded reviewer action & isolated dashboard action; action metadata and source\_\allowbreak{}ids & administrative \\[3pt]
+Support Assessment & Support outcome at a knowledge time & GraphStore.\allowbreak{}assess\_\allowbreak{}many; record ID, known\_\allowbreak{}at, trigger\_\allowbreak{}id, state, value & validated outcome \\[3pt]
+Record (no payload) & Unresolved referenced ID, if present & GraphStore MERGE of source endpoint; referencing record & administrative/\allowbreak{}unresolved \\[3pt]
+\bottomrule\end{longtable}\endgroup

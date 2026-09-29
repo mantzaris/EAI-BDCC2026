@@ -9,7 +9,7 @@ def csv_rows(path, rows):
     if not rows: return
     Path(path).parent.mkdir(parents=True,exist_ok=True)
     with open(path,"w",newline="") as f:
-        writer=csv.DictWriter(f,fieldnames=list(rows[0])); writer.writeheader();writer.writerows(rows)
+        writer=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator="\n"); writer.writeheader();writer.writerows(rows)
 
 def cluster_ratio(rows,numerator,denominator,seed=20260929):
     episodes=defaultdict(lambda:[0.,0.]); subjects=defaultdict(list)

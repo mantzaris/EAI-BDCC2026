@@ -1,74 +1,66 @@
-# Temporal Evidence Maintenance for Revisable Monitoring Explanations
+# Semantic Structure and Revision in Temporal Evidence Graphs
 
-Completed minimum study and manuscript draft for [EAI BDCC 2026](https://bdcc-conf.eai-conferences.org/2026/).
-Read the [paper PDF](paper/temporal_evidence_maintenance.pdf),
-[implementation report](REPORT.md), or [measured results](artifacts/analysis/measurements.md).
-The governing prospective protocol is
-[Temporal_Evidence_Graphs_Codex_Research_Plan.md](Temporal_Evidence_Graphs_Codex_Research_Plan.md).
+Research paper package for EAI BDCC 2026. The revised study connects a fixed typed
+ontology, temporal support, graph structure and independent semantic fidelity.
 
-## Research question
+- [Revised main paper](paper/semantic_structure_revision.pdf)
+- [Separate supplement](paper/semantic_structure_supplement.pdf)
+- [Theory/results change summary](THEORY_RESULTS_CHANGES.md)
+- [Exact reproduction commands and artifact map](docs/semantic_reproduction.md)
+- [Ontology and construction rules](docs/ontology_construction.md)
+- [Protocol and amendments](docs/semantic_analysis_protocol.md)
 
-> When an observation is corrected, becomes outdated, or fails a quality check,
-> can a temporal evidence graph identify and repair the generated explanations
-> that depend on it, while preserving useful answers and keeping latency low?
+The original minimum_v1 inputs, runtime, scores and interpretations remain
+unchanged. Its [original paper and report](paper/archive/minimum_v1/) are archived.
+New analysis uses semantic_analysis_v1; the focused GPU study uses
+structure_study_v1, with a separate primitive-name admission replication.
 
-The study uses graph databases to represent temporal evidence and dependencies
-between observations and generated explanations. It includes Neo4j Community and a strong indexed relational control,
-with synthetic physiology, WESAD, and PPG-DaLiA. Five conditions distinguish fresh
-generation, direct checking, and transitive maintenance.
+## Measured findings
 
-## Project status
+Only 18 of 1,201 original M1 displayed claims declare parents, and none of the
+210 eligible waveform revision batches has transitive exposure. Checked displays
+are fully grounded under the new bounded proposition protocol, with subject-mean
+required recall of 75.5–78.25%. The 240-case extension used 325 GPU calls and
+9,600 matched replay cells. Full maintenance misses no required changes; direct
+maintenance misses 720/1,260 in exact programs and 183/1,210 in admitted generated
+programs. Exposure predicts every eligible primary miss set. The separate
+admission replication preserves all candidates and links and is reported independently.
 
-RunPod gateway and direct SSH access verified on 28 September 2026. See
-[connection instructions and environment observations](docs/runpod.md).
-The frozen study accounts for all 3,600 initial cases, 1,620 repairs, six systems
-cells, and a 60-explanation automated audit. [STATUS.md](STATUS.md)
-records completed gates and commands; [DECISIONS.md](DECISIONS.md)
-records protocol choices. All development pilots and failures are retained.
+The original systems workload still has no adequate replacement among 236
+candidates. Candidate completion is not successful correction. See the generated
+summary for uncertainty, exclusions and the full outcome crosswalk.
 
-Direct checking matches full propagation on the generated waveform task. Error
-rates measure a strict query contract that also rejects correctly labelled
-background facts. Useful coverage is limited, and no complete replacement is
-produced in the systems workload. The paper preserves these negative findings.
+## Rebuild and verify
 
-This directory contains the new paper's work within the shared repository. The
-previous paper is in [`../congestion-onset-graphs/`](../congestion-onset-graphs/README.md).
-
-## Local review and verification
-
-The dashboard and exact analyses do not require a GPU or raw recordings:
+From this directory, using the existing environment:
 
 ```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements-dashboard.lock
 PYTHONPATH=src .venv/bin/python -m pytest -q
+PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.analyze
+PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.structural_analysis
+PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.alias_analysis
+PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.publication
+MPLCONFIGDIR=.local/matplotlib PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.figures
+bash paper/build.sh
+PYTHONPATH=src .venv/bin/python scripts/check_semantic_manuscripts.py
+```
+
+The new checker validates the revised format; the older check_manuscript.py
+belongs to the archived manuscript. Analysis uses saved answers and exports,
+without repeating original GPU calls. [STATUS.md](STATUS.md) records completion;
+[DECISIONS.md](DECISIONS.md) records choices. No conference submission is performed.
+
+## Dashboard and original experiment
+
+The original reversible review dashboard remains available:
+
+```sh
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.cli dashboard
 ```
 
-Open <http://127.0.0.1:8501>. See [dashboard instructions](docs/dashboard.md) for
-correction, rejection, alternative-support and history examples. Review actions
-are isolated from experimental artifacts. No human-performance result is claimed.
-
-## Recompute the completed results
-
-These commands regenerate exact case
-scores, paired subject-level analysis, scientific figures and manuscript numbers:
-
-```sh
-PYTHONPATH=src .venv/bin/python -m temporal_evidence.cli evaluate --run-id minimum_v1
-MPLCONFIGDIR=.local/matplotlib PYTHONPATH=src .venv/bin/python -m temporal_evidence.cli analyze --run-id minimum_v1
-PYTHONPATH=src .venv/bin/python -m temporal_evidence.analysis.publication
-PYTHONPATH=src .venv/bin/python -m temporal_evidence.analysis.measurements
-bash paper/build.sh
-PYTHONPATH=src .venv/bin/python scripts/check_manuscript.py
-```
-
-The publication builder requires every planned case, all six systems cells,
-the 60-explanation audit, and matching frozen hashes. It refuses partial results.
-The compiled PDF is `paper/temporal_evidence_maintenance.pdf` (20 main pages, 23 total).
-Building it requires `latexmk`, pdfLaTeX with the standard LaTeX packages, and
-Poppler's `pdfinfo`, `pdffonts`, and `pdftotext` for validation. Conference requirements and
-the official template provenance are in [docs/conference.md](docs/conference.md).
+See [dashboard instructions](docs/dashboard.md), [RunPod connection instructions](docs/runpod.md)
+and the preserved [research plan](Temporal_Evidence_Graphs_Codex_Research_Plan.md).
+The previous unrelated paper is in ../congestion-onset-graphs/.
 
 ## GPU reproduction
 

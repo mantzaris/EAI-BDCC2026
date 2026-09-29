@@ -1,264 +1,190 @@
 \section{Results}
 \label{sec:results}
 
-\subsection{Accounting and Fresh-Answer Reliability}
+\subsection{Storage Structure and Semantic Structure Differ}
 
-The locked run accounts for all \TotalInitial{} planned initial cases, with
-\TotalRepairs{} bounded repairs and \TotalRequests{} total request attempts.
-There are \TotalFailed{} failed final cases and \TotalInitialErrors{} initial
-request/format failures, including \TotalTruncated{} truncated outputs. The
-journals record \ClientTimeouts{} client timeout attempts across initial and
-repair phases. The matched experiment takes \MainHours{} hours on the
-recorded hardware. Failed, empty, and partially answered cases remain in their
-fixed denominators. Table~\ref{tab:reliability} reports case error together with
-claim error, required-fact recall, and useful coverage for each source and method.
-Each source/method cell contains 240 query checkpoints. The three failed requests
-are transport ReadErrors in B0, one per source; they were retained without retries.
+The read-only export covers \SemExportScopes{} retained Neo4j scopes; counts
+match the original ledger and \SemVerifiedPaths{} representative stored paths
+are verified. M1 alone stores \SemStorageNodes{} nodes and \SemStorageEdges{}
+relations across its replay scopes. These are storage totals, not independent
+observations. Membership and extraction rules contribute much of the edge mass
+(Figure~\ref{fig:topology}a). Neither those edges nor the accepted-citation mirror
+demonstrate additional reasoning depth.
 
-\begin{table}[t]
-\caption{Fresh displayed answers by source. All rates are percentages. Recall
-counts answerable required slots; coverage requires all such slots. An empty
-answer contributes no checkable claims and reduces coverage. Errors are violations
-of the bounded query contract, including interval scope.}
-\label{tab:reliability}
-\centering\small\setlength{\tabcolsep}{3.2pt}
-\input{generated/reliability_table}
-\end{table}
+The query core averages \SemCoreSizeMin--\SemCoreSizeMax{} nodes across sources,
+or \SemCoreRatioMin--\SemCoreRatioMax\% of visible storage. This reduction follows
+the fixed selection of answer propositions and declared inputs; the active graph
+also includes other visible evidence. Observation witnesses remain recoverable
+through sidecars. The Supplement compares all three representations with
+subject-level uncertainty.
 
-\input{generated/reliability_findings}
-
-The distinction between contract compliance and factual correctness materially
-affects these results. A post-hoc descriptive check finds that
-\OffTargetSupportedClaims{} of B0's \BaselineInvalidClaims{} invalid claims are
-direct numerical background statements that pass the same exact checks at their
-own stated interval. For example, a correctly labelled preceding-window EDA
-median violates the target-interval rule. A comparison declaring that statement
-as a parent can consequently fail the dependency check despite correct arithmetic.
-Table~\ref{tab:contractscope} gives source-wise counts. The frozen primary scores
-are unchanged; their error reductions must not be read as equivalent reductions
-in hallucinations, and their recall also depends on this contract.
-
-These comparisons describe the final displayed content after the common bounded
-repair policy. A low error rate cannot alone establish useful answering: removing
-an unsupported sentence can lower error while leaving a required value absent.
-Figure~\ref{fig:reliability} places error and recall on the same source-wise
-comparison. Table~\ref{tab:failures} exposes abstention, reference validity,
-repairs, and failures. Error-component counts and answerability-stratified partial
-answer/abstention counts are available in the reproducible analysis tables.
-
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=\textwidth]{minimum_v1_reliability.pdf}
-\caption{Query-contract case violations (top) and required-fact recall (bottom) for the three
-waveform sources. The five bars within each panel use the same evidence and
-generation settings. Lower error is desirable only alongside retained recall.
-These are aggregate proportions; paired subject-cluster intervals are reported
-for the prospective contrasts in Table~\ref{tab:contrasts}.}
-\label{fig:reliability}
+\includegraphics[width=\textwidth]{semantic_analysis_v1/actual_revision_graphs.pdf}
+\caption{Actual Neo4j query cores, expanded with their observation witnesses.
+Median-size eligible correction cores are selected deterministically from WESAD
+S11 and PPG-DaLiA S14; fixed positions preserve comparison before/after revision.
+O denotes observation windows, F feature, and C claim. The target feature
+changes while the preceding-window feature survives. Both old numerical claims
+are withdrawn. Solid arrows are stored relations; dotted orange arrows summarize
+current-version paths with exported witness IDs. The declared C2-to-C1 prerequisite
+is redundant for scheduling because C2 also cites both operands. These selected
+cores contain a parent link; the full population is overwhelmingly parentless.}
+\label{fig:instances}
 \end{figure}
 
-\subsection{Required Changes and Retained Content}
-
-The exact symbolic fixtures isolate maintenance from generation. They contain
-two claims requiring change after a correction or invalidation, an independently
-supported OR claim, and an unaffected baseline claim. Benign and irrelevant
-updates test stability. Table~\ref{tab:fixture} aggregates these four constructed
-interventions. Full graph and full relational maintenance identify both direct
-and downstream required changes and retain alternative support. Direct-only
-maintenance identifies the direct change while leaving the downstream old claim
-active. Restoration is also checked by replaying a third version. These are
-deterministic correctness cases, not independent participant observations, and
-no sampling interval is attached to them.
-
-\begin{table}[t]
-\caption{Common symbolic fixture. Required changes occur in correction and
-invalidation modes; benign and irrelevant modes contribute unaffected claims.
-The identical candidate structure is replayed into every method.}
-\label{tab:fixture}
-\centering\small
-\input{generated/fixture_table}
-\end{table}
-
-Generated persistent displays have a different denominator: the method must
-first produce a valid claim that later requires change. Table~\ref{tab:correction}
-therefore reports the actual corrected/required and collateral/unaffected counts,
-as well as residual incorrect active content. Figure~\ref{fig:correction} displays
-the corresponding proportions. These are claim-checkpoint opportunities, and
-their number can differ across methods because initial answers differ. Initially
-incorrect content is tracked separately rather than credited as correctable
-content that the method once supported validly.
-
-All four checked methods correct every eligible generated claim and have no
-collateral withdrawals in this run. Thus, the waveform task supplies no measured
-correction advantage for transitive propagation over direct checking. B0 retains
-every eligible outdated claim. The symbolic and generated results answer different
-questions and should not be pooled.
-
-\begin{table}[t]
-\caption{Persistent generated displays. Completeness is conditional on an initially
-valid claim requiring change. Residual counts those still active; collateral
-counts withdrawal of content still valid. Undefined rates are shown as dashes.}
-\label{tab:correction}
-\centering\small\setlength{\tabcolsep}{3pt}
-\input{generated/correction_table}
-\end{table}
-
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=\textwidth]{minimum_v1_correction.pdf}
-\caption{Persistent-display correction completeness (top) and collateral withdrawal
-(bottom). Denominators appear in Table~\ref{tab:correction}. A zero collateral
-proportion has a different interpretation from an undefined correction rate;
-undefined bars are labeled n/a. These are replay outcomes, not open-loop
-arrival-to-replacement measurements.}
-\label{fig:correction}
+\includegraphics[width=\textwidth]{semantic_analysis_v1/semantic_topology.pdf}
+\caption{Structure across synthetic, WESAD and PPG-DaLiA M1 runs.
+(a) Full stored relation composition; (b) core dependency mixing (C claim,
+F feature, O observation), retaining the
+zero feature-to-observation category omitted by the core rule; (c) proposed and
+displayed zero-parent mass with subject uncertainty; (d) active dependency
+in-degree CCDF, excluding mirrors; (e) claim-parent depth, where zero means no
+claim parent; (f) admissible direct-evidence witness count. Distribution panels
+describe pooled snapshots, while inference uses episodes and subjects.}
+\label{fig:topology}
 \end{figure}
 
-M1 emits \GraphTotalClaims{} displayed claims, of which \GraphParentClaims{}
-declare parent claims. The bounded numerical contract also requires direct
-evidence references. This structure constrains the opportunity for transitive
-maintenance to add value over direct checking in the waveform task. The common
-fixture demonstrates a deliberately necessary transitive path; its result should
-not be substituted for an empirical advantage across unrestricted generated
-reasoning chains. No generated persistent claim has a declared parent dependency
-as its sole later exact-check error in this run.
+Only \SemParentClaims{} of \SemDisplayedClaims{} displayed M1 claims declare a
+parent: \SemParentlessPercent\% are parentless. Claim-parent depth never exceeds
+one in the displayed waveform cores. Figure~\ref{fig:instances} illustrates why
+even that parent edge need not create transitive exposure: the comparison cites
+the revised target feature directly. Across \SemRevisionBatches{} revision
+batches, \SemEligibleBatches{} require a withdrawal and \SemNonzeroExposure{}
+have nonzero exposure; the locality audit finds \SemLocalityViolations{} violations.
+This structure explains the completed direct/full equivalence without attributing
+it to an absence of stored paths or to a particular database engine.
 
-\subsection{Paired Contrasts}
+\subsection{Grounded Content and Useful Coverage}
 
-Table~\ref{tab:contrasts} reports the two prospective principal comparisons by
-source. Differences are M1 minus the control in percentage points, computed
-within subjects. Negative case-error differences favor M1; positive recall and
-correction differences favor M1. The table keeps these outcomes separate so
-error reductions cannot hide lost information. Conditional correction contrasts
-disclose their eligible subject and episode counts. Pointwise bootstrap intervals quantify
-participant-level variability within this fixed generation run; they do not
-measure variability across model seeds or remove shared measurement error.
-The zero differences and zero-width intervals for the principal correction and
-case-error contrasts arise because all observed paired subject differences are
-identical. They do not establish universal equivalence or a zero error probability.
-
-\begin{table}[t]
-\caption{Principal paired differences with 2,000 subject-cluster resamples.
-The M1--B1 reliability contrast is interpreted jointly for error and recall.
-N (S/E) gives retained subjects/episodes.
-Intervals are pointwise 95\%; no hypothesis-test $p$-values are reported.}
-\label{tab:contrasts}
-\centering\small\setlength{\tabcolsep}{3pt}
-\input{generated/contrasts_table}
+\begin{table}[!htbp]
+\caption{Independent semantic scores in percent (subject means and 95\% intervals).
+Each row contains 240 answer instances from 20 episodes. Matched counts unique
+requirements within each answer; denominators count answerable requirements.
+Empty displays have zero recall on answerable questions and undefined precision.
+The original contract scores remain unchanged in the Supplement.}
+\label{tab:fidelity}
+\centering\scriptsize\setlength{\tabcolsep}{3pt}
+\input{generated/semantic/fidelity_table}
 \end{table}
 
-All checked conditions use the same fresh-answer checks and repair policy on
-matched evidence. Small M1--B1 differences therefore do not isolate an additional
-fresh-answer mechanism; persistent displays supply the maintenance comparison.
-The M1--B3 differences in Table~\ref{tab:relational} compare generated outcomes
-under equivalent support semantics. Fresh outputs can still differ under the
-same requested seed because scheduling and batching are not bitwise identical.
-The deterministic fixtures and systems assessment hashes supply the separate
-test of logical equivalence. Differences in generated answers must not be
-attributed to graph storage alone.
-
-\subsection{Open-Loop Latency and Resource Use}
-
-All six systems cells complete, and graph/relational logical assessment hashes
-agree for every offered rate. Table~\ref{tab:streaming} reports flag latency,
-time until candidate completion, deadline misses, and peak queues from arrival.
-Figure~\ref{fig:streaming} displays the load dependence. The M1 implementation
-misses \GraphFlagMisses{} of \SystemsRepairTargets{} flag targets and
-\GraphRepairMisses{} of \SystemsRepairTargets{} adequate-replacement targets.
-Replacement failure includes inadequate content as well as lateness. Fast
-withdrawal therefore does not imply a useful replacement within five seconds.
-All \SystemsExplanations{} systems displays contain a single target observation
-and omit the required difference, even after the bounded repair attempt.
-Successful-replacement latency is therefore undefined; the reported candidate
-latency measures when these incomplete attempts finish.
-
-At one and five events/s, both backends meet every flag deadline, and the
-relational implementation has lower p95 flag latency. At 20 events/s both
-accumulate event and answer queues and miss flag deadlines. M1 has lower p95
-flag and candidate latency at that rate, but more flag misses. This reversal
-across summaries cautions against a single storage-engine ranking.
-
-\begin{table}[t]
-\caption{Open-loop systems results. Each cell offers events for 60 seconds and
-then drains. Q columns are peak queued events and pending explanations. Flag
-and repair columns show misses/opportunities for one- and five-second targets.
-Candidate latency includes inadequate outputs; no complete replacement is observed.}
-\label{tab:streaming}
-\centering\small\setlength{\tabcolsep}{2.4pt}
-\input{generated/streaming_table}
-\end{table}
-
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=\textwidth]{streaming.pdf}
-\caption{Offered load versus p95 flag and candidate-completion latency and peak
-queues for M1 and B3. Dotted lines mark the one-second flag and five-second
-replacement targets. The flag axis is logarithmic. The independent producer
-continues scheduling events while requests wait or generate; measurements
-include the resulting backlog.}
-\label{fig:streaming}
+\includegraphics[width=\textwidth]{semantic_analysis_v1/semantic_fidelity.pdf}
+\caption{Independent grounding precision and required recall, with subject-cluster
+95\% intervals. Top: raw M1 proposals, final proposals after optional repair,
+and displayed claims; accepted and displayed fresh claims coincide.
+Bottom: the same prior answers before arrival, immediately after arrival, and
+after maintenance. Points are discrete observed checkpoints across all four
+variants, not latency trajectories. Each top panel has 240 answers; each bottom
+panel has 160 prior-answer transitions. Table~\ref{tab:fidelity} and Supplement
+tables retain claim and requirement denominators.}
+\label{fig:fidelity}
 \end{figure}
 
-The frozen adequacy check uses the request snapshot. A descriptive check also
-remaps evidence to the latest ingested versions at completion
-(Table~\ref{tab:staleness}), preserving the original scores. With no adequate
-input-snapshot answers, zero answers ``became stale''; this is uninformative about
-preserving useful replacements. Rechecking before publication and coalescing
-obsolete requests remain unevaluated scheduling policies.
+The checked displays are fully grounded under the bounded numerical protocol,
+but they do not recover all useful information. Raw M1 required recall is
+\SemSyntheticRawR\%, \SemWesadRawR\% and \SemPpgRawR\% for synthetic, WESAD and
+PPG-DaLiA respectively; displayed recall falls to \SemSyntheticDisplayR\%,
+\SemWesadDisplayR\% and \SemPpgDisplayR\% (Table~\ref{tab:fidelity}).
+The precision gain therefore includes rejection of correct useful propositions,
+not merely successful repair. Figure~\ref{fig:fidelity} separates that fresh-answer
+tradeoff from maintenance: re-evaluation restores grounding of retained content
+by withdrawing stale assertions, while required coverage can remain unresolved.
 
-The experiment uses one RTX 5090; Table~\ref{tab:hardware} gives hardware and model
-details. The development workload with one concurrent request has median and p95 generation
-latencies of \PilotInteractivePFifty{} and \PilotInteractivePNinetyFive{} seconds, including
-bounded repairs. The separate batched pilot completes \PilotBatchRate{} initial
-cases per second, including repair and database cost. These are different workloads;
-batch throughput does not establish low interactive latency.
-The primary worker verifies all parameters and first-forward tensors on CUDA,
-with no CPU weight offload. The systems track makes \SystemsCalls{} requests,
-within its separate 472-request ceiling. Table~\ref{tab:cost} includes retained
-development failures, final experiments, and the verifier. Stage wall times
-include host work and idle gaps and are not CUDA kernel times. One-second
-telemetry measures observed VRAM and utilization; cgroup memory includes file
-cache and other processes in the pod. Database node, edge, chain-length and
-physical-size accounting is included in the artifact report. Physical Neo4j
-storage also contains development scopes, so its size is not presented as an
-equal-content compression comparison. No hourly account price was available;
-we report time and tokens without an invented monetary cost.
+The contract crosswalk sharpens this interpretation. Of \SemContractInvalid{}
+B0 claims invalid under the frozen contract, \SemInvalidGrounded{} are grounded
+under the new proposition protocol; \SemBackground{} are correctly time-labelled
+background observations. Other disagreements include dependency/citation
+admission restrictions despite correct bounded numerical content. No claim
+passing the old contract becomes numerically ungrounded in this crosswalk.
+This does not turn an inaccurate target attribution into a correct background
+fact: matching uses the asserted interval and independently resolved version.
 
-\begin{table}[t]
-\caption{Measured request and token accounting. Pilot rows include their separate
-interactive workload. Systems pilot v1 includes requests from its failed scoring
-smoke test. ``No usage'' counts attempts without returned token counts: their
-server-side cost is unknown, not zero. Token sums include available usage only.
-Wall time excludes package/model downloads and manuscript work.}
-\label{tab:cost}
-\centering\small\setlength{\tabcolsep}{2.8pt}
-\input{generated/cost_table}
+Source-window and known-version competency queries agree with the independent
+log oracle for every queried feature witness. The comparison
+operand query also passes on every eligible displayed comparison. These results
+test recoverability of admissible witnesses, rather than equality to a unique
+gold reasoning graph. The separate prose audit and original auxiliary-verifier
+disagreements remain available; bounded proposition scores do not certify
+unrestricted interpretation.
+
+\subsection{Structural Variation Tests the Maintenance Condition}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{semantic_analysis_v1/structural_theory_test.pdf}
+\caption{Controlled structural study. Top: observed full-minus-direct correction
+fraction against independently computed exposure, separately for exact compiled
+programs and GPU-generated admitted programs. Points aggregate equal exposure,
+support regime and realized depth; size reflects batch count. Bottom left:
+requested versus realized evidence-to-answer depth, including missing roots.
+Bottom right: retention after primary-route loss, conditional on an initially
+admitted root (n = exact/generated). Alternative witnesses come from disjoint recording windows.
+This figure reports the original extension admission; the separate primitive-name
+normalization replication is in the Supplement.}
+\label{fig:structure}
+\end{figure}
+
+\begin{table}[!htbp]
+\caption{Common-candidate structural replay. Counts aggregate four update conditions
+per case, separately for exact and generated programs. A required change is
+independently determined before scheduling. Correction intervals average episodes
+within dataset-scoped subjects. B1 matches B2 and B3 matches M1 in every cell.
+Missing generated roots are included in the depth/coverage analysis, not invented
+as initially displayed claims.}
+\label{tab:structural}
+\centering\small\setlength{\tabcolsep}{4pt}
+\input{generated/semantic/structural_table}
 \end{table}
 
-\subsection{Automated Fidelity Audit and Review Demonstration}
+The extension completes \SemCoreCases{} common candidates with \SemCoreCalls{}
+GPU calls, including \SemCoreRepairs{} repairs, in \SemCoreMinutes{} minutes.
+Its \SemReplayCells{} method/update replays include exact and generated structures.
+Neo4j and the relational control agree in all \SemParityGroups{} matched
+origin/update groups. Direct maintenance misses \SemFixtureMissed{} of
+\SemFixtureRequired{} required changes in exact programs and
+\SemGeneratedMissed{} of \SemGeneratedRequired{} in admitted generated programs;
+full maintenance misses none and causes no collateral withdrawal.
+The predicted missed set agrees in all \SemPredictionAgreement{} of
+\SemPredictionGroups{} eligible groups (Figure~\ref{fig:structure}).
 
-The separate verifier parses \AuditParsed{} of 60 sampled nonempty final
-explanations, flags \AuditFlagged{}, and disagrees with the exact claim checks
-on \AuditDisagreements{}. It gives the expected result on \AuditCalibration{}
-of four diagnostic examples. These counts describe an auxiliary automated audit,
-not a validated estimate of semantic accuracy. Selection is stratified across
-methods and sources and conditional on a nonempty checkpoint-2 display. Empty
-outputs are already represented in coverage and abstention metrics. Raw audit
-prompts and responses permit inspection of both flags and apparent false alarms.
-The verifier accepts \AuditAcceptedInvalid{} exact-invalid outputs, including
-incorrect differences and absent citations as well as interval-contract violations.
-It flags \AuditFlaggedValid{} exact-valid outputs; its rationales include treating
-a null measurement as present and rejecting rounding within the stated tolerance.
-These visible failures limit its value as a semantic check despite passing the
-four simple diagnostics.
+Realized structure differs from the requested structure. Admitted generated
+answers have depth one in \SemRootOne{} cases and depth two in \SemRootTwo{};
+\SemMissingRoots{} cases have no admitted answer root. None reaches depth three
+or four. The model commonly groups tests into route claims followed by an answer,
+without expressing the requested longer chain. Exact programs consequently
+test the deeper counterexamples, while generated programs test the dependencies
+the model actually expressed. Under primary-route loss, all
+\SemFixtureAlternative{} exact and \SemGeneratedAlternative{} generated
+two-route answers with admitted roots retain support; single-route roots do not.
+Necessary intermediate dependencies and surviving alternatives, rather than path
+length alone, determine maintenance behavior. In \SemSameSize{} paired cases,
+programs with the same evidence and baseline record count have different exposure,
+showing why total storage size is insufficient.
 
-The local review dashboard demonstrates the maintenance operations in an isolated
-workspace. An issue queue prioritizes explicit evidence problems and downstream
-claim count; a selected claim exposes its local graph, source feature values,
-time windows, and versions. Reviewers can reject evidence, accept a proposed
-numerical correction, or mark an interpretation unresolved. Actions append
-ReviewEvents and explanation versions and show before/after text. Scripted
-examples demonstrate dependent-statement withdrawal, retained OR support, and
-a mistaken rejection that removes valid content. These examples establish
-functionality and an observable limitation of review actions; no human performance
-or review-speed outcome was measured.
+An admission-table omission was discovered after the core completed: primitive
+test names were defined in the input but unavailable as claim proposition names.
+It generated \SemUnknownPrimitive{} unknown-proposition rejection reasons.
+A separate corrected replication normalizes those names to their supplied
+comparators without changing candidates, witnesses or links. It admits
+\SemAliasRoots{} roots and repeats \SemAliasCells{} CPU database cells:
+direct maintenance misses \SemAliasMissed{} of \SemAliasRequired{} required
+changes, while full maintenance again misses none. The original extension
+scores above remain frozen. Independent truth-table scoring distinguishes
+initially true statements from sound, complete witness families, so the admission
+correction is not treated as new model reasoning.
+
+\subsection{Operational Cost and Adequate Replacement}
+
+The original systems workload produces \SystemsAdequate{} adequate replacements
+among \SystemsExplanations{} completed candidates. All omit the required
+preceding-window difference. Their successful-replacement times therefore remain
+unresolved through observation. At the highest offered rate, both databases accumulate
+backlog and delayed flags. The extension isolates maintenance of a common answer;
+it adds no post-correction generation and hence establishes selective withdrawal
+and preservation, not automatic completion of a new adequate answer. Structural
+replay timings include diagnostic traversal and whole-program evaluation; the
+Supplement retains them as instrumented costs, separately from production latency.

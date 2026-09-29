@@ -1,16 +1,19 @@
 # Study status
 
-## Semantic revision — in progress (20%)
+## Semantic revision — complete (100%)
 
-The requested representation/theory revision is separate from the completed
-minimum study below. Actual Neo4j exports, ontology documentation, a semantic
-projection, independent scoring and a deterministic 240-case structural selection
-are implemented. Nine focused semantic/structural tests and all 56 tests pass.
-Original runtime/input hashes remain unchanged. Extension GPU inference,
-aggregate analysis, figures, manuscript/supplement and PDF checks remain pending.
+Ontology construction, independent semantic scoring, 480 original database exports,
+240 structural GPU cases, 9,600 primary replay cells and the separate 4,800-cell
+admission replication are complete. The revised main manuscript has 16 main pages plus 1 reference page;
+the separate supplement has 13 pages. PDF, figure and frozen-input
+checks pass across 528 actual database export scopes. All 61 tests pass. Original minimum-v1 hashes and scores remain unchanged.
 
-See the [new protocol](docs/semantic_analysis_protocol.md) and
-[original paper/report archive](paper/archive/minimum_v1/).
+Read the [generated change summary](THEORY_RESULTS_CHANGES.md),
+[reproduction commands](docs/semantic_reproduction.md),
+[main PDF](paper/semantic_structure_revision.pdf), and
+[supplement PDF](paper/semantic_structure_supplement.pdf).
+No new paid resource was created. GPU inference has finished; the existing pod
+and its Neo4j scopes are retained. Changes are committed and pushed directly to main.
 
 ## Preserved minimum study
 
@@ -31,7 +34,7 @@ was requested or attempted.
 | 6 Analysis and interface | Paired subject analysis, resource/database accounting, 60-output CUDA audit, working isolated review dashboard and scripted examples |
 | 7 Manuscript package | Report, five figures, fourteen tables, anonymized PDF: 20 main pages and 23 total; mechanical and visual checks complete |
 
-Read [REPORT.md](REPORT.md), the [paper PDF](paper/temporal_evidence_maintenance.pdf),
+Read [REPORT.md](REPORT.md), the [paper PDF](paper/archive/minimum_v1/temporal_evidence_maintenance.pdf),
 or the [numerical ledger](artifacts/analysis/measurements.md).
 All work is committed directly to `main`, without branches, as instructed.
 
@@ -49,16 +52,11 @@ background facts outside the required interval; useful coverage is limited.
 All 236 systems answers omit a required difference, so no complete replacement
 is observed. These limitations and the verifier's mistakes are retained in the paper.
 
-To regenerate the results and PDF locally, without GPU inference:
-
-```sh
-PYTHONPATH=src .venv/bin/python -m temporal_evidence.cli evaluate --run-id minimum_v1
-MPLCONFIGDIR=.local/matplotlib PYTHONPATH=src .venv/bin/python -m temporal_evidence.cli analyze --run-id minimum_v1
-PYTHONPATH=src .venv/bin/python -m temporal_evidence.analysis.publication
-PYTHONPATH=src .venv/bin/python -m temporal_evidence.analysis.measurements
-bash paper/build.sh
-PYTHONPATH=src .venv/bin/python scripts/check_manuscript.py
-```
+The original analysis outputs and manuscript are retained in the archive.
+Use the [semantic revision reproduction commands](docs/semantic_reproduction.md)
+to rebuild the current analyses and both PDFs without inference or changes to
+the frozen minimum-study scores. The old manuscript checker applies to the
+archived format; the revision has its own checker.
 
 The existing `minimum_v1` run needs no inference resumption. The README describes
 an isolated future replication namespace and its explicit additional call budget.

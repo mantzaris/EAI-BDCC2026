@@ -131,3 +131,17 @@ normalization, the same final candidates and unchanged witness/parent tokens.
 It makes no new GPU calls and does not alter either original results namespace.
 Raw realized topology is retained, including undefined depths for malformed
 references. The corrected replication is reported separately from the core.
+
+## Development amendment and final analysis conventions
+
+The original registered text is preserved as artifacts/runs/structure_study_v1/protocol_initial.md. The prospective pilot_amendment.json (08:44:57 UTC) adds pilot v2 before core outcomes, retaining both pilots (21 + 19 calls). The source freeze and request journal preserve the clarified core prompt.
+
+Post-core analysis scopes participant identifiers by dataset when pooling sources; shared labels such as S2 do not identify one person across WESAD and PPG-DaLiA. This changes only new pooled uncertainty, not original results. The projection now explicitly honors historical proposition knowledge times; original generated waveform claims remain current-at-query-time.
+
+Final provenance review found multiple trigger assessments sharing a record and
+knowledge timestamp, sometimes with different states. The original graph lacks
+a within-time assessment sequence. The new projection therefore preserves all
+tied outcomes and marks conflicts ambiguous instead of selecting an arbitrary
+first record. Original assessments remain unchanged. All semantic scores already
+use independent event-log truth and saved display membership, so their results
+are unaffected. The audit is exported separately and covered by a focused test.

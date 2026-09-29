@@ -173,3 +173,14 @@ def test_historical_projection_retains_earlier_evidence_after_correction():
     projected=core(graph,case,t+30+.01,include_withdrawn=True)
     assert all(e["directly_stored"] for e in projected["edges"])
     assert all(e["resolved_knowledge_time"]==t for e in projected["edges"])
+
+
+def test_same_time_assessments_keep_conflicting_outcomes_without_inventing_order():
+    from temporal_evidence.semantic.projection import assessment_sidecar
+    graph={"nodes":[{"id":str(i),"semantic_type":"assessment","properties":{"id":"c","known_at":time,
+        "trigger_id":trigger,"state":state}} for i,(time,trigger,state) in enumerate([
+            (10,"a","supported"),(10,"b","contradicted"),(20,"c","supported")])]}
+    earlier=assessment_sidecar(graph,10)["c"]
+    assert earlier["state"]=="ambiguous_same_time" and len(earlier["outcomes"])==2
+    assert {a["state"] for a in earlier["outcomes"]}=={"supported","contradicted"}
+    assert assessment_sidecar(graph,20)["c"]["state"]=="supported"

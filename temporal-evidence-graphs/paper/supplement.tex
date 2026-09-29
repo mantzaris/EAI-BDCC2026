@@ -1,0 +1,245 @@
+\documentclass[runningheads]{llncs}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,graphicx,tabularx,array,longtable}
+\usepackage[hidelinks]{hyperref}
+\graphicspath{{../artifacts/figures/}}
+\input{generated/macros}
+\input{generated/semantic/macros}
+\newcommand{\method}{M1}
+\newcommand{\suppTable}[3]{\begin{table}[!ht]\caption{#2}\label{#3}\centering\scriptsize
+\setlength{\tabcolsep}{3pt}\input{#1}\end{table}}
+\begin{document}
+\title{Supplement: Semantic Structure and Revision in Temporal Evidence Graphs for Generative Monitoring}
+\titlerunning{Temporal Evidence Graphs: Supplement}
+\author{Anonymous Authors}\authorrunning{Anonymous Authors}
+\institute{Anonymous Institution}\maketitle
+\setcounter{section}{0}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+\section{Construction and Projection}
+\input{generated/semantic/full_nodes}
+\input{generated/semantic/full_relations}
+
+The node table covers all seven Record kinds plus adapter-created assessments and
+unresolved reference placeholders. The latter are possible through source-endpoint
+MERGE operations but have zero observed count in the exported original scopes.
+Domains describe adapter behavior, not a narrower schema that the database does
+not enforce. In particular, source IDs produce broad Record-to-Record relations;
+admission checks supply the numerical and task restrictions. Identity constraints
+enforce scope/ID uniqueness. Acyclicity and immutable-record checks are implemented
+in Python; neither OWL entailment nor SHACL validation is claimed.
+
+The conceptual PROV-DM mapping treats observation and feature versions as entities,
+feature extraction and generation as activities recorded in metadata, and
+source/version links as derivation and revision information. The actual database
+does not materialize a complete PROV activity vocabulary. A SupportAssessment is
+an outcome keyed by scope, record ID, knowledge time and trigger ID. The SQLite
+control stores equivalent assessment rows without Neo4j's extra assessment nodes.
+CONTRADICTS has no edge timestamp, so its associated assessment supplies time.
+Raw rejected proposals are archived separately from persisted ClaimVersions.
+
+An audit finds \SemAssessmentTies{} record/time groups with multiple assessments,
+including \SemAssessmentConflicts{} with different states across the original
+exported scopes. Sequential triggers can share an ingestion timestamp without
+an explicit within-time sequence field. The semantic projection preserves every
+tied outcome and marks conflicting summaries ambiguous, rather than treating
+database element order as chronology. Independent proposition scores and display
+membership use the event log and saved explanation versions, so this audit
+changes neither the original outcomes nor the new grounding/recall results.
+
+The stored graph contains immutable versions, explanation containers, subject and
+sensor identities, review events and assessments. The active evidence-and-claim
+graph selects latest visible logical feature/observation versions, current
+explanation members and their claim ancestors. Original observations required
+by visible feature provenance are also retained. The query core starts from a
+specified explanation, closes over declared claim parents, and retains cited
+features resolved according to the query's temporal mode. Identity, container
+and assessment objects become sidecars. Observation provenance is a separate
+expansion. Claims' asserted intervals come from their proposition metadata,
+not from the query-interval wrapper used by the runtime.
+
+A citation remapped from an old immutable feature to its current logical version
+is exported as CURRENT\_CITATION\_PATH with the original citation and version-path
+witness IDs. It is never relabelled a directly stored Neo4j relationship.
+Degree/depth calculations exclude SUPPORTS mirrors and count each dependency
+edge once. Full storage counts immutable objects; core statistics count visible
+propositions/versions per snapshot. Snapshots and replay copies remain clustered
+within their source episode and participant.
+
+The representative graph rule takes the lexicographically first median-size
+eligible correction core per real source. Eligibility requires visible claims
+and a revised cited feature. A separately registered maximum actual-impact rule
+selects the same case in both sources, so no second purportedly distinct example
+is drawn. The exports retain both rule labels and the complete eligible lists.
+WESAD S11 and PPG-DaLiA S14 are therefore reproducible examples, not selected
+because they show a propagation advantage. Both show direct operand citations.
+
+\section{Independent Semantics and Extended Results}
+\suppTable{generated/semantic/graph_table}{Node counts for full visible storage,
+active evidence-and-claim graphs and query cores, with subject-cluster 95\%
+intervals. Core/stored is a percentage; final column counts nonzero exposure
+among eligible revision batches. Ten subjects and 20 episodes per source.}{tab:graphsizes}
+
+The evaluator reads the observation/revision log and task specification; it never
+imports graph support assessments or auxiliary-verifier decisions as reference
+truth. Canonical identities include source, participant/session, interval,
+quantity, operation, normalized unit/value, temporal mode and resolved logical
+versions. Numerical matching preserves the original tolerance. Required slots
+are matched once; raw duplicate propositions remain in the precision denominator.
+Fully unanswerable requirements contribute NA recall, while partially answerable
+tasks contribute only answerable slots. An empty answer to an answerable question
+has zero recall. Subject means are computed after episode aggregation; pooled
+counts are supplied for interpretation and are not the same estimand.
+
+\suppTable{generated/semantic/crosswalk_table}{New semantic protocol versus the
+unchanged B0 contract outcomes. Grounded background is a subset of grounded
+formerly invalid content. The remaining disagreements include scope/dependency
+and citation admission restrictions; no old valid claim becomes ungrounded.}{tab:crosswalk}
+\suppTable{generated/semantic/competency_table}{Independent competency checks on
+displayed M1 waveform claims. Each eligible comparison must expose both operands;
+known-version and source-window answers are checked against immutable events.
+Alternative-support behavior is tested separately in the structural experiment.}{tab:competency}
+\suppTable{generated/semantic/temporal_table}{Event-aligned M1 prior-answer
+checkpoints across all variants. Each source/position has 160 transitions from
+20 episodes and ten subjects. Intervals are subject-cluster 95\% intervals.
+No continuous-time loss or finite recovery time is inferred from these points.}{tab:temporal}
+
+The machine-readable proposition ledger preserves each raw sentence, canonical
+proposition, admissible numerical witnesses, match to requirements and limited
+prose audit. That audit flags literal discrepancies and interpretation terms,
+not every possible semantic implication. The new structural audit enumerates all
+assignments to four or eight primitive tests and compares each proposed witness
+with the task-defined proposition. Distinct logically equivalent derivations
+are allowed. Soundness of each witness and completeness of the alternative
+family are separate: a sufficient route can be sound while omitting another
+valid route. True initial Boolean values alone do not establish either property.
+
+\suppTable{generated/semantic/program_fidelity}{Structural candidate semantics:
+initial propositions are true in all cases; witness soundness and answer-root coverage with
+an admissible witness. Entries are percentages with subject-cluster intervals;
+each source/stage has 80 cases from ten reused episodes and five subjects.
+Accepted/displayed refers to original extension admission. Primitive test names
+are normalized for independent proposition truth, not silently admitted.}{tab:programfidelity}
+
+\section{Structural Registration, Admission Correction and Cost}
+
+The initial protocol, deterministic selection and source hashes precede new
+inference. Development pilot v1 produced terse test-token sentences and direct
+roots. A second prospectively documented pilot clarified natural-language
+sentences and reuse of earlier claim IDs, with a generic unrelated grouping
+example. No required model links were compiled in. Both pilots use development
+episodes; the core freeze follows pilot v2. A separate pilot-amendment manifest
+records the added development budget and prompt hash. The core allows at most
+one repair per case and no post-correction generation.
+
+\suppTable{generated/semantic/extension_requests}{Separate extension inference
+accounting. Roots count candidates admitted by that stage's runtime. All calls
+use Qwen3-8B BF16 on the existing RTX 5090. CPU database replays add no model
+requests. The core's 325 calls remain below its 480-call cap.}{tab:extensionrequests}
+
+The frozen extension's proposition-name table omitted singleton primitive names
+although their comparators were explicit in the input. The independent scorer
+resolves such names to those definitions. A separately scoped corrected
+replication additionally makes them admissible to the unchanged validator by
+extending the proposition map. It preserves the final candidate JSON, source
+events, witnesses, parent IDs, update conditions and repair opportunities.
+Candidate hashes connect the corrected run to the original. It makes no new GPU
+calls. Its \SemAliasRoots{} admitted roots replace neither the original
+\SemCoreRoots{} admission result nor any minimum-v1 result.
+
+\suppTable{generated/semantic/alias_table}{Separate primitive-name normalization
+replication: 240 cases, four update conditions and five methods (4,800 cells).
+All original model outputs and parent links are unchanged. Correction intervals
+use 15 dataset-scoped participants and 30 episodes.}{tab:alias}
+
+The normalized replication still realizes only evidence-to-answer depths one and
+two. Undefined or malformed references are retained as failures; they are never
+fixed by inserting edges. Its paired database outcomes agree, its eligible
+direct-miss sets match exposure exactly, and its admitted two-route answers retain
+support after primary-route loss. Full candidate/decision/replay records and
+the independent audit are distributed alongside the primary run.
+
+The structural replay timing fields include both direct and transitive reach
+queries for diagnostic comparison, current snapshot retrieval, and evaluation
+of the whole small program before scheduled writes. They are useful execution
+accounting but not optimized affected-subgraph latency. Source-level numerical
+corrections, benign changes and irrelevant changes are represented explicitly.
+No price-per-hour claim is inferred because a billing tariff was not recorded.
+
+\section{Preserved Minimum-v1 Accounting}
+
+This section retains the completed study's definitions, counts and strict contract
+interpretations. These are not retrospectively replaced by the new semantic
+scores. The archived original main paper and report provide their full narrative.
+Independent generation in the original five methods means conditional correction
+denominators can differ; the new extension removes that ambiguity by replaying
+one common candidate. The auxiliary verifier is a model audit, not a gold oracle.
+
+\suppTable{generated/inventory_table}{Original source and prepared-record inventory.}{tab:inventory}
+\suppTable{generated/method_table}{Original method ablations and maintenance behavior.}{tab:methods}
+\suppTable{generated/reliability_table}{Frozen exact-contract reliability and
+answer coverage. Correctly labelled off-target background remains a contract
+error in this table.}{tab:reliability}
+\suppTable{generated/correction_table}{Original required-change correction and
+collateral effects, conditional on each method's displayed claims.}{tab:correction}
+\suppTable{generated/contrasts_table}{Original paired descriptive method contrasts
+with the original uncertainty procedure.}{tab:contrasts}
+\suppTable{generated/fixture_table}{Original three-claim symbolic fixture,
+kept separate from the new 240-case structural programs.}{tab:oldfixture}
+\suppTable{generated/hardware_table}{Original hardware/model settings and sampled
+resource peaks. Sampling can miss brief peaks.}{tab:hardware}
+\suppTable{generated/failure_table}{Original failures, bounded repairs and
+supported references. Three B0 transport errors remain recorded failures.}{tab:failures}
+\suppTable{generated/contract_scope_table}{Original narrow background-scope audit.
+These facts remain invalid under the frozen target-only contract.}{tab:oldscope}
+\suppTable{generated/relational_contrasts_table}{Original graph versus relational
+generated-outcome contrasts. Logical parity under common candidates is measured
+separately in the new extension.}{tab:relational}
+\suppTable{generated/streaming_table}{Original systems events, backlog and latency
+accounting. Finite candidate-completion latency does not represent adequate
+replacement time.}{tab:streaming}
+\suppTable{generated/semantic/cost_table}{Flagging and candidate completion versus
+adequate replacement: one 60-second cell per offered rate and method.
+All successful-replacement times remain unresolved.}{tab:compactcost}
+\begin{figure}[!htbp]
+\centering\includegraphics[width=\textwidth]{streaming.pdf}
+\caption{Preserved four-panel systems measurements. Finite generation latency
+is candidate-completion latency. No candidate satisfies both required facts,
+so these curves do not measure successful correction time.}
+\end{figure}
+\suppTable{generated/staleness_table}{Completion-time adequacy audit. Zero adequate
+answers makes the zero became-stale count uninformative about robust recovery.}{tab:staleness}
+\suppTable{generated/cost_table}{Original request/token accounting by workload.
+Extension costs appear separately in Table~\ref{tab:extensionrequests}.}{tab:oldcost}
+
+\clearpage
+\section{Reproduction and Artifact Map}
+
+From the project root, the existing virtual environment and downloaded prepared
+events suffice for CPU analysis; no minimum-v1 model calls are repeated.
+The commands and their complete options are maintained in
+\path{docs/semantic_reproduction.md}. Run the semantic modules in order:
+analysis, structural analysis, alias analysis, figures and publication.
+Their exact module names and commands are listed in that document.
+Then run \texttt{bash paper/build.sh}.
+Focused tests and the PDF/integrity checker are included.
+
+Actual original database exports reside in
+\path{artifacts/analysis/semantic_analysis_v1/exports/};
+the matching manifest preserves Cypher, scope, export time, checksums and
+representative stored paths. Selected structural database exports live under
+\texttt{structure\_exports/}. Semantic projection sidecars and figure layout
+files retain full IDs and derived-path witnesses. The original inputs and runtime
+hashes are verified against the minimum-run manifest. New inference uses
+\texttt{artifacts/runs/structure\_study\_v1/}, with core prompts, raw responses,
+repairs, CUDA placement checks, request journals, resource samples and all
+method/update logs. The separate normalization replication has its own
+manifest, candidates and replay directory.
+
+This Supplement and the \href{semantic_structure_revision.pdf}{main manuscript}
+use the official LLNCS template. The final report records
+the actual page counts, figure checks and source/result hashes. No conference
+submission is performed by the reproduction workflow.
+\end{document}

@@ -61,6 +61,9 @@ def write():
     macros["SemCoreSizeMax"]=f"{max(r['core_nodes']['mean'] for r in graphs):.1f}"
     macros["SemCoreRatioMin"]=f"{100*min(r['core_ratio']['mean'] for r in graphs):.1f}"
     macros["SemCoreRatioMax"]=f"{100*max(r['core_ratio']['mean'] for r in graphs):.1f}"
+    assessment_audit=read_json(DATA/"assessment_temporal_audit.json")
+    macros["SemAssessmentTies"]=assessment_audit["same_time_groups"]
+    macros["SemAssessmentConflicts"]=assessment_audit["conflicting_state_groups"]
     for origin,label in (("fixture","Fixture"),("generated","Generated")):
         rs=[r for r in rows if r["origin"]==origin and r["method"]=="B2"]
         macros["Sem"+label+"Required"]=sum(r["required_changes"] for r in rs)
@@ -161,7 +164,7 @@ def write():
     table("temporal_table",["Source","Position",r"$P$ [CI]",r"$R$ [CI]","Grounded / all","Matched / req."],
         [[SOURCES[r["dataset"]],r["position"],ci(r["precision"]),ci(r["recall"]),f"{r['grounded']}/{r['emitted']}",f"{r['matched']}/{r['answerable']}"] for r in temporal if r["method"]=="M1"],"llrrrr")
     requestrows=[]
-    for folder in ("pilot","pilot_v2","core"):
+    for folder in ("pilot_v1","pilot_v2","core"):
         p=Path("artifacts/runs/structure_study_v1")/folder/"completion.json"
         if not p.exists():continue
         r=read_json(p)
@@ -189,9 +192,37 @@ selective revision, and show why storage size, path length and contract acceptan
 alone cannot establish explanation fidelity or maintenance benefit.
 """
     (OUT/"abstract.tex").write_text(abstract)
+    report=["# Theory and results revision", "",
+        "Generated from semantic_analysis_v1 and structure_study_v1. The original minimum_v1 protocol, code, inputs and scores are unchanged.", "",
+        "The paper defines a fixed typed ontology and its construction, a query-specific semantic projection, admissible AND/OR witnesses, conditional locality, and direct-maintenance exposure. Two propositions connect explicit dependencies to measured scheduling behavior. Actual Neo4j exports replace the symbolic network as the principal graph illustration.", "",
+        "Grounding precision, unique required-fact recall and witness-query fidelity are independent of database support flags. Accurate background facts are distinguished from target completeness and the original contract. Empty answers retain zero useful coverage.", "",
+        "| Result | Completed measurement |","|---|---|",
+        f"| Original displayed parent links | {macros['SemParentClaims']} / {macros['SemDisplayedClaims']} claims |",
+        f"| Original revision exposure | {macros['SemNonzeroExposure']} nonzero / {macros['SemEligibleBatches']} eligible batches; {macros['SemRevisionBatches']} total |",
+        f"| Newly grounded old B0 contract errors | {macros['SemInvalidGrounded']} / {macros['SemContractInvalid']}; {macros['SemBackground']} labelled background |",
+        f"| Core structural GPU study | {macros['SemCoreCases']} cases; {macros['SemCoreCalls']} calls including {macros['SemCoreRepairs']} repairs; {macros['SemCoreMinutes']} minutes |",
+        f"| Original extension replay | {macros['SemReplayCells']} cells; {macros['SemCoreRoots']} admitted roots |",
+        f"| Exact program direct misses | {macros['SemFixtureMissed']} / {macros['SemFixtureRequired']} required changes |",
+        f"| Generated program direct misses | {macros['SemGeneratedMissed']} / {macros['SemGeneratedRequired']} required changes |",
+        f"| Prediction agreement | {macros['SemPredictionAgreement']} / {macros['SemPredictionGroups']} eligible groups |",
+        f"| Generated admitted root depth | depth 1: {macros['SemRootOne']}; depth 2: {macros['SemRootTwo']}; missing: {macros['SemMissingRoots']} |",
+        f"| Separate normalization replication | {macros['SemAliasRoots']} roots; {macros['SemAliasCells']} CPU cells; direct misses {macros['SemAliasMissed']} / {macros['SemAliasRequired']}; no new GPU calls |",
+        "| Full maintenance | Zero missed changes and zero collateral withdrawal; Neo4j/SQLite outcomes agree |",
+        "| Original systems adequacy | 0 / 236 candidates adequate; no finite successful-replacement time observed |", "",
+        "| Source | M1 raw grounding / recall (%) | M1 displayed grounding / recall (%) |","|---|---|---|"]
+    for s,label in SOURCES.items():
+        a=get(s,"M1","proposal");b=get(s,"M1","displayed")
+        report.append(f"| {label} | {100*a['precision']['mean']:.2f} / {100*a['recall']['mean']:.2f} | {100*b['precision']['mean']:.2f} / {100*b['recall']['mean']:.2f} |")
+    report += ["","Percentages average episodes within dataset-scoped participants; pooled counts and 95% intervals are supplied separately. Raw structural propositions are initially true by construction, but their witness families need not be sound or complete.", "",
+        f"The assessment-time audit finds {macros['SemAssessmentTies']} tied record/time groups, including {macros['SemAssessmentConflicts']} with different recorded states. The projection retains every tied outcome and marks conflicts ambiguous; timestamps alone do not supply trigger order. This provenance finding changes no independent semantic score or frozen outcome.", "",
+        "The post-core primitive-name admission omission is preserved in the original extension and corrected only in primitive_alias_replication. Normalization uses test definitions already supplied to the model and never inserts parent links. An analysis-only fix scopes repeated subject labels by dataset when pooling sources; original scores are untouched.", "",
+        "Five main figures are supplied as PDF/SVG with source exports and layout maps. The supplement preserves the long original tables and systems plot. Results concern explicit generated commitments, not internal neural state, learned ontology, clinical truth or universal graph-storage superiority.", "",
+        "See [reproduction commands](docs/semantic_reproduction.md), [ontology construction](docs/ontology_construction.md), [main PDF](paper/semantic_structure_revision.pdf), and [supplement PDF](paper/semantic_structure_supplement.pdf). Final page counts and checks are recorded in artifacts/manifests/semantic_manuscript_validation.json."]
+    Path("THEORY_RESULTS_CHANGES.md").write_text("\n".join(report)+"\n")
     write_json(OUT/"manifest.json",{"complete":True,"script_sha256":digest_file(__file__),
         "inputs":{str(p):digest_file(p) for p in sorted(DATA.glob("*.json"))},
         "original_protocol_hash":old["protocol_hash"],"core_source_freeze":digest_file("artifacts/runs/structure_study_v1/core/frozen.json"),
-        "macros":macros,"generated_tex":{str(p):digest_file(p) for p in sorted(OUT.glob("*.tex"))}})
+        "macros":macros,"generated_docs":{"THEORY_RESULTS_CHANGES.md":digest_file("THEORY_RESULTS_CHANGES.md")},
+        "generated_tex":{str(p):digest_file(p) for p in sorted(OUT.glob("*.tex"))}})
 
 if __name__=="__main__":write()
