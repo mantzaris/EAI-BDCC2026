@@ -113,3 +113,33 @@
 - The auxiliary verifier is separately pinned Qwen2.5-3B-Instruct, BF16 on CUDA,
   with 60 stratified final explanations and four calibration examples. Report this
   as automated annotation; sharing the Qwen family limits verifier independence.
+- Pilot v2 completed 100 initial cases and 20 interactive requests: five initial
+  truncations, one failed final case, and 33 batch repair calls. Its source snapshots,
+  original episode inputs and raw outputs are retained separately from the final
+  balanced schedule. Pilot v3 additionally uses vLLM's verified
+  `--guided-decoding-disable-any-whitespace` option with xgrammar. This constrains
+  JSON formatting uniformly across methods, not the numerical answers.
+- The pre-freeze gate requires the complete 100-case pilot, 20 interactive requests,
+  matching configuration/source hashes, zero initial truncations, and at least 95
+  parsed final answers. Reliability/usefulness results are still reported even when
+  the model or validator loses required information; format success is not accuracy.
+- All numeric claim intervals in the bounded output contract refer to the requested
+  target; comparison evidence may include the earlier baseline. An unqualified
+  baseline value presented as the requested EDA median is a time-scope error.
+  Report metrics as query-scoped evidence faithfulness, not physiological truth.
+- Request journals rotate at 8 MiB while retaining ordered start/finish records,
+  allowing complete raw outputs to be pushed to Git without oversized individual
+  files. Interrupted requests with unknown outcomes are retained and not repeated.
+- Pilot v3 completed with 100 initial cases, 51 batch repairs, zero initial
+  truncations, zero failed final cases and 20 interactive requests. Its measured
+  batch schedule projects 3.10 hours for the minimum study. Interactive median
+  and p95 latency were 13.29 and 17.04 seconds, including repairs.
+- The pre-freeze systems smoke test exposed an ambiguous reference-slot lookup:
+  the symbolic fixture contains alternative support and an intermediate difference
+  with the same quantity label. Define its two answer slots using the actual
+  retrieved target and baseline operands. Retain the failed smoke run and the
+  successful two-request-per-backend repeat. Request-snapshot adequacy is labeled
+  explicitly; log the latest ingested event index at generation completion so
+  delayed replacements can also be examined for staleness.
+- Rerun the complete development pilot as `pilot_v4` after that systems-only fix,
+  then freeze all source hashes. No held-out generation occurred before this fix.

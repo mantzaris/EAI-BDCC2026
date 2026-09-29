@@ -40,27 +40,57 @@ def check_environment():
 
 
 def validate_core(graph=False):
+    from dataclasses import replace
     from uuid import uuid4
-    from temporal_evidence.synthetic.fixtures import correction_fixture
+    from temporal_evidence.synthetic.fixtures import correction_fixture,record
     from temporal_evidence.storage.relational import RelationalStore
     from temporal_evidence.replay.temporal import apply_revision
-    records,revision=correction_fixture()
-    results={}
-    for method in ["B0","B1","B2","M1","B3"]:
-        if graph and method in {"B2","M1"}:
-            from temporal_evidence.storage.graph import GraphStore
-            store=GraphStore(scope=f"validation-{method}-{uuid4().hex}")
-        else:
-            store=RelationalStore()
-        store.put_many(records)
-        result=apply_revision(store,revision,method)
-        assert store.snapshot(15)["a"].value==2 and "a/v2" not in store.snapshot(15)
-        results[method]=result
-        store.close()
-    assert results["M1"]["assessments"]==results["B3"]["assessments"]
-    assert results["M1"]["assessments"]["downstream_claim"]["state"]=="contradicted"
-    assert results["M1"]["assessments"]["or_claim"]["state"]=="supported"
-    assert "downstream_claim" not in results["B2"]["assessments"]
-    write_json("artifacts/manifests/core_validation.json",{"checked_at":utc_now(),"real_neo4j":graph,
-               "passed":True,"results":results})
-    return results
+    modes={};scores=[]
+    claims={"direct_claim","downstream_claim","or_claim","unaffected"}
+    for mode in ["correction","invalidation","benign","irrelevant"]:
+        records,revision=correction_fixture()
+        if mode=="invalidation":
+            revision=replace(revision,value=None,evidence_state="invalidated")
+        elif mode=="benign":
+            revision=replace(revision,value=2)
+        elif mode=="irrelevant":
+            extra=record("unrelated",10)
+            records.append(extra)
+            revision=replace(extra,record_id="unrelated/v2",version=2,ingested_at_seconds=20,supersedes_id="unrelated",value=20)
+        required={"direct_claim","downstream_claim"} if mode in {"correction","invalidation"} else set()
+        results={}
+        for method in ["B0","B1","B2","M1","B3"]:
+            if graph and method in {"B2","M1"}:
+                from temporal_evidence.storage.graph import GraphStore
+                store=GraphStore(scope=f"validation-{mode}-{method}-{uuid4().hex}")
+            else:
+                store=RelationalStore()
+            store.put_many(records)
+            result=apply_revision(store,revision,method)
+            assert store.snapshot(15)["a"].value==2 and revision.record_id not in store.snapshot(15)
+            states={identifier:result["assessments"].get(identifier,{"state":"supported"})["state"] for identifier in claims}
+            corrected=sum(states[identifier]!="supported" for identifier in required)
+            collateral=sum(states[identifier]!="supported" for identifier in claims-required)
+            scores.append({"mode":mode,"method":method,"correction_required":len(required),"corrected":corrected,
+                           "residual":len(required)-corrected,"unaffected":len(claims-required),"collateral":collateral,
+                           "flag_service_seconds":result["seconds"],"states":states})
+            assert collateral==0
+            if method in {"M1","B3"}:assert corrected==len(required)
+            if mode=="correction":
+                restored=replace(revision,record_id="a/v3",version=3,ingested_at_seconds=30,supersedes_id=revision.record_id,value=2)
+                restoration=apply_revision(store,restored,method)
+                if method in {"M1","B3"}:
+                    assert restoration["assessments"]["direct_claim"]["state"]=="supported"
+                    assert restoration["assessments"]["downstream_claim"]["state"]=="supported"
+                result["restoration"]=restoration
+            results[method]=result;store.close()
+        assert results["M1"]["assessments"]==results["B3"]["assessments"]
+        modes[mode]=results
+    primary=modes["correction"]
+    assert primary["M1"]["assessments"]["downstream_claim"]["state"]=="contradicted"
+    assert primary["M1"]["assessments"]["or_claim"]["state"]=="supported"
+    assert "downstream_claim" not in primary["B2"]["assessments"]
+    report={"checked_at":utc_now(),"real_neo4j":graph,"passed":True,"results":primary,
+            "symbolic_modes":modes,"symbolic_scores":scores,"interpretation":"Deterministic fixtures, not independent physiological samples"}
+    write_json("artifacts/manifests/core_validation.json",report)
+    return report

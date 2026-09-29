@@ -1,12 +1,18 @@
 {
-  "checked_at": "2026-09-29T00:29:58.507145+00:00",
+  "checked_at": "2026-09-29T00:46:27.751879+00:00",
+  "interpretation": "Deterministic fixtures, not independent physiological samples",
   "passed": true,
   "real_neo4j": true,
   "results": {
     "B0": {
       "affected": [],
       "assessments": {},
-      "seconds": 8.13391525298357e-05
+      "restoration": {
+        "affected": [],
+        "assessments": {},
+        "seconds": 7.468811236321926e-05
+      },
+      "seconds": 0.000665626022964716
     },
     "B1": {
       "affected": [
@@ -28,7 +34,29 @@
           "value": 2
         }
       },
-      "seconds": 0.00036822189576923847
+      "restoration": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "supported",
+            "value": 1
+          },
+          "direct_claim": {
+            "state": "supported",
+            "value": 2
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "seconds": 0.00024854415096342564
+      },
+      "seconds": 0.0003414531238377094
     },
     "B2": {
       "affected": [
@@ -50,7 +78,29 @@
           "value": 2
         }
       },
-      "seconds": 0.10869391309097409
+      "restoration": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "supported",
+            "value": 1
+          },
+          "direct_claim": {
+            "state": "supported",
+            "value": 2
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "seconds": 0.051253415178507566
+      },
+      "seconds": 0.06947068287990987
     },
     "B3": {
       "affected": [
@@ -82,7 +132,39 @@
           "value": 2
         }
       },
-      "seconds": 0.001019040122628212
+      "restoration": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "downstream_claim",
+          "explanation",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "supported",
+            "value": 1
+          },
+          "direct_claim": {
+            "state": "supported",
+            "value": 2
+          },
+          "downstream_claim": {
+            "state": "supported",
+            "value": 1
+          },
+          "explanation": {
+            "state": "supported",
+            "value": null
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "seconds": 0.0007634242065250874
+      },
+      "seconds": 0.0009991389233618975
     },
     "M1": {
       "affected": [
@@ -114,7 +196,848 @@
           "value": 2
         }
       },
-      "seconds": 0.042156540090218186
+      "restoration": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "downstream_claim",
+          "explanation",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "supported",
+            "value": 1
+          },
+          "direct_claim": {
+            "state": "supported",
+            "value": 2
+          },
+          "downstream_claim": {
+            "state": "supported",
+            "value": 1
+          },
+          "explanation": {
+            "state": "supported",
+            "value": null
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "seconds": 0.053982038982212543
+      },
+      "seconds": 0.015324617037549615
     }
-  }
+  },
+  "symbolic_modes": {
+    "benign": {
+      "B0": {
+        "affected": [],
+        "assessments": {},
+        "seconds": 7.525901310145855e-05
+      },
+      "B1": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "supported",
+            "value": 1
+          },
+          "direct_claim": {
+            "state": "supported",
+            "value": 2
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "seconds": 0.0003239039797335863
+      },
+      "B2": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "supported",
+            "value": 1
+          },
+          "direct_claim": {
+            "state": "supported",
+            "value": 2
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "seconds": 0.010089023970067501
+      },
+      "B3": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "downstream_claim",
+          "explanation",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "supported",
+            "value": 1
+          },
+          "direct_claim": {
+            "state": "supported",
+            "value": 2
+          },
+          "downstream_claim": {
+            "state": "supported",
+            "value": 1
+          },
+          "explanation": {
+            "state": "supported",
+            "value": null
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "seconds": 0.00039899186231195927
+      },
+      "M1": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "downstream_claim",
+          "explanation",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "supported",
+            "value": 1
+          },
+          "direct_claim": {
+            "state": "supported",
+            "value": 2
+          },
+          "downstream_claim": {
+            "state": "supported",
+            "value": 1
+          },
+          "explanation": {
+            "state": "supported",
+            "value": null
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "seconds": 0.007959887152537704
+      }
+    },
+    "correction": {
+      "B0": {
+        "affected": [],
+        "assessments": {},
+        "restoration": {
+          "affected": [],
+          "assessments": {},
+          "seconds": 7.468811236321926e-05
+        },
+        "seconds": 0.000665626022964716
+      },
+      "B1": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "supported",
+            "value": 3
+          },
+          "direct_claim": {
+            "state": "contradicted",
+            "value": 2
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "restoration": {
+          "affected": [
+            "difference",
+            "direct_claim",
+            "or_claim"
+          ],
+          "assessments": {
+            "difference": {
+              "state": "supported",
+              "value": 1
+            },
+            "direct_claim": {
+              "state": "supported",
+              "value": 2
+            },
+            "or_claim": {
+              "state": "supported",
+              "value": 2
+            }
+          },
+          "seconds": 0.00024854415096342564
+        },
+        "seconds": 0.0003414531238377094
+      },
+      "B2": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "supported",
+            "value": 3
+          },
+          "direct_claim": {
+            "state": "contradicted",
+            "value": 2
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "restoration": {
+          "affected": [
+            "difference",
+            "direct_claim",
+            "or_claim"
+          ],
+          "assessments": {
+            "difference": {
+              "state": "supported",
+              "value": 1
+            },
+            "direct_claim": {
+              "state": "supported",
+              "value": 2
+            },
+            "or_claim": {
+              "state": "supported",
+              "value": 2
+            }
+          },
+          "seconds": 0.051253415178507566
+        },
+        "seconds": 0.06947068287990987
+      },
+      "B3": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "downstream_claim",
+          "explanation",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "supported",
+            "value": 3
+          },
+          "direct_claim": {
+            "state": "contradicted",
+            "value": 2
+          },
+          "downstream_claim": {
+            "state": "contradicted",
+            "value": 1
+          },
+          "explanation": {
+            "state": "unsupported",
+            "value": null
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "restoration": {
+          "affected": [
+            "difference",
+            "direct_claim",
+            "downstream_claim",
+            "explanation",
+            "or_claim"
+          ],
+          "assessments": {
+            "difference": {
+              "state": "supported",
+              "value": 1
+            },
+            "direct_claim": {
+              "state": "supported",
+              "value": 2
+            },
+            "downstream_claim": {
+              "state": "supported",
+              "value": 1
+            },
+            "explanation": {
+              "state": "supported",
+              "value": null
+            },
+            "or_claim": {
+              "state": "supported",
+              "value": 2
+            }
+          },
+          "seconds": 0.0007634242065250874
+        },
+        "seconds": 0.0009991389233618975
+      },
+      "M1": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "downstream_claim",
+          "explanation",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "supported",
+            "value": 3
+          },
+          "direct_claim": {
+            "state": "contradicted",
+            "value": 2
+          },
+          "downstream_claim": {
+            "state": "contradicted",
+            "value": 1
+          },
+          "explanation": {
+            "state": "unsupported",
+            "value": null
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "restoration": {
+          "affected": [
+            "difference",
+            "direct_claim",
+            "downstream_claim",
+            "explanation",
+            "or_claim"
+          ],
+          "assessments": {
+            "difference": {
+              "state": "supported",
+              "value": 1
+            },
+            "direct_claim": {
+              "state": "supported",
+              "value": 2
+            },
+            "downstream_claim": {
+              "state": "supported",
+              "value": 1
+            },
+            "explanation": {
+              "state": "supported",
+              "value": null
+            },
+            "or_claim": {
+              "state": "supported",
+              "value": 2
+            }
+          },
+          "seconds": 0.053982038982212543
+        },
+        "seconds": 0.015324617037549615
+      }
+    },
+    "invalidation": {
+      "B0": {
+        "affected": [],
+        "assessments": {},
+        "seconds": 0.0001514169853180647
+      },
+      "B1": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "unsupported",
+            "value": null
+          },
+          "direct_claim": {
+            "state": "unsupported",
+            "value": null
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "seconds": 0.0006910460069775581
+      },
+      "B2": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "unsupported",
+            "value": null
+          },
+          "direct_claim": {
+            "state": "unsupported",
+            "value": null
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "seconds": 0.01099313609302044
+      },
+      "B3": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "downstream_claim",
+          "explanation",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "unsupported",
+            "value": null
+          },
+          "direct_claim": {
+            "state": "unsupported",
+            "value": null
+          },
+          "downstream_claim": {
+            "state": "unsupported",
+            "value": null
+          },
+          "explanation": {
+            "state": "unsupported",
+            "value": null
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "seconds": 0.0005003900732845068
+      },
+      "M1": {
+        "affected": [
+          "difference",
+          "direct_claim",
+          "downstream_claim",
+          "explanation",
+          "or_claim"
+        ],
+        "assessments": {
+          "difference": {
+            "state": "unsupported",
+            "value": null
+          },
+          "direct_claim": {
+            "state": "unsupported",
+            "value": null
+          },
+          "downstream_claim": {
+            "state": "unsupported",
+            "value": null
+          },
+          "explanation": {
+            "state": "unsupported",
+            "value": null
+          },
+          "or_claim": {
+            "state": "supported",
+            "value": 2
+          }
+        },
+        "seconds": 0.01144615700468421
+      }
+    },
+    "irrelevant": {
+      "B0": {
+        "affected": [],
+        "assessments": {},
+        "seconds": 6.052898243069649e-05
+      },
+      "B1": {
+        "affected": [],
+        "assessments": {},
+        "seconds": 0.0002358248457312584
+      },
+      "B2": {
+        "affected": [],
+        "assessments": {},
+        "seconds": 0.0060705861542373896
+      },
+      "B3": {
+        "affected": [],
+        "assessments": {},
+        "seconds": 0.0007684140000492334
+      },
+      "M1": {
+        "affected": [],
+        "assessments": {},
+        "seconds": 0.007481606910005212
+      }
+    }
+  },
+  "symbolic_scores": [
+    {
+      "collateral": 0,
+      "corrected": 0,
+      "correction_required": 2,
+      "flag_service_seconds": 0.000665626022964716,
+      "method": "B0",
+      "mode": "correction",
+      "residual": 2,
+      "states": {
+        "direct_claim": "supported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 2
+    },
+    {
+      "collateral": 0,
+      "corrected": 1,
+      "correction_required": 2,
+      "flag_service_seconds": 0.0003414531238377094,
+      "method": "B1",
+      "mode": "correction",
+      "residual": 1,
+      "states": {
+        "direct_claim": "contradicted",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 2
+    },
+    {
+      "collateral": 0,
+      "corrected": 1,
+      "correction_required": 2,
+      "flag_service_seconds": 0.06947068287990987,
+      "method": "B2",
+      "mode": "correction",
+      "residual": 1,
+      "states": {
+        "direct_claim": "contradicted",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 2
+    },
+    {
+      "collateral": 0,
+      "corrected": 2,
+      "correction_required": 2,
+      "flag_service_seconds": 0.015324617037549615,
+      "method": "M1",
+      "mode": "correction",
+      "residual": 0,
+      "states": {
+        "direct_claim": "contradicted",
+        "downstream_claim": "contradicted",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 2
+    },
+    {
+      "collateral": 0,
+      "corrected": 2,
+      "correction_required": 2,
+      "flag_service_seconds": 0.0009991389233618975,
+      "method": "B3",
+      "mode": "correction",
+      "residual": 0,
+      "states": {
+        "direct_claim": "contradicted",
+        "downstream_claim": "contradicted",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 2
+    },
+    {
+      "collateral": 0,
+      "corrected": 0,
+      "correction_required": 2,
+      "flag_service_seconds": 0.0001514169853180647,
+      "method": "B0",
+      "mode": "invalidation",
+      "residual": 2,
+      "states": {
+        "direct_claim": "supported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 2
+    },
+    {
+      "collateral": 0,
+      "corrected": 1,
+      "correction_required": 2,
+      "flag_service_seconds": 0.0006910460069775581,
+      "method": "B1",
+      "mode": "invalidation",
+      "residual": 1,
+      "states": {
+        "direct_claim": "unsupported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 2
+    },
+    {
+      "collateral": 0,
+      "corrected": 1,
+      "correction_required": 2,
+      "flag_service_seconds": 0.01099313609302044,
+      "method": "B2",
+      "mode": "invalidation",
+      "residual": 1,
+      "states": {
+        "direct_claim": "unsupported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 2
+    },
+    {
+      "collateral": 0,
+      "corrected": 2,
+      "correction_required": 2,
+      "flag_service_seconds": 0.01144615700468421,
+      "method": "M1",
+      "mode": "invalidation",
+      "residual": 0,
+      "states": {
+        "direct_claim": "unsupported",
+        "downstream_claim": "unsupported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 2
+    },
+    {
+      "collateral": 0,
+      "corrected": 2,
+      "correction_required": 2,
+      "flag_service_seconds": 0.0005003900732845068,
+      "method": "B3",
+      "mode": "invalidation",
+      "residual": 0,
+      "states": {
+        "direct_claim": "unsupported",
+        "downstream_claim": "unsupported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 2
+    },
+    {
+      "collateral": 0,
+      "corrected": 0,
+      "correction_required": 0,
+      "flag_service_seconds": 7.525901310145855e-05,
+      "method": "B0",
+      "mode": "benign",
+      "residual": 0,
+      "states": {
+        "direct_claim": "supported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 4
+    },
+    {
+      "collateral": 0,
+      "corrected": 0,
+      "correction_required": 0,
+      "flag_service_seconds": 0.0003239039797335863,
+      "method": "B1",
+      "mode": "benign",
+      "residual": 0,
+      "states": {
+        "direct_claim": "supported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 4
+    },
+    {
+      "collateral": 0,
+      "corrected": 0,
+      "correction_required": 0,
+      "flag_service_seconds": 0.010089023970067501,
+      "method": "B2",
+      "mode": "benign",
+      "residual": 0,
+      "states": {
+        "direct_claim": "supported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 4
+    },
+    {
+      "collateral": 0,
+      "corrected": 0,
+      "correction_required": 0,
+      "flag_service_seconds": 0.007959887152537704,
+      "method": "M1",
+      "mode": "benign",
+      "residual": 0,
+      "states": {
+        "direct_claim": "supported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 4
+    },
+    {
+      "collateral": 0,
+      "corrected": 0,
+      "correction_required": 0,
+      "flag_service_seconds": 0.00039899186231195927,
+      "method": "B3",
+      "mode": "benign",
+      "residual": 0,
+      "states": {
+        "direct_claim": "supported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 4
+    },
+    {
+      "collateral": 0,
+      "corrected": 0,
+      "correction_required": 0,
+      "flag_service_seconds": 6.052898243069649e-05,
+      "method": "B0",
+      "mode": "irrelevant",
+      "residual": 0,
+      "states": {
+        "direct_claim": "supported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 4
+    },
+    {
+      "collateral": 0,
+      "corrected": 0,
+      "correction_required": 0,
+      "flag_service_seconds": 0.0002358248457312584,
+      "method": "B1",
+      "mode": "irrelevant",
+      "residual": 0,
+      "states": {
+        "direct_claim": "supported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 4
+    },
+    {
+      "collateral": 0,
+      "corrected": 0,
+      "correction_required": 0,
+      "flag_service_seconds": 0.0060705861542373896,
+      "method": "B2",
+      "mode": "irrelevant",
+      "residual": 0,
+      "states": {
+        "direct_claim": "supported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 4
+    },
+    {
+      "collateral": 0,
+      "corrected": 0,
+      "correction_required": 0,
+      "flag_service_seconds": 0.007481606910005212,
+      "method": "M1",
+      "mode": "irrelevant",
+      "residual": 0,
+      "states": {
+        "direct_claim": "supported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 4
+    },
+    {
+      "collateral": 0,
+      "corrected": 0,
+      "correction_required": 0,
+      "flag_service_seconds": 0.0007684140000492334,
+      "method": "B3",
+      "mode": "irrelevant",
+      "residual": 0,
+      "states": {
+        "direct_claim": "supported",
+        "downstream_claim": "supported",
+        "or_claim": "supported",
+        "unaffected": "supported"
+      },
+      "unaffected": 4
+    }
+  ]
 }

@@ -6,7 +6,7 @@ import httpx
 from pydantic import ValidationError
 from temporal_evidence.generation.contract import Answer
 from temporal_evidence.generation.prompts import messages
-from temporal_evidence.io import append_jsonl,read_json,read_jsonl,utc_now
+from temporal_evidence.io import append_journal,read_json,read_journal,utc_now
 from pathlib import Path
 from temporal_evidence.validation.checker import validate,safe_display
 
@@ -20,7 +20,7 @@ class GPUClient:
         self.log_path=log_path
         self.journal={}
         if Path(log_path).exists():
-            for item in read_jsonl(log_path):
+            for item in read_journal(log_path):
                 self.journal[(item["case_id"],item["phase"])]=item
 
     async def generate(self, case_id, prompt, phase="initial"):
@@ -35,14 +35,14 @@ class GPUClient:
                 raise ValueError("A resumed request differs from its journal; use a new development run ID")
             if previous.get("event")=="started":
                 previous.update(error="interrupted_request_unknown_outcome",seconds=0.,event="finished")
-                append_jsonl(self.log_path,previous)
+                append_journal(self.log_path,previous)
                 self.journal[key]=previous
             if previous.get("error"):
                 return None,previous
             return Answer.model_validate_json(previous["response"]["choices"][0]["message"]["content"]),previous
         started=time.perf_counter()
         record={"case_id":case_id,"phase":phase,"started_at":utc_now(),"request":request,"event":"started"}
-        append_jsonl(self.log_path,record)
+        append_journal(self.log_path,record)
         answer=None
         try:
             response=await self.client.post("/v1/chat/completions",json=request)
@@ -63,7 +63,7 @@ class GPUClient:
             record["error"]=f"{type(error).__name__}: {str(error)[:1000]}"
         record["seconds"]=time.perf_counter()-started
         record["event"]="finished"
-        append_jsonl(self.log_path,record)
+        append_journal(self.log_path,record)
         self.journal[key]=record
         return answer,record
 

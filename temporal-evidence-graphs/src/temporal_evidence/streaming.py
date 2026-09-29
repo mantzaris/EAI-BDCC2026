@@ -74,11 +74,16 @@ async def cell(method,rate,config,study):
                 elapsed=time.perf_counter()-scheduled
                 claims=(result["display"] or {}).get("claims",[])
                 exact=score_claims(claims,[r.to_dict() for r in snapshot.values()],asdict(query))
-                slots=required_slots([r.to_dict() for r in snapshot.values()],asdict(query))
+                # The fixture also contains an alternative sensor and a derived
+                # difference with the same quantity label. Only the two retrieved
+                # operands define this particular request's answer slots.
+                slots=required_slots([r.to_dict() for r in evidence],asdict(query))
                 adequate=all(any(item["valid"] and claim["quantity"]==slot["quantity"] and agrees(claim["value"],slot["value"])
                                  and claim["claim_type"] in (("comparison","trend") if slot["kind"]=="difference" else ("numeric_observation","revision_effect"))
                                  for claim,item in zip(claims,exact)) for slot in slots)
                 row={"index":index,"kind":kind,"arrival_to_complete_seconds":elapsed,
+                     "completed_after_event_index":event_rows[-1]["index"] if event_rows else 0,
+                     "adequacy_scope":"request_snapshot",
                      "queue_seconds":generation_started-entered,"generation_seconds":result["seconds"],
                      "adequate":adequate,"failed":result["display"] is None,
                      "deadline_missed":kind=="affected_repair" and (elapsed>config["repair_deadline_seconds"] or not adequate),

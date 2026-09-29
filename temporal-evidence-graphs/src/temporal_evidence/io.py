@@ -52,3 +52,22 @@ def append_jsonl(path: str | Path, value: Any) -> None:
 
 def read_jsonl(path: str | Path) -> list[dict]:
     return [json.loads(line) for line in Path(path).read_text().splitlines() if line.strip()]
+
+
+def journal_paths(path):
+    path=Path(path)
+    return ([path] if path.exists() else [])+sorted(path.parent.glob(path.stem+".part[0-9][0-9][0-9][0-9]"+path.suffix))
+
+
+def append_journal(path,value,segment_bytes=8*1024*1024):
+    """Bound individual Git artifact sizes without dropping or repeating requests."""
+    path=Path(path)
+    paths=journal_paths(path)
+    current=paths[-1] if paths else path
+    if current.exists() and current.stat().st_size>=segment_bytes:
+        current=path.with_name(f"{path.stem}.part{len(paths):04d}{path.suffix}")
+    append_jsonl(current,value)
+
+
+def read_journal(path):
+    return [record for segment in journal_paths(path) for record in read_jsonl(segment)]

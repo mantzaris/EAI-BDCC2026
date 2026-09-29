@@ -13,6 +13,7 @@ command=[str(Path(".venv/bin/vllm").resolve()),"serve",manifest["local_path"],
          "--dtype","bfloat16","--max-model-len",str(configuration["model"]["max_input_tokens"]+configuration["model"]["max_output_tokens"]),"--max-num-seqs","4",
          "--gpu-memory-utilization","0.85","--cpu-offload-gb","0","--swap-space","0",
          "--enforce-eager","--seed","20260928","--generation-config","vllm",
+         "--guided-decoding-backend","xgrammar","--guided-decoding-disable-any-whitespace",
          "--worker-cls","temporal_evidence.generation.gpu_guard.VerifiedGPUWorker"]
 write_json("artifacts/manifests/server_launch.json",{"started_at":utc_now(),"command":command,
     "revision":manifest["revision"],"non_thinking":"per-request chat_template_kwargs.enable_thinking=false"})

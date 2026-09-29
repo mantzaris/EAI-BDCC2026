@@ -73,7 +73,7 @@ def paired_interval(rows,left,right,metric,resamples=2000):
 def export_csv(path,rows):
     path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
     with path.open("w",newline="") as stream:
-        writer=csv.DictWriter(stream,fieldnames=list(rows[0]))
+        writer=csv.DictWriter(stream,fieldnames=list(dict.fromkeys(key for row in rows for key in row)))
         writer.writeheader();writer.writerows(rows)
 
 

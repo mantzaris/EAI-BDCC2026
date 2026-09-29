@@ -1,0 +1,597 @@
+{
+  "case": {
+    "case_id": "synthetic-V108-e1-correction-c1-M1",
+    "checkpoint": 1,
+    "dataset": "synthetic",
+    "episode_id": "synthetic-V108-e1",
+    "family": "revision_impact",
+    "knowledge_time": 1381.0,
+    "method": "M1",
+    "split": "development",
+    "subject": "V108",
+    "variant": "correction"
+  },
+  "completed_at": "2026-09-29T00:49:04.213146+00:00",
+  "database_update_seconds": 0.04959823889657855,
+  "display": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V108/1320-1350/eda_median/v2"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The target EDA median is approximately equal to 2.18069 synthetic_uS.",
+        "subject_id": "V108",
+        "unit": "synthetic_uS",
+        "value": 2.18069
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V108/1320-1350/acceleration_magnitude_sd/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "acceleration_magnitude_sd",
+        "sentence": "The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g.",
+        "subject_id": "V108",
+        "unit": "synthetic_g",
+        "value": 0.105579
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V108/1320-1350/eda_clipping_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_clipping_fraction",
+        "sentence": "The target EDA clipping fraction is approximately equal to 0.0041667 fraction.",
+        "subject_id": "V108",
+        "unit": "fraction",
+        "value": 0.004166666666666667
+      }
+    ],
+    "explanation": "The target EDA median is approximately equal to 2.18069 synthetic_uS. The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g. The target EDA clipping fraction is approximately equal to 0.0041667 fraction.",
+    "unresolved_evidence_ids": []
+  },
+  "end_to_end_seconds": 56.35088875005022,
+  "evidence_hash": "a46ae6249d80a4b657d9128def12a09359b8f48c0d0e27928a7a318f8e503a07",
+  "final_candidate": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V108/1320-1350/eda_median/v2"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The target EDA median is approximately equal to 2.18069 synthetic_uS.",
+        "subject_id": "V108",
+        "unit": "synthetic_uS",
+        "value": 2.18069
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V108/1320-1350/acceleration_magnitude_sd/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "acceleration_magnitude_sd",
+        "sentence": "The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g.",
+        "subject_id": "V108",
+        "unit": "synthetic_g",
+        "value": 0.105579
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V108/1320-1350/eda_clipping_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_clipping_fraction",
+        "sentence": "The target EDA clipping fraction is approximately equal to 0.0041667 fraction.",
+        "subject_id": "V108",
+        "unit": "fraction",
+        "value": 0.004166666666666667
+      }
+    ],
+    "explanation": "The target EDA median is approximately equal to 2.18069 synthetic_uS. The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g. The target EDA clipping fraction is approximately equal to 0.0041667 fraction.",
+    "unresolved_evidence_ids": []
+  },
+  "initial": {
+    "case_id": "synthetic-V108-e1-correction-c1-M1",
+    "event": "finished",
+    "http_status": 200,
+    "phase": "initial",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "Claim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "claim_type": {
+                "enum": [
+                  "numeric_observation",
+                  "trend",
+                  "comparison",
+                  "evidence_conflict",
+                  "missing_evidence",
+                  "revision_effect"
+                ],
+                "title": "Claim Type",
+                "type": "string"
+              },
+              "depends_on_claim_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Depends On Claim Ids",
+                "type": "array"
+              },
+              "event_end_seconds": {
+                "title": "Event End Seconds",
+                "type": "number"
+              },
+              "event_start_seconds": {
+                "title": "Event Start Seconds",
+                "type": "number"
+              },
+              "evidence_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Evidence Ids",
+                "type": "array"
+              },
+              "operator": {
+                "enum": [
+                  "approximately_equal",
+                  "difference",
+                  "greater_than",
+                  "less_than",
+                  "missing",
+                  "disagrees",
+                  "remains_supported",
+                  "revised"
+                ],
+                "title": "Operator",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "subject_id": {
+                "title": "Subject Id",
+                "type": "string"
+              },
+              "unit": {
+                "title": "Unit",
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Value"
+              }
+            },
+            "required": [
+              "claim_id",
+              "claim_type",
+              "subject_id",
+              "quantity",
+              "event_start_seconds",
+              "event_end_seconds",
+              "operator",
+              "value",
+              "unit",
+              "evidence_ids",
+              "depends_on_claim_ids",
+              "sentence"
+            ],
+            "title": "Claim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "answer_status": {
+            "enum": [
+              "answered",
+              "partially_answered",
+              "insufficient_evidence"
+            ],
+            "title": "Answer Status",
+            "type": "string"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/Claim"
+            },
+            "maxItems": 3,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "unresolved_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolved Evidence Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claims",
+          "answer_status",
+          "explanation",
+          "unresolved_evidence_ids"
+        ],
+        "title": "Answer",
+        "type": "object"
+      },
+      "max_tokens": 1536,
+      "messages": [
+        {
+          "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nThe top-level JSON object has exactly four required keys, in this order: claims,\nanswer_status, explanation, unresolved_evidence_ids. After closing the claims array,\nwrite the remaining three keys. answer_status is answered, partially_answered, or\ninsufficient_evidence; explanation is a string; unresolved_evidence_ids is an array\nof unavailable evidence IDs, or []. Each claim has all of these fields: claim_id,\nclaim_type, subject_id, quantity, event_start_seconds, event_end_seconds, operator,\nvalue, unit, evidence_ids, depends_on_claim_ids, sentence. Never pad with whitespace.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nKeep every claim's event_start_seconds and event_end_seconds equal to the requested\ntarget interval, including comparisons whose earlier operand covers another interval.\nReport only requested facts; the baseline is an operand, not an additional claim.\nUse one short sentence per claim and compact JSON. Round reported numbers to six\nsignificant digits. A revision_effect claim uses revised for an explicitly revised\nfeature; an unchanged feature can be reported as an ordinary numeric_observation.\ndepends_on_claim_ids contains only claim_id values of earlier claims, never evidence IDs.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"evidence\":[{\"event_end_seconds\":1320.0,\"event_start_seconds\":1200.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1321.0,\"quantity\":\"eda_median\",\"record_id\":\"synthetic/V108/1200-1320/eda_median/v1\",\"subject_id\":\"V108\",\"supersedes_id\":null,\"unit\":\"synthetic_uS\",\"value\":1.654904067516327,\"version\":1},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1351.0,\"quantity\":\"acceleration_magnitude_sd\",\"record_id\":\"synthetic/V108/1320-1350/acceleration_magnitude_sd/v1\",\"subject_id\":\"V108\",\"supersedes_id\":null,\"unit\":\"synthetic_g\",\"value\":0.10557897214580628,\"version\":1},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1351.0,\"quantity\":\"eda_clipping_fraction\",\"record_id\":\"synthetic/V108/1320-1350/eda_clipping_fraction/v1\",\"subject_id\":\"V108\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.004166666666666667,\"version\":1},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1351.0,\"quantity\":\"eda_iqr\",\"record_id\":\"synthetic/V108/1320-1350/eda_iqr/v1\",\"subject_id\":\"V108\",\"supersedes_id\":null,\"unit\":\"synthetic_uS\",\"value\":0.021990209817886353,\"version\":1},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1381.0,\"quantity\":\"eda_median\",\"record_id\":\"synthetic/V108/1320-1350/eda_median/v2\",\"subject_id\":\"V108\",\"supersedes_id\":\"synthetic/V108/1320-1350/eda_median/v1\",\"unit\":\"synthetic_uS\",\"value\":2.1806896924972534,\"version\":2},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1351.0,\"quantity\":\"eda_missing_fraction\",\"record_id\":\"synthetic/V108/1320-1350/eda_missing_fraction/v1\",\"subject_id\":\"V108\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.0,\"version\":1},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1351.0,\"quantity\":\"pulse_frequency_bpm\",\"record_id\":\"synthetic/V108/1320-1350/pulse_frequency_bpm/v1\",\"subject_id\":\"V108\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":80.0,\"version\":1},{\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1351.0,\"quantity\":\"respiration_frequency_per_min\",\"record_id\":\"synthetic/V108/1320-1350/respiration_frequency_per_min/v1\",\"subject_id\":\"V108\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":18.0,\"version\":1}],\"knowledge_time\":1381.0,\"previous_display\":{\"answer_status\":\"partially_answered\",\"claims\":[{\"claim_id\":\"claim_1\",\"claim_type\":\"numeric_observation\",\"depends_on_claim_ids\":[],\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_ids\":[\"synthetic/V108/1320-1350/eda_median/v1\"],\"operator\":\"approximately_equal\",\"quantity\":\"eda_median\",\"sentence\":\"The target EDA median is approximately equal to 1.68069 synthetic_uS.\",\"subject_id\":\"V108\",\"unit\":\"synthetic_uS\",\"value\":1.68069},{\"claim_id\":\"claim_2\",\"claim_type\":\"numeric_observation\",\"depends_on_claim_ids\":[],\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_ids\":[\"synthetic/V108/1320-1350/acceleration_magnitude_sd/v1\"],\"operator\":\"approximately_equal\",\"quantity\":\"acceleration_magnitude_sd\",\"sentence\":\"The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g.\",\"subject_id\":\"V108\",\"unit\":\"synthetic_g\",\"value\":0.105579},{\"claim_id\":\"claim_3\",\"claim_type\":\"missing_evidence\",\"depends_on_claim_ids\":[],\"event_end_seconds\":1350.0,\"event_start_seconds\":1320.0,\"evidence_ids\":[],\"operator\":\"missing\",\"quantity\":\"eda_clipping_fraction\",\"sentence\":\"The target EDA clipping fraction is missing.\",\"subject_id\":\"V108\",\"unit\":\"fraction\",\"value\":null}],\"explanation\":\"The target EDA median is approximately equal to 1.68069 synthetic_uS. The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g. The target EDA clipping fraction is missing.\",\"unresolved_evidence_ids\":[\"synthetic/V108/1320-1350/eda_clipping_fraction/v1\"]},\"question\":\"Report the target EDA median, marking it revised only if an explicit revision is visible, and report target acceleration magnitude variability. State any missing requested evidence.\",\"subject_id\":\"V108\",\"target_interval\":[1320.0,1350.0]}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260928,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\"claims\": [{\"claim_id\": \"claim_1\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"V108\", \"quantity\": \"eda_median\", \"event_start_seconds\": 1320.0, \"event_end_seconds\": 1350.0, \"operator\": \"approximately_equal\", \"value\": 2.18069, \"unit\": \"synthetic_uS\", \"evidence_ids\": [\"synthetic/V108/1320-1350/eda_median/v2\"], \"depends_on_claim_ids\": [], \"sentence\": \"The target EDA median is approximately equal to 2.18069 synthetic_uS.\"}, {\"claim_id\": \"claim_2\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"V108\", \"quantity\": \"acceleration_magnitude_sd\", \"event_start_seconds\": 1320.0, \"event_end_seconds\": 1350.0, \"operator\": \"approximately_equal\", \"value\": 0.105579, \"unit\": \"synthetic_g\", \"evidence_ids\": [\"synthetic/V108/1320-1350/acceleration_magnitude_sd/v1\"], \"depends_on_claim_ids\": [], \"sentence\": \"The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g.\"}, {\"claim_id\": \"claim_3\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"V108\", \"quantity\": \"eda_clipping_fraction\", \"event_start_seconds\": 1320.0, \"event_end_seconds\": 1350.0, \"operator\": \"approximately_equal\", \"value\": 0.004166666666666667, \"unit\": \"fraction\", \"evidence_ids\": [\"synthetic/V108/1320-1350/eda_clipping_fraction/v1\"], \"depends_on_claim_ids\": [], \"sentence\": \"The target EDA clipping fraction is approximately equal to 0.0041667 fraction.\"}], \"answer_status\": \"answered\", \"explanation\": \"The target EDA median is approximately equal to 2.18069 synthetic_uS. The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g. The target EDA clipping fraction is approximately equal to 0.0041667 fraction.\", \"unresolved_evidence_ids\": []}",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790642936,
+      "id": "chatcmpl-cab3619790de4e988d912c741a1b01ef",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 560,
+        "prompt_tokens": 1884,
+        "prompt_tokens_details": null,
+        "total_tokens": 2444
+      }
+    },
+    "seconds": 7.994163962081075,
+    "started_at": "2026-09-29T00:48:56.216468+00:00",
+    "truncated": false
+  },
+  "paragraph_discrepancies": [],
+  "persistent_before": {
+    "synthetic-V108-e1-correction-c0-M1/claim/claim_1": {
+      "claim": {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V108/1320-1350/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The target EDA median is approximately equal to 1.68069 synthetic_uS.",
+        "subject_id": "V108",
+        "unit": "synthetic_uS",
+        "value": 1.68069
+      },
+      "created_at": 1351.0,
+      "current_evidence_ids": [
+        "synthetic/V108/1320-1350/eda_median/v2"
+      ],
+      "last_transition": {
+        "flag_seconds": 0.02306150901131332,
+        "trigger_id": "synthetic/V108/1320-1350/eda_median/v2"
+      },
+      "state": "contradicted"
+    },
+    "synthetic-V108-e1-correction-c0-M1/claim/claim_2": {
+      "claim": {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V108/1320-1350/acceleration_magnitude_sd/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "acceleration_magnitude_sd",
+        "sentence": "The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g.",
+        "subject_id": "V108",
+        "unit": "synthetic_g",
+        "value": 0.105579
+      },
+      "created_at": 1351.0,
+      "current_evidence_ids": [
+        "synthetic/V108/1320-1350/acceleration_magnitude_sd/v1"
+      ],
+      "last_transition": null,
+      "state": "supported"
+    },
+    "synthetic-V108-e1-correction-c0-M1/claim/claim_3": {
+      "claim": {
+        "claim_id": "claim_3",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V108/1320-1350/eda_clipping_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_clipping_fraction",
+        "sentence": "The target EDA clipping fraction is approximately equal to 0.0041667 fraction.",
+        "subject_id": "V108",
+        "unit": "fraction",
+        "value": 0.004166666666666667
+      },
+      "created_at": 1351.0,
+      "current_evidence_ids": [
+        "synthetic/V108/1320-1350/eda_clipping_fraction/v1"
+      ],
+      "last_transition": null,
+      "state": "supported"
+    }
+  },
+  "query": {
+    "dataset_id": "synthetic",
+    "event_end_seconds": 1350.0,
+    "event_start_seconds": 1320.0,
+    "family": "revision_impact",
+    "freshness_seconds": null,
+    "knowledge_time": 1381.0,
+    "question": "Report the target EDA median, marking it revised only if an explicit revision is visible, and report target acceleration magnitude variability. State any missing requested evidence.",
+    "session_id": "session_1",
+    "subject_id": "V108"
+  },
+  "raw_candidate": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V108/1320-1350/eda_median/v2"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The target EDA median is approximately equal to 2.18069 synthetic_uS.",
+        "subject_id": "V108",
+        "unit": "synthetic_uS",
+        "value": 2.18069
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V108/1320-1350/acceleration_magnitude_sd/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "acceleration_magnitude_sd",
+        "sentence": "The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g.",
+        "subject_id": "V108",
+        "unit": "synthetic_g",
+        "value": 0.105579
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1350.0,
+        "event_start_seconds": 1320.0,
+        "evidence_ids": [
+          "synthetic/V108/1320-1350/eda_clipping_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_clipping_fraction",
+        "sentence": "The target EDA clipping fraction is approximately equal to 0.0041667 fraction.",
+        "subject_id": "V108",
+        "unit": "fraction",
+        "value": 0.004166666666666667
+      }
+    ],
+    "explanation": "The target EDA median is approximately equal to 2.18069 synthetic_uS. The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g. The target EDA clipping fraction is approximately equal to 0.0041667 fraction.",
+    "unresolved_evidence_ids": []
+  },
+  "repair": null,
+  "retrieval_seconds": 0.009430316975340247,
+  "revisions": [
+    {
+      "affected": [
+        "synthetic-V108-e1-correction-c0-M1/claim/claim_1",
+        "synthetic-V108-e1-correction-c0-M1/explanation"
+      ],
+      "assessments": {
+        "synthetic-V108-e1-correction-c0-M1/claim/claim_1": {
+          "state": "contradicted",
+          "value": 1.68069
+        },
+        "synthetic-V108-e1-correction-c0-M1/explanation": {
+          "state": "unsupported",
+          "value": null
+        }
+      },
+      "ingested_at": 1381.0,
+      "seconds": 0.02306150901131332,
+      "trigger_id": "synthetic/V108/1320-1350/eda_median/v2"
+    },
+    {
+      "kind": "explanation_maintenance",
+      "versions": [
+        {
+          "dataset_id": "synthetic",
+          "event_end_seconds": 1350.0,
+          "event_start_seconds": 1320.0,
+          "evidence_state": "available",
+          "ingested_at_seconds": 1381.0000001,
+          "logical_id": "synthetic-V108-e1-correction-c0-M1/explanation",
+          "metadata": {
+            "case_id": "synthetic-V108-e1-correction-c0-M1",
+            "display": {
+              "answer_status": "partially_answered",
+              "claims": [
+                {
+                  "claim_id": "claim_2",
+                  "claim_type": "numeric_observation",
+                  "depends_on_claim_ids": [],
+                  "event_end_seconds": 1350.0,
+                  "event_start_seconds": 1320.0,
+                  "evidence_ids": [
+                    "synthetic/V108/1320-1350/acceleration_magnitude_sd/v1"
+                  ],
+                  "operator": "approximately_equal",
+                  "quantity": "acceleration_magnitude_sd",
+                  "sentence": "The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g.",
+                  "subject_id": "V108",
+                  "unit": "synthetic_g",
+                  "value": 0.105579
+                },
+                {
+                  "claim_id": "claim_3",
+                  "claim_type": "numeric_observation",
+                  "depends_on_claim_ids": [],
+                  "event_end_seconds": 1350.0,
+                  "event_start_seconds": 1320.0,
+                  "evidence_ids": [
+                    "synthetic/V108/1320-1350/eda_clipping_fraction/v1"
+                  ],
+                  "operator": "approximately_equal",
+                  "quantity": "eda_clipping_fraction",
+                  "sentence": "The target EDA clipping fraction is approximately equal to 0.0041667 fraction.",
+                  "subject_id": "V108",
+                  "unit": "fraction",
+                  "value": 0.004166666666666667
+                }
+              ],
+              "explanation": "The target acceleration magnitude variability is approximately equal to 0.105579 synthetic_g. The target EDA clipping fraction is approximately equal to 0.0041667 fraction.",
+              "unresolved_evidence_ids": []
+            },
+            "maintenance_action": "recompose_from_currently_supported_claims",
+            "withdrawn_claim_ids": [
+              "synthetic-V108-e1-correction-c0-M1/claim/claim_1"
+            ]
+          },
+          "operator": "identity",
+          "quantity": "",
+          "record_id": "synthetic-V108-e1-correction-c0-M1/explanation/maintenance/1381",
+          "record_type": "explanation",
+          "session_id": "session_1",
+          "source_ids": [
+            "synthetic-V108-e1-correction-c0-M1/claim/claim_2",
+            "synthetic-V108-e1-correction-c0-M1/claim/claim_3"
+          ],
+          "subject_id": "V108",
+          "supersedes_id": "synthetic-V108-e1-correction-c0-M1/explanation",
+          "support_mode": "AND",
+          "unit": "",
+          "value": null,
+          "version": 2
+        }
+      ]
+    }
+  ],
+  "seconds": 7.994163962081075,
+  "status": "completed",
+  "validation": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "state": "supported"
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [],
+      "state": "supported"
+    },
+    {
+      "claim_id": "claim_3",
+      "reasons": [],
+      "state": "supported"
+    }
+  ]
+}

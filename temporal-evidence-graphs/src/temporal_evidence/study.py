@@ -59,10 +59,10 @@ def query_evidence(case,episode):
 
 
 def protocol_files():
-    files=list(Path("configs").glob("*.yaml"))+[Path("pyproject.toml")]
+    files=list(Path("configs").glob("*.yaml"))+[Path("pyproject.toml"),Path("requirements.lock"),Path("scripts/serve_model.py")]
     for part in ["data","features","generation","replay","storage","validation","synthetic","evaluation"]:
         files.extend(Path(f"src/temporal_evidence/{part}").glob("*.py"))
-    files += [Path(f"src/temporal_evidence/{name}.py") for name in ["schema","study","experiment","streaming","io"]]
+    files += [Path(f"src/temporal_evidence/{name}.py") for name in ["schema","study","experiment","streaming","environment","io"]]
     return {str(path):digest_file(path) for path in sorted(files)}
 
 
@@ -90,6 +90,8 @@ def freeze(config_path="configs/minimum_study.yaml"):
         assert digest_file(row["path"])==row["sha256"]
     frozen={"run_id":"minimum_v1","frozen_at":utc_now(),"config":config,"config_sha256":digest_file(config_path),
             "source_hashes":protocol_files(),"model":model,"auxiliary_audit_model":audit_model,"environment":environment,"cases":cases,
+            "server_launch":read_json("artifacts/manifests/server_launch.json"),
+            "gpu_placement":read_json("artifacts/manifests/gpu_placement.json"),
             "initial_calls":len(cases),"maximum_repair_calls":sum(case["method"]!="B0" for case in cases),
             "principal_contrasts":[["M1","B2","correction"],["M1","B1","case_error_and_fact_recall"]],
             "systems_contrast":["M1","B3"],"uncertainty":"2000 paired subject-cluster bootstrap resamples; pointwise 95% intervals; no p-values"}
