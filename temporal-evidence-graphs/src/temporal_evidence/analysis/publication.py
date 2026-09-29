@@ -11,6 +11,7 @@ from temporal_evidence.io import read_json, read_journal, write_json, digest_fil
 from temporal_evidence.analysis.systems import analyze_streaming, resource_summary
 from temporal_evidence.analysis.design_figures import generate as design_figures
 from temporal_evidence.analysis.integrity import audit_integrity
+from temporal_evidence.analysis.audit_summary import summarize_audit
 
 SOURCES = {"synthetic": "Synthetic", "wesad": "WESAD", "ppg_dalia": "PPG-DaLiA"}
 METHODS = ("B0", "B1", "B2", "M1", "B3")
@@ -75,6 +76,7 @@ def generate():
     assert summary["cases"] == len(metrics) == 3600
     audit = read_json("artifacts/audit/minimum_v1/summary.json")
     assert audit["sampled"] == 60 and audit["total_calls"] == 64
+    audit_details = summarize_audit()
     core = read_json("artifacts/manifests/core_validation.json")
     assert core["passed"] and core["real_neo4j"]
     streaming = analyze_streaming()
@@ -139,7 +141,7 @@ def generate():
             f"{c['repair_misses']}/{c['repair_denominator']}",c["peak_event_backlog"],c["peak_pending_explanations"]]
            for c in sorted(streaming["cells"],key=lambda c:(c["offered_events_per_second"],c["method"]!="M1"))])
     table("staleness_table.tex","rlrrrr",
-          ["Events/s","Method","Explanations","Request adequate","Completion adequate","Adequate then stale"],
+          ["Events/s","Method","Calls","Input adequate","Completion adequate","Became stale"],
           [[c["offered_events_per_second"],c["method"],c["completion_audited"],c["adequate_at_request"],
             c["adequate_at_completion"],c["adequate_then_stale"]] for c in streaming["cells"]])
 
@@ -241,6 +243,7 @@ def generate():
               "generated_dependencies":[{"method":method,"claims":dependency_counts[(method,"claims")],
                                          "claims_with_parents":dependency_counts[(method,"parent_claims")]} for method in METHODS],
               "database_accounting":database,"resources":resources,"automated_audit":audit,
+              "audit_details":audit_details,
               "notes":["Reason components overlap; they cannot be summed into an error total",
                        "Claims requiring correction are conditional on initially generated content",
                        "All model families and sources retained, including failures and negative findings"]}

@@ -85,10 +85,16 @@ def resource_summary():
                        "peak_gpu_memory_mib": max((r["memory_used_mib"] for r in samples), default=None),
                        "mean_gpu_utilization_percent": float(np.mean([r["gpu_utilization_percent"] for r in samples])) if samples else None,
                        "peak_host_cgroup_memory_bytes": max((r["host_cgroup_memory_bytes"] for r in samples if r["host_cgroup_memory_bytes"] is not None), default=None)})
+    times = sorted(datetime.fromisoformat(row["time"]) for row in telemetry)
     report = {"stages": result, "hourly_price": None, "currency_cost": None,
+              "telemetry_samples":len(telemetry),
+              "telemetry_started_at":times[0].isoformat() if times else None,
+              "telemetry_finished_at":times[-1].isoformat() if times else None,
+              "telemetry_span_seconds":(times[-1]-times[0]).total_seconds() if times else None,
               "notes": ["Stage wall time includes host work and GPU idle gaps; it is not CUDA kernel time",
                         "One-second GPU telemetry can miss brief peaks",
                         "Cgroup memory includes the whole pod and file cache, not per-method private memory",
+                        "Measured workload wall time excludes downloads, initial model-server compilation and unlogged gaps; it is not total billable pod time",
                         "No account hourly rate was supplied; no monetary cost estimated"],
               "inputs": {str(telemetry_path): digest_file(telemetry_path), str(stage_path): digest_file(stage_path)}}
     write_json("artifacts/analysis/resources.json", report)

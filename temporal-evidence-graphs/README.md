@@ -51,12 +51,13 @@ scores, paired subject-level analysis, scientific figures and manuscript numbers
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.cli evaluate --run-id minimum_v1
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.cli analyze --run-id minimum_v1
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.analysis.publication
+PYTHONPATH=src .venv/bin/python -m temporal_evidence.analysis.measurements
 bash paper/build.sh
 ```
 
 The publication builder requires every planned case, all six systems cells,
 the 60-explanation audit, and matching frozen hashes. It refuses partial results.
-The compiled PDF will be `paper/build/main.pdf`. Conference requirements and
+The compiled PDF will be `paper/temporal_evidence_maintenance.pdf`. Conference requirements and
 the official template provenance are in [docs/conference.md](docs/conference.md).
 
 ## GPU reproduction

@@ -6,7 +6,7 @@ results, reports, manuscript sources and local private data stay with that paper
 | Paper | Project | Manuscript |
 |---|---|---|
 | Graph Representations for Congestion Onset Prediction: A Controlled Comparative Study | [congestion-onset-graphs](congestion-onset-graphs/README.md) | [LaTeX](congestion-onset-graphs/manuscript/main.tex), [PDF](congestion-onset-graphs/manuscript/graph_representations_draft.pdf) |
-| Temporal Evidence Graphs (working title) | [temporal-evidence-graphs](temporal-evidence-graphs/README.md) | Research plan forthcoming |
+| Temporal Evidence Maintenance for Revisable Monitoring Explanations | [temporal-evidence-graphs](temporal-evidence-graphs/README.md) | [Research plan](temporal-evidence-graphs/Temporal_Evidence_Graphs_Codex_Research_Plan.md), [LaTeX](temporal-evidence-graphs/paper/main.tex) |
 
 Compile the existing paper from the repository root:
 
