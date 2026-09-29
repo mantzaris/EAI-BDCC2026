@@ -1,0 +1,670 @@
+{
+  "after": {
+    "case_id": "wesad-S11-e0-correction-c0-M1",
+    "counts": {
+      "edges": 4,
+      "nodes": 4
+    },
+    "edges": [
+      {
+        "declared_source_id": "wesad/S11/1155-1275/eda_median/v1",
+        "directly_stored": true,
+        "origin": "model_citation",
+        "semantics": "evidence_citation",
+        "source": "wesad-S11-e0-correction-c0-M1/claim/C2",
+        "target": "wesad/S11/1155-1275/eda_median/v1",
+        "type": "DEPENDS_ON",
+        "witness_edge_ids": [
+          "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231605"
+        ],
+        "witness_record_ids": [
+          "wesad/S11/1155-1275/eda_median/v1"
+        ]
+      },
+      {
+        "declared_source_id": "wesad/S11/1275-1305/eda_median/v1",
+        "directly_stored": false,
+        "origin": "model_citation",
+        "semantics": "evidence_citation",
+        "source": "wesad-S11-e0-correction-c0-M1/claim/C2",
+        "target": "wesad/S11/1275-1305/eda_median/v2",
+        "type": "CURRENT_CITATION_PATH",
+        "witness_edge_ids": [
+          "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231606",
+          "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231629"
+        ],
+        "witness_record_ids": [
+          "wesad/S11/1275-1305/eda_median/v1",
+          "wesad/S11/1275-1305/eda_median/v2"
+        ]
+      },
+      {
+        "declared_source_id": "wesad-S11-e0-correction-c0-M1/claim/C1",
+        "directly_stored": true,
+        "origin": "model_parent",
+        "semantics": "declared_prerequisite",
+        "source": "wesad-S11-e0-correction-c0-M1/claim/C2",
+        "target": "wesad-S11-e0-correction-c0-M1/claim/C1",
+        "type": "DEPENDS_ON",
+        "witness_edge_ids": [
+          "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231607"
+        ],
+        "witness_record_ids": [
+          "wesad-S11-e0-correction-c0-M1/claim/C1"
+        ]
+      },
+      {
+        "declared_source_id": "wesad/S11/1275-1305/eda_median/v1",
+        "directly_stored": false,
+        "origin": "model_citation",
+        "semantics": "evidence_citation",
+        "source": "wesad-S11-e0-correction-c0-M1/claim/C1",
+        "target": "wesad/S11/1275-1305/eda_median/v2",
+        "type": "CURRENT_CITATION_PATH",
+        "witness_edge_ids": [
+          "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231604",
+          "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231629"
+        ],
+        "witness_record_ids": [
+          "wesad/S11/1275-1305/eda_median/v1",
+          "wesad/S11/1275-1305/eda_median/v2"
+        ]
+      }
+    ],
+    "knowledge_time": 1336.01,
+    "nodes": [
+      {
+        "accepted_at_creation": true,
+        "assessment": {
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:84238",
+          "id": "wesad-S11-e0-correction-c0-M1/claim/C1",
+          "known_at": 1336.0,
+          "scope": "minimum_v1/wesad-S11-e0/correction/M1",
+          "state": "contradicted",
+          "trigger_id": "wesad/S11/1275-1305/eda_median/v2",
+          "value": 2.408303
+        },
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "numeric_observation",
+          "depends_on_claim_ids": [],
+          "event_end_seconds": 1305.0,
+          "event_start_seconds": 1275.0,
+          "evidence_ids": [
+            "wesad/S11/1275-1305/eda_median/v1"
+          ],
+          "operator": "approximately_equal",
+          "quantity": "eda_median",
+          "sentence": "The EDA median is approximately equal to 2.408303 uS.",
+          "subject_id": "S11",
+          "unit": "uS",
+          "value": 2.408303
+        },
+        "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:84230",
+        "displayed_member": false,
+        "evidence_state": "available",
+        "id": "wesad-S11-e0-correction-c0-M1/claim/C1",
+        "ingested": 1306.000001,
+        "interval": [
+          1275.0,
+          1305.0
+        ],
+        "logical_id": "wesad-S11-e0-correction-c0-M1/claim/C1",
+        "quantity": "eda_median",
+        "type": "claim",
+        "unit": "uS",
+        "value": 2.408303,
+        "version": 1
+      },
+      {
+        "accepted_at_creation": true,
+        "assessment": {
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:84239",
+          "id": "wesad-S11-e0-correction-c0-M1/claim/C2",
+          "known_at": 1336.0,
+          "scope": "minimum_v1/wesad-S11-e0/correction/M1",
+          "state": "unsupported",
+          "trigger_id": "wesad/S11/1275-1305/eda_median/v2",
+          "value": 0.045414
+        },
+        "claim": {
+          "claim_id": "C2",
+          "claim_type": "trend",
+          "depends_on_claim_ids": [
+            "C1"
+          ],
+          "event_end_seconds": 1305.0,
+          "event_start_seconds": 1275.0,
+          "evidence_ids": [
+            "wesad/S11/1155-1275/eda_median/v1",
+            "wesad/S11/1275-1305/eda_median/v1"
+          ],
+          "operator": "difference",
+          "quantity": "eda_median",
+          "sentence": "The EDA median difference from the earlier 120-second interval is 0.045414 uS.",
+          "subject_id": "S11",
+          "unit": "uS",
+          "value": 0.045414
+        },
+        "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:84231",
+        "displayed_member": false,
+        "evidence_state": "available",
+        "id": "wesad-S11-e0-correction-c0-M1/claim/C2",
+        "ingested": 1306.000001,
+        "interval": [
+          1275.0,
+          1305.0
+        ],
+        "logical_id": "wesad-S11-e0-correction-c0-M1/claim/C2",
+        "quantity": "eda_median",
+        "type": "claim",
+        "unit": "uS",
+        "value": 0.045414,
+        "version": 1
+      },
+      {
+        "accepted_at_creation": null,
+        "assessment": null,
+        "claim": null,
+        "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:83027",
+        "displayed_member": false,
+        "evidence_state": "available",
+        "id": "wesad/S11/1155-1275/eda_median/v1",
+        "ingested": 1276.0,
+        "interval": [
+          1155.0,
+          1275.0
+        ],
+        "logical_id": "wesad/S11/1155-1275/eda_median",
+        "quantity": "eda_median",
+        "type": "feature",
+        "unit": "uS",
+        "value": 2.36289,
+        "version": 1
+      },
+      {
+        "accepted_at_creation": null,
+        "assessment": null,
+        "claim": null,
+        "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:84237",
+        "displayed_member": false,
+        "evidence_state": "available",
+        "id": "wesad/S11/1275-1305/eda_median/v2",
+        "ingested": 1336.0,
+        "interval": [
+          1275.0,
+          1305.0
+        ],
+        "logical_id": "wesad/S11/1275-1305/eda_median",
+        "quantity": "eda_median",
+        "type": "feature",
+        "unit": "uS",
+        "value": 2.9083034999999997,
+        "version": 2
+      }
+    ],
+    "projection": "latest explanation members + declared claim ancestors + current visible cited features; no SUPPORTS mirror",
+    "scope": "minimum_v1/wesad-S11-e0/correction/M1",
+    "sidecars": {
+      "explanation": {
+        "dataset_id": "wesad",
+        "event_end_seconds": 1305.0,
+        "event_start_seconds": 1275.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 1336.0000001,
+        "logical_id": "wesad-S11-e0-correction-c0-M1/explanation",
+        "metadata": {
+          "case_id": "wesad-S11-e0-correction-c0-M1",
+          "display": {
+            "answer_status": "insufficient_evidence",
+            "claims": [],
+            "explanation": "",
+            "unresolved_evidence_ids": []
+          },
+          "maintenance_action": "recompose_from_currently_supported_claims",
+          "withdrawn_claim_ids": [
+            "wesad-S11-e0-correction-c0-M1/claim/C1",
+            "wesad-S11-e0-correction-c0-M1/claim/C2"
+          ]
+        },
+        "operator": "identity",
+        "quantity": "",
+        "record_id": "wesad-S11-e0-correction-c0-M1/explanation/maintenance/1336",
+        "record_type": "explanation",
+        "session_id": "session_1",
+        "source_ids": [],
+        "subject_id": "S11",
+        "supersedes_id": "wesad-S11-e0-correction-c0-M1/explanation",
+        "support_mode": "AND",
+        "unit": "",
+        "value": null,
+        "version": 2
+      },
+      "include_withdrawn_for_revision_drawing": true,
+      "observation_provenance": {
+        "wesad/S11/1155-1275/eda_median/v1": [
+          {
+            "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:83157",
+            "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:228584",
+            "record": {
+              "dataset_id": "wesad",
+              "event_end_seconds": 1275.0,
+              "event_start_seconds": 1155.0,
+              "evidence_state": "available",
+              "ingested_at_seconds": 1276.0,
+              "logical_id": "wesad/S11/1155-1275/eda/raw",
+              "metadata": {
+                "channel": "eda",
+                "file_sha256": "f39557a8d660b10154936f51debf2926aea7ebb9b26a168858f59502f914d8f7",
+                "path": "data/raw/wesad/recordings/WESAD/S11/S11.pkl",
+                "rate_hz": 4,
+                "sample_start": 4620,
+                "sample_stop": 5100
+              },
+              "operator": "identity",
+              "quantity": "",
+              "record_id": "wesad/S11/1155-1275/eda/raw",
+              "record_type": "observation",
+              "session_id": "session_1",
+              "source_ids": [],
+              "subject_id": "S11",
+              "supersedes_id": null,
+              "support_mode": "AND",
+              "unit": "",
+              "value": null,
+              "version": 1
+            }
+          }
+        ],
+        "wesad/S11/1275-1305/eda_median/v2": [
+          {
+            "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:83185",
+            "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231631",
+            "record": {
+              "dataset_id": "wesad",
+              "event_end_seconds": 1305.0,
+              "event_start_seconds": 1275.0,
+              "evidence_state": "available",
+              "ingested_at_seconds": 1306.0,
+              "logical_id": "wesad/S11/1275-1305/eda/raw",
+              "metadata": {
+                "channel": "eda",
+                "file_sha256": "f39557a8d660b10154936f51debf2926aea7ebb9b26a168858f59502f914d8f7",
+                "path": "data/raw/wesad/recordings/WESAD/S11/S11.pkl",
+                "rate_hz": 4,
+                "sample_start": 5100,
+                "sample_stop": 5220
+              },
+              "operator": "identity",
+              "quantity": "",
+              "record_id": "wesad/S11/1275-1305/eda/raw",
+              "record_type": "observation",
+              "session_id": "session_1",
+              "source_ids": [],
+              "subject_id": "S11",
+              "supersedes_id": null,
+              "support_mode": "AND",
+              "unit": "",
+              "value": null,
+              "version": 1
+            }
+          }
+        ]
+      },
+      "omitted_types": [
+        "subject",
+        "sensor",
+        "observation",
+        "explanation",
+        "assessment",
+        "review"
+      ]
+    }
+  },
+  "before": {
+    "case_id": "wesad-S11-e0-correction-c0-M1",
+    "counts": {
+      "edges": 4,
+      "nodes": 4
+    },
+    "edges": [
+      {
+        "declared_source_id": "wesad/S11/1155-1275/eda_median/v1",
+        "directly_stored": true,
+        "origin": "model_citation",
+        "semantics": "evidence_citation",
+        "source": "wesad-S11-e0-correction-c0-M1/claim/C2",
+        "target": "wesad/S11/1155-1275/eda_median/v1",
+        "type": "DEPENDS_ON",
+        "witness_edge_ids": [
+          "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231605"
+        ],
+        "witness_record_ids": [
+          "wesad/S11/1155-1275/eda_median/v1"
+        ]
+      },
+      {
+        "declared_source_id": "wesad/S11/1275-1305/eda_median/v1",
+        "directly_stored": true,
+        "origin": "model_citation",
+        "semantics": "evidence_citation",
+        "source": "wesad-S11-e0-correction-c0-M1/claim/C2",
+        "target": "wesad/S11/1275-1305/eda_median/v1",
+        "type": "DEPENDS_ON",
+        "witness_edge_ids": [
+          "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231606"
+        ],
+        "witness_record_ids": [
+          "wesad/S11/1275-1305/eda_median/v1"
+        ]
+      },
+      {
+        "declared_source_id": "wesad-S11-e0-correction-c0-M1/claim/C1",
+        "directly_stored": true,
+        "origin": "model_parent",
+        "semantics": "declared_prerequisite",
+        "source": "wesad-S11-e0-correction-c0-M1/claim/C2",
+        "target": "wesad-S11-e0-correction-c0-M1/claim/C1",
+        "type": "DEPENDS_ON",
+        "witness_edge_ids": [
+          "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231607"
+        ],
+        "witness_record_ids": [
+          "wesad-S11-e0-correction-c0-M1/claim/C1"
+        ]
+      },
+      {
+        "declared_source_id": "wesad/S11/1275-1305/eda_median/v1",
+        "directly_stored": true,
+        "origin": "model_citation",
+        "semantics": "evidence_citation",
+        "source": "wesad-S11-e0-correction-c0-M1/claim/C1",
+        "target": "wesad/S11/1275-1305/eda_median/v1",
+        "type": "DEPENDS_ON",
+        "witness_edge_ids": [
+          "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231604"
+        ],
+        "witness_record_ids": [
+          "wesad/S11/1275-1305/eda_median/v1"
+        ]
+      }
+    ],
+    "knowledge_time": 1306.01,
+    "nodes": [
+      {
+        "accepted_at_creation": true,
+        "assessment": null,
+        "claim": {
+          "claim_id": "C1",
+          "claim_type": "numeric_observation",
+          "depends_on_claim_ids": [],
+          "event_end_seconds": 1305.0,
+          "event_start_seconds": 1275.0,
+          "evidence_ids": [
+            "wesad/S11/1275-1305/eda_median/v1"
+          ],
+          "operator": "approximately_equal",
+          "quantity": "eda_median",
+          "sentence": "The EDA median is approximately equal to 2.408303 uS.",
+          "subject_id": "S11",
+          "unit": "uS",
+          "value": 2.408303
+        },
+        "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:84230",
+        "displayed_member": true,
+        "evidence_state": "available",
+        "id": "wesad-S11-e0-correction-c0-M1/claim/C1",
+        "ingested": 1306.000001,
+        "interval": [
+          1275.0,
+          1305.0
+        ],
+        "logical_id": "wesad-S11-e0-correction-c0-M1/claim/C1",
+        "quantity": "eda_median",
+        "type": "claim",
+        "unit": "uS",
+        "value": 2.408303,
+        "version": 1
+      },
+      {
+        "accepted_at_creation": true,
+        "assessment": null,
+        "claim": {
+          "claim_id": "C2",
+          "claim_type": "trend",
+          "depends_on_claim_ids": [
+            "C1"
+          ],
+          "event_end_seconds": 1305.0,
+          "event_start_seconds": 1275.0,
+          "evidence_ids": [
+            "wesad/S11/1155-1275/eda_median/v1",
+            "wesad/S11/1275-1305/eda_median/v1"
+          ],
+          "operator": "difference",
+          "quantity": "eda_median",
+          "sentence": "The EDA median difference from the earlier 120-second interval is 0.045414 uS.",
+          "subject_id": "S11",
+          "unit": "uS",
+          "value": 0.045414
+        },
+        "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:84231",
+        "displayed_member": true,
+        "evidence_state": "available",
+        "id": "wesad-S11-e0-correction-c0-M1/claim/C2",
+        "ingested": 1306.000001,
+        "interval": [
+          1275.0,
+          1305.0
+        ],
+        "logical_id": "wesad-S11-e0-correction-c0-M1/claim/C2",
+        "quantity": "eda_median",
+        "type": "claim",
+        "unit": "uS",
+        "value": 0.045414,
+        "version": 1
+      },
+      {
+        "accepted_at_creation": null,
+        "assessment": null,
+        "claim": null,
+        "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:83027",
+        "displayed_member": false,
+        "evidence_state": "available",
+        "id": "wesad/S11/1155-1275/eda_median/v1",
+        "ingested": 1276.0,
+        "interval": [
+          1155.0,
+          1275.0
+        ],
+        "logical_id": "wesad/S11/1155-1275/eda_median",
+        "quantity": "eda_median",
+        "type": "feature",
+        "unit": "uS",
+        "value": 2.36289,
+        "version": 1
+      },
+      {
+        "accepted_at_creation": null,
+        "assessment": null,
+        "claim": null,
+        "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:83146",
+        "displayed_member": false,
+        "evidence_state": "available",
+        "id": "wesad/S11/1275-1305/eda_median/v1",
+        "ingested": 1306.0,
+        "interval": [
+          1275.0,
+          1305.0
+        ],
+        "logical_id": "wesad/S11/1275-1305/eda_median",
+        "quantity": "eda_median",
+        "type": "feature",
+        "unit": "uS",
+        "value": 2.4083034999999997,
+        "version": 1
+      }
+    ],
+    "projection": "latest explanation members + declared claim ancestors + current visible cited features; no SUPPORTS mirror",
+    "scope": "minimum_v1/wesad-S11-e0/correction/M1",
+    "sidecars": {
+      "explanation": {
+        "dataset_id": "wesad",
+        "event_end_seconds": 1305.0,
+        "event_start_seconds": 1275.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 1306.000001,
+        "logical_id": "wesad-S11-e0-correction-c0-M1/explanation",
+        "metadata": {
+          "case_id": "wesad-S11-e0-correction-c0-M1",
+          "display": {
+            "answer_status": "answered",
+            "claims": [
+              {
+                "claim_id": "C1",
+                "claim_type": "numeric_observation",
+                "depends_on_claim_ids": [],
+                "event_end_seconds": 1305.0,
+                "event_start_seconds": 1275.0,
+                "evidence_ids": [
+                  "wesad/S11/1275-1305/eda_median/v1"
+                ],
+                "operator": "approximately_equal",
+                "quantity": "eda_median",
+                "sentence": "The EDA median is approximately equal to 2.408303 uS.",
+                "subject_id": "S11",
+                "unit": "uS",
+                "value": 2.408303
+              },
+              {
+                "claim_id": "C2",
+                "claim_type": "trend",
+                "depends_on_claim_ids": [
+                  "C1"
+                ],
+                "event_end_seconds": 1305.0,
+                "event_start_seconds": 1275.0,
+                "evidence_ids": [
+                  "wesad/S11/1155-1275/eda_median/v1",
+                  "wesad/S11/1275-1305/eda_median/v1"
+                ],
+                "operator": "difference",
+                "quantity": "eda_median",
+                "sentence": "The EDA median difference from the earlier 120-second interval is 0.045414 uS.",
+                "subject_id": "S11",
+                "unit": "uS",
+                "value": 0.045414
+              }
+            ],
+            "explanation": "The EDA median is approximately equal to 2.408303 uS. The EDA median difference from the earlier 120-second interval is 0.045414 uS.",
+            "unresolved_evidence_ids": []
+          }
+        },
+        "operator": "identity",
+        "quantity": "",
+        "record_id": "wesad-S11-e0-correction-c0-M1/explanation",
+        "record_type": "explanation",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad-S11-e0-correction-c0-M1/claim/C1",
+          "wesad-S11-e0-correction-c0-M1/claim/C2"
+        ],
+        "subject_id": "S11",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "",
+        "value": null,
+        "version": 1
+      },
+      "include_withdrawn_for_revision_drawing": false,
+      "observation_provenance": {
+        "wesad/S11/1155-1275/eda_median/v1": [
+          {
+            "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:83157",
+            "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:228584",
+            "record": {
+              "dataset_id": "wesad",
+              "event_end_seconds": 1275.0,
+              "event_start_seconds": 1155.0,
+              "evidence_state": "available",
+              "ingested_at_seconds": 1276.0,
+              "logical_id": "wesad/S11/1155-1275/eda/raw",
+              "metadata": {
+                "channel": "eda",
+                "file_sha256": "f39557a8d660b10154936f51debf2926aea7ebb9b26a168858f59502f914d8f7",
+                "path": "data/raw/wesad/recordings/WESAD/S11/S11.pkl",
+                "rate_hz": 4,
+                "sample_start": 4620,
+                "sample_stop": 5100
+              },
+              "operator": "identity",
+              "quantity": "",
+              "record_id": "wesad/S11/1155-1275/eda/raw",
+              "record_type": "observation",
+              "session_id": "session_1",
+              "source_ids": [],
+              "subject_id": "S11",
+              "supersedes_id": null,
+              "support_mode": "AND",
+              "unit": "",
+              "value": null,
+              "version": 1
+            }
+          }
+        ],
+        "wesad/S11/1275-1305/eda_median/v1": [
+          {
+            "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:83185",
+            "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:228703",
+            "record": {
+              "dataset_id": "wesad",
+              "event_end_seconds": 1305.0,
+              "event_start_seconds": 1275.0,
+              "evidence_state": "available",
+              "ingested_at_seconds": 1306.0,
+              "logical_id": "wesad/S11/1275-1305/eda/raw",
+              "metadata": {
+                "channel": "eda",
+                "file_sha256": "f39557a8d660b10154936f51debf2926aea7ebb9b26a168858f59502f914d8f7",
+                "path": "data/raw/wesad/recordings/WESAD/S11/S11.pkl",
+                "rate_hz": 4,
+                "sample_start": 5100,
+                "sample_stop": 5220
+              },
+              "operator": "identity",
+              "quantity": "",
+              "record_id": "wesad/S11/1275-1305/eda/raw",
+              "record_type": "observation",
+              "session_id": "session_1",
+              "source_ids": [],
+              "subject_id": "S11",
+              "supersedes_id": null,
+              "support_mode": "AND",
+              "unit": "",
+              "value": null,
+              "version": 1
+            }
+          }
+        ]
+      },
+      "omitted_types": [
+        "subject",
+        "sensor",
+        "observation",
+        "explanation",
+        "assessment",
+        "review"
+      ]
+    }
+  },
+  "case_id": "wesad-S11-e0-correction-c0-M1",
+  "changed": [
+    "wesad-S11-e0-correction-c0-M1/claim/C1",
+    "wesad-S11-e0-correction-c0-M1/claim/C2"
+  ],
+  "dataset": "wesad",
+  "eligible": 20,
+  "layout_seed": 20260929,
+  "selection_rule": "high_impact",
+  "size": 4
+}

@@ -19,6 +19,15 @@ Use only provided measurements. Preserve units and time labels if stating number
 Explain the requested grouping through intermediate propositions where appropriate,
 then include the answer proposition. Use at most 16 claims. Direct test citations
 are allowed. Alternative witnesses must use distinct eligible recording windows.
+When you use an intermediate result, reference its earlier claim_id instead of
+expanding it back into all its tests. Proposition definitions specify meaning;
+they are not instructions to copy their expanded tests into every witness.
+For example, if claim c1 establishes T1, a next conjunction of T1 and T2 may use
+witnesses [["c1","T2"]], and a later conjunction may use [["c2","T3","T4"]].
+The final existential answer may use [["complete_A"],["complete_B"]] if both
+route claims were already emitted. These example IDs are illustrative only.
+Each sentence must be a complete readable natural-language statement describing
+the window and comparisons it asserts, never merely a list of test IDs.
 The explanation must equal the claim sentences joined with single spaces. No extra
 interpretations, clinical claims or discussion of this instruction. JSON only.
 """
@@ -32,15 +41,15 @@ def messages(case):
         "intended_evidence_to_answer_depth":case["intended_depth"],"requested_propositions_in_order":planned,
         "grouping_instruction":"For each route, use the preceding prefix claim and remaining tests; the answer may use complete-route claims. At depth 1 cite tests directly.",
         "tests":{k:{kk:v for kk,v in t.items() if kk not in {"margin","observation_ids","logical_id"}} for k,t in case["tests"].items()},
-        "proposition_definitions_OR_of_AND_tests":case["propositions"]}
+        "proposition_definitions_OR_of_AND_tests":{k:v for k,v in case["propositions"].items() if k in planned}}
     return [{"role":"system","content":SYSTEM},{"role":"user","content":json.dumps(payload,separators=(",",":"))}]
 
 
-async def run(pilot=False):
+async def run(pilot=False,pilot_version="pilot_v2"):
     gates=read_json(ROOT/"pre_inference_gates.json"); assert gates["passed"]
     placement=read_json(ROOT/"gpu_placement.json")
     assert placement["first_forward_tensor_devices"] and all(d.startswith("cuda") for d in placement["parameter_devices"])
-    cases=read_json(ROOT/("pilot_cases.json" if pilot else "cases.json")); name="pilot_v1" if pilot else "core"
+    cases=read_json(ROOT/("pilot_cases.json" if pilot else "cases.json")); name=pilot_version if pilot else "core"
     directory=ROOT/name; directory.mkdir(parents=True,exist_ok=True); (directory/"candidates").mkdir(exist_ok=True)
     config={"model":"Qwen/Qwen3-8B","temperature":.7,"top_p":.8,"top_k":20,"seed":20260929,
         "max_tokens":4096,"max_input_tokens":8192,"concurrency":4,"max_calls":2*len(cases)}
@@ -105,4 +114,4 @@ async def run(pilot=False):
 
 
 if __name__=="__main__":
-    p=argparse.ArgumentParser(); p.add_argument("--pilot",action="store_true"); a=p.parse_args(); asyncio.run(run(a.pilot))
+    p=argparse.ArgumentParser(); p.add_argument("--pilot",action="store_true"); p.add_argument("--pilot-version",default="pilot_v2"); a=p.parse_args(); asyncio.run(run(a.pilot,a.pilot_version))

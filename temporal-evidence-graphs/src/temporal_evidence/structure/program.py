@@ -158,6 +158,7 @@ def runtime_support(claims, case, records):
     for token,test in case["tests"].items():
         r=latest.get(test["logical_id"])
         valid=r is not None and r.evidence_state=="available" and r.value is not None and r.subject_id==case["subject"] and r.dataset_id==case["dataset"] and r.unit==test["unit"]
+        valid=valid and r.quantity==test["quantity"] and [r.event_start_seconds,r.event_end_seconds]==test["interval"] and r.session_id=="session_1"
         atoms[token]=bool(valid and (r.value>=test["threshold"] if test["operator"]=="ge" else r.value<=test["threshold"]))
     values={}
     for c in claims:

@@ -1,0 +1,90 @@
+{
+  "cases_sha256": "0ba407ebc3cd3c57e6f0633e5746d3cf32eceb6dc698c4adb7e1be47b9a99568",
+  "config": {
+    "concurrency": 4,
+    "max_calls": 24,
+    "max_input_tokens": 8192,
+    "max_tokens": 4096,
+    "model": "Qwen/Qwen3-8B",
+    "seed": 20260929,
+    "temperature": 0.7,
+    "top_k": 20,
+    "top_p": 0.8
+  },
+  "schema": {
+    "$defs": {
+      "ProgramClaim": {
+        "additionalProperties": false,
+        "properties": {
+          "claim_id": {
+            "title": "Claim Id",
+            "type": "string"
+          },
+          "proposition": {
+            "title": "Proposition",
+            "type": "string"
+          },
+          "sentence": {
+            "title": "Sentence",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "boolean"
+          },
+          "witnesses": {
+            "items": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "maxItems": 4,
+            "minItems": 1,
+            "title": "Witnesses",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claim_id",
+          "proposition",
+          "value",
+          "witnesses",
+          "sentence"
+        ],
+        "title": "ProgramClaim",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "claims": {
+        "items": {
+          "$ref": "#/$defs/ProgramClaim"
+        },
+        "maxItems": 16,
+        "title": "Claims",
+        "type": "array"
+      },
+      "explanation": {
+        "title": "Explanation",
+        "type": "string"
+      }
+    },
+    "required": [
+      "claims",
+      "explanation"
+    ],
+    "title": "ProgramAnswer",
+    "type": "object"
+  },
+  "sources": {
+    "src/temporal_evidence/structure/__init__.py": "2b98c92a6eeb9567bb1c9fd321e3d00ea62eb6746fc371672806d9ad8957b004",
+    "src/temporal_evidence/structure/generate.py": "be037bd9496921919e23015c7b2de8144c61e72da1461e82e4d32aaa5a4231cf",
+    "src/temporal_evidence/structure/gpu_worker.py": "d1cb3aae2f0d3733611e840a87ad1b39d7eaec6b0eaffb1127243d5e2493408b",
+    "src/temporal_evidence/structure/oracle.py": "8218e536318917012c224d10eb3f280f9d1f79e8208fe43fa36d366182525127",
+    "src/temporal_evidence/structure/program.py": "848b13041c926371a403021c4994491be13f892e21bbe6cad854bd87b96db3fa",
+    "src/temporal_evidence/structure/replay.py": "aa9312bfed066bbbb9f7d2cc30b95f883cff808b6d522474dad26892a4c97568"
+  },
+  "system_prompt": "You explain explicit numerical rules on recorded features, without diagnoses.\nReturn compact JSON with exactly claims and explanation. A claim has claim_id,\nproposition, value (boolean), witnesses (array of nonempty arrays of input tokens),\nsentence. Each witness is AND; the list of witnesses is OR. Inputs may be test IDs\nor earlier claim_id values. Never invent tests or proposition names. A claim means\nexactly its supplied proposition definition, regardless of your chosen witnesses.\nUse only provided measurements. Preserve units and time labels if stating numbers.\nExplain the requested grouping through intermediate propositions where appropriate,\nthen include the answer proposition. Use at most 16 claims. Direct test citations\nare allowed. Alternative witnesses must use distinct eligible recording windows.\nThe explanation must equal the claim sentences joined with single spaces. No extra\ninterpretations, clinical claims or discussion of this instruction. JSON only.\n"
+}

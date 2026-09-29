@@ -1,5 +1,6 @@
 """Matched database replay of common admitted programs, without new generation."""
 import argparse
+from dataclasses import replace
 from collections import defaultdict
 from pathlib import Path
 import time
@@ -42,13 +43,18 @@ def structure(claims,case):
         "parentless":sum(not p for p in parents.values()),"declared_witness_counts":redundant}
 
 
-def replay_case(case,claims,origin,method,condition,driver=None,path=None):
-    scope=f"structure_study_v1/{case['case_id']}/{origin}/{condition}/{method}"
+def replay_case(case,claims,origin,method,condition,driver=None,path=None,scope_prefix="structure_study_v1"):
+    scope=f"{scope_prefix}/{case['case_id']}/{origin}/{condition}/{method}"
     store=GraphStore(scope=scope,driver=driver) if method in {"B2","M1"} else RelationalStore(path or ":memory:",scope=scope)
     start=time.perf_counter()
     try:
         generated,mapping=claim_records(case,claims,origin)
-        store.put_many([Record.from_dict(e) for e in case["events"]]+generated)
+        before_display={"claims":claims,"explanation":" ".join(c["sentence"] for c in claims)}
+        explanation=Record(record_id=case["case_id"]+"/explanation/v1",logical_id=case["case_id"]+"/explanation",
+            record_type="explanation",dataset_id=case["dataset"],subject_id=case["subject"],session_id="session_1",
+            event_start_seconds=min(t["interval"][0] for t in case["tests"].values()),event_end_seconds=max(t["interval"][1] for t in case["tests"].values()),
+            ingested_at_seconds=case["knowledge_time"]+.002,source_ids=tuple(mapping.values()),metadata={"display":before_display,"origin":origin})
+        store.put_many([Record.from_dict(e) for e in case["events"]]+generated+[explanation])
         before=reference(case,case["events"],case["knowledge_time"])
         revisions=updates(case,condition); change_time=revisions[0]["ingested_at_seconds"]
         tick=time.perf_counter(); store.put_many([Record.from_dict(e) for e in revisions]); insertion=time.perf_counter()-tick
@@ -71,6 +77,12 @@ def replay_case(case,claims,origin,method,condition,driver=None,path=None):
         missed={cid for cid in required if states[cid]}
         collateral={c["claim_id"] for c in claims if after[c["proposition"]] and not states[c["claim_id"]]}
         roots=[c for c in claims if c["proposition"]=="answer"]
+        retained=[c for c in claims if states[c["claim_id"]]]
+        after_display={"claims":retained,"explanation":" ".join(c["sentence"] for c in retained)}
+        if len(retained)!=len(claims):
+            store.put(replace(explanation,record_id=case["case_id"]+"/explanation/v2",version=2,supersedes_id=explanation.record_id,
+                ingested_at_seconds=change_time+.001,source_ids=tuple(mapping[c["claim_id"]] for c in retained),
+                metadata={"display":after_display,"origin":origin,"maintenance":"retain supported common-candidate claims"}))
         return {"case_id":case["case_id"],"episode_id":case["episode_id"],"dataset":case["dataset"],"subject":case["subject"],
             "intended_depth":case["intended_depth"],"regime":case["regime"],"origin":origin,"method":method,"condition":condition,"scope":scope,
             **structure(claims,case),"knowledge_time":change_time,"revisions":revisions,"required_change_ids":sorted(required),"direct_scheduled_ids":sorted(D),
@@ -79,26 +91,30 @@ def replay_case(case,claims,origin,method,condition,driver=None,path=None):
             "missed_ids":sorted(missed),"collateral_ids":sorted(collateral),"collateral":len(collateral),"states":states,
             "corrected":len(required-missed),"root_truth_after":after["answer"],"root_preserved":any(states[c["claim_id"]] for c in roots),
             "predicate_truth_after":after,"logical_hash":digest_object(states),
+            "before_display":before_display,"after_display":after_display,"unresolved_claims":len(claims)-len(retained),
+            "adequate_root_after":after["answer"] and any(states[c["claim_id"]] for c in roots),
+            "replacement_generation":"not scheduled in this structural maintenance experiment",
             "theory_direct_prediction_agrees":missed==required-D if method in {"B1","B2"} else None,
             "timing_seconds":{"insertion":insertion,"snapshot":lookup,"both_reach_queries":traversal,"whole_program_evaluation":evaluation,"assessment_write":assessment_write,"cell":time.perf_counter()-start},
             "timing_note":"both direct and full queries measured for instrumentation; not production-only update latency"}
     finally: store.close()
 
 
-def run(pilot=False,fixtures_only=False):
+def run(pilot=False,fixtures_only=False,pilot_version="pilot_v2"):
     from neo4j import GraphDatabase
-    cases=read_json(ROOT/("pilot_cases.json" if pilot else "cases.json")); label="pilot_replay" if pilot else "replay"
+    cases=read_json(ROOT/("pilot_cases.json" if pilot else "cases.json")); label=pilot_version+"_replay" if pilot else "replay"
     out=ROOT/label; out.mkdir(parents=True,exist_ok=True)
     with GraphDatabase.driver("bolt://127.0.0.1:7687",auth=None) as driver:
         for index,case in enumerate(cases):
             origins=[("fixture",fixture(case)["claims"])]
-            candidate_path=ROOT/("pilot_v1" if pilot else "core")/"candidates"/(case["case_id"]+".json")
+            candidate_path=ROOT/(pilot_version if pilot else "core")/"candidates"/(case["case_id"]+".json")
             if not fixtures_only:
                 candidate=read_json(candidate_path); origins.append(("generated",candidate["accepted"]))
             for origin,claims in origins:
                 path=out/(case["case_id"]+"-"+origin+".json")
                 if path.exists(): continue
-                rows=[replay_case(case,claims,origin,m,c,driver,str(ROOT/"replay.sqlite")) for c in CONDITIONS for m in METHODS]
+                prefix="structure_study_v1/"+pilot_version if pilot else "structure_study_v1"
+                rows=[replay_case(case,claims,origin,m,c,driver,str(ROOT/"replay.sqlite"),prefix) for c in CONDITIONS for m in METHODS]
                 for condition in CONDITIONS:
                     matched={r["method"]:r for r in rows if r["condition"]==condition}
                     assert matched["M1"]["logical_hash"]==matched["B3"]["logical_hash"]
@@ -110,4 +126,4 @@ def run(pilot=False,fixtures_only=False):
 
 
 if __name__=="__main__":
-    p=argparse.ArgumentParser();p.add_argument("--pilot",action="store_true");p.add_argument("--fixtures-only",action="store_true");a=p.parse_args();run(a.pilot,a.fixtures_only)
+    p=argparse.ArgumentParser();p.add_argument("--pilot",action="store_true");p.add_argument("--fixtures-only",action="store_true");p.add_argument("--pilot-version",default="pilot_v2");a=p.parse_args();run(a.pilot,a.fixtures_only,a.pilot_version)
