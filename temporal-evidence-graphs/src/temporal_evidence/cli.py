@@ -37,6 +37,8 @@ def main():
     streaming.add_argument("--config",default="configs/streaming.yaml")
     audit=commands.add_parser("audit")
     audit.add_argument("--run-id",default="minimum_v1")
+    dashboard=commands.add_parser("dashboard")
+    dashboard.add_argument("--port",type=int,default=8501)
     args=parser.parse_args()
     if args.command=="check-environment":
         from temporal_evidence.environment import check_environment
@@ -92,6 +94,13 @@ def main():
     elif args.command=="audit":
         from temporal_evidence.evaluation.audit import run_audit
         print(json.dumps(run_audit(args.run_id),indent=2))
+    elif args.command=="dashboard":
+        import subprocess,sys
+        from pathlib import Path
+        app=Path(__file__).parent/"dashboard"/"app.py"
+        raise SystemExit(subprocess.call([sys.executable,"-m","streamlit","run",str(app),
+                        "--server.address","127.0.0.1","--server.port",str(args.port),
+                        "--server.headless","true","--browser.gatherUsageStats","false"]))
 
 
 if __name__=="__main__":

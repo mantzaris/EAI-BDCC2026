@@ -1,0 +1,146 @@
+\section{Temporal Evidence Maintenance}
+\label{sec:method}
+
+\subsection{Evidence, Knowledge Time, and Query Scope}
+
+A record $r$ has an immutable identifier, a logical identity, a version number,
+an event interval $[s_r,e_r]$, and an ingestion time $\tau_r$. The event interval
+describes the observation; ingestion time describes when the system learned it.
+The snapshot available at knowledge time $t$ is
+\begin{equation}
+ E_t=\{r:\tau_r\leq t\}.
+\end{equation}
+For each logical identity, current queries select the greatest visible version,
+breaking ties by ingestion time and identifier. A historical query reconstructs
+the snapshot at its own knowledge time. An older version is not retrospectively
+false merely because a newer version subsequently arrived.
+
+A query specifies dataset, subject, session, target interval, knowledge time,
+and required quantities. Matching a current target interval is distinct from
+being a recent record in storage. In this experiment, a direct numerical claim
+must describe the requested 30-second interval. A comparison additionally
+requires the immediately preceding 120-second interval. The same baseline
+value can therefore be valid as a comparison operand and invalid as an
+unqualified answer to the target-window question. This explicit scope avoids
+using a single arbitrary expiry threshold for all facts.
+
+\subsection{Representation and Storage}
+
+The schema contains Subject, Sensor, Observation, FeatureVersion, ClaimVersion,
+ExplanationVersion, and ReviewEvent records. Raw arrays remain outside the
+database. Observation records contain source hashes, native sample ranges,
+sampling rates, and channel identifiers. Feature records point to their
+observation windows and record extractor identity and units. A generated
+candidate is retained as a proposal; successful parsing or a model-assigned
+confidence does not promote it to verified evidence.
+
+\texttt{DEPENDS\_ON} points from a dependent item to a required item, so reverse
+traversal identifies potentially affected descendants. \texttt{SUPERSEDES}
+points from a new version to the previous version. \texttt{DERIVED\_FROM}
+connects features to observations; \texttt{CONTAINS} connects explanations to
+claims; \texttt{SUPPORTS} connects accepted sources to claims. Subject, sensor,
+contradiction, and review links complete the schema. Support assessments are
+append-only records indexed by item, knowledge time, and triggering revision.
+
+The primary implementation uses Neo4j Community 5.26.0 with a compound identity
+constraint and indexes for scope, dataset, subject, session, event interval,
+ingestion time, logical identity, and version. Batch writes use UNWIND, and
+reverse dependency traversal uses variable-length paths. The relational control
+uses SQLite in WAL mode, indexed evidence and edge tables, and recursive common
+table expressions. Both implementations cache immutable record objects in the
+application process and issue database queries for snapshots and affected
+identifiers. They share support predicates and batch assessment writes. This
+is a comparison of these implementations on one host, including Neo4j's service
+boundary, not a universal comparison of graph and relational engines.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{architecture.pdf}
+\caption{Evidence and explanation lifecycle. Completed recording windows produce
+versioned features. A common bounded generator proposes claims; checks determine
+displayed content. Later events trigger dependency maintenance and immutable
+explanation revisions. Independent evaluation reads source/replay logs. Dashed
+boundaries separate evaluator-only labels and isolated review actions.}
+\label{fig:architecture}
+\end{figure}
+
+\subsection{Bounded Generation and Direct Validation}
+
+All conditions use the same Qwen3-8B model revision~\cite{qwen3}, query text,
+serialized admissible evidence, sampling settings, and JSON schema. The contract
+permits at most three claims and six claim types: numerical observation, trend,
+comparison, evidence conflict, missing evidence, and revision effect. Each claim
+includes a quantity, value, unit, subject, interval, operator, evidence identifiers,
+parent-claim identifiers, and one sentence. The explanation must concatenate
+the claim sentences. The answer also declares whether it is answered, partially
+answered, or lacks sufficient evidence. Structured decoding constrains syntax,
+not correctness~\cite{vllm}.
+
+Direct checks verify reference existence, dataset/subject/session identity,
+query-relative version and interval, units, numerical agreement, required
+comparison operands, and parent-claim support. Numerical agreement uses
+\begin{equation}
+ |v-\hat v|\leq \max(10^{-6},0.01|\hat v|),
+\end{equation}
+where $\hat v$ is the recorded reference value. This is a reporting tolerance,
+not a clinical decision threshold. Cyclic proposed claim dependencies are
+rejected. Explicitly invalidated evidence cannot serve as current support.
+Missingness claims are checked against currently available evidence rather than
+against an oracle fault label.
+
+The runtime additionally checks whether the sentence contains the stated value
+and unit, flags a limited set of unsupported causal or clinical terms, and checks
+that the paragraph matches its claims. These lexical checks do not guarantee
+semantic fidelity. We retain the original prose and perform a separate automated
+fidelity audit. Checked conditions receive at most one repair generation with
+the same evidence and the failed checks. After that attempt, unsupported claims
+are removed and the paragraph is recomposed from retained sentences. Empty
+outputs remain in evaluation and reduce coverage; they do not receive a perfect
+claim-accuracy score.
+
+\subsection{Revision Propagation and Persistent Explanations}
+
+For a revision, the system appends the new record, preserves the old citation,
+and traverses reverse dependencies of every earlier version of the same logical
+item. Considering all earlier versions matters for a sequence $v_1\rightarrow
+v_2\rightarrow v_3$: a displayed claim may still cite $v_1$ when $v_3$ arrives.
+The affected subgraph is evaluated in dependency order. For an AND expression,
+every required operand must remain supported. For an OR expression, one
+adequate alternative suffices. Derived numeric expressions are recomputed before
+dependent claims are assessed. Reachability therefore identifies candidates for
+revision, not a set that must all be deleted.
+
+The core algorithm has the following steps:
+\begin{enumerate}
+\item Append the evidence version and its supersession link.
+\item Retrieve affected dependents, with direct or transitive reach according to
+the condition, at the event's ingestion time.
+\item Recompute their support predicates in acyclic dependency order and append
+the resulting assessments.
+\item Withdraw unsupported displayed sentences, preserve supported alternatives,
+and persist a new explanation version when its text changes.
+\end{enumerate}
+When support returns, the original immutable sentence can be restored in a later
+explanation version. Negative-evidence claims subscribe to availability records
+so a delayed packet can invalidate a prior statement of absence. Old explanation
+text remains accessible for historical inspection.
+
+Immediate maintenance is conservative text retraction or recomposition. A useful
+new numerical answer requires separate generation. In the matched replay,
+fresh generation occurs at the three scheduled checkpoints; it is not an
+asynchronous regeneration of every historic paragraph. The systems workload
+separately requests a GPU replacement after a material adverse transition.
+We report withdrawal and generated-replacement latency separately. This prevents
+a fast status update from being described as a fast complete answer.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{symbolic_correction.pdf}
+\caption{Exact fixture before and after a correction. A target changes from 2
+to 4; its difference from a baseline of 1 changes from 1 to 3. The direct and
+downstream old claims become contradicted. The OR-supported claim remains
+supported by an independent value of 2, and the baseline claim is unaffected.
+Arrows point from a dependent to its required source. This is a constructed
+correctness example, not a measured physiological event.}
+\label{fig:subgraph}
+\end{figure}

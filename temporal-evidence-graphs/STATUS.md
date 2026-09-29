@@ -1,6 +1,6 @@
 # Study status
 
-Updated: 2026-09-28 (local). Overall completion: **40%** (estimated against the eight stage gates).
+Updated: 2026-09-28 (local). Overall completion: **45%** (estimated against the eight stage gates).
 
 | Stage | State |
 |---|---|
@@ -8,15 +8,16 @@ Updated: 2026-09-28 (local). Overall completion: **40%** (estimated against the 
 | 1 Synthetic correctness | Local tests and live Neo4j/relational parity passed; immutable displayed-text maintenance added |
 | 2 GPU generation and five conditions | All five conditions executed on GPU; format failures found in development and retained |
 | 3 Real data adapters | Development unit/provenance audit completed; fixed splits and 100 prepared episodes rebuilt; replay arrays separately hashed |
-| 4 Freeze and development pilot | Pilot v3 passed; corrected systems smoke test passed; v4 repeats the complete gate before automatic freeze |
-| 5 Locked experiments | Queued: 3,600 initial calls, at most 2,880 repairs |
-| 6 Analysis and interface | Independent evaluator, clustered bootstrap, plotting, open-loop workload and automated audit implemented; execution/interface pending |
-| 7 Manuscript package | Pending |
+| 4 Freeze and development pilot | Complete: v4 passed, all source/episode hashes frozen and verified locally |
+| 5 Locked experiments | Running: 150/3,600 cases saved at 01:22 UTC; at most 2,880 repairs |
+| 6 Analysis and interface | Analysis pipeline ready; functional isolated review dashboard with tested actions; systems/audit queued |
+| 7 Manuscript package | Methods/design and related work drafted; source-generated design figures; results pending |
 
 All changes are committed and pushed to `main`, without branches, as instructed.
-No held-out generations existed when this status was written. Forty-one tests pass.
-Sixty prepared base episodes are held out; forty are for development. No protocol
-freeze has occurred. The user confirmed continuing with the current pod.
+The held-out run started at 2026-09-29 01:14:46 UTC. Forty-four tests pass.
+Sixty prepared base episodes are held out; forty are for development. Protocol hash:
+`a22b68b4e3d33c7cbcaa253a6af27232a574a69692b5dcb793191ee1d2ceef63`.
+The user confirmed continuing with the current pod.
 Pilot v1 had 100 initial cases, 69 bounded repairs, and 20 interactive requests;
 67 initial outputs truncated and 71 final cases failed. All failures are retained.
 Pilot v2 had five truncations and one final failure. Pilot v3 had zero truncations
@@ -25,11 +26,16 @@ seconds. A separate systems smoke test exposed an ambiguous reference-slot looku
 its failed and corrected runs are retained. Pilot v4 repeats the full development
 gate after that systems-only fix. Final format instructions explicitly name every
 JSON field, with at most three claims and a common 1,536-output-token ceiling.
+Pilot v4 passed with zero initial truncations or final failures, 52 repairs,
+309.62 seconds batch wall time and interactive p50/p95 of 13.34/17.07 seconds.
 
 The sequential pipeline is running on the pod, PID 31802. It executes pilot v4,
 live core validation, freeze, the held-out matrix, independent evaluation, analysis,
 isolated load tests and the CUDA fidelity audit. It stops on a failed required check.
 Stage times are logged in `artifacts/manifests/execution_stages.jsonl`.
+Frozen experimental source is unchanged; dashboard/analysis/manuscript files are
+outside that runtime boundary. The dashboard AppTest exercised a correction and
+confirmed two withdrawals with two supported claims retained.
 
 Next operational check (on the pod in `/workspace/temporal-evidence-graphs`):
 
