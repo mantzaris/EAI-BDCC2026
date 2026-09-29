@@ -12,7 +12,7 @@ st.caption("Trace a statement to its evidence, review a change, and inspect the 
 
 with st.sidebar:
     st.subheader("Review workspace")
-    mode = st.radio("Example", ["Dependency demonstration", "Saved explanation"])
+    mode = st.radio("Example", ["Recorded network views", "Dependency demonstration", "Saved explanation"])
     case_path = None
     identifier = "symbolic"
     if mode == "Saved explanation":
@@ -30,7 +30,12 @@ with st.sidebar:
             st.stop()
         case_path = st.selectbox("Explanation", cases, format_func=lambda p: p.stem)
         identifier = f"{run.name}/{case_path.stem}"
-    st.caption("Changes are saved in this review workspace. Benchmark outputs remain immutable.")
+    st.caption("Recorded views are read-only. Review actions use an isolated workspace.")
+
+if mode == "Recorded network views":
+    from temporal_evidence.dashboard.network_panel import show_recorded_views
+    show_recorded_views()
+    st.stop()
 
 workspace = ReviewWorkspace(identifier, path=os.environ.get("TEG_REVIEW_DB", ".local/review.sqlite"),
                             backend=os.environ.get("TEG_REVIEW_BACKEND", "sqlite"),
@@ -66,7 +71,7 @@ try:
             with left:
                 st.subheader("Local evidence graph")
                 st.graphviz_chart(workspace.neighborhood_dot(record_id), width="stretch")
-                st.caption("Arrows point toward required evidence. AND requires all operands; OR can retain independent support.")
+                st.caption("Arrows preserve stored directions: cites/requires = DEPENDS_ON, derived from = DERIVED_FROM, supersedes = new version → old. Availability, support and display membership are distinct.")
             with right:
                 st.subheader("Review action")
                 actions = {"Reject evidence": "reject_evidence", "Accept correction": "accept_correction"} if record.record_type == "feature" else {"Mark interpretation unresolved": "mark_unresolved"}

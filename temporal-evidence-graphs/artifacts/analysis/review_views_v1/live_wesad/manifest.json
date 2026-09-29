@@ -1,0 +1,45 @@
+{
+  "exported_at": "2026-09-29T15:01:30.887251+00:00",
+  "instance": "actual retained Neo4j Community instance",
+  "layout_seed": 20260929,
+  "prefix": "minimum_v1/wesad-S11-e0/correction/M1",
+  "queries": {
+    "counts": "MATCH (n) WHERE n.scope STARTS WITH $prefix OPTIONAL MATCH (n)-[r]->() RETURN n.scope AS scope, count(DISTINCT n) AS nodes, count(r) AS edges ORDER BY scope",
+    "edges": "MATCH (n)-[r]->(m) WHERE n.scope STARTS WITH $prefix RETURN elementId(r) AS id, elementId(n) AS source, elementId(m) AS target, type(r) AS type, properties(r) AS properties, n.scope AS scope ORDER BY scope, id",
+    "nodes": "MATCH (n) WHERE n.scope STARTS WITH $prefix RETURN elementId(n) AS id, labels(n) AS labels, properties(n) AS properties ORDER BY n.scope, id",
+    "paths": "MATCH (c:ClaimVersion {scope:$scope})-[:DEPENDS_ON]->(f:FeatureVersion)-[:DERIVED_FROM]->(o:Observation) RETURN c.id AS claim, f.id AS feature, o.id AS observation ORDER BY claim, feature, observation LIMIT 5"
+  },
+  "scopes": [
+    {
+      "edge_types": {
+        "ASSESSED_AS": 8,
+        "CONTAINS": 6,
+        "CONTRADICTS": 2,
+        "DEPENDS_ON": 150,
+        "DERIVED_FROM": 138,
+        "FOR_SUBJECT": 184,
+        "OBSERVED_BY": 32,
+        "SUPERSEDES": 5,
+        "SUPPORTS": 6
+      },
+      "edges": 531,
+      "file": "minimum_v1__wesad-S11-e0__correction__M1.json.gz",
+      "node_types": {
+        "assessment": 8,
+        "claim": 4,
+        "explanation": 6,
+        "feature": 138,
+        "observation": 32,
+        "sensor": 4,
+        "subject": 1
+      },
+      "nodes": 193,
+      "scope": "minimum_v1/wesad-S11-e0/correction/M1",
+      "sha256": "1ad0f290aa0c0be53a69a733022a08b2969cd17db7bcb64a6398aafd8831b64d",
+      "typed_errors": 0,
+      "verified_paths": 5
+    }
+  ],
+  "total_edges": 531,
+  "total_nodes": 193
+}

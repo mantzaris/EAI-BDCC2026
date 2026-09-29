@@ -1,19 +1,25 @@
 # Study status
 
-## Semantic revision — complete (100%)
+## Single-paper and review-network revision — complete (100%)
 
-Ontology construction, independent semantic scoring, 480 original database exports,
-240 structural GPU cases, 9,600 primary replay cells and the separate 4,800-cell
-admission replication are complete. The revised main manuscript has 16 main pages plus 1 reference page;
-the separate supplement has 13 pages. PDF, figure and frozen-input
-checks pass across 528 actual database export scopes. All 61 tests pass. Original minimum-v1 hashes and scores remain unchanged.
+The authoritative [paper](paper/semantic_structure_revision.pdf) has
+18 main pages and 1 reference page. The two spacious labeled networks come from
+actual WESAD S11 and PPG-DaLiA S1 Neo4j scopes and share their typed view objects,
+fixed layouts and renderer with the existing dashboard. The default build produces
+one paper; the previous two-document package is historical material in the archive.
 
-Read the [generated change summary](THEORY_RESULTS_CHANGES.md),
-[reproduction commands](docs/semantic_reproduction.md),
-[main PDF](paper/semantic_structure_revision.pdf), and
-[supplement PDF](paper/semantic_structure_supplement.pdf).
-No new paid resource was created. GPU inference has finished; the existing pod
-and its Neo4j scopes are retained. Changes are committed and pushed directly to main.
+All 70 tests pass, including graph identity, temporal visibility, original
+citations, witness grouping, partial views, publication/dashboard equality and
+interactive selection/expansion. The validation record checks 529 unique actual
+Neo4j export scopes plus a fresh WESAD duplicate export. Network labels are at least
+9.13 points at final printed width. Browser screenshots and full PDF inspection
+are recorded. No new GPU inference or paid resource was needed.
+
+The frozen minimum-v1 inputs/results, 240-case generated structural study and
+separate admission-normalization replication are unchanged. Read the
+[revision report](GRAPH_VIEW_REVISION.md), [reproduction commands](docs/semantic_reproduction.md)
+and [network implementation](docs/review_network_views.md). Work uses `main`
+directly, with no branches. No conference submission was performed.
 
 ## Preserved minimum study
 
@@ -54,7 +60,7 @@ is observed. These limitations and the verifier's mistakes are retained in the p
 
 The original analysis outputs and manuscript are retained in the archive.
 Use the [semantic revision reproduction commands](docs/semantic_reproduction.md)
-to rebuild the current analyses and both PDFs without inference or changes to
+to rebuild the current analyses and the single PDF without inference or changes to
 the frozen minimum-study scores. The old manuscript checker applies to the
 archived format; the revision has its own checker.
 

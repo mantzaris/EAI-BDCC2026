@@ -3,9 +3,9 @@
 The completed extension, independent semantics and new theory are summarized in
 [THEORY_RESULTS_CHANGES.md](THEORY_RESULTS_CHANGES.md), generated directly from
 the analysis outputs. Read the [revised main PDF](paper/semantic_structure_revision.pdf)
-and [separate supplement](paper/semantic_structure_supplement.pdf).
+and the [graph-view revision report](GRAPH_VIEW_REVISION.md).
 [Reproduction commands](docs/semantic_reproduction.md) cover scoring, actual database
-exports, figures, frozen inputs and both PDF builds. Final page and integrity
+exports, shared dashboard views, figures, frozen inputs and the single PDF build. Final page and integrity
 checks are recorded in artifacts/manifests/semantic_manuscript_validation.json.
 
 The report below preserves the original experiment and its interpretation.

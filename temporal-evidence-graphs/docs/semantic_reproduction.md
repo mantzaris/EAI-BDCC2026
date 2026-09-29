@@ -4,13 +4,13 @@ Run from temporal-evidence-graphs/. Saved prepared events, candidates, database
 exports and replays suffice for all scoring, figures and PDF builds. The
 following commands perform no neural inference and do not modify minimum_v1.
 
-## Analysis and both PDFs
+## Analysis and the single paper
 
 Use the existing .venv, or create a Python 3.10+ environment and install
 requirements-dashboard.lock. Install latexmk, pdfLaTeX and Poppler system
-utilities. The official LLNCS template is in paper/template/.
+utilities, Graphviz (`dot` and `neato`) and DejaVu Sans fonts. The official LLNCS template is in paper/template/.
 
-    PYTHONPATH=src .venv/bin/python -m pytest -q
+    PYTHONPATH=src .venv/bin/python -m pytest -q --junitxml=artifacts/analysis/review_views_v1/pytest.xml
     PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.analyze
     PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.structural_analysis
     PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.alias_analysis
@@ -22,15 +22,16 @@ utilities. The official LLNCS template is in paper/template/.
 Outputs:
 
 - paper/semantic_structure_revision.pdf: main paper plus references.
-- paper/semantic_structure_supplement.pdf: separate extended material.
-- paper/temporal_evidence_maintenance.pdf: compatibility copy of the new main PDF.
 - paper/archive/minimum_v1/temporal_evidence_maintenance.pdf: unchanged original.
 - THEORY_RESULTS_CHANGES.md and paper/generated/semantic/: generated results.
 - artifacts/manifests/semantic_manuscript_validation.json: final page counts/checks.
 
 The old scripts/check_manuscript.py validates the archived 23-page format.
 Use the new checker for the revision. Do not rerun the old publication generator
-as part of this workflow: its frozen tables are retained for the supplement.
+as part of this workflow: its frozen tables remain reproducibility artifacts.
+The prior two-document submission is historical material under
+`paper/archive/semantic_revision_8c3d3d3/`; it is not built or required by the
+current paper. Only `paper/semantic_structure_revision.pdf` is a submission output.
 The saved pre-inference gate is historical evidence; final validation checks it
 without overwriting its timestamp.
 
@@ -113,11 +114,14 @@ Within artifacts/analysis/semantic_analysis_v1/:
   knowledge timestamp. Conflicting outcomes are retained together and marked
   ambiguous; element IDs are not treated as an undocumented event sequence.
 
-Figure PDF/SVG files and fixed layout/ID maps are in
-artifacts/figures/semantic_analysis_v1/. Solid graph arrows are stored relations;
-derived CURRENT_CITATION_PATH arrows retain stored-path witnesses. SUPPORTS
-mirrors and FOR_SUBJECT hubs are excluded from dependency degree. Proposed,
-admitted and displayed relations are separately tabulated.
+Figure PDF/SVG/PNG files are in artifacts/figures/semantic_analysis_v1/.
+The two paper networks and dashboard load shared views/layouts from
+artifacts/analysis/review_views_v1/. Stored citations stay attached to their
+original versions; current-version resolution is an explicit derived-path sidecar.
+Dashed AND bundles enumerate their stored edges. SUPPORTS mirrors and FOR_SUBJECT
+hubs are excluded from dependency degree. Proposed, admitted and displayed
+relations are separately tabulated. See [review_network_views.md](review_network_views.md)
+for selection rules, actual selected-scope export commands, view manifests and UI validation.
 
 Precision scores emitted bounded propositions; recall matches each answerable
 requirement once. Empty output has precision NA and recall zero when answerable.

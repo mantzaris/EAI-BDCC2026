@@ -1,0 +1,54 @@
+\subsection{Producing the Human-Review Network View}
+\label{sec:reviewview}
+
+The review view expands the semantic core for a selected answer or focus claim.
+It restores original cited versions, required observation provenance and visible
+successor versions instead of redirecting immutable citations.
+For a stored-node budget $B$ and selected recorded times $T$, the implemented
+transformation is
+\begin{equation}
+ H_{q,t}=\operatorname{View}_B(G_t,q),\quad
+ p=\operatorname{dot}\!\left(\bigcup_{u\in T}H_{q,u}\right),\quad
+ I_{q,t}=\operatorname{Render}(H_{q,t},p).
+\label{eq:reviewview}
+\end{equation}
+$H$ is a bounded review expansion of $K$, not another learned representation.
+$p$ stores node coordinates and routed edge splines. Deterministic Graphviz
+layout uses sorted immutable IDs, labels and connectivity, with no random seed.
+A comparison uses the union layout and reuses $p$; records not yet ingested
+remain absent from the earlier drawing. Coordinates and Euclidean distances
+have no semantic-similarity or neural-state interpretation.
+
+The implementation selects database scope, answer, focus and knowledge time,
+follows declared inputs, expands feature-to-observation paths on request,
+and filters versions and assessments by their ingestion/knowledge times. Event
+intervals describe what was measured or asserted, separately from when it was
+known. Original \texttt{DEPENDS\_ON} edges remain intact; current-version
+resolution retains its citation and reverse-supersession witnesses in an explicit
+derived-path sidecar. Availability, support assessment and display membership
+are separate fields. Of \SemAssessmentTies{} tied record/time assessment groups,
+\SemAssessmentConflicts{} contain conflicting states: all outcomes and trigger
+IDs remain visible as ambiguous, while membership follows the saved explanation
+version. These flags and drawings never supply evaluator reference truth.
+
+The budget counts stored records, preferring complete alternative-witness closures
+when they fit. Missing records and incomplete witness groups trigger a
+\emph{partial view} label and expansion control; the drawing does not claim
+that omitted context is irrelevant. Subject/sensor hubs, display containers,
+assessment nodes and reverse \texttt{SUPPORTS} mirrors stay in details. For
+multi-input witnesses, labeled AND enclosures group feature rows: each row
+maps to its stored ID, and a dashed dependency bundle enumerates its original
+edges. Enclosures and bundles are rendering constructs. Between witness sets
+support is OR; within each set all inputs are required.
+
+Green/blue/grey fills distinguish claims/features/observations; outlines and
+explicit words distinguish revisions, support and withdrawal. Every arrow is
+labeled and preserves stored direction or identifies a grouped rendering edge.
+The same typed JSON view, ID maps and Graphviz renderer produce
+Figures~\ref{fig:instances} and~\ref{fig:topology} and the existing Streamlit
+dashboard. Selectboxes choose a recorded case, time, focus, witness route and
+node or edge; details recover full sentences, exact values/units, intervals,
+versions, source IDs and assessment provenance. Highlighting changes appearance
+only. Expansion exposes omitted provenance; review actions append events in an
+isolated workspace. This implements inspectable external commitments, without
+claiming a measured human-performance benefit or access to neural reasoning.

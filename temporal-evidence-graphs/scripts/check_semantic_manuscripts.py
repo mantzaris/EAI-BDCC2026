@@ -1,19 +1,26 @@
-"""Validate the revised PDFs, frozen studies, actual exports and generated inputs."""
+"""Validate the single paper, frozen studies and shared database review views."""
 from collections import Counter
 from pathlib import Path
 import ast
 import json
 import re
 import subprocess
+import xml.etree.ElementTree as ET
 import zlib
-from temporal_evidence.io import read_json,write_json,digest_file,utc_now
+from temporal_evidence.io import read_json,write_json,digest_file,digest_object,utc_now
 from temporal_evidence.study import verify_frozen
 from temporal_evidence.semantic.export import read_export
 from temporal_evidence.semantic.ontology import validate_export
 from temporal_evidence.semantic.projection import records
+from temporal_evidence.semantic.review_view import validate_view
+from temporal_evidence.semantic.network_examples import make_views
+from temporal_evidence.semantic.network_render import drawing_objects,render_bytes
+from temporal_evidence.dashboard.network_panel import load_published
 
 DATA=Path("artifacts/analysis/semantic_analysis_v1")
 RUN=Path("artifacts/runs/structure_study_v1")
+VIEWS=Path("artifacts/analysis/review_views_v1")
+FIGURES=Path("artifacts/figures/semantic_analysis_v1")
 
 def hashes(values):
     for path,expected in values.items():assert digest_file(path)==expected,("stale input",path)
@@ -38,6 +45,62 @@ def pdf_check(filename,stem):
     pages=int(re.search(r"^Pages:\s+(\d+)",info,re.M).group(1))
     return {"pdf":filename,"sha256":digest_file(filename),"pages":pages,"fonts_embedded":True,
         "overfull_boxes":0,"unresolved_references":0}
+
+def review_views_check():
+    registry=read_json(VIEWS/"manifest.json");hashes(registry["source_hashes"])
+    assert registry["new_gpu_calls"]==0
+    generated=read_json("paper/generated/review_views/manifest.json")
+    hashes(generated["inputs"])
+    assert digest_file("paper/generated/review_views/macros.tex")==generated["macros_sha256"]
+    live=read_json(VIEWS/"live_database_validation.json")
+    real=read_json(VIEWS/"live_wesad/manifest.json")["scopes"][0]
+    structural=read_json(VIEWS/"exports/manifest.json")["scopes"][0]
+    assert live["read_only"] and live["inference_calls"]==0
+    assert live["real_sha256"]==real["sha256"] and live["structural_sha256"]==structural["sha256"]
+    assert digest_file(DATA/"exports"/real["file"])==real["sha256"]
+    assert live["live_export_equal_to_published_source"]
+    assert (real["nodes"],real["edges"])==(live["real_nodes"],live["real_edges"])
+    assert [structural["nodes"],structural["edges"]]==live["structural_counts_verified"]
+    # Networks are included at \textwidth in the unmodified official template.
+    cls=Path("paper/template/llncs.cls").read_text()
+    width_cm=float(re.search(r"\\setlength\{\\textwidth\}\{([\d.]+)cm\}",cls).group(1))
+    results=[]
+    for entry in registry["examples"]:
+        config=read_json(entry["config_path"]);graph=read_export(config["export"])
+        before,view=make_views(config)
+        ui,layout=load_published(entry["key"])
+        assert digest_object(view)==digest_object(ui)==entry["view_sha256"]
+        assert layout["union_view_hashes"]==[digest_object(before),digest_object(view)]
+        for state,obj in (("before",before),("after",view)):
+            assert digest_object(obj)==digest_object(read_json(VIEWS/entry["key"]/(state+".json")))
+            validate_view(obj,graph)
+            assert not obj["budget"]["partial"] and not obj["budget"]["incomplete_witness_groups"]
+        source=view["source"]
+        assert source["export_sha256"]==digest_file(config["export"])
+        for key in ("candidate_path","replay_path"):
+            if key in source:assert digest_file(source[key]["path"])==source[key]["sha256"]
+        base=FIGURES/config["figure"]
+        manifest=read_json(base.with_suffix(".manifest.json"))
+        assert manifest["view_sha256"]==digest_object(view)
+        assert render_bytes(ui,layout,"svg")==base.with_suffix(".svg").read_bytes()
+        drawing=drawing_objects(view)
+        assert manifest["drawing_objects"]==json.loads(json.dumps(drawing))
+        covered=set()
+        for edge in drawing["edges"]:
+            assert edge["label"]
+            covered.update(edge["witness_edge_ids"])
+            if not edge["directly_stored"]:
+                assert edge["type"]=="WITNESS_INPUT_BUNDLE"
+                assert edge["witness_group"] in {w["id"] for w in view["witness_groups"]}
+        assert covered=={e["id"] for e in view["edges"]}
+        info=command("pdfinfo",str(base.with_suffix(".pdf")))
+        width=float(re.search(r"Page size:\s+([\d.]+) x",info).group(1))
+        min_font=layout["edge_font_size"]*(width_cm/2.54*72)/width
+        assert min_font>=9,(config["figure"],min_font)
+        results.append({"key":entry["key"],"scope":view["scope"],"nodes":len(view["nodes"]),"edges":len(view["edges"]),
+            "view_sha256":digest_object(view),"svg_matches_dashboard":True,"minimum_printed_font_points":round(min_font,2),
+            "knowledge_times":[before["knowledge_time"],view["knowledge_time"]]})
+    return results
 
 def main():
     minimum=read_json("artifacts/manifests/minimum_run.json");verify_frozen(minimum)
@@ -72,8 +135,9 @@ def main():
         tree=ast.parse(Path("src/temporal_evidence/semantic",name).read_text())
         imports=[n.module or "" for n in ast.walk(tree) if isinstance(n,ast.ImportFrom)]
         assert not any("storage" in p or "validation" in p or "evaluation.exact" in p for p in imports)
-    assessments=scopes=paths=0
-    manifests=[DATA/"exports/manifest.json",*sorted((DATA/"structure_exports").glob("*/manifest.json"))]
+    assessments=scopes=paths=0;unique_scopes=set()
+    manifests=[DATA/"exports/manifest.json",*sorted((DATA/"structure_exports").glob("*/manifest.json")),
+        VIEWS/"exports/manifest.json",VIEWS/"live_wesad/manifest.json"]
     for mp in manifests:
         manifest=read_json(mp);assert manifest["instance"]=="actual retained Neo4j Community instance"
         for item in manifest["scopes"]:
@@ -94,6 +158,7 @@ def main():
                 assert (ids[triple["feature"]],"DERIVED_FROM",ids[triple["observation"]]) in edges
                 paths+=1
             scopes+=1
+            unique_scopes.add(item["scope"])
     hashes(read_json(DATA/"analysis_manifest.json")["source_hashes"])
     pub=read_json("paper/generated/semantic/manifest.json")
     for key in ("inputs","generated_tex","generated_docs"):hashes(pub[key])
@@ -103,30 +168,41 @@ def main():
     assert digest_file("src/temporal_evidence/semantic/figures.py")==figure["script_sha256"]
     for name in figure["figures"]:
         for ext in ("pdf","svg"):assert Path("artifacts/figures/semantic_analysis_v1",name+"."+ext).stat().st_size>1000
+    views=review_views_check()
     mainpdf=pdf_check("paper/semantic_structure_revision.pdf","main")
-    supplement=pdf_check("paper/semantic_structure_supplement.pdf","supplement")
-    assert pdf_link_present(mainpdf["pdf"],"semantic_structure_supplement.pdf")
-    assert pdf_link_present(supplement["pdf"],"semantic_structure_revision.pdf")
+    assert sorted(p.name for p in Path("paper").glob("*.pdf"))==["semantic_structure_revision.pdf"]
+    assert not pdf_link_present(mainpdf["pdf"],"semantic_structure_supplement.pdf")
+    assert not re.search(r"\bsupplement(?:ary)?\b",command("pdftotext",mainpdf["pdf"],"-"),re.I)
+    assert "supplement" not in Path("paper/build.sh").read_text().lower()
     aux=Path("paper/build/main.aux").read_text()
     refs=int(re.search(r"\\newlabel\{page:references\}\{\{[^}]*\}\{(\d+)\}",aux).group(1))
-    assert 14<=refs-1<=16,(refs-1,"main-page target")
+    assert 16<=refs-1<=18,(refs-1,"main-page target")
     assert len(re.findall(r"\\newlabel\{fig:",aux))==5
-    assert len(re.findall(r"\\newlabel\{eq:",aux))==7
+    assert len(re.findall(r"\\newlabel\{eq:",aux))==8
     assert sum(p.read_text().count(r"\begin{proposition}") for p in Path("paper/sections").glob("*.tex"))==2
-    assert digest_file("paper/temporal_evidence_maintenance.pdf")==mainpdf["sha256"]
     abstract_words=len(Path("paper/generated/semantic/abstract.tex").read_text().split())
     assert 150<=abstract_words<=250
-    report={"passed":True,"checked_at":utc_now(),"main":mainpdf,"supplement":supplement,
-        "main_pages":refs-1,"reference_pages":mainpdf["pages"]-refs+1,"figures":5,"central_equations":7,"propositions":2,
+    test_suite=ET.parse(VIEWS/"pytest.xml").getroot().find("testsuite")
+    assert int(test_suite.attrib["errors"])==int(test_suite.attrib["failures"])==0
+    browser=read_json(VIEWS/"dashboard/validation.json")
+    hashes(browser["artifacts"])
+    assert browser["script_sha256"]==digest_file("scripts/capture_review_dashboard.mjs")
+    assert browser["view_registry_sha256"]==digest_file(VIEWS/"manifest.json")
+    assert len(browser["cases"])==2 and all(c["noException"] and c["assertedAndStorageIntervals"] for c in browser["cases"])
+    report={"passed":True,"checked_at":utc_now(),"main":mainpdf,"single_submission_pdf":True,
+        "main_pages":refs-1,"reference_pages":mainpdf["pages"]-refs+1,"figures":5,"central_equations":8,"propositions":2,
         "abstract_source_words":abstract_words,"verified_actual_export_scopes":scopes,"verified_stored_paths":paths,
+        "unique_actual_export_scopes":len(unique_scopes),"shared_review_views":views,"revision_gpu_calls":0,
+        "tests_passed":int(test_suite.attrib["tests"]),"pytest_report_sha256":digest_file(VIEWS/"pytest.xml"),
+        "browser_validation_sha256":digest_file(VIEWS/"dashboard/validation.json"),
         "assessment_times_checked":assessments,"original_protocol_hash":minimum["protocol_hash"],
         "core_cases":240,"core_calls":325,"primary_replay_cells":9600,"separate_corrected_replay_cells":4800,
         "gpu_placement_verified":True,"frozen_sources_and_inputs_unchanged":True,
         "generated_inputs_match":True,"independent_oracle_import_check":True,
-        "relative_pdf_links_verified":True,
+        "no_supplementary_document_dependency":True,
         "script_sha256":digest_file(__file__),
         "visual_review":"Recorded separately in paper/semantic_visual_review.md; mechanical checks do not imply conference submission."}
     write_json("artifacts/manifests/semantic_manuscript_validation.json",report)
-    print(f"Passed: {refs-1} main pages + {mainpdf['pages']-refs+1} reference pages; supplement {supplement['pages']} pages; {scopes} export scopes.")
+    print(f"Passed: one PDF, {refs-1} main + {mainpdf['pages']-refs+1} reference pages; {len(unique_scopes)} unique export scopes and one fresh real-data duplicate check.")
 
 if __name__=="__main__":main()

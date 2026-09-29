@@ -75,6 +75,9 @@ def write():
         for stage,label in (("proposal","Raw"),("displayed","Display")):
             r=get(source,"M1",stage)
             for key,suffix in (("precision","P"),("recall","R")):macros["Sem"+prefix+label+suffix]=f"{100*r[key]['mean']:.1f}"
+    cq=read_json(DATA/"competency_queries.json")
+    macros["SemCompetencyWitnesses"]=sum(r["total"] for r in cq if r["question"]=="source_window")
+    macros["SemCompetencyComparisons"]=sum(r["total"] for r in cq if r["question"]=="comparison_witness")
     (OUT/"macros.tex").write_text("\n".join(r"\newcommand{\%s}{%s}"%(k,v) for k,v in macros.items())+"\n")
     objects=[(r"\shortstack[l]{Subject / Sensor}","Identity and channel","deterministic"),
         ("Observation","Hashed sample window","deterministic"),
@@ -163,6 +166,13 @@ def write():
     temporal=read_json(DATA/"temporal_summary_all_variants.json")
     table("temporal_table",["Source","Position",r"$P$ [CI]",r"$R$ [CI]","Grounded / all","Matched / req."],
         [[SOURCES[r["dataset"]],r["position"],ci(r["precision"]),ci(r["recall"]),f"{r['grounded']}/{r['emitted']}",f"{r['matched']}/{r['answerable']}"] for r in temporal if r["method"]=="M1"],"llrrrr")
+    descriptions=[];required=[]
+    for source,label in SOURCES.items():
+        group=[next(r for r in temporal if r["dataset"]==source and r["method"]=="M1" and r["position"]==phase) for phase in ("before","arrival","maintained")]
+        descriptions.append(label+" "+"/".join(str(r["emitted"]) for r in group))
+        required.append([r["answerable"] for r in group])
+    assert all(x==required[0] for x in required)
+    (OUT/"temporal_denominators.tex").write_text("Before/arrival/maintenance emitted-claim counts are "+"; ".join(descriptions)+". Answerable required-fact counts are "+"/".join(map(str,required[0]))+" per source. Precision excludes empty outputs; recall includes their zero coverage. These pooled denominators describe the sample, while reported percentages average episodes within subjects.\n")
     requestrows=[]
     for folder in ("pilot_v1","pilot_v2","core"):
         p=Path("artifacts/runs/structure_study_v1")/folder/"completion.json"
@@ -174,7 +184,9 @@ def write():
 We study a typed temporal property graph that separates recording provenance,
 model-proposed propositions, declared prerequisites and time-indexed support.
 A query-specific semantic projection preserves numerical witnesses and version
-history while exposing the dependencies relevant to revision. Two conditional
+history while exposing the dependencies relevant to revision. A shared, labeled
+network view makes immutable citations, changed versions and alternative
+witnesses inspectable in the paper and review dashboard. Two conditional
 results connect local support re-evaluation to transitive exposure: the fraction
 of necessary changes excluded by direct-only scheduling. Re-analysis of synthetic,
 WESAD and PPG-DaLiA experiments finds that only \SemParentClaims{} of
@@ -216,8 +228,8 @@ alone cannot establish explanation fidelity or maintenance benefit.
     report += ["","Percentages average episodes within dataset-scoped participants; pooled counts and 95% intervals are supplied separately. Raw structural propositions are initially true by construction, but their witness families need not be sound or complete.", "",
         f"The assessment-time audit finds {macros['SemAssessmentTies']} tied record/time groups, including {macros['SemAssessmentConflicts']} with different recorded states. The projection retains every tied outcome and marks conflicts ambiguous; timestamps alone do not supply trigger order. This provenance finding changes no independent semantic score or frozen outcome.", "",
         "The post-core primitive-name admission omission is preserved in the original extension and corrected only in primitive_alias_replication. Normalization uses test definitions already supplied to the model and never inserts parent links. An analysis-only fix scopes repeated subject labels by dataset when pooling sources; original scores are untouched.", "",
-        "Five main figures are supplied as PDF/SVG with source exports and layout maps. The supplement preserves the long original tables and systems plot. Results concern explicit generated commitments, not internal neural state, learned ontology, clinical truth or universal graph-storage superiority.", "",
-        "See [reproduction commands](docs/semantic_reproduction.md), [ontology construction](docs/ontology_construction.md), [main PDF](paper/semantic_structure_revision.pdf), and [supplement PDF](paper/semantic_structure_supplement.pdf). Final page counts and checks are recorded in artifacts/manifests/semantic_manuscript_validation.json."]
+        "Five main figures are supplied as PDF/SVG with source exports and layout maps. A single self-contained paper integrates relation construction, review-view semantics, assessment ambiguity and the admission sensitivity analysis. Exhaustive original tables and logs remain repository artifacts; historical PDFs are archived. Results concern explicit generated commitments, not internal neural state, learned ontology, clinical truth or universal graph-storage superiority.", "",
+        "See [reproduction commands](docs/semantic_reproduction.md), [ontology construction](docs/ontology_construction.md), [main PDF](paper/semantic_structure_revision.pdf), and [review-view implementation](docs/review_network_views.md). Final page counts and checks are recorded in artifacts/manifests/semantic_manuscript_validation.json."]
     Path("THEORY_RESULTS_CHANGES.md").write_text("\n".join(report)+"\n")
     write_json(OUT/"manifest.json",{"complete":True,"script_sha256":digest_file(__file__),
         "inputs":{str(p):digest_file(p) for p in sorted(DATA.glob("*.json"))},

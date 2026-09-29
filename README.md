@@ -6,7 +6,7 @@ results, reports, manuscript sources and local private data stay with that paper
 | Paper | Project | Manuscript |
 |---|---|---|
 | Graph Representations for Congestion Onset Prediction: A Controlled Comparative Study | [congestion-onset-graphs](congestion-onset-graphs/README.md) | [LaTeX](congestion-onset-graphs/manuscript/main.tex), [PDF](congestion-onset-graphs/manuscript/graph_representations_draft.pdf) |
-| Semantic Structure and Revision in Temporal Evidence Graphs for Generative Monitoring | [temporal-evidence-graphs](temporal-evidence-graphs/README.md) | [Paper PDF](temporal-evidence-graphs/paper/semantic_structure_revision.pdf), [Supplement](temporal-evidence-graphs/paper/semantic_structure_supplement.pdf), [LaTeX](temporal-evidence-graphs/paper/main.tex), [Change summary](temporal-evidence-graphs/THEORY_RESULTS_CHANGES.md) |
+| Semantic Structure and Revision in Temporal Evidence Graphs for Generative Monitoring | [temporal-evidence-graphs](temporal-evidence-graphs/README.md) | [Paper PDF](temporal-evidence-graphs/paper/semantic_structure_revision.pdf), [LaTeX](temporal-evidence-graphs/paper/main.tex), [Change summary](temporal-evidence-graphs/THEORY_RESULTS_CHANGES.md) |
 
 Compile the existing paper from the repository root:
 

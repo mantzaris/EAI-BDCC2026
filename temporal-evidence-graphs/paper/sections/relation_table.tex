@@ -1,0 +1,22 @@
+\begin{table}[!htbp]
+\caption{Relation construction and direction. R denotes a Record, P an unresolved
+placeholder, F a feature, C a claim, O an observation, X an explanation and A an
+assessment. The adapter constructs edges; admission checks supply claim-specific
+semantics. Administrative relations do not express entailment.}
+\label{tab:relations}
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\textwidth}{l l X}
+\toprule Relation & Domain $\to$ range & Meaning and creation rule\\\midrule
+\texttt{DEPENDS\_ON} & R $\to$ R/P & Each source ID: deterministic input, model citation or declared parent.\\
+\texttt{DERIVED\_FROM} & F $\to$ R/P & Feature source IDs: extraction provenance.\\
+\texttt{SUPPORTS} & R/P $\to$ C & Reverse source edge on admission; validity at insertion only.\\
+\texttt{SUPERSEDES} & R $\to$ R/P & New version to its predecessor ID.\\
+\texttt{CONTAINS} & X $\to$ R/P & Explanation source IDs: display membership; also dependencies.\\
+\texttt{ASSESSED\_AS} & R $\to$ A & Outcome keyed by scope, record, knowledge time and trigger.\\
+\texttt{CONTRADICTS} & R $\to$ R & Trigger to adversely assessed record; time from assessment.\\
+\texttt{FOR\_SUBJECT} & R $\to$ subject & Subject membership from deterministic identities.\\
+\texttt{OBSERVED\_BY} & O $\to$ sensor & Channel identity from recording metadata.\\
+\texttt{REVIEWED\_BY\_EVENT} & R/P $\to$ review & Reviewed item to appended review event.\\
+\bottomrule
+\end{tabularx}
+\end{table}

@@ -2,9 +2,12 @@
 
 Research paper package for EAI BDCC 2026. The revised study connects a fixed typed
 ontology, temporal support, graph structure and independent semantic fidelity.
+The submission is one self-contained paper, with spacious labeled networks from
+actual Neo4j exports and matching interactive dashboard views.
 
 - [Revised main paper](paper/semantic_structure_revision.pdf)
-- [Separate supplement](paper/semantic_structure_supplement.pdf)
+- [Graph-view revision and validation](GRAPH_VIEW_REVISION.md)
+- [Shared dashboard/publication network representation](docs/review_network_views.md)
 - [Theory/results change summary](THEORY_RESULTS_CHANGES.md)
 - [Exact reproduction commands and artifact map](docs/semantic_reproduction.md)
 - [Ontology and construction rules](docs/ontology_construction.md)
@@ -35,7 +38,7 @@ summary for uncertainty, exclusions and the full outcome crosswalk.
 From this directory, using the existing environment:
 
 ```sh
-PYTHONPATH=src .venv/bin/python -m pytest -q
+PYTHONPATH=src .venv/bin/python -m pytest -q --junitxml=artifacts/analysis/review_views_v1/pytest.xml
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.analyze
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.structural_analysis
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.alias_analysis
@@ -52,7 +55,9 @@ without repeating original GPU calls. [STATUS.md](STATUS.md) records completion;
 
 ## Dashboard and original experiment
 
-The original reversible review dashboard remains available:
+The dashboard opens the two recorded paper networks, with time, focus, witness,
+provenance expansion and object-detail controls. Reversible review actions remain
+available in the separate review workspace:
 
 ```sh
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.cli dashboard

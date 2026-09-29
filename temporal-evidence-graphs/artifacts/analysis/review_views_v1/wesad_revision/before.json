@@ -1,0 +1,613 @@
+{
+  "baseline_time": 1306.01,
+  "budget": {
+    "incomplete_witness_groups": [],
+    "limit": 16,
+    "omitted_ids": [],
+    "partial": false,
+    "required_nodes": 6,
+    "shown_nodes": 6
+  },
+  "case_id": "wesad-S11-e0-correction-c0-M1",
+  "context": {
+    "assessment_ties": "All tied outcomes retained; conflicting states are ambiguous.",
+    "explanations": [
+      {
+        "dataset_id": "wesad",
+        "event_end_seconds": 1305.0,
+        "event_start_seconds": 1275.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 1306.000001,
+        "logical_id": "wesad-S11-e0-correction-c0-M1/explanation",
+        "metadata": {
+          "case_id": "wesad-S11-e0-correction-c0-M1",
+          "display": {
+            "answer_status": "answered",
+            "claims": [
+              {
+                "claim_id": "C1",
+                "claim_type": "numeric_observation",
+                "depends_on_claim_ids": [],
+                "event_end_seconds": 1305.0,
+                "event_start_seconds": 1275.0,
+                "evidence_ids": [
+                  "wesad/S11/1275-1305/eda_median/v1"
+                ],
+                "operator": "approximately_equal",
+                "quantity": "eda_median",
+                "sentence": "The EDA median is approximately equal to 2.408303 uS.",
+                "subject_id": "S11",
+                "unit": "uS",
+                "value": 2.408303
+              },
+              {
+                "claim_id": "C2",
+                "claim_type": "trend",
+                "depends_on_claim_ids": [
+                  "C1"
+                ],
+                "event_end_seconds": 1305.0,
+                "event_start_seconds": 1275.0,
+                "evidence_ids": [
+                  "wesad/S11/1155-1275/eda_median/v1",
+                  "wesad/S11/1275-1305/eda_median/v1"
+                ],
+                "operator": "difference",
+                "quantity": "eda_median",
+                "sentence": "The EDA median difference from the earlier 120-second interval is 0.045414 uS.",
+                "subject_id": "S11",
+                "unit": "uS",
+                "value": 0.045414
+              }
+            ],
+            "explanation": "The EDA median is approximately equal to 2.408303 uS. The EDA median difference from the earlier 120-second interval is 0.045414 uS.",
+            "unresolved_evidence_ids": []
+          }
+        },
+        "operator": "identity",
+        "quantity": "",
+        "record_id": "wesad-S11-e0-correction-c0-M1/explanation",
+        "record_type": "explanation",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad-S11-e0-correction-c0-M1/claim/C1",
+          "wesad-S11-e0-correction-c0-M1/claim/C2"
+        ],
+        "subject_id": "S11",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "",
+        "value": null,
+        "version": 1
+      }
+    ],
+    "hidden_relations": {
+      "ASSESSED_AS": "time-filtered assessments retained in the detail panel",
+      "CONTAINS": "display membership retained as node attributes",
+      "CONTRADICTS": "assessment outcomes retained with their knowledge time",
+      "FOR_SUBJECT": "identity hubs",
+      "OBSERVED_BY": "sensor identities",
+      "REVIEWED_BY_EVENT": "review events retained in the workspace history",
+      "SUPPORTS": "admission-time mirror, not current support",
+      "feature DEPENDS_ON": "duplicate of displayed DERIVED_FROM provenance"
+    },
+    "observation_provenance_expanded": true,
+    "omitted_provenance_ids": []
+  },
+  "derived_paths": [],
+  "edges": [
+    {
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231604",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "wesad-S11-e0-correction-c0-M1/claim/C1",
+      "target": "wesad/S11/1275-1305/eda_median/v1",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231604"
+      ],
+      "witness_groups": [
+        "wesad-S11-e0-correction-c0-M1/claim/C1/w1"
+      ]
+    },
+    {
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231607",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "wesad-S11-e0-correction-c0-M1/claim/C2",
+      "target": "wesad-S11-e0-correction-c0-M1/claim/C1",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231607"
+      ],
+      "witness_groups": [
+        "wesad-S11-e0-correction-c0-M1/claim/C2/w1"
+      ]
+    },
+    {
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231605",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "wesad-S11-e0-correction-c0-M1/claim/C2",
+      "target": "wesad/S11/1155-1275/eda_median/v1",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231605"
+      ],
+      "witness_groups": [
+        "wesad-S11-e0-correction-c0-M1/claim/C2/w1"
+      ]
+    },
+    {
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231606",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "wesad-S11-e0-correction-c0-M1/claim/C2",
+      "target": "wesad/S11/1275-1305/eda_median/v1",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231606"
+      ],
+      "witness_groups": [
+        "wesad-S11-e0-correction-c0-M1/claim/C2/w1"
+      ]
+    },
+    {
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:228584",
+      "meaning": "Feature \u2192 observation/input used for its extraction.",
+      "source": "wesad/S11/1155-1275/eda_median/v1",
+      "target": "wesad/S11/1155-1275/eda/raw",
+      "type": "DERIVED_FROM",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:228584"
+      ],
+      "witness_groups": []
+    },
+    {
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:228703",
+      "meaning": "Feature \u2192 observation/input used for its extraction.",
+      "source": "wesad/S11/1275-1305/eda_median/v1",
+      "target": "wesad/S11/1275-1305/eda/raw",
+      "type": "DERIVED_FROM",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:228703"
+      ],
+      "witness_groups": []
+    }
+  ],
+  "focus_ids": [
+    "wesad-S11-e0-correction-c0-M1/claim/C2"
+  ],
+  "format": "review_graph_v1",
+  "instance": "actual retained Neo4j Community instance",
+  "knowledge_time": 1306.01,
+  "nodes": [
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          1275.0,
+          1305.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:84230",
+      "display_state": "displayed",
+      "id": "wesad-S11-e0-correction-c0-M1/claim/C1",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "wesad",
+        "event_end_seconds": 1305.0,
+        "event_start_seconds": 1275.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 1306.000001,
+        "logical_id": "wesad-S11-e0-correction-c0-M1/claim/C1",
+        "metadata": {
+          "accepted": true,
+          "claim": {
+            "claim_id": "C1",
+            "claim_type": "numeric_observation",
+            "depends_on_claim_ids": [],
+            "event_end_seconds": 1305.0,
+            "event_start_seconds": 1275.0,
+            "evidence_ids": [
+              "wesad/S11/1275-1305/eda_median/v1"
+            ],
+            "operator": "approximately_equal",
+            "quantity": "eda_median",
+            "sentence": "The EDA median is approximately equal to 2.408303 uS.",
+            "subject_id": "S11",
+            "unit": "uS",
+            "value": 2.408303
+          },
+          "claim_dependency_records": [],
+          "query": {
+            "dataset_id": "wesad",
+            "event_end_seconds": 1305.0,
+            "event_start_seconds": 1275.0,
+            "family": "conflict_timing",
+            "freshness_seconds": null,
+            "knowledge_time": 1306.0,
+            "question": "Describe the EDA median for this window and its difference from the earlier 120-second interval. Distinguish a change across intervals from a disagreement between simultaneous sensors.",
+            "session_id": "session_1",
+            "subject_id": "S11"
+          }
+        },
+        "operator": "identity",
+        "quantity": "eda_median",
+        "record_id": "wesad-S11-e0-correction-c0-M1/claim/C1",
+        "record_type": "claim",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S11/1275-1305/eda_median/v1"
+        ],
+        "subject_id": "S11",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 2.408303,
+        "version": 1
+      },
+      "short_id": "C1",
+      "support_origin": "admission metadata",
+      "support_state": "supported_at_admission",
+      "test": null,
+      "type": "claim",
+      "version_status": "current",
+      "witness_groups": [
+        "wesad-S11-e0-correction-c0-M1/claim/C1/w1"
+      ]
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          1275.0,
+          1305.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:84231",
+      "display_state": "displayed",
+      "id": "wesad-S11-e0-correction-c0-M1/claim/C2",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "wesad",
+        "event_end_seconds": 1305.0,
+        "event_start_seconds": 1275.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 1306.000001,
+        "logical_id": "wesad-S11-e0-correction-c0-M1/claim/C2",
+        "metadata": {
+          "accepted": true,
+          "claim": {
+            "claim_id": "C2",
+            "claim_type": "trend",
+            "depends_on_claim_ids": [
+              "C1"
+            ],
+            "event_end_seconds": 1305.0,
+            "event_start_seconds": 1275.0,
+            "evidence_ids": [
+              "wesad/S11/1155-1275/eda_median/v1",
+              "wesad/S11/1275-1305/eda_median/v1"
+            ],
+            "operator": "difference",
+            "quantity": "eda_median",
+            "sentence": "The EDA median difference from the earlier 120-second interval is 0.045414 uS.",
+            "subject_id": "S11",
+            "unit": "uS",
+            "value": 0.045414
+          },
+          "claim_dependency_records": [
+            "wesad-S11-e0-correction-c0-M1/claim/C1"
+          ],
+          "query": {
+            "dataset_id": "wesad",
+            "event_end_seconds": 1305.0,
+            "event_start_seconds": 1275.0,
+            "family": "conflict_timing",
+            "freshness_seconds": null,
+            "knowledge_time": 1306.0,
+            "question": "Describe the EDA median for this window and its difference from the earlier 120-second interval. Distinguish a change across intervals from a disagreement between simultaneous sensors.",
+            "session_id": "session_1",
+            "subject_id": "S11"
+          }
+        },
+        "operator": "identity",
+        "quantity": "eda_median",
+        "record_id": "wesad-S11-e0-correction-c0-M1/claim/C2",
+        "record_type": "claim",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S11/1155-1275/eda_median/v1",
+          "wesad/S11/1275-1305/eda_median/v1",
+          "wesad-S11-e0-correction-c0-M1/claim/C1"
+        ],
+        "subject_id": "S11",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 0.045414,
+        "version": 1
+      },
+      "short_id": "C2",
+      "support_origin": "admission metadata",
+      "support_state": "supported_at_admission",
+      "test": null,
+      "type": "claim",
+      "version_status": "current",
+      "witness_groups": [
+        "wesad-S11-e0-correction-c0-M1/claim/C2/w1"
+      ]
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          1155.0,
+          1275.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:83157",
+      "display_state": "not a display member",
+      "id": "wesad/S11/1155-1275/eda/raw",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "wesad",
+        "event_end_seconds": 1275.0,
+        "event_start_seconds": 1155.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 1276.0,
+        "logical_id": "wesad/S11/1155-1275/eda/raw",
+        "metadata": {
+          "channel": "eda",
+          "file_sha256": "f39557a8d660b10154936f51debf2926aea7ebb9b26a168858f59502f914d8f7",
+          "path": "data/raw/wesad/recordings/WESAD/S11/S11.pkl",
+          "rate_hz": 4,
+          "sample_start": 4620,
+          "sample_stop": 5100
+        },
+        "operator": "identity",
+        "quantity": "",
+        "record_id": "wesad/S11/1155-1275/eda/raw",
+        "record_type": "observation",
+        "session_id": "session_1",
+        "source_ids": [],
+        "subject_id": "S11",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "",
+        "value": null,
+        "version": 1
+      },
+      "short_id": "O1",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": null,
+      "type": "observation",
+      "version_status": "current",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          1155.0,
+          1275.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:83027",
+      "display_state": "not a display member",
+      "id": "wesad/S11/1155-1275/eda_median/v1",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "wesad",
+        "event_end_seconds": 1275.0,
+        "event_start_seconds": 1155.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 1276.0,
+        "logical_id": "wesad/S11/1155-1275/eda_median",
+        "metadata": {
+          "extractor": "numpy_completed_window_v1",
+          "window_seconds": 120.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S11/1155-1275/eda_median/v1",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S11/1155-1275/eda/raw"
+        ],
+        "subject_id": "S11",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 2.36289,
+        "version": 1
+      },
+      "short_id": "F1",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": null,
+      "type": "feature",
+      "version_status": "current",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          1275.0,
+          1305.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:83185",
+      "display_state": "not a display member",
+      "id": "wesad/S11/1275-1305/eda/raw",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "wesad",
+        "event_end_seconds": 1305.0,
+        "event_start_seconds": 1275.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 1306.0,
+        "logical_id": "wesad/S11/1275-1305/eda/raw",
+        "metadata": {
+          "channel": "eda",
+          "file_sha256": "f39557a8d660b10154936f51debf2926aea7ebb9b26a168858f59502f914d8f7",
+          "path": "data/raw/wesad/recordings/WESAD/S11/S11.pkl",
+          "rate_hz": 4,
+          "sample_start": 5100,
+          "sample_stop": 5220
+        },
+        "operator": "identity",
+        "quantity": "",
+        "record_id": "wesad/S11/1275-1305/eda/raw",
+        "record_type": "observation",
+        "session_id": "session_1",
+        "source_ids": [],
+        "subject_id": "S11",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "",
+        "value": null,
+        "version": 1
+      },
+      "short_id": "O2",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": null,
+      "type": "observation",
+      "version_status": "current",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          1275.0,
+          1305.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:83146",
+      "display_state": "not a display member",
+      "id": "wesad/S11/1275-1305/eda_median/v1",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "wesad",
+        "event_end_seconds": 1305.0,
+        "event_start_seconds": 1275.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 1306.0,
+        "logical_id": "wesad/S11/1275-1305/eda_median",
+        "metadata": {
+          "extractor": "numpy_completed_window_v1",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "wesad/S11/1275-1305/eda_median/v1",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "wesad/S11/1275-1305/eda/raw"
+        ],
+        "subject_id": "S11",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 2.4083034999999997,
+        "version": 1
+      },
+      "short_id": "F2",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": null,
+      "type": "feature",
+      "version_status": "current",
+      "witness_groups": []
+    }
+  ],
+  "recorded_state": "Before revision",
+  "scope": "minimum_v1/wesad-S11-e0/correction/M1",
+  "source": {
+    "export_path": "artifacts/analysis/semantic_analysis_v1/exports/minimum_v1__wesad-S11-e0__correction__M1.json.gz",
+    "export_sha256": "1ad0f290aa0c0be53a69a733022a08b2969cd17db7bcb64a6398aafd8831b64d",
+    "selection": {
+      "eligible_count": 20,
+      "rule": "Existing median-size eligible WESAD correction core, lexical tie-break; unchanged selection.",
+      "source": "artifacts/analysis/semantic_analysis_v1/representative_cores/wesad_median.json"
+    }
+  },
+  "witness_groups": [
+    {
+      "between": "OR",
+      "complete": true,
+      "id": "wesad-S11-e0-correction-c0-M1/claim/C2/w1",
+      "index": 1,
+      "inputs": [
+        "wesad/S11/1155-1275/eda_median/v1",
+        "wesad/S11/1275-1305/eda_median/v1",
+        "wesad-S11-e0-correction-c0-M1/claim/C1"
+      ],
+      "metadata_path": "Record.source_ids / support_mode",
+      "note": "Witness grouping is metadata, not a stored Neo4j node or relation.",
+      "omitted_inputs": [],
+      "owner": "wesad-S11-e0-correction-c0-M1/claim/C2",
+      "rendering_construct": true,
+      "resolution_complete": true,
+      "resolved_input_ids": [
+        "wesad/S11/1155-1275/eda_median/v1",
+        "wesad/S11/1275-1305/eda_median/v1"
+      ],
+      "stored_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231605",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231606",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231607"
+      ],
+      "within": "AND"
+    },
+    {
+      "between": "OR",
+      "complete": true,
+      "id": "wesad-S11-e0-correction-c0-M1/claim/C1/w1",
+      "index": 1,
+      "inputs": [
+        "wesad/S11/1275-1305/eda_median/v1"
+      ],
+      "metadata_path": "Record.source_ids / support_mode",
+      "note": "Witness grouping is metadata, not a stored Neo4j node or relation.",
+      "omitted_inputs": [],
+      "owner": "wesad-S11-e0-correction-c0-M1/claim/C1",
+      "rendering_construct": true,
+      "resolution_complete": true,
+      "resolved_input_ids": [
+        "wesad/S11/1275-1305/eda_median/v1"
+      ],
+      "stored_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:231604"
+      ],
+      "within": "AND"
+    }
+  ]
+}

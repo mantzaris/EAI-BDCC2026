@@ -35,17 +35,20 @@ function adds subject and channel identities. The model proposes proposition
 fields, evidence references, parent links and sentences. Checks admit bounded
 claims before immutable insertion. Neo4j additionally creates
 \texttt{SupportAssessment} nodes and \texttt{ASSESSED\_AS} edges, included in
-storage accounting. The Supplement specifies every node/relation's meaning,
-domain/range, creation rule, provenance and status, including unresolved placeholders.
+storage accounting. Source-endpoint insertion can create an unresolved Record
+placeholder; none occurs in the original exports. Table~\ref{tab:relations}
+gives relation meanings and construction rules. Neo4j enforces unique scope/ID
+pairs; Python checks record kinds, immutable payloads, acyclicity and numerical
+admission. The database does not independently enforce those semantic predicates.
 
 \begin{table}[!htbp]
 \caption{Implemented object vocabulary. Checked status describes an admission or
-assessment operation; it does not establish physiological truth. The full
-node/relation construction table is in the Supplement.}
+assessment operation; it does not establish physiological truth.}
 \label{tab:objects}
 \centering\small
 \input{generated/semantic/object_table}
 \end{table}
+\input{sections/relation_table}
 
 The construction can be written as
 \begin{equation}
@@ -127,3 +130,5 @@ which operands support a comparison, which version was known, what changed after
 correction, and whether an alternative witness survives. We evaluate answers to
 these questions against immutable input logs or exact program specifications,
 independently of database support flags.
+
+\input{sections/review_view}

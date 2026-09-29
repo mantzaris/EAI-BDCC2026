@@ -249,3 +249,31 @@
   within-time sequence. Correct only the new projection's arbitrary tie summary:
   expose all outcomes and mark conflicts ambiguous. This changes no frozen
   support assessment, independent score, display membership or GPU output.
+
+
+## 2026-09-29: single paper and shared review networks
+
+This instruction supersedes the earlier two-document presentation decisions.
+
+- Produce one authoritative PDF. Integrate relation construction, temporal
+  projection, assessment ambiguity, witness grouping, both proof sketches,
+  primary metric denominators and the admission sensitivity result in the main
+  paper. Preserve long tables/logs as repository data; archive the former
+  submission documents outside current build outputs.
+- Keep the existing deterministic WESAD S11 median-core selection. Display
+  original immutable citations, both operand windows, the correction version
+  and recorded withdrawal; do not imply a transitive advantage in this case.
+- Select the smallest complete eligible primary generated program with a
+  retained OR answer and a withdrawn parent; break ties by case/root ID.
+  This selects PPG-DaLiA S1 episode 0, requested/realized depth 2, from 87
+  eligible programs. Export its retained Neo4j scope read-only.
+- Share one typed view between publication and the existing dashboard. Preserve
+  complete AND witness sets in labeled rendering enclosures, with port/edge
+  mappings. Bundles and current-version resolution paths are not stored edges.
+  Budget truncation and conflicting assessment ties remain explicit.
+- Use deterministic topology-aware Graphviz layouts on the before/after union,
+  then reuse positions and routed splines. Labels and coordinates change no
+  support predicate. Dashboard selection uses controls and a detail panel.
+- Reuse all completed experiments; perform zero new inference calls. Preserve
+  primary 183/1,210 and separate normalized 208/1,294 direct misses, full zero
+  misses, database parity and the original zero adequate replacements.
