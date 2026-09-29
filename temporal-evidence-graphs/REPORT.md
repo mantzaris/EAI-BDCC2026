@@ -3,7 +3,10 @@
 The completed extension, independent semantics and new theory are summarized in
 [THEORY_RESULTS_CHANGES.md](THEORY_RESULTS_CHANGES.md), generated directly from
 the analysis outputs. Read the [revised main PDF](paper/semantic_structure_revision.pdf)
-and the [graph-view revision report](GRAPH_VIEW_REVISION.md).
+and the [classic-network addition](CLASSIC_NETWORK_ADDITION.md). The current
+single PDF has 20 main pages plus one reference page. Its new Figure 4 exposes
+14 actual ontology instances, 18 relations and computed witness/locality sets;
+Figures 1–3 and the completed experimental outcomes are preserved.
 [Reproduction commands](docs/semantic_reproduction.md) cover scoring, actual database
 exports, shared dashboard views, figures, frozen inputs and the single PDF build. Final page and integrity
 checks are recorded in artifacts/manifests/semantic_manuscript_validation.json.

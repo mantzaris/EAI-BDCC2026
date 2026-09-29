@@ -1,0 +1,2582 @@
+{
+  "baseline_time": 2301.01,
+  "budget": {
+    "incomplete_witness_groups": [],
+    "limit": 20,
+    "omitted_ids": [],
+    "partial": false,
+    "required_nodes": 14,
+    "shown_nodes": 14
+  },
+  "case_id": "ppg_dalia-S1-e0-d2-alternative",
+  "context": {
+    "assessment_ties": "All tied outcomes retained; conflicting states are ambiguous.",
+    "explanations": [
+      {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2300.0,
+        "event_start_seconds": 2150.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2331.001,
+        "logical_id": "ppg_dalia-S1-e0-d2-alternative/explanation",
+        "metadata": {
+          "display": {
+            "claims": [
+              {
+                "claim_id": "B_first_4",
+                "proposition": "B_first_4",
+                "sentence": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2150.0, 2270.0].",
+                "value": true,
+                "witnesses": [
+                  [
+                    "B1",
+                    "B2",
+                    "B3",
+                    "B4"
+                  ]
+                ]
+              },
+              {
+                "claim_id": "answer",
+                "proposition": "answer",
+                "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+                "value": true,
+                "witnesses": [
+                  [
+                    "A_first_4"
+                  ],
+                  [
+                    "B_first_4"
+                  ]
+                ]
+              }
+            ],
+            "explanation": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2150.0, 2270.0]. At least one eligible recording window satisfies all four specified numerical comparisons."
+          },
+          "maintenance": "retain supported common-candidate claims",
+          "origin": "generated"
+        },
+        "operator": "identity",
+        "quantity": "",
+        "record_id": "ppg_dalia-S1-e0-d2-alternative/explanation/v2",
+        "record_type": "explanation",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": "ppg_dalia-S1-e0-d2-alternative/explanation/v1",
+        "support_mode": "AND",
+        "unit": "",
+        "value": null,
+        "version": 2
+      }
+    ],
+    "hidden_relations": {
+      "ASSESSED_AS": "time-filtered assessments retained in the detail panel",
+      "CONTAINS": "display membership retained as node attributes",
+      "CONTRADICTS": "assessment outcomes retained with their knowledge time",
+      "FOR_SUBJECT": "identity hubs",
+      "OBSERVED_BY": "sensor identities",
+      "REVIEWED_BY_EVENT": "review events retained in the workspace history",
+      "SUPPORTS": "admission-time mirror, not current support",
+      "feature DEPENDS_ON": "duplicate of displayed DERIVED_FROM provenance"
+    },
+    "observation_provenance_expanded": true,
+    "omitted_provenance_ids": [
+      "ppg_dalia/S1/2150-2270/motion/raw",
+      "ppg_dalia/S1/2270-2300/motion/raw"
+    ],
+    "provenance_channel_filter": [
+      "eda"
+    ],
+    "selection_note": "EDA observation windows included; motion observation windows available by expanding provenance."
+  },
+  "derived_paths": [
+    {
+      "directly_stored": false,
+      "id": "derived/5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338",
+      "original_citation_id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+      "path": [
+        {
+          "direction": "forward",
+          "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338"
+        },
+        {
+          "direction": "reverse",
+          "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505398"
+        }
+      ],
+      "resolved_at": 2331.01,
+      "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "target": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+      "type": "CURRENT_CITATION_PATH",
+      "visible_edge": false,
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505398"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "construction_origin": "model_evidence_citation",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "target": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336"
+      ],
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4/w1"
+      ]
+    },
+    {
+      "construction_origin": "model_evidence_citation",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "target": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337"
+      ],
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4/w1"
+      ]
+    },
+    {
+      "construction_origin": "model_evidence_citation",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "target": "ppg_dalia/S1/2270-2300/eda_median/v1",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338"
+      ],
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4/w1"
+      ]
+    },
+    {
+      "construction_origin": "model_evidence_citation",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "target": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339"
+      ],
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4/w1"
+      ]
+    },
+    {
+      "construction_origin": "model_evidence_citation",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "target": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340"
+      ],
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4/w1"
+      ]
+    },
+    {
+      "construction_origin": "model_evidence_citation",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "target": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341"
+      ],
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4/w1"
+      ]
+    },
+    {
+      "construction_origin": "model_evidence_citation",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "target": "ppg_dalia/S1/2150-2270/eda_median/v1",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342"
+      ],
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4/w1"
+      ]
+    },
+    {
+      "construction_origin": "model_evidence_citation",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "target": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343"
+      ],
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4/w1"
+      ]
+    },
+    {
+      "construction_origin": "declared_parent",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "target": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344"
+      ],
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer/w1"
+      ]
+    },
+    {
+      "construction_origin": "declared_parent",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345",
+      "meaning": "Dependent \u2192 immutable cited input or declared prerequisite; not a causal arrow.",
+      "source": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "target": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "type": "DEPENDS_ON",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345"
+      ],
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer/w2"
+      ]
+    },
+    {
+      "construction_origin": "deterministic_provenance",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505371",
+      "meaning": "Feature \u2192 observation/input used for its extraction.",
+      "source": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+      "target": "ppg_dalia/S1/2150-2270/eda/raw",
+      "type": "DERIVED_FROM",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505371"
+      ],
+      "witness_groups": []
+    },
+    {
+      "construction_origin": "deterministic_provenance",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505372",
+      "meaning": "Feature \u2192 observation/input used for its extraction.",
+      "source": "ppg_dalia/S1/2150-2270/eda_median/v1",
+      "target": "ppg_dalia/S1/2150-2270/eda/raw",
+      "type": "DERIVED_FROM",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505372"
+      ],
+      "witness_groups": []
+    },
+    {
+      "construction_origin": "deterministic_provenance",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505373",
+      "meaning": "Feature \u2192 observation/input used for its extraction.",
+      "source": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+      "target": "ppg_dalia/S1/2150-2270/eda/raw",
+      "type": "DERIVED_FROM",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505373"
+      ],
+      "witness_groups": []
+    },
+    {
+      "construction_origin": "deterministic_provenance",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505376",
+      "meaning": "Feature \u2192 observation/input used for its extraction.",
+      "source": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+      "target": "ppg_dalia/S1/2270-2300/eda/raw",
+      "type": "DERIVED_FROM",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505376"
+      ],
+      "witness_groups": []
+    },
+    {
+      "construction_origin": "deterministic_provenance",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505400",
+      "meaning": "Feature \u2192 observation/input used for its extraction.",
+      "source": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+      "target": "ppg_dalia/S1/2270-2300/eda/raw",
+      "type": "DERIVED_FROM",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505400"
+      ],
+      "witness_groups": []
+    },
+    {
+      "construction_origin": "administrative",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505398",
+      "meaning": "New version \u2192 earlier immutable version; does not make historical data false.",
+      "source": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+      "target": "ppg_dalia/S1/2270-2300/eda_median/v1",
+      "type": "SUPERSEDES",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505398"
+      ],
+      "witness_groups": []
+    },
+    {
+      "construction_origin": "deterministic_provenance",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505377",
+      "meaning": "Feature \u2192 observation/input used for its extraction.",
+      "source": "ppg_dalia/S1/2270-2300/eda_median/v1",
+      "target": "ppg_dalia/S1/2270-2300/eda/raw",
+      "type": "DERIVED_FROM",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505377"
+      ],
+      "witness_groups": []
+    },
+    {
+      "construction_origin": "deterministic_provenance",
+      "directly_stored": true,
+      "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505378",
+      "meaning": "Feature \u2192 observation/input used for its extraction.",
+      "source": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+      "target": "ppg_dalia/S1/2270-2300/eda/raw",
+      "type": "DERIVED_FROM",
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505378"
+      ],
+      "witness_groups": []
+    }
+  ],
+  "equation_annotations": {
+    "analysis_format": "classic_equation_analysis_v1",
+    "claim_truths": {
+      "after": {
+        "A_first_4": false,
+        "B_first_4": true,
+        "answer": true
+      },
+      "before": {
+        "A_first_4": true,
+        "B_first_4": true,
+        "answer": true
+      }
+    },
+    "context_ids": [
+      "ppg_dalia/S1/2150-2270/eda/raw",
+      "ppg_dalia/S1/2270-2300/eda/raw",
+      "ppg_dalia/S1/2270-2300/eda_median/v1"
+    ],
+    "contrast_note": "Retrospective before/after contrast; future records are never drawn in the earlier snapshot.",
+    "core_ids": [
+      "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+      "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+      "ppg_dalia/S1/2150-2270/eda_median/v1",
+      "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+      "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+      "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+      "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+      "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+    ],
+    "exposure": {
+      "denominator": 1,
+      "numerator": 0,
+      "xi": 0.0
+    },
+    "full_scope": {
+      "backend_note": "Backend traversal also reaches explanation membership; it is excluded from theorem claim reachability.",
+      "dependency_edges": [
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/eda_median/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/eda_median/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+          "target": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+          "target": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "type": "DEPENDS_ON"
+        }
+      ],
+      "dependency_filter": "ClaimVersion DEPENDS_ON ClaimVersion/FeatureVersion only; versions remain separate, all revised-identity versions seed U.",
+      "dependency_node_ids": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+        "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+        "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+        "ppg_dalia/S1/2150-2270/eda_median/v1",
+        "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+        "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+        "ppg_dalia/S1/2270-2300/cardiac_missing_fraction/v1",
+        "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+        "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "ppg_dalia/S1/2270-2300/eda_median/v1",
+        "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+      ],
+      "recorded_backend_reachable_records": 3,
+      "stored_edges": 83,
+      "stored_nodes": 26,
+      "visible_database_nodes": 26,
+      "visible_record_nodes": 24
+    },
+    "full_sets": {
+      "A_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "B_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "D_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "R_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+        "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "ppg_dalia/S1/2270-2300/eda_median/v1"
+      ],
+      "U_delta": [
+        "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "ppg_dalia/S1/2270-2300/eda_median/v1"
+      ],
+      "full_scheduled_claims": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+      ],
+      "reachable_claims": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+      ]
+    },
+    "recorded_state": "after",
+    "view_counts": {
+      "edge_types": {
+        "DEPENDS_ON": 10,
+        "DERIVED_FROM": 7,
+        "SUPERSEDES": 1
+      },
+      "edges": 18,
+      "node_types": {
+        "claim": 3,
+        "feature": 9,
+        "observation": 2
+      },
+      "nodes": 14
+    },
+    "visible_core_ids": [
+      "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+      "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+      "ppg_dalia/S1/2150-2270/eda_median/v1",
+      "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+      "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+      "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+      "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+      "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+    ],
+    "visible_sets": {
+      "A_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "B_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "D_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "R_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+        "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "ppg_dalia/S1/2270-2300/eda_median/v1"
+      ],
+      "U_delta": [
+        "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "ppg_dalia/S1/2270-2300/eda_median/v1"
+      ],
+      "full_scheduled_claims": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+      ],
+      "reachable_claims": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+      ]
+    }
+  },
+  "focus_ids": [
+    "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+  ],
+  "format": "review_graph_v1",
+  "instance": "actual retained Neo4j Community instance",
+  "knowledge_time": 2331.01,
+  "nodes": [
+    {
+      "affected": true,
+      "asserted_intervals": [
+        [
+          2270.0,
+          2300.0
+        ]
+      ],
+      "assessment": {
+        "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181673",
+        "id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "known_at": 2331.0,
+        "outcomes": [
+          {
+            "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181673",
+            "id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+            "known_at": 2331.0,
+            "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+            "state": "contradicted",
+            "trigger_id": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+            "value": 0.0
+          }
+        ],
+        "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+        "state": "contradicted",
+        "trigger_id": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "value": 0.0
+      },
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "model_proposal_persisted",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181664",
+      "display_state": "withdrawn",
+      "equations": {
+        "core_role": "declared ancestor/input",
+        "in_core": true,
+        "membership": {
+          "A_delta": true,
+          "B_delta": true,
+          "D_delta": true,
+          "R_delta": true,
+          "U_delta": false,
+          "full_scheduled_claims": true,
+          "reachable_claims": true
+        },
+        "support_after": false,
+        "support_at_time": false,
+        "support_before": true
+      },
+      "id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "ontology_class": "ClaimVersion",
+      "proposition_witnesses": [
+        [
+          "A1",
+          "A2",
+          "A3",
+          "A4"
+        ]
+      ],
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2300.0,
+        "event_start_seconds": 2150.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2301.001,
+        "logical_id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "metadata": {
+          "accepted": true,
+          "origin": "generated",
+          "semantic_program": {
+            "claim_id": "A_first_4",
+            "proposition": "A_first_4",
+            "sentence": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2270.0, 2300.0].",
+            "value": true,
+            "witnesses": [
+              [
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+              ]
+            ]
+          },
+          "test_reference_map": {
+            "A1": "ppg_dalia/S1/2270-2300/eda_median/v1",
+            "A2": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+            "A3": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+            "A4": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+            "B1": "ppg_dalia/S1/2150-2270/eda_median/v1",
+            "B2": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+            "B3": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+            "B4": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1"
+          }
+        },
+        "operator": "positive_witness_program",
+        "quantity": "A_first_4",
+        "record_id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "record_type": "claim",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+          "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+          "ppg_dalia/S1/2270-2300/eda_median/v1",
+          "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "boolean",
+        "value": 1.0,
+        "version": 1
+      },
+      "short_id": "A_first_4",
+      "support_origin": "recorded assessment",
+      "support_state": "contradicted",
+      "test": null,
+      "type": "claim",
+      "version_status": "current",
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4/w1"
+      ]
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          2150.0,
+          2270.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "model_proposal_persisted",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181665",
+      "display_state": "displayed",
+      "equations": {
+        "core_role": "display member",
+        "in_core": true,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": false,
+          "U_delta": false,
+          "full_scheduled_claims": false,
+          "reachable_claims": false
+        },
+        "support_after": true,
+        "support_at_time": true,
+        "support_before": true
+      },
+      "id": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "ontology_class": "ClaimVersion",
+      "proposition_witnesses": [
+        [
+          "B1",
+          "B2",
+          "B3",
+          "B4"
+        ]
+      ],
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2300.0,
+        "event_start_seconds": 2150.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2301.001,
+        "logical_id": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+        "metadata": {
+          "accepted": true,
+          "origin": "generated",
+          "semantic_program": {
+            "claim_id": "B_first_4",
+            "proposition": "B_first_4",
+            "sentence": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2150.0, 2270.0].",
+            "value": true,
+            "witnesses": [
+              [
+                "B1",
+                "B2",
+                "B3",
+                "B4"
+              ]
+            ]
+          },
+          "test_reference_map": {
+            "A1": "ppg_dalia/S1/2270-2300/eda_median/v1",
+            "A2": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+            "A3": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+            "A4": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+            "B1": "ppg_dalia/S1/2150-2270/eda_median/v1",
+            "B2": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+            "B3": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+            "B4": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1"
+          }
+        },
+        "operator": "positive_witness_program",
+        "quantity": "B_first_4",
+        "record_id": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+        "record_type": "claim",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+          "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+          "ppg_dalia/S1/2150-2270/eda_median/v1",
+          "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "boolean",
+        "value": 1.0,
+        "version": 1
+      },
+      "short_id": "B_first_4",
+      "support_origin": "admission metadata",
+      "support_state": "supported_at_admission",
+      "test": null,
+      "type": "claim",
+      "version_status": "current",
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4/w1"
+      ]
+    },
+    {
+      "affected": true,
+      "asserted_intervals": [
+        [
+          2150.0,
+          2270.0
+        ],
+        [
+          2270.0,
+          2300.0
+        ]
+      ],
+      "assessment": {
+        "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181674",
+        "id": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+        "known_at": 2331.0,
+        "outcomes": [
+          {
+            "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181674",
+            "id": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+            "known_at": 2331.0,
+            "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+            "state": "supported",
+            "trigger_id": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+            "value": 1.0
+          }
+        ],
+        "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+        "state": "supported",
+        "trigger_id": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "value": 1.0
+      },
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "model_proposal_persisted",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181666",
+      "display_state": "displayed",
+      "equations": {
+        "core_role": "display member",
+        "in_core": true,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": true,
+          "U_delta": false,
+          "full_scheduled_claims": true,
+          "reachable_claims": true
+        },
+        "support_after": true,
+        "support_at_time": true,
+        "support_before": true
+      },
+      "id": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "ontology_class": "ClaimVersion",
+      "proposition_witnesses": [
+        [
+          "A1",
+          "A2",
+          "A3",
+          "A4"
+        ],
+        [
+          "B1",
+          "B2",
+          "B3",
+          "B4"
+        ]
+      ],
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2300.0,
+        "event_start_seconds": 2150.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2301.001,
+        "logical_id": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+        "metadata": {
+          "accepted": true,
+          "origin": "generated",
+          "semantic_program": {
+            "claim_id": "answer",
+            "proposition": "answer",
+            "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+            "value": true,
+            "witnesses": [
+              [
+                "A_first_4"
+              ],
+              [
+                "B_first_4"
+              ]
+            ]
+          },
+          "test_reference_map": {
+            "A1": "ppg_dalia/S1/2270-2300/eda_median/v1",
+            "A2": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+            "A3": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+            "A4": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+            "B1": "ppg_dalia/S1/2150-2270/eda_median/v1",
+            "B2": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+            "B3": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+            "B4": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1"
+          }
+        },
+        "operator": "positive_witness_program",
+        "quantity": "answer",
+        "record_id": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+        "record_type": "claim",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "boolean",
+        "value": 1.0,
+        "version": 1
+      },
+      "short_id": "answer",
+      "support_origin": "recorded assessment",
+      "support_state": "supported",
+      "test": null,
+      "type": "claim",
+      "version_status": "current",
+      "witness_groups": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer/w1",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer/w2"
+      ]
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          2150.0,
+          2270.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "recording_or_availability_construction",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181650",
+      "display_state": "not a display member",
+      "equations": {
+        "core_role": "declared ancestor/input",
+        "in_core": true,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": false,
+          "U_delta": false,
+          "full_scheduled_claims": false,
+          "reachable_claims": false
+        },
+        "support_after": null,
+        "support_at_time": null,
+        "support_before": null
+      },
+      "id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+      "ontology_class": "FeatureVersion",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2270.0,
+        "event_start_seconds": 2150.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2271.0,
+        "logical_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd",
+        "metadata": {
+          "extractor": "numpy_completed_window_v1",
+          "window_seconds": 120.0
+        },
+        "operator": "measured",
+        "quantity": "acceleration_magnitude_sd",
+        "record_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S1/2150-2270/motion/raw"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "g",
+        "value": 0.3417050664970838,
+        "version": 1
+      },
+      "short_id": "B3",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": {
+        "initial_value": 0.3417050664970838,
+        "interval": [
+          2150.0,
+          2270.0
+        ],
+        "logical_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd",
+        "margin": 0.02187143956253461,
+        "observation_ids": [
+          "ppg_dalia/S1/2150-2270/motion/raw"
+        ],
+        "operator": "ge",
+        "quantity": "acceleration_magnitude_sd",
+        "source_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+        "threshold": 0.19684295606281144,
+        "unit": "g"
+      },
+      "type": "feature",
+      "version_status": "current",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          2150.0,
+          2270.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "recording_or_availability_construction",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181659",
+      "display_state": "not a display member",
+      "equations": {
+        "core_role": "review context",
+        "in_core": false,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": false,
+          "U_delta": false,
+          "full_scheduled_claims": false,
+          "reachable_claims": false
+        },
+        "support_after": null,
+        "support_at_time": null,
+        "support_before": null
+      },
+      "id": "ppg_dalia/S1/2150-2270/eda/raw",
+      "ontology_class": "Observation",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2270.0,
+        "event_start_seconds": 2150.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2271.0,
+        "logical_id": "ppg_dalia/S1/2150-2270/eda/raw",
+        "metadata": {
+          "channel": "eda",
+          "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+          "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+          "rate_hz": 4,
+          "sample_start": 8600,
+          "sample_stop": 9080
+        },
+        "operator": "identity",
+        "quantity": "",
+        "record_id": "ppg_dalia/S1/2150-2270/eda/raw",
+        "record_type": "observation",
+        "session_id": "session_1",
+        "source_ids": [],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "",
+        "value": null,
+        "version": 1
+      },
+      "short_id": "O1",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": null,
+      "type": "observation",
+      "version_status": "current",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          2150.0,
+          2270.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "recording_or_availability_construction",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181651",
+      "display_state": "not a display member",
+      "equations": {
+        "core_role": "declared ancestor/input",
+        "in_core": true,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": false,
+          "U_delta": false,
+          "full_scheduled_claims": false,
+          "reachable_claims": false
+        },
+        "support_after": null,
+        "support_at_time": null,
+        "support_before": null
+      },
+      "id": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+      "ontology_class": "FeatureVersion",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2270.0,
+        "event_start_seconds": 2150.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2271.0,
+        "logical_id": "ppg_dalia/S1/2150-2270/eda_iqr",
+        "metadata": {
+          "extractor": "numpy_completed_window_v1",
+          "window_seconds": 120.0
+        },
+        "operator": "measured",
+        "quantity": "eda_iqr",
+        "record_id": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S1/2150-2270/eda/raw"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 0.4613940000000003,
+        "version": 1
+      },
+      "short_id": "B2",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": {
+        "initial_value": 0.4613940000000003,
+        "interval": [
+          2150.0,
+          2270.0
+        ],
+        "logical_id": "ppg_dalia/S1/2150-2270/eda_iqr",
+        "margin": 0.04613940000000003,
+        "observation_ids": [
+          "ppg_dalia/S1/2150-2270/eda/raw"
+        ],
+        "operator": "ge",
+        "quantity": "eda_iqr",
+        "source_id": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+        "threshold": 0.41525460000000025,
+        "unit": "uS"
+      },
+      "type": "feature",
+      "version_status": "current",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          2150.0,
+          2270.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "recording_or_availability_construction",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181652",
+      "display_state": "not a display member",
+      "equations": {
+        "core_role": "declared ancestor/input",
+        "in_core": true,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": false,
+          "U_delta": false,
+          "full_scheduled_claims": false,
+          "reachable_claims": false
+        },
+        "support_after": null,
+        "support_at_time": null,
+        "support_before": null
+      },
+      "id": "ppg_dalia/S1/2150-2270/eda_median/v1",
+      "ontology_class": "FeatureVersion",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2270.0,
+        "event_start_seconds": 2150.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2271.0,
+        "logical_id": "ppg_dalia/S1/2150-2270/eda_median",
+        "metadata": {
+          "extractor": "numpy_completed_window_v1",
+          "window_seconds": 120.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S1/2150-2270/eda_median/v1",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S1/2150-2270/eda/raw"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 5.2678775,
+        "version": 1
+      },
+      "short_id": "B1",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": {
+        "initial_value": 5.2678775,
+        "interval": [
+          2150.0,
+          2270.0
+        ],
+        "logical_id": "ppg_dalia/S1/2150-2270/eda_median",
+        "margin": 0.52678775,
+        "observation_ids": [
+          "ppg_dalia/S1/2150-2270/eda/raw"
+        ],
+        "operator": "ge",
+        "quantity": "eda_median",
+        "source_id": "ppg_dalia/S1/2150-2270/eda_median/v1",
+        "threshold": 4.74108975,
+        "unit": "uS"
+      },
+      "type": "feature",
+      "version_status": "current",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          2150.0,
+          2270.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "recording_or_availability_construction",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181653",
+      "display_state": "not a display member",
+      "equations": {
+        "core_role": "declared ancestor/input",
+        "in_core": true,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": false,
+          "U_delta": false,
+          "full_scheduled_claims": false,
+          "reachable_claims": false
+        },
+        "support_after": null,
+        "support_at_time": null,
+        "support_before": null
+      },
+      "id": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+      "ontology_class": "FeatureVersion",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2270.0,
+        "event_start_seconds": 2150.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2271.0,
+        "logical_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction",
+        "metadata": {
+          "extractor": "numpy_completed_window_v1",
+          "window_seconds": 120.0
+        },
+        "operator": "measured",
+        "quantity": "eda_missing_fraction",
+        "record_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S1/2150-2270/eda/raw"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.0,
+        "version": 1
+      },
+      "short_id": "B4",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": {
+        "initial_value": 0.0,
+        "interval": [
+          2150.0,
+          2270.0
+        ],
+        "logical_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction",
+        "margin": 0.05,
+        "observation_ids": [
+          "ppg_dalia/S1/2150-2270/eda/raw"
+        ],
+        "operator": "le",
+        "quantity": "eda_missing_fraction",
+        "source_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+        "threshold": 0.05,
+        "unit": "fraction"
+      },
+      "type": "feature",
+      "version_status": "current",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          2270.0,
+          2300.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "recording_or_availability_construction",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181654",
+      "display_state": "not a display member",
+      "equations": {
+        "core_role": "declared ancestor/input",
+        "in_core": true,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": false,
+          "U_delta": false,
+          "full_scheduled_claims": false,
+          "reachable_claims": false
+        },
+        "support_after": null,
+        "support_at_time": null,
+        "support_before": null
+      },
+      "id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+      "ontology_class": "FeatureVersion",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2300.0,
+        "event_start_seconds": 2270.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2301.0,
+        "logical_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd",
+        "metadata": {
+          "extractor": "numpy_completed_window_v1",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "acceleration_magnitude_sd",
+        "record_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S1/2270-2300/motion/raw"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "g",
+        "value": 0.21871439562534606,
+        "version": 1
+      },
+      "short_id": "A3",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": {
+        "initial_value": 0.21871439562534606,
+        "interval": [
+          2270.0,
+          2300.0
+        ],
+        "logical_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd",
+        "margin": 0.02187143956253461,
+        "observation_ids": [
+          "ppg_dalia/S1/2270-2300/motion/raw"
+        ],
+        "operator": "ge",
+        "quantity": "acceleration_magnitude_sd",
+        "source_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+        "threshold": 0.19684295606281144,
+        "unit": "g"
+      },
+      "type": "feature",
+      "version_status": "current",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          2270.0,
+          2300.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "recording_or_availability_construction",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181662",
+      "display_state": "not a display member",
+      "equations": {
+        "core_role": "review context",
+        "in_core": false,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": false,
+          "U_delta": false,
+          "full_scheduled_claims": false,
+          "reachable_claims": false
+        },
+        "support_after": null,
+        "support_at_time": null,
+        "support_before": null
+      },
+      "id": "ppg_dalia/S1/2270-2300/eda/raw",
+      "ontology_class": "Observation",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2300.0,
+        "event_start_seconds": 2270.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2301.0,
+        "logical_id": "ppg_dalia/S1/2270-2300/eda/raw",
+        "metadata": {
+          "channel": "eda",
+          "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+          "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+          "rate_hz": 4,
+          "sample_start": 9080,
+          "sample_stop": 9200
+        },
+        "operator": "identity",
+        "quantity": "",
+        "record_id": "ppg_dalia/S1/2270-2300/eda/raw",
+        "record_type": "observation",
+        "session_id": "session_1",
+        "source_ids": [],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "",
+        "value": null,
+        "version": 1
+      },
+      "short_id": "O3",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": null,
+      "type": "observation",
+      "version_status": "current",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          2270.0,
+          2300.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "recording_or_availability_construction",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181656",
+      "display_state": "not a display member",
+      "equations": {
+        "core_role": "declared ancestor/input",
+        "in_core": true,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": false,
+          "U_delta": false,
+          "full_scheduled_claims": false,
+          "reachable_claims": false
+        },
+        "support_after": null,
+        "support_at_time": null,
+        "support_before": null
+      },
+      "id": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+      "ontology_class": "FeatureVersion",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2300.0,
+        "event_start_seconds": 2270.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2301.0,
+        "logical_id": "ppg_dalia/S1/2270-2300/eda_iqr",
+        "metadata": {
+          "extractor": "numpy_completed_window_v1",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_iqr",
+        "record_id": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S1/2270-2300/eda/raw"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 0.5207980000000001,
+        "version": 1
+      },
+      "short_id": "A2",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": {
+        "initial_value": 0.5207980000000001,
+        "interval": [
+          2270.0,
+          2300.0
+        ],
+        "logical_id": "ppg_dalia/S1/2270-2300/eda_iqr",
+        "margin": 0.04613940000000003,
+        "observation_ids": [
+          "ppg_dalia/S1/2270-2300/eda/raw"
+        ],
+        "operator": "ge",
+        "quantity": "eda_iqr",
+        "source_id": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+        "threshold": 0.41525460000000025,
+        "unit": "uS"
+      },
+      "type": "feature",
+      "version_status": "current",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          2270.0,
+          2300.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": true,
+      "construction_origin": "recording_or_availability_construction",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181672",
+      "display_state": "not a display member",
+      "equations": {
+        "core_role": "declared ancestor/input",
+        "in_core": true,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": true,
+          "U_delta": true,
+          "full_scheduled_claims": false,
+          "reachable_claims": false
+        },
+        "support_after": null,
+        "support_at_time": null,
+        "support_before": null
+      },
+      "id": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+      "ontology_class": "FeatureVersion",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2300.0,
+        "event_start_seconds": 2270.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2331.0,
+        "logical_id": "ppg_dalia/S1/2270-2300/eda_median",
+        "metadata": {
+          "controlled_numeric_revision": true,
+          "extractor": "numpy_completed_window_v1",
+          "structure_study_condition": "route_loss",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S1/2270-2300/eda/raw"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 4.214302,
+        "version": 2
+      },
+      "short_id": "A1",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": {
+        "initial_value": 5.374855999999999,
+        "interval": [
+          2270.0,
+          2300.0
+        ],
+        "logical_id": "ppg_dalia/S1/2270-2300/eda_median",
+        "margin": 0.52678775,
+        "observation_ids": [
+          "ppg_dalia/S1/2270-2300/eda/raw"
+        ],
+        "operator": "ge",
+        "quantity": "eda_median",
+        "source_id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+        "threshold": 4.74108975,
+        "unit": "uS"
+      },
+      "type": "feature",
+      "version_status": "current",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          2270.0,
+          2300.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "recording_or_availability_construction",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181657",
+      "display_state": "not a display member",
+      "equations": {
+        "core_role": "review context",
+        "in_core": false,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": true,
+          "U_delta": true,
+          "full_scheduled_claims": false,
+          "reachable_claims": false
+        },
+        "support_after": null,
+        "support_at_time": null,
+        "support_before": null
+      },
+      "id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+      "ontology_class": "FeatureVersion",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2300.0,
+        "event_start_seconds": 2270.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2301.0,
+        "logical_id": "ppg_dalia/S1/2270-2300/eda_median",
+        "metadata": {
+          "extractor": "numpy_completed_window_v1",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_median",
+        "record_id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S1/2270-2300/eda/raw"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "uS",
+        "value": 5.374855999999999,
+        "version": 1
+      },
+      "short_id": "A1",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": {
+        "initial_value": 5.374855999999999,
+        "interval": [
+          2270.0,
+          2300.0
+        ],
+        "logical_id": "ppg_dalia/S1/2270-2300/eda_median",
+        "margin": 0.52678775,
+        "observation_ids": [
+          "ppg_dalia/S1/2270-2300/eda/raw"
+        ],
+        "operator": "ge",
+        "quantity": "eda_median",
+        "source_id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+        "threshold": 4.74108975,
+        "unit": "uS"
+      },
+      "type": "feature",
+      "version_status": "historical version",
+      "witness_groups": []
+    },
+    {
+      "affected": false,
+      "asserted_intervals": [
+        [
+          2270.0,
+          2300.0
+        ]
+      ],
+      "assessment": null,
+      "availability": "available",
+      "changed": false,
+      "construction_origin": "recording_or_availability_construction",
+      "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181658",
+      "display_state": "not a display member",
+      "equations": {
+        "core_role": "declared ancestor/input",
+        "in_core": true,
+        "membership": {
+          "A_delta": false,
+          "B_delta": false,
+          "D_delta": false,
+          "R_delta": false,
+          "U_delta": false,
+          "full_scheduled_claims": false,
+          "reachable_claims": false
+        },
+        "support_after": null,
+        "support_at_time": null,
+        "support_before": null
+      },
+      "id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+      "ontology_class": "FeatureVersion",
+      "proposition_witnesses": null,
+      "record": {
+        "dataset_id": "ppg_dalia",
+        "event_end_seconds": 2300.0,
+        "event_start_seconds": 2270.0,
+        "evidence_state": "available",
+        "ingested_at_seconds": 2301.0,
+        "logical_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction",
+        "metadata": {
+          "extractor": "numpy_completed_window_v1",
+          "window_seconds": 30.0
+        },
+        "operator": "measured",
+        "quantity": "eda_missing_fraction",
+        "record_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+        "record_type": "feature",
+        "session_id": "session_1",
+        "source_ids": [
+          "ppg_dalia/S1/2270-2300/eda/raw"
+        ],
+        "subject_id": "S1",
+        "supersedes_id": null,
+        "support_mode": "AND",
+        "unit": "fraction",
+        "value": 0.0,
+        "version": 1
+      },
+      "short_id": "A4",
+      "support_origin": "not evaluated",
+      "support_state": "unassessed",
+      "test": {
+        "initial_value": 0.0,
+        "interval": [
+          2270.0,
+          2300.0
+        ],
+        "logical_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction",
+        "margin": 0.05,
+        "observation_ids": [
+          "ppg_dalia/S1/2270-2300/eda/raw"
+        ],
+        "operator": "le",
+        "quantity": "eda_missing_fraction",
+        "source_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+        "threshold": 0.05,
+        "unit": "fraction"
+      },
+      "type": "feature",
+      "version_status": "current",
+      "witness_groups": []
+    }
+  ],
+  "recorded_state": "After maintenance",
+  "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+  "source": {
+    "candidate_path": {
+      "path": "artifacts/runs/structure_study_v1/core/candidates/ppg_dalia-S1-e0-d2-alternative.json",
+      "sha256": "3f9beb6bbabc25fbef8c600ecbcd1689f3a597810cf0782af84199979a311ca2"
+    },
+    "export_path": "artifacts/analysis/review_views_v1/exports/structure_study_v1__ppg_dalia-S1-e0-d2-alternative__generated__route_loss__M1.json.gz",
+    "export_sha256": "018d9b48aae6bd6bbfd95f5d85eb1f5d046929cd5a18e431bca451b155177eb0",
+    "replay_path": {
+      "path": "artifacts/runs/structure_study_v1/replay/ppg_dalia-S1-e0-d2-alternative-generated.json",
+      "sha256": "186a452eae1e3df38385a75bab3e70cdc8b0514363a78b393875e902b9865f5d"
+    },
+    "selection": {
+      "eligibility": "Admitted answer with >=2 complete alternative witnesses, each a singleton declared parent; at least one claim withdrawn and the answer retained under M1 primary-route loss.",
+      "eligible": [
+        {
+          "case_id": "ppg_dalia-S1-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S1-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S1-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S1-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S1-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S5-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S5-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S5-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S5-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S5-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S5-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S6-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "c3"
+        },
+        {
+          "case_id": "ppg_dalia-S6-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S6-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S6-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S6-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S6-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S7-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S7-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S7-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S7-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S7-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S7-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S9-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S9-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S9-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S9-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S9-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "ppg_dalia-S9-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1001-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1001-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1001-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1001-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1001-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1001-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1002-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1002-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1002-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1002-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1002-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1002-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1003-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1003-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1003-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1003-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1003-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1004-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1004-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1004-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1004-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1004-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1004-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1005-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1005-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1005-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1005-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1005-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "synthetic-V1005-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S10-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S10-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S10-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S10-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S10-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S10-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S2-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S2-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S2-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S2-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S2-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S6-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S6-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S6-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S6-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S6-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S6-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S7-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S7-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S7-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S7-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S7-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S7-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S8-e0-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S8-e0-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S8-e0-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S8-e1-d2-alternative",
+          "intended_depth": 2,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S8-e1-d3-alternative",
+          "intended_depth": 3,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        },
+        {
+          "case_id": "wesad-S8-e1-d4-alternative",
+          "intended_depth": 4,
+          "nodes_before_expansion": 11,
+          "realized_depth": 2,
+          "root": "answer"
+        }
+      ],
+      "eligible_count": 87,
+      "population": "240 primary GPU-generated candidates; no normalized replication or compiled fixture",
+      "selected": {
+        "case_id": "ppg_dalia-S1-e0-d2-alternative",
+        "intended_depth": 2,
+        "nodes_before_expansion": 11,
+        "realized_depth": 2,
+        "root": "answer"
+      },
+      "selection_rule": "Smallest complete claim/feature ancestor closure before provenance/version expansion, then lexical case ID and root ID."
+    }
+  },
+  "witness_groups": [
+    {
+      "between": "OR",
+      "complete": true,
+      "id": "ppg_dalia-S1-e0-d2-alternative/claim/answer/w1",
+      "index": 1,
+      "inputs": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "metadata_path": "metadata.semantic_program.witnesses",
+      "note": "Witness grouping is metadata, not a stored Neo4j node or relation.",
+      "omitted_inputs": [],
+      "owner": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "rendering_construct": true,
+      "resolution_complete": true,
+      "resolved_input_ids": [],
+      "stored_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344"
+      ],
+      "within": "AND"
+    },
+    {
+      "between": "OR",
+      "complete": true,
+      "id": "ppg_dalia-S1-e0-d2-alternative/claim/answer/w2",
+      "index": 2,
+      "inputs": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4"
+      ],
+      "metadata_path": "metadata.semantic_program.witnesses",
+      "note": "Witness grouping is metadata, not a stored Neo4j node or relation.",
+      "omitted_inputs": [],
+      "owner": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "rendering_construct": true,
+      "resolution_complete": true,
+      "resolved_input_ids": [],
+      "stored_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345"
+      ],
+      "within": "AND"
+    },
+    {
+      "between": "OR",
+      "complete": true,
+      "id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4/w1",
+      "index": 1,
+      "inputs": [
+        "ppg_dalia/S1/2270-2300/eda_median/v1",
+        "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+        "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+        "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+      ],
+      "metadata_path": "metadata.semantic_program.witnesses",
+      "note": "Witness grouping is metadata, not a stored Neo4j node or relation.",
+      "omitted_inputs": [],
+      "owner": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "rendering_construct": true,
+      "resolution_complete": true,
+      "resolved_input_ids": [
+        "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+        "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+        "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+      ],
+      "stored_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339"
+      ],
+      "within": "AND"
+    },
+    {
+      "between": "OR",
+      "complete": true,
+      "id": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4/w1",
+      "index": 1,
+      "inputs": [
+        "ppg_dalia/S1/2150-2270/eda_median/v1",
+        "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+        "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+        "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1"
+      ],
+      "metadata_path": "metadata.semantic_program.witnesses",
+      "note": "Witness grouping is metadata, not a stored Neo4j node or relation.",
+      "omitted_inputs": [],
+      "owner": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "rendering_construct": true,
+      "resolution_complete": true,
+      "resolved_input_ids": [
+        "ppg_dalia/S1/2150-2270/eda_median/v1",
+        "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+        "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+        "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1"
+      ],
+      "stored_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343"
+      ],
+      "within": "AND"
+    }
+  ]
+}

@@ -1,6 +1,11 @@
 # Single-paper graph-view revision
 
-The [authoritative paper](paper/semantic_structure_revision.pdf) is self-contained:
+This report records revision `100fa39`. The subsequent
+[classic-network addition](CLASSIC_NETWORK_ADDITION.md) preserves its Figures 1–3
+and extends the current paper to 20 main pages plus one reference page. Figure
+numbers and page counts below describe the preceding revision.
+
+At that revision, the self-contained paper had:
 **18 main pages + 1 reference page**. The default build produces this PDF only.
 The former main/supplement package is archived outside current submission outputs.
 

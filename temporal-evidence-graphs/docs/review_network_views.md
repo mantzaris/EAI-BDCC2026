@@ -112,6 +112,74 @@ the dashboard loader and publication exports. Screenshots in
 Existing review actions remain in the isolated `review/` workspace, using Neo4j or
 the strong SQLite control; recorded benchmark cases are read-only.
 
+## Classic ontology-instance mode
+
+Figure 4 adds a spatial network of the same admitted
+`ppg_dalia-S1-e0-d2-alternative` case; Figures 1–3 are preserved. The selection
+remains the smallest witness-complete eligible primary generated case among 87,
+with lexical tie-breaking. Knowledge times are 2301.01 and 2331.01 s, spanning
+the recorded primary-route correction at 2331.0 s. This is a controlled
+structural task over real PPG-DaLiA measurements, with realized depth two.
+
+The after view contains **14 individually drawn stored records and 18 stored
+edges**: three ClaimVersion instances, nine FeatureVersion instances (eight
+inputs plus the revised A1), and two EDA Observation windows. Eight primitive
+citations, two parent citations, seven DERIVED_FROM relations and one SUPERSEDES
+relation are drawn separately. `AND A/B` and `OR A/B` map to DEPENDS_ON; `from`
+maps to DERIVED_FROM; `revises` maps to new-to-old SUPERSEDES. Each AND edge belongs
+to its owner's single four-input witness; the root has two singleton-parent
+alternatives. There are no bundled edges or visual junction nodes. The two motion
+windows and their provenance edges are expandable, yielding 16 records/20 edges.
+Subject/sensor, explanation, assessment and SUPPORTS context retains the same
+explicit filters as the structured view. Current-version paths stay in sidecars.
+
+`classic_analysis.py` independently computes annotations before rendering.
+The existing runtime witness evaluator supplies support; the event/task oracle
+supplies required changes. A truth-table audit checks each admitted witness.
+Each primitive predicate checks dataset, subject, session, interval, quantity,
+unit, current visible version, availability and its exact numerical comparator.
+A1's EDA median is 5.374855999999999 µS before and 4.214302 µS after, against
+`>= 4.74108975 µS`; its availability stays true. CA/CB/R support changes from
+true/true/true to false/true/true. Assessment outcomes never supply the oracle.
+
+The unchanged core rule selects current display members, declared claim ancestors
+and resolved feature versions. Structural explanations lack the original
+`metadata.case_id`; an explicit explanation logical-ID selector instantiates the
+same rule. The after core has 11 nodes. CA remains a declared ancestor of displayed
+R even though CA itself is withdrawn. Old A1 and the two observation windows are
+review context, not current-core members. Stars encode this distinction.
+
+The full export has 26 nodes/83 edges (24 Record objects plus two assessments).
+The theorem projection has 13 claim/feature nodes and ten claim DEPENDS_ON edges;
+provenance, membership, supersession and SUPPORTS mirrors do not create dependency
+paths. U contains both A1 versions; reverse reachability R contains U, CA and the
+root. Only CA changes support (B). The independent required set A and recorded
+B2 schedule D also contain only CA, so exposure is 0/1 = 0. All these revision
+sets are visible in the printed view; the analysis separately reports full-scope
+and visible counts. The full database scheduler also reaches an explanation
+container; its administrative membership is excluded from theorem reachability.
+
+`classic_example.py` extracts the typed views, joins these precomputed annotations
+and exports the figure. `classic_render.py` consumes them without evaluating
+support. NetworkX spring positioning uses a sorted undirected simple union only
+for coordinates: seed 20260929, 500 iterations, k=0.60, no edge weights. The
+renderer preserves the original typed directed edges. A global rotation, ellipse
+separation and routed arrows fit the figure; coordinates and label positions are
+saved, including visibility-path detours where necessary. Font sizes remain
+9.2/9 points on the 12.2 cm publication canvas. Expanded views grow the canvas
+instead of shrinking labels. NetworkX, Matplotlib and SciPy versions and optimizer
+parameters are recorded. Both recorded states reuse the union coordinates.
+Retrospective truth-transition annotations are identified as such; future records
+never appear in the earlier snapshot.
+
+In the existing dashboard, select PPG-DaLiA and **Layout → Classic network**.
+The default view loads the paper's exact serialized object and coordinates.
+Time/focus, route highlighting, object details, budget and expansion controls
+remain available; **Structured** retains the previous renderer. Equation
+memberships and full/visible sets appear in details. The unhighlighted SVG
+is byte-identical to the publication export. A browser screenshot and DOM/hash
+record are saved under `artifacts/analysis/classic_network_v1/`.
+
 ## Reproduce
 
 Install Graphviz (`dot`, `neato`) and DejaVu Sans, plus the documented Python/LaTeX
@@ -148,6 +216,7 @@ google-chrome --headless --disable-gpu --disable-background-networking --no-firs
 ```
 
 Then, from the project root, run `node scripts/capture_review_dashboard.mjs`.
+For the classic mode, run `node scripts/capture_classic_dashboard.mjs`.
 This saves the two screenshots, DOM text and a version/hash validation record.
 `TEG_REVIEW_CDP` can select a different local DevTools URL. Stop these validation
 processes when finished. Browser capture is optional for rebuilding the paper;

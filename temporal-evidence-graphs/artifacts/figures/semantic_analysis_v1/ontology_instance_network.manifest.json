@@ -1,0 +1,1150 @@
+{
+  "analysis_path": "artifacts/analysis/classic_network_v1/analysis.json",
+  "analysis_sha256": "7353628d428ff16f71e7833144c29f3f77059ff9b251c5c7a9d385706c16a242",
+  "annotation_mapping": {
+    "analysis_format": "classic_equation_analysis_v1",
+    "claim_truths": {
+      "after": {
+        "A_first_4": false,
+        "B_first_4": true,
+        "answer": true
+      },
+      "before": {
+        "A_first_4": true,
+        "B_first_4": true,
+        "answer": true
+      }
+    },
+    "context_ids": [
+      "ppg_dalia/S1/2150-2270/eda/raw",
+      "ppg_dalia/S1/2270-2300/eda/raw",
+      "ppg_dalia/S1/2270-2300/eda_median/v1"
+    ],
+    "contrast_note": "Retrospective before/after contrast; future records are never drawn in the earlier snapshot.",
+    "core_ids": [
+      "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+      "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+      "ppg_dalia/S1/2150-2270/eda_median/v1",
+      "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+      "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+      "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+      "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+      "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+    ],
+    "exposure": {
+      "denominator": 1,
+      "numerator": 0,
+      "xi": 0.0
+    },
+    "full_scope": {
+      "backend_note": "Backend traversal also reaches explanation membership; it is excluded from theorem claim reachability.",
+      "dependency_edges": [
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/eda_median/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/eda_median/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+          "target": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "type": "DEPENDS_ON"
+        },
+        {
+          "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+          "target": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "type": "DEPENDS_ON"
+        }
+      ],
+      "dependency_filter": "ClaimVersion DEPENDS_ON ClaimVersion/FeatureVersion only; versions remain separate, all revised-identity versions seed U.",
+      "dependency_node_ids": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+        "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+        "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+        "ppg_dalia/S1/2150-2270/eda_median/v1",
+        "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+        "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+        "ppg_dalia/S1/2270-2300/cardiac_missing_fraction/v1",
+        "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+        "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "ppg_dalia/S1/2270-2300/eda_median/v1",
+        "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+      ],
+      "recorded_backend_reachable_records": 3,
+      "stored_edges": 83,
+      "stored_nodes": 26,
+      "visible_database_nodes": 26,
+      "visible_record_nodes": 24
+    },
+    "full_sets": {
+      "A_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "B_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "D_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "R_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+        "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "ppg_dalia/S1/2270-2300/eda_median/v1"
+      ],
+      "U_delta": [
+        "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "ppg_dalia/S1/2270-2300/eda_median/v1"
+      ],
+      "full_scheduled_claims": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+      ],
+      "reachable_claims": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+      ]
+    },
+    "recorded_state": "after",
+    "view_counts": {
+      "edge_types": {
+        "DEPENDS_ON": 10,
+        "DERIVED_FROM": 7,
+        "SUPERSEDES": 1
+      },
+      "edges": 18,
+      "node_types": {
+        "claim": 3,
+        "feature": 9,
+        "observation": 2
+      },
+      "nodes": 14
+    },
+    "visible_core_ids": [
+      "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+      "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+      "ppg_dalia/S1/2150-2270/eda_median/v1",
+      "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+      "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+      "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+      "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+      "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+    ],
+    "visible_sets": {
+      "A_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "B_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "D_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "R_delta": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+        "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "ppg_dalia/S1/2270-2300/eda_median/v1"
+      ],
+      "U_delta": [
+        "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "ppg_dalia/S1/2270-2300/eda_median/v1"
+      ],
+      "full_scheduled_claims": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+      ],
+      "reachable_claims": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+      ]
+    }
+  },
+  "case_id": "ppg_dalia-S1-e0-d2-alternative",
+  "code_hashes": {
+    "src/temporal_evidence/semantic/classic_analysis.py": "65d89c6465e182df83424b76e6dd8c97f5c2c6d46d82a2a44fb22f4c04d54ddc",
+    "src/temporal_evidence/semantic/classic_example.py": "dccd0aa0803d5f89e76c607ed1f9c50ccf92e4df618a020fb2078f1bd817ba7e",
+    "src/temporal_evidence/semantic/classic_render.py": "47048a0dbccec6dbeacfb7c3a62a01655a6b6358b82a6b52bdd3c99db98d7a95",
+    "src/temporal_evidence/semantic/ontology.py": "9bc5c554afcfb2704a02123119a2a7c56a23c890dccdbd670da7a8094c29734f",
+    "src/temporal_evidence/semantic/projection.py": "86e3ac3bf874360f218e6feb677107ba20126278c779ec01a231840b7fc0d09c",
+    "src/temporal_evidence/semantic/review_view.py": "867cb5c3ffbbfad5d033c8a1942773762ac9fa96ea8d71d74e78edd28c214385",
+    "src/temporal_evidence/structure/oracle.py": "8218e536318917012c224d10eb3f280f9d1f79e8208fe43fa36d366182525127",
+    "src/temporal_evidence/structure/program.py": "57bd3b4cc27120d6013f453be1b3807279f9e4ec1f8794a5a4e3c21a089037c0"
+  },
+  "derived_resolution_paths": [
+    {
+      "directly_stored": false,
+      "id": "derived/5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338",
+      "original_citation_id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+      "path": [
+        {
+          "direction": "forward",
+          "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338"
+        },
+        {
+          "direction": "reverse",
+          "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505398"
+        }
+      ],
+      "resolved_at": 2331.01,
+      "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "target": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+      "type": "CURRENT_CITATION_PATH",
+      "visible_edge": false,
+      "witness_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505398"
+      ]
+    }
+  ],
+  "edge_label_mapping": {
+    "AND A / AND B": "DEPENDS_ON; complete four-input witness jointly required by CA / CB",
+    "OR A / OR B": "DEPENDS_ON; singleton-parent alternative witnesses at R",
+    "from": "DERIVED_FROM",
+    "revises": "SUPERSEDES"
+  },
+  "edge_labels": {
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336": "AND A",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337": "AND A",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338": "AND A",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339": "AND A",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340": "AND B",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341": "AND B",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342": "AND B",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343": "AND B",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344": "OR A",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345": "OR B",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505371": "from",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505372": "from",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505373": "from",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505376": "from",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505377": "from",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505378": "from",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505398": "revises",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505400": "from"
+  },
+  "edge_type_map": {
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336": "DEPENDS_ON",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337": "DEPENDS_ON",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338": "DEPENDS_ON",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339": "DEPENDS_ON",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340": "DEPENDS_ON",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341": "DEPENDS_ON",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342": "DEPENDS_ON",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343": "DEPENDS_ON",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344": "DEPENDS_ON",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345": "DEPENDS_ON",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505371": "DERIVED_FROM",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505372": "DERIVED_FROM",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505373": "DERIVED_FROM",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505376": "DERIVED_FROM",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505377": "DERIVED_FROM",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505378": "DERIVED_FROM",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505398": "SUPERSEDES",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505400": "DERIVED_FROM"
+  },
+  "figure_hashes": {
+    "artifacts/figures/semantic_analysis_v1/ontology_instance_network.pdf": "6ef5650864752ebbfb6130639771468af0f7852f251267e04a25a76818fa36c0",
+    "artifacts/figures/semantic_analysis_v1/ontology_instance_network.png": "9f939a15a8666a810b7acb0fab587fc68b35fec05640e021cbcedf0308754394",
+    "artifacts/figures/semantic_analysis_v1/ontology_instance_network.svg": "2a4517cacefe4838e3c99231815ca634df8bb9d3a781db8f1a5f4fc3045bef6d"
+  },
+  "format": "classic_network_v1",
+  "knowledge_times": {
+    "After maintenance": 2331.01,
+    "Before revision": 2301.01
+  },
+  "layout": {
+    "canvas_policy": "expand beyond 14 records; keep font sizes fixed",
+    "edge_font_size": 9.0,
+    "edge_node_intersections": 0,
+    "edges": {
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336": {
+        "control": [
+          222.427367534908,
+          161.03221010691084
+        ],
+        "curvature": 0.0,
+        "end": [
+          221.0794779285002,
+          129.8083141860929
+        ],
+        "label": "AND A",
+        "label_bounds": [
+          206.0037799742421,
+          152.5136707605922,
+          238.6956745054921,
+          165.9536707605922
+        ],
+        "label_position": [
+          222.3497272398671,
+          159.2336707605922
+        ],
+        "polyline": null,
+        "start": [
+          223.46469596115222,
+          185.06194864245413
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337": {
+        "control": [
+          254.4240462876677,
+          187.21842346727124
+        ],
+        "curvature": 0.0,
+        "end": [
+          266.475142811653,
+          177.84150410421464
+        ],
+        "label": "AND A",
+        "label_bounds": [
+          256.26401441323867,
+          201.82563005589537,
+          288.95590894448867,
+          215.26563005589537
+        ],
+        "label_position": [
+          272.60996167886367,
+          208.54563005589537
+        ],
+        "polyline": null,
+        "start": [
+          246.33769473860877,
+          193.51038754422797
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338": {
+        "control": [
+          259.16903561968746,
+          232.93360172193337
+        ],
+        "curvature": 0.0,
+        "end": [
+          271.3225912241736,
+          240.82759402862166
+        ],
+        "label": "AND A",
+        "label_bounds": [
+          258.49798900394353,
+          219.70082979268096,
+          291.18988353519353,
+          233.14082979268096
+        ],
+        "label_position": [
+          274.84393626956853,
+          226.42082979268096
+        ],
+        "polyline": null,
+        "start": [
+          247.97288884583787,
+          225.66146677035607
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339": {
+        "control": [
+          224.35460274613496,
+          244.7806285449579
+        ],
+        "curvature": 0.0,
+        "end": [
+          224.25774374196257,
+          260.8992685924415
+        ],
+        "label": "AND A",
+        "label_bounds": [
+          207.9978340457682,
+          239.86146072251378,
+          240.6897285770182,
+          253.30146072251378
+        ],
+        "label_position": [
+          224.3437813113932,
+          246.58146072251378
+        ],
+        "polyline": null,
+        "start": [
+          224.40817601134034,
+          235.86531720769784
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340": {
+        "control": [
+          -60.06903558387464,
+          235.71193051545018
+        ],
+        "curvature": -0.9,
+        "end": [
+          78.50039530784112,
+          140.55435818551572
+        ],
+        "label": "AND B",
+        "label_bounds": [
+          133.9689018671799,
+          185.61379565552627,
+          166.11657764842988,
+          199.05379565552627
+        ],
+        "label_position": [
+          150.0427397578049,
+          192.33379565552627
+        ],
+        "polyline": [
+          [
+            134.19327380056362,
+            293.58168267261544
+          ],
+          [
+            190.13875268155584,
+            241.06566411700257
+          ],
+          [
+            109.94672683405393,
+            143.60192719404998
+          ]
+        ],
+        "start": [
+          88.70977832538482,
+          300.80853345769424
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341": {
+        "control": [
+          81.25978088316663,
+          293.1875189986068
+        ],
+        "curvature": -0.12,
+        "end": [
+          71.22543577233023,
+          277.9560620568216
+        ],
+        "label": "AND B",
+        "label_bounds": [
+          52.072723884318535,
+          280.8396133714264,
+          84.22039966556854,
+          294.2796133714265
+        ],
+        "label_position": [
+          68.14656177494354,
+          287.55961337142645
+        ],
+        "polyline": null,
+        "start": [
+          90.30052948617372,
+          298.33006104717265
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342": {
+        "control": [
+          98.88418805539504,
+          344.3388101570447
+        ],
+        "curvature": 0.0,
+        "end": [
+          91.85836716689295,
+          358.8673429051336
+        ],
+        "label": "AND B",
+        "label_bounds": [
+          82.12830098010396,
+          339.0292039135159,
+          114.27597676135396,
+          352.46920391351597
+        ],
+        "label_position": [
+          98.20213887072896,
+          345.74920391351594
+        ],
+        "polyline": null,
+        "start": [
+          103.18181220523282,
+          335.4518524348407
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343": {
+        "control": [
+          94.52564052925244,
+          257.5776506663307
+        ],
+        "curvature": 0.12,
+        "end": [
+          69.41572597069114,
+          234.24421859539726
+        ],
+        "label": "AND B",
+        "label_bounds": [
+          92.63623493913407,
+          267.717809955843,
+          124.78391072038407,
+          281.15780995584305
+        ],
+        "label_position": [
+          108.71007282975907,
+          274.437809955843
+        ],
+        "polyline": null,
+        "start": [
+          105.63006385822034,
+          287.90763365066425
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344": {
+        "control": [
+          182.45126415725284,
+          234.87614757578606
+        ],
+        "curvature": 0.12,
+        "end": [
+          200.2495608653653,
+          224.5541026937555
+        ],
+        "label": "OR A",
+        "label_bounds": [
+          178.2367470987178,
+          238.4351873499571,
+          204.0121767862178,
+          251.8751873499571
+        ],
+        "label_position": [
+          191.1244619424678,
+          245.1551873499571
+        ],
+        "polyline": null,
+        "start": [
+          176.46391753460856,
+          235.2025001899121
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345": {
+        "control": [
+          124.16325836058675,
+          274.8051843881072
+        ],
+        "curvature": 0.0,
+        "end": [
+          120.91378669766804,
+          287.3177014645932
+        ],
+        "label": "OR B",
+        "label_bounds": [
+          132.61866471161653,
+          270.4940814265375,
+          157.84987564911654,
+          283.93408142653755
+        ],
+        "label_position": [
+          145.23427018036654,
+          277.2140814265375
+        ],
+        "polyline": null,
+        "start": [
+          127.3226423268245,
+          262.6395618101839
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505371": {
+        "control": [
+          50.70397496036091,
+          291.1583255248149
+        ],
+        "curvature": 0.0,
+        "end": [
+          46.91316734640813,
+          303.04798631626636
+        ],
+        "label": "from",
+        "label_bounds": [
+          24.47984579687551,
+          283.01248214599724,
+          48.44859579687551,
+          296.4524821459973
+        ],
+        "label_position": [
+          36.46422079687551,
+          289.73248214599727
+        ],
+        "polyline": null,
+        "start": [
+          54.553587741104195,
+          279.08422554332117
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505372": {
+        "control": [
+          62.230668475805984,
+          348.81945560436753
+        ],
+        "curvature": 0.0,
+        "end": [
+          54.147807615775626,
+          338.1579191128581
+        ],
+        "label": "from",
+        "label_bounds": [
+          50.25098760554811,
+          342.1056473026298,
+          74.21973760554812,
+          355.54564730262985
+        ],
+        "label_position": [
+          62.23536260554811,
+          348.8256473026298
+        ],
+        "polyline": null,
+        "start": [
+          70.33230585480486,
+          359.5057588889262
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505373": {
+        "control": [
+          21.87427256636386,
+          266.95637162295765
+        ],
+        "curvature": 0.24,
+        "end": [
+          34.7710586845856,
+          303.09965192515835
+        ],
+        "label": "from",
+        "label_bounds": [
+          4.020400050389547,
+          260.07944271152326,
+          27.989150050389547,
+          273.5194427115233
+        ],
+        "label_position": [
+          16.004775050389547,
+          266.7994427115233
+        ],
+        "polyline": null,
+        "start": [
+          41.24430627747856,
+          235.52542904247164
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505376": {
+        "control": [
+          355.34055785204725,
+          231.92476809638237
+        ],
+        "curvature": -0.4,
+        "end": [
+          315.17888147470916,
+          298.6657044993787
+        ],
+        "label": "from",
+        "label_bounds": [
+          304.6303278796333,
+          199.38761614529201,
+          328.5990778796333,
+          212.827616145292
+        ],
+        "label_position": [
+          316.6147028796333,
+          206.107616145292
+        ],
+        "polyline": [
+          [
+            296.74077759207245,
+            180.21009296371986
+          ],
+          [
+            336.4886281671941,
+            232.0051393268642
+          ],
+          [
+            336.4886281671941,
+            278.8195393268642
+          ],
+          [
+            319.02149825488715,
+            299.30598468354606
+          ]
+        ],
+        "start": [
+          299.9355685014684,
+          178.94528104526813
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505377": {
+        "control": [
+          299.21459397286867,
+          285.7858525862
+        ],
+        "curvature": 0.0,
+        "end": [
+          301.40451818558955,
+          298.01886323326744
+        ],
+        "label": "from",
+        "label_bounds": [
+          287.2301451907566,
+          279.06544043615526,
+          311.1988951907566,
+          292.5054404361553
+        ],
+        "label_position": [
+          299.2145201907566,
+          285.7854404361553
+        ],
+        "polyline": null,
+        "start": [
+          297.02437463169963,
+          273.5511933389536
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505378": {
+        "control": [
+          259.95380435460146,
+          307.29331772973904
+        ],
+        "curvature": 0.12,
+        "end": [
+          269.5615742979886,
+          309.1990540423482
+        ],
+        "label": "from",
+        "label_bounds": [
+          236.8967474038219,
+          324.5618922775546,
+          260.8654974038219,
+          338.00189227755465
+        ],
+        "label_position": [
+          248.8811224038219,
+          331.2818922775546
+        ],
+        "polyline": null,
+        "start": [
+          243.8996046038446,
+          294.65506649109636
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505398": {
+        "control": [
+          243.22056952236738,
+          314.33501228797417
+        ],
+        "curvature": -0.4,
+        "end": [
+          279.3557709752294,
+          272.22020724742663
+        ],
+        "label": "revises",
+        "label_bounds": [
+          229.40762740907869,
+          307.96852816447637,
+          263.9278227215787,
+          321.4085281644764
+        ],
+        "label_position": [
+          246.66772506532868,
+          314.6885281644764
+        ],
+        "polyline": null,
+        "start": [
+          276.8509273823231,
+          359.47089928981086
+        ]
+      },
+      "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505400": {
+        "control": [
+          297.1301472535463,
+          346.37608292276786
+        ],
+        "curvature": 0.0,
+        "end": [
+          300.15161308698634,
+          334.23825812888265
+        ],
+        "label": "from",
+        "label_bounds": [
+          285.1455759141849,
+          339.6568716567466,
+          309.1143259141849,
+          353.09687165674666
+        ],
+        "label_position": [
+          297.1299509141849,
+          346.37687165674663
+        ],
+        "polyline": null,
+        "start": [
+          294.1078960626607,
+          358.51706265256814
+        ]
+      }
+    },
+    "engine": "NetworkX spring_layout + deterministic label separation and quadratic routing",
+    "font_size": 9.2,
+    "height_points": 402.0,
+    "iterations": 500,
+    "k": 0.6,
+    "label_collisions": 0,
+    "matplotlib_version": "3.10.3",
+    "networkx_version": "3.4.2",
+    "node_collisions": [],
+    "nodes": {
+      "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4": {
+        "height": 47.2216,
+        "width": 54.84423609374999,
+        "x": 224.56087072843084,
+        "y": 210.45486411700256
+      },
+      "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4": {
+        "height": 47.2216,
+        "width": 53.91752296875,
+        "x": 114.48182337792811,
+        "y": 312.0848203140893
+      },
+      "ppg_dalia-S1-e0-d2-alternative/claim/answer": {
+        "height": 47.2216,
+        "width": 81.99688968749999,
+        "x": 133.8446933432454,
+        "y": 237.52554846212507
+      },
+      "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1": {
+        "height": 32.8144,
+        "width": 48.003069375,
+        "x": 96.99141897969591,
+        "y": 127.85631279999305
+      },
+      "ppg_dalia/S1/2150-2270/eda/raw": {
+        "height": 32.8144,
+        "width": 72.3495684375,
+        "x": 41.17478421875,
+        "y": 321.04611120873506
+      },
+      "ppg_dalia/S1/2150-2270/eda_iqr/v1": {
+        "height": 32.8144,
+        "width": 51.33280453125,
+        "x": 60.23316570197183,
+        "y": 261.2705398408948
+      },
+      "ppg_dalia/S1/2150-2270/eda_median/v1": {
+        "height": 32.8144,
+        "width": 71.42285531249999,
+        "x": 83.28655273286198,
+        "y": 376.5928
+      },
+      "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1": {
+        "height": 32.8144,
+        "width": 72.32293874999999,
+        "x": 52.004698634853746,
+        "y": 218.06499095691
+      },
+      "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1": {
+        "height": 32.8144,
+        "width": 48.003069375,
+        "x": 220.29386434138513,
+        "y": 111.60955609681915
+      },
+      "ppg_dalia/S1/2270-2300/eda/raw": {
+        "height": 32.8144,
+        "width": 72.3495684375,
+        "x": 304.6519874347933,
+        "y": 316.1593658455358
+      },
+      "ppg_dalia/S1/2270-2300/eda_iqr/v1": {
+        "height": 32.8144,
+        "width": 51.33280453125,
+        "x": 284.2872218469045,
+        "y": 163.98198281753994
+      },
+      "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2": {
+        "height": 32.8144,
+        "width": 71.42285531249999,
+        "x": 289.6083070722993,
+        "y": 376.5928
+      },
+      "ppg_dalia/S1/2270-2300/eda_median/v1": {
+        "height": 32.8144,
+        "width": 71.42285531249999,
+        "x": 293.7772005109441,
+        "y": 255.41233932686418
+      },
+      "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1": {
+        "height": 32.8144,
+        "width": 72.32293874999999,
+        "x": 224.1483347638391,
+        "y": 279.1063929729132
+      }
+    },
+    "parallel_policy": "distinct curvatures per source/target pair",
+    "positioning_projection": "undirected simple union; no semantic analysis on this projection",
+    "rendering_graph": "original typed directed multigraph; all selected edges individually retained",
+    "rotation_degrees": 0,
+    "routing_issues": [],
+    "scipy_version": "1.15.3",
+    "seed": 20260929,
+    "separation": {
+      "edge_extra_clearance": 17,
+      "ellipse_clearance": [
+        8,
+        9
+      ],
+      "optimizer": "L-BFGS-B, analytic gradient, 1200 iterations maximum",
+      "overlap_penalty": 10000,
+      "tether_weight": 0.002
+    },
+    "threshold": 1e-06,
+    "width_points": 345.8267716535433
+  },
+  "new_gpu_calls": 0,
+  "node_labels": {
+    "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4": "CA* v1\nA passes\nT\u2192F",
+    "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4": "CB* v1\nB passes\nT\u2192T",
+    "ppg_dalia-S1-e0-d2-alternative/claim/answer": "R* v1\neither window\nT\u2192T",
+    "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1": "B3* v1\nACC SD",
+    "ppg_dalia/S1/2150-2270/eda/raw": "O1 v1\nEDA window",
+    "ppg_dalia/S1/2150-2270/eda_iqr/v1": "B2* v1\nEDA IQR",
+    "ppg_dalia/S1/2150-2270/eda_median/v1": "B1* v1\nEDA median",
+    "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1": "B4* v1\nEDA missing",
+    "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1": "A3* v1\nACC SD",
+    "ppg_dalia/S1/2270-2300/eda/raw": "O3 v1\nEDA window",
+    "ppg_dalia/S1/2270-2300/eda_iqr/v1": "A2* v1\nEDA IQR",
+    "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2": "A1* v2\nEDA median",
+    "ppg_dalia/S1/2270-2300/eda_median/v1": "A1 v1\nEDA median",
+    "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1": "A4* v1\nEDA missing"
+  },
+  "node_type_map": {
+    "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4": "ClaimVersion",
+    "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4": "ClaimVersion",
+    "ppg_dalia-S1-e0-d2-alternative/claim/answer": "ClaimVersion",
+    "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1": "FeatureVersion",
+    "ppg_dalia/S1/2150-2270/eda/raw": "Observation",
+    "ppg_dalia/S1/2150-2270/eda_iqr/v1": "FeatureVersion",
+    "ppg_dalia/S1/2150-2270/eda_median/v1": "FeatureVersion",
+    "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1": "FeatureVersion",
+    "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1": "FeatureVersion",
+    "ppg_dalia/S1/2270-2300/eda/raw": "Observation",
+    "ppg_dalia/S1/2270-2300/eda_iqr/v1": "FeatureVersion",
+    "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2": "FeatureVersion",
+    "ppg_dalia/S1/2270-2300/eda_median/v1": "FeatureVersion",
+    "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1": "FeatureVersion"
+  },
+  "relation_filter": {
+    "ASSESSED_AS": "time-filtered assessments retained in the detail panel",
+    "CONTAINS": "display membership retained as node attributes",
+    "CONTRADICTS": "assessment outcomes retained with their knowledge time",
+    "FOR_SUBJECT": "identity hubs",
+    "OBSERVED_BY": "sensor identities",
+    "REVIEWED_BY_EVENT": "review events retained in the workspace history",
+    "SUPPORTS": "admission-time mirror, not current support",
+    "feature DEPENDS_ON": "duplicate of displayed DERIVED_FROM provenance"
+  },
+  "revision": "recorded primary-route loss; M1 maintenance",
+  "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+  "selected_record_ids": [
+    "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+    "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+    "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+    "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+    "ppg_dalia/S1/2150-2270/eda/raw",
+    "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+    "ppg_dalia/S1/2150-2270/eda_median/v1",
+    "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+    "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+    "ppg_dalia/S1/2270-2300/eda/raw",
+    "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+    "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+    "ppg_dalia/S1/2270-2300/eda_median/v1",
+    "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+  ],
+  "selection": "Preserve the existing smallest witness-complete eligible primary generated case; add its two EDA source observations; keep motion observations in expandable context. No new case search or inference.",
+  "source_hashes": {
+    "artifacts/analysis/review_views_v1/exports/structure_study_v1__ppg_dalia-S1-e0-d2-alternative__generated__route_loss__M1.json.gz": "018d9b48aae6bd6bbfd95f5d85eb1f5d046929cd5a18e431bca451b155177eb0",
+    "artifacts/analysis/review_views_v1/structural_alternatives/config.json": "eb058a3c79a69d5cd0cf2ead696630be8238c4d5965021925b6ab972ae1cd101",
+    "artifacts/runs/structure_study_v1/cases.json": "93d27ec8405b1384f598d97d13e8b2c00f8d9384cb9a052d8390756750e5e86a",
+    "artifacts/runs/structure_study_v1/core/candidates/ppg_dalia-S1-e0-d2-alternative.json": "3f9beb6bbabc25fbef8c600ecbcd1689f3a597810cf0782af84199979a311ca2",
+    "artifacts/runs/structure_study_v1/replay/ppg_dalia-S1-e0-d2-alternative-generated.json": "186a452eae1e3df38385a75bab3e70cdc8b0514363a78b393875e902b9865f5d"
+  },
+  "stored_edge_ids": [
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505371",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505372",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505373",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505376",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505400",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505398",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505377",
+    "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505378"
+  ],
+  "views": {
+    "after": {
+      "path": "artifacts/analysis/classic_network_v1/after.json",
+      "sha256": "65406ae37dbe009f098656355a98c03e0273d07005c2382790d26c34564c82ef"
+    },
+    "before": {
+      "path": "artifacts/analysis/classic_network_v1/before.json",
+      "sha256": "85152d8690d90ca211450f7a27355d0d9f7e3e254368fe55927dbe9dde721d91"
+    }
+  },
+  "visible_derived_edges": [],
+  "visual_junction_nodes": [],
+  "witness_groups": [
+    {
+      "between": "OR",
+      "complete": true,
+      "id": "ppg_dalia-S1-e0-d2-alternative/claim/answer/w1",
+      "index": 1,
+      "inputs": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+      ],
+      "metadata_path": "metadata.semantic_program.witnesses",
+      "note": "Witness grouping is metadata, not a stored Neo4j node or relation.",
+      "omitted_inputs": [],
+      "owner": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "rendering_construct": true,
+      "resolution_complete": true,
+      "resolved_input_ids": [],
+      "stored_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344"
+      ],
+      "within": "AND"
+    },
+    {
+      "between": "OR",
+      "complete": true,
+      "id": "ppg_dalia-S1-e0-d2-alternative/claim/answer/w2",
+      "index": 2,
+      "inputs": [
+        "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4"
+      ],
+      "metadata_path": "metadata.semantic_program.witnesses",
+      "note": "Witness grouping is metadata, not a stored Neo4j node or relation.",
+      "omitted_inputs": [],
+      "owner": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "rendering_construct": true,
+      "resolution_complete": true,
+      "resolved_input_ids": [],
+      "stored_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345"
+      ],
+      "within": "AND"
+    },
+    {
+      "between": "OR",
+      "complete": true,
+      "id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4/w1",
+      "index": 1,
+      "inputs": [
+        "ppg_dalia/S1/2270-2300/eda_median/v1",
+        "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+        "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+        "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+      ],
+      "metadata_path": "metadata.semantic_program.witnesses",
+      "note": "Witness grouping is metadata, not a stored Neo4j node or relation.",
+      "omitted_inputs": [],
+      "owner": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "rendering_construct": true,
+      "resolution_complete": true,
+      "resolved_input_ids": [
+        "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+        "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+        "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+      ],
+      "stored_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339"
+      ],
+      "within": "AND"
+    },
+    {
+      "between": "OR",
+      "complete": true,
+      "id": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4/w1",
+      "index": 1,
+      "inputs": [
+        "ppg_dalia/S1/2150-2270/eda_median/v1",
+        "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+        "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+        "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1"
+      ],
+      "metadata_path": "metadata.semantic_program.witnesses",
+      "note": "Witness grouping is metadata, not a stored Neo4j node or relation.",
+      "omitted_inputs": [],
+      "owner": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "rendering_construct": true,
+      "resolution_complete": true,
+      "resolved_input_ids": [
+        "ppg_dalia/S1/2150-2270/eda_median/v1",
+        "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+        "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+        "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1"
+      ],
+      "stored_edge_ids": [
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340",
+        "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343"
+      ],
+      "within": "AND"
+    }
+  ]
+}

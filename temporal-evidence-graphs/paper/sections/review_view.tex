@@ -8,13 +8,16 @@ For a stored-node budget $B$ and selected recorded times $T$, the implemented
 transformation is
 \begin{equation}
  H_{q,t}=\operatorname{View}_B(G_t,q),\quad
- p=\operatorname{dot}\!\left(\bigcup_{u\in T}H_{q,u}\right),\quad
+ p=\operatorname{Layout}\!\left(\bigcup_{u\in T}H_{q,u};m\right),\quad
  I_{q,t}=\operatorname{Render}(H_{q,t},p).
 \label{eq:reviewview}
 \end{equation}
 $H$ is a bounded review expansion of $K$, not another learned representation.
-$p$ stores node coordinates and routed edge splines. Deterministic Graphviz
-layout uses sorted immutable IDs, labels and connectivity, with no random seed.
+$p$ stores node coordinates and routed edges. Mode $m$ selects deterministic
+Graphviz \texttt{dot} for structured views or seeded spring positioning for the
+classic network. The latter uses an undirected simple projection only to position
+nodes; analysis and arrows retain the typed directed graph. Collision separation
+and routing adjust presentation, not support semantics.
 A comparison uses the union layout and reuses $p$; records not yet ingested
 remain absent from the earlier drawing. Coordinates and Euclidean distances
 have no semantic-similarity or neural-state interpretation.
@@ -36,7 +39,7 @@ when they fit. Missing records and incomplete witness groups trigger a
 \emph{partial view} label and expansion control; the drawing does not claim
 that omitted context is irrelevant. Subject/sensor hubs, display containers,
 assessment nodes and reverse \texttt{SUPPORTS} mirrors stay in details. For
-multi-input witnesses, labeled AND enclosures group feature rows: each row
+multi-input witnesses in structured mode, labeled AND enclosures group feature rows: each row
 maps to its stored ID, and a dashed dependency bundle enumerates its original
 edges. Enclosures and bundles are rendering constructs. Between witness sets
 support is OR; within each set all inputs are required.
@@ -46,7 +49,9 @@ explicit words distinguish revisions, support and withdrawal. Every arrow is
 labeled and preserves stored direction or identifies a grouped rendering edge.
 The same typed JSON view, ID maps and Graphviz renderer produce
 Figures~\ref{fig:instances} and~\ref{fig:topology} and the existing Streamlit
-dashboard. Selectboxes choose a recorded case, time, focus, witness route and
+dashboard. Its optional \emph{Classic network} mode draws
+Figure~\ref{fig:classic} from the same typed objects as individual ellipses.
+Selectboxes choose a recorded case, time, focus, witness route and
 node or edge; details recover full sentences, exact values/units, intervals,
 versions, source IDs and assessment provenance. Highlighting changes appearance
 only. Expansion exposes omitted provenance; review actions append events in an

@@ -102,6 +102,47 @@ def review_views_check():
             "knowledge_times":[before["knowledge_time"],view["knowledge_time"]]})
     return results
 
+def classic_network_check():
+    from temporal_evidence.semantic.classic_example import prepare, ROOT, FIGURE
+    from temporal_evidence.semantic.classic_render import render_bytes as classic_render
+    from temporal_evidence.dashboard.network_panel import load_classic
+    manifest=read_json(ROOT/'manifest.json')
+    for key in ('source_hashes','code_hashes','figure_hashes'):hashes(manifest[key])
+    assert manifest==read_json(FIGURE.with_suffix('.manifest.json'))
+    assert manifest['new_gpu_calls']==0 and not manifest['visible_derived_edges']
+    assert digest_file(ROOT/'analysis.json')==manifest['analysis_sha256']
+    config,analysis,views=prepare()
+    assert digest_object(analysis)==digest_object(read_json(ROOT/'analysis.json'))
+    graph=read_export(config['export']);layout=read_json(ROOT/'layout.json')
+    assert layout==manifest['layout']
+    assert not layout['node_collisions'] and not layout['routing_issues']
+    assert layout['edge_node_intersections']==layout['label_collisions']==0
+    for label,view in zip(('before','after'),views):
+        ui,positions=load_classic(label)
+        validate_view(ui,graph)
+        assert digest_object(view)==digest_object(ui)==manifest['views'][label]['sha256']
+        assert classic_render(ui,positions,'svg')==(ROOT/(label+'.svg')).read_bytes()
+    assert classic_render(views[-1],layout,'svg')==FIGURE.with_suffix('.svg').read_bytes()
+    assert 10<=len(views[-1]['nodes'])<=20
+    assert all(e['directly_stored'] for e in views[-1]['edges'])
+    assert set(manifest['selected_record_ids'])=={n['id'] for n in views[-1]['nodes']}
+    assert set(manifest['stored_edge_ids'])=={e['id'] for e in views[-1]['edges']}
+    generated=read_json('paper/generated/classic_network/manifest.json')
+    for key in ('inputs','generated_tex'):hashes(generated[key])
+    width=float(re.search(r'Page size:\s+([\d.]+) x',command('pdfinfo',str(FIGURE.with_suffix('.pdf')))).group(1))
+    printed_font=min(layout['font_size'],layout['edge_font_size'])*(12.2/2.54*72)/width
+    assert printed_font>=9-1e-5
+    browser=read_json(ROOT/'dashboard_validation.json');hashes(browser['artifacts'])
+    assert browser['script_sha256']==digest_file('scripts/capture_classic_dashboard.mjs')
+    assert browser['view_sha256']==digest_file(ROOT/'after.json') and browser['noException']
+    assert browser['record_nodes']==len(views[-1]['nodes'])
+    return {'case':manifest['case_id'],'scope':manifest['scope'],
+        'nodes':len(views[-1]['nodes']),'edges':len(views[-1]['edges']),
+        'support':analysis['support'],'set_counts':{k:len(v) for k,v in analysis['sets'].items()},
+        'exposure':analysis['exposure'],'minimum_printed_font_points':round(printed_font,2),
+        'svg_matches_dashboard':True,'manifest_sha256':digest_file(ROOT/'manifest.json'),
+        'browser_validation_sha256':digest_file(ROOT/'dashboard_validation.json')}
+
 def main():
     minimum=read_json("artifacts/manifests/minimum_run.json");verify_frozen(minimum)
     selection=read_json(RUN/"selection.json")
@@ -168,7 +209,7 @@ def main():
     assert digest_file("src/temporal_evidence/semantic/figures.py")==figure["script_sha256"]
     for name in figure["figures"]:
         for ext in ("pdf","svg"):assert Path("artifacts/figures/semantic_analysis_v1",name+"."+ext).stat().st_size>1000
-    views=review_views_check()
+    views=review_views_check();classic=classic_network_check()
     mainpdf=pdf_check("paper/semantic_structure_revision.pdf","main")
     assert sorted(p.name for p in Path("paper").glob("*.pdf"))==["semantic_structure_revision.pdf"]
     assert not pdf_link_present(mainpdf["pdf"],"semantic_structure_supplement.pdf")
@@ -176,8 +217,8 @@ def main():
     assert "supplement" not in Path("paper/build.sh").read_text().lower()
     aux=Path("paper/build/main.aux").read_text()
     refs=int(re.search(r"\\newlabel\{page:references\}\{\{[^}]*\}\{(\d+)\}",aux).group(1))
-    assert 16<=refs-1<=18,(refs-1,"main-page target")
-    assert len(re.findall(r"\\newlabel\{fig:",aux))==5
+    assert 18<=refs-1<=20,(refs-1,"main-page target and conference limit")
+    assert len(re.findall(r"\\newlabel\{fig:",aux))==6
     assert len(re.findall(r"\\newlabel\{eq:",aux))==8
     assert sum(p.read_text().count(r"\begin{proposition}") for p in Path("paper/sections").glob("*.tex"))==2
     abstract_words=len(Path("paper/generated/semantic/abstract.tex").read_text().split())
@@ -190,9 +231,9 @@ def main():
     assert browser["view_registry_sha256"]==digest_file(VIEWS/"manifest.json")
     assert len(browser["cases"])==2 and all(c["noException"] and c["assertedAndStorageIntervals"] for c in browser["cases"])
     report={"passed":True,"checked_at":utc_now(),"main":mainpdf,"single_submission_pdf":True,
-        "main_pages":refs-1,"reference_pages":mainpdf["pages"]-refs+1,"figures":5,"central_equations":8,"propositions":2,
+        "main_pages":refs-1,"reference_pages":mainpdf["pages"]-refs+1,"figures":6,"central_equations":8,"propositions":2,
         "abstract_source_words":abstract_words,"verified_actual_export_scopes":scopes,"verified_stored_paths":paths,
-        "unique_actual_export_scopes":len(unique_scopes),"shared_review_views":views,"revision_gpu_calls":0,
+        "unique_actual_export_scopes":len(unique_scopes),"shared_review_views":views,"classic_network":classic,"revision_gpu_calls":0,
         "tests_passed":int(test_suite.attrib["tests"]),"pytest_report_sha256":digest_file(VIEWS/"pytest.xml"),
         "browser_validation_sha256":digest_file(VIEWS/"dashboard/validation.json"),
         "assessment_times_checked":assessments,"original_protocol_hash":minimum["protocol_hash"],

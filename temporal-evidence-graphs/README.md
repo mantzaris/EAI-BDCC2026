@@ -3,9 +3,13 @@
 Research paper package for EAI BDCC 2026. The revised study connects a fixed typed
 ontology, temporal support, graph structure and independent semantic fidelity.
 The submission is one self-contained paper, with spacious labeled networks from
-actual Neo4j exports and matching interactive dashboard views.
+actual Neo4j exports and matching interactive dashboard views. The current PDF has
+20 main pages plus one reference page. Its new classic network complements the
+preserved structured diagrams, with individually visible ontology instances and
+computed support/revision annotations.
 
 - [Revised main paper](paper/semantic_structure_revision.pdf)
+- [Classic ontology-instance addition](CLASSIC_NETWORK_ADDITION.md)
 - [Graph-view revision and validation](GRAPH_VIEW_REVISION.md)
 - [Shared dashboard/publication network representation](docs/review_network_views.md)
 - [Theory/results change summary](THEORY_RESULTS_CHANGES.md)
@@ -56,7 +60,8 @@ without repeating original GPU calls. [STATUS.md](STATUS.md) records completion;
 ## Dashboard and original experiment
 
 The dashboard opens the two recorded paper networks, with time, focus, witness,
-provenance expansion and object-detail controls. Reversible review actions remain
+provenance expansion and object-detail controls. The PPG-DaLiA case also offers a
+**Classic network** layout matching Figure 4. Reversible review actions remain
 available in the separate review workspace:
 
 ```sh

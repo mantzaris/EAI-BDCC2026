@@ -1,0 +1,2373 @@
+{
+  "admitted_claims": [
+    {
+      "claim_id": "A_first_4",
+      "proposition": "A_first_4",
+      "sentence": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2270.0, 2300.0].",
+      "value": true,
+      "witnesses": [
+        [
+          "A1",
+          "A2",
+          "A3",
+          "A4"
+        ]
+      ]
+    },
+    {
+      "claim_id": "B_first_4",
+      "proposition": "B_first_4",
+      "sentence": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2150.0, 2270.0].",
+      "value": true,
+      "witnesses": [
+        [
+          "B1",
+          "B2",
+          "B3",
+          "B4"
+        ]
+      ]
+    },
+    {
+      "claim_id": "answer",
+      "proposition": "answer",
+      "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+      "value": true,
+      "witnesses": [
+        [
+          "A_first_4"
+        ],
+        [
+          "B_first_4"
+        ]
+      ]
+    }
+  ],
+  "availability_subscription_ids": [],
+  "case_id": "ppg_dalia-S1-e0-d2-alternative",
+  "claim_id_map": {
+    "A_first_4": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+    "B_first_4": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+    "answer": "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+  },
+  "cores": {
+    "after": {
+      "case_id": "ppg_dalia-S1-e0-d2-alternative",
+      "counts": {
+        "edges": 10,
+        "nodes": 11
+      },
+      "edges": [
+        {
+          "declared_source_id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "directly_stored": true,
+          "origin": "model_parent",
+          "resolved_knowledge_time": 2331.01,
+          "semantics": "declared_prerequisite",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+          "target": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "directly_stored": true,
+          "origin": "model_parent",
+          "resolved_knowledge_time": 2331.01,
+          "semantics": "declared_prerequisite",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+          "target": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2331.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2331.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2150-2270/eda_iqr/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2150-2270/eda_median/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2331.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/eda_median/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2150-2270/eda_median/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2331.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2331.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2331.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2270-2300/eda_iqr/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+          "directly_stored": false,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2331.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+          "type": "CURRENT_CITATION_PATH",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338",
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505398"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2270-2300/eda_median/v1",
+            "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2331.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+          ]
+        }
+      ],
+      "knowledge_time": 2331.01,
+      "nodes": [
+        {
+          "accepted_at_creation": true,
+          "assessment": {
+            "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181673",
+            "id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+            "known_at": 2331.0,
+            "outcomes": [
+              {
+                "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181673",
+                "id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+                "known_at": 2331.0,
+                "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+                "state": "contradicted",
+                "trigger_id": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+                "value": 0.0
+              }
+            ],
+            "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+            "state": "contradicted",
+            "trigger_id": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+            "value": 0.0
+          },
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181664",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "ingested": 2301.001,
+          "interval": [
+            2150.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "quantity": "A_first_4",
+          "type": "claim",
+          "unit": "boolean",
+          "value": 1.0,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": true,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181665",
+          "displayed_member": true,
+          "evidence_state": "available",
+          "id": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "ingested": 2301.001,
+          "interval": [
+            2150.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "quantity": "B_first_4",
+          "type": "claim",
+          "unit": "boolean",
+          "value": 1.0,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": true,
+          "assessment": {
+            "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181674",
+            "id": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+            "known_at": 2331.0,
+            "outcomes": [
+              {
+                "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181674",
+                "id": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+                "known_at": 2331.0,
+                "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+                "state": "supported",
+                "trigger_id": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+                "value": 1.0
+              }
+            ],
+            "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+            "state": "supported",
+            "trigger_id": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+            "value": 1.0
+          },
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181666",
+          "displayed_member": true,
+          "evidence_state": "available",
+          "id": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+          "ingested": 2301.001,
+          "interval": [
+            2150.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+          "quantity": "answer",
+          "type": "claim",
+          "unit": "boolean",
+          "value": 1.0,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181650",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+          "ingested": 2271.0,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd",
+          "quantity": "acceleration_magnitude_sd",
+          "type": "feature",
+          "unit": "g",
+          "value": 0.3417050664970838,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181651",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+          "ingested": 2271.0,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/eda_iqr",
+          "quantity": "eda_iqr",
+          "type": "feature",
+          "unit": "uS",
+          "value": 0.4613940000000003,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181652",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2150-2270/eda_median/v1",
+          "ingested": 2271.0,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/eda_median",
+          "quantity": "eda_median",
+          "type": "feature",
+          "unit": "uS",
+          "value": 5.2678775,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181653",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+          "ingested": 2271.0,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction",
+          "quantity": "eda_missing_fraction",
+          "type": "feature",
+          "unit": "fraction",
+          "value": 0.0,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181654",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+          "ingested": 2301.0,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd",
+          "quantity": "acceleration_magnitude_sd",
+          "type": "feature",
+          "unit": "g",
+          "value": 0.21871439562534606,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181656",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+          "ingested": 2301.0,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/eda_iqr",
+          "quantity": "eda_iqr",
+          "type": "feature",
+          "unit": "uS",
+          "value": 0.5207980000000001,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181672",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+          "ingested": 2331.0,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/eda_median",
+          "quantity": "eda_median",
+          "type": "feature",
+          "unit": "uS",
+          "value": 4.214302,
+          "version": 2
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181658",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+          "ingested": 2301.0,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction",
+          "quantity": "eda_missing_fraction",
+          "type": "feature",
+          "unit": "fraction",
+          "value": 0.0,
+          "version": 1
+        }
+      ],
+      "projection": "latest explanation members + declared claim ancestors + cited features resolved at the proposition knowledge time; no SUPPORTS mirror",
+      "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+      "sidecars": {
+        "explanation": {
+          "dataset_id": "ppg_dalia",
+          "event_end_seconds": 2300.0,
+          "event_start_seconds": 2150.0,
+          "evidence_state": "available",
+          "ingested_at_seconds": 2331.001,
+          "logical_id": "ppg_dalia-S1-e0-d2-alternative/explanation",
+          "metadata": {
+            "display": {
+              "claims": [
+                {
+                  "claim_id": "B_first_4",
+                  "proposition": "B_first_4",
+                  "sentence": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2150.0, 2270.0].",
+                  "value": true,
+                  "witnesses": [
+                    [
+                      "B1",
+                      "B2",
+                      "B3",
+                      "B4"
+                    ]
+                  ]
+                },
+                {
+                  "claim_id": "answer",
+                  "proposition": "answer",
+                  "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+                  "value": true,
+                  "witnesses": [
+                    [
+                      "A_first_4"
+                    ],
+                    [
+                      "B_first_4"
+                    ]
+                  ]
+                }
+              ],
+              "explanation": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2150.0, 2270.0]. At least one eligible recording window satisfies all four specified numerical comparisons."
+            },
+            "maintenance": "retain supported common-candidate claims",
+            "origin": "generated"
+          },
+          "operator": "identity",
+          "quantity": "",
+          "record_id": "ppg_dalia-S1-e0-d2-alternative/explanation/v2",
+          "record_type": "explanation",
+          "session_id": "session_1",
+          "source_ids": [
+            "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+            "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+          ],
+          "subject_id": "S1",
+          "supersedes_id": "ppg_dalia-S1-e0-d2-alternative/explanation/v1",
+          "support_mode": "AND",
+          "unit": "",
+          "value": null,
+          "version": 2
+        },
+        "include_withdrawn_for_revision_drawing": false,
+        "observation_provenance": {
+          "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181660",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505370",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2270.0,
+                "event_start_seconds": 2150.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2271.0,
+                "logical_id": "ppg_dalia/S1/2150-2270/motion/raw",
+                "metadata": {
+                  "channel": "motion",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 32,
+                  "sample_start": 68800,
+                  "sample_stop": 72640
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2150-2270/motion/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2150-2270/eda_iqr/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181659",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505371",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2270.0,
+                "event_start_seconds": 2150.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2271.0,
+                "logical_id": "ppg_dalia/S1/2150-2270/eda/raw",
+                "metadata": {
+                  "channel": "eda",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 4,
+                  "sample_start": 8600,
+                  "sample_stop": 9080
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2150-2270/eda/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2150-2270/eda_median/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181659",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505372",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2270.0,
+                "event_start_seconds": 2150.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2271.0,
+                "logical_id": "ppg_dalia/S1/2150-2270/eda/raw",
+                "metadata": {
+                  "channel": "eda",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 4,
+                  "sample_start": 8600,
+                  "sample_stop": 9080
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2150-2270/eda/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181659",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505373",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2270.0,
+                "event_start_seconds": 2150.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2271.0,
+                "logical_id": "ppg_dalia/S1/2150-2270/eda/raw",
+                "metadata": {
+                  "channel": "eda",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 4,
+                  "sample_start": 8600,
+                  "sample_stop": 9080
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2150-2270/eda/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181663",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505374",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2300.0,
+                "event_start_seconds": 2270.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2301.0,
+                "logical_id": "ppg_dalia/S1/2270-2300/motion/raw",
+                "metadata": {
+                  "channel": "motion",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 32,
+                  "sample_start": 72640,
+                  "sample_stop": 73600
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2270-2300/motion/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2270-2300/eda_iqr/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181662",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505376",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2300.0,
+                "event_start_seconds": 2270.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2301.0,
+                "logical_id": "ppg_dalia/S1/2270-2300/eda/raw",
+                "metadata": {
+                  "channel": "eda",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 4,
+                  "sample_start": 9080,
+                  "sample_stop": 9200
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2270-2300/eda/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181662",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505400",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2300.0,
+                "event_start_seconds": 2270.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2301.0,
+                "logical_id": "ppg_dalia/S1/2270-2300/eda/raw",
+                "metadata": {
+                  "channel": "eda",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 4,
+                  "sample_start": 9080,
+                  "sample_stop": 9200
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2270-2300/eda/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181662",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505378",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2300.0,
+                "event_start_seconds": 2270.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2301.0,
+                "logical_id": "ppg_dalia/S1/2270-2300/eda/raw",
+                "metadata": {
+                  "channel": "eda",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 4,
+                  "sample_start": 9080,
+                  "sample_stop": 9200
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2270-2300/eda/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ]
+        },
+        "omitted_types": [
+          "subject",
+          "sensor",
+          "observation",
+          "explanation",
+          "assessment",
+          "review"
+        ]
+      }
+    },
+    "before": {
+      "case_id": "ppg_dalia-S1-e0-d2-alternative",
+      "counts": {
+        "edges": 10,
+        "nodes": 11
+      },
+      "edges": [
+        {
+          "declared_source_id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "directly_stored": true,
+          "origin": "model_parent",
+          "resolved_knowledge_time": 2301.01,
+          "semantics": "declared_prerequisite",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+          "target": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "directly_stored": true,
+          "origin": "model_parent",
+          "resolved_knowledge_time": 2301.01,
+          "semantics": "declared_prerequisite",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+          "target": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2301.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2301.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2150-2270/eda_iqr/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2150-2270/eda_median/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2301.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/eda_median/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2150-2270/eda_median/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2301.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "target": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2301.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2301.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2270-2300/eda_iqr/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2301.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/eda_median/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2270-2300/eda_median/v1"
+          ]
+        },
+        {
+          "declared_source_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+          "directly_stored": true,
+          "origin": "model_citation",
+          "resolved_knowledge_time": 2301.01,
+          "semantics": "evidence_citation",
+          "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "target": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+          "type": "DEPENDS_ON",
+          "witness_edge_ids": [
+            "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339"
+          ],
+          "witness_record_ids": [
+            "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+          ]
+        }
+      ],
+      "knowledge_time": 2301.01,
+      "nodes": [
+        {
+          "accepted_at_creation": true,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181664",
+          "displayed_member": true,
+          "evidence_state": "available",
+          "id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "ingested": 2301.001,
+          "interval": [
+            2150.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+          "quantity": "A_first_4",
+          "type": "claim",
+          "unit": "boolean",
+          "value": 1.0,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": true,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181665",
+          "displayed_member": true,
+          "evidence_state": "available",
+          "id": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "ingested": 2301.001,
+          "interval": [
+            2150.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+          "quantity": "B_first_4",
+          "type": "claim",
+          "unit": "boolean",
+          "value": 1.0,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": true,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181666",
+          "displayed_member": true,
+          "evidence_state": "available",
+          "id": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+          "ingested": 2301.001,
+          "interval": [
+            2150.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+          "quantity": "answer",
+          "type": "claim",
+          "unit": "boolean",
+          "value": 1.0,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181650",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+          "ingested": 2271.0,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd",
+          "quantity": "acceleration_magnitude_sd",
+          "type": "feature",
+          "unit": "g",
+          "value": 0.3417050664970838,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181651",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+          "ingested": 2271.0,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/eda_iqr",
+          "quantity": "eda_iqr",
+          "type": "feature",
+          "unit": "uS",
+          "value": 0.4613940000000003,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181652",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2150-2270/eda_median/v1",
+          "ingested": 2271.0,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/eda_median",
+          "quantity": "eda_median",
+          "type": "feature",
+          "unit": "uS",
+          "value": 5.2678775,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181653",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+          "ingested": 2271.0,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction",
+          "quantity": "eda_missing_fraction",
+          "type": "feature",
+          "unit": "fraction",
+          "value": 0.0,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181654",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+          "ingested": 2301.0,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd",
+          "quantity": "acceleration_magnitude_sd",
+          "type": "feature",
+          "unit": "g",
+          "value": 0.21871439562534606,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181656",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+          "ingested": 2301.0,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/eda_iqr",
+          "quantity": "eda_iqr",
+          "type": "feature",
+          "unit": "uS",
+          "value": 0.5207980000000001,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181657",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+          "ingested": 2301.0,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/eda_median",
+          "quantity": "eda_median",
+          "type": "feature",
+          "unit": "uS",
+          "value": 5.374855999999999,
+          "version": 1
+        },
+        {
+          "accepted_at_creation": null,
+          "assessment": null,
+          "claim": null,
+          "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181658",
+          "displayed_member": false,
+          "evidence_state": "available",
+          "id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+          "ingested": 2301.0,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction",
+          "quantity": "eda_missing_fraction",
+          "type": "feature",
+          "unit": "fraction",
+          "value": 0.0,
+          "version": 1
+        }
+      ],
+      "projection": "latest explanation members + declared claim ancestors + cited features resolved at the proposition knowledge time; no SUPPORTS mirror",
+      "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+      "sidecars": {
+        "explanation": {
+          "dataset_id": "ppg_dalia",
+          "event_end_seconds": 2300.0,
+          "event_start_seconds": 2150.0,
+          "evidence_state": "available",
+          "ingested_at_seconds": 2301.002,
+          "logical_id": "ppg_dalia-S1-e0-d2-alternative/explanation",
+          "metadata": {
+            "display": {
+              "claims": [
+                {
+                  "claim_id": "A_first_4",
+                  "proposition": "A_first_4",
+                  "sentence": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2270.0, 2300.0].",
+                  "value": true,
+                  "witnesses": [
+                    [
+                      "A1",
+                      "A2",
+                      "A3",
+                      "A4"
+                    ]
+                  ]
+                },
+                {
+                  "claim_id": "B_first_4",
+                  "proposition": "B_first_4",
+                  "sentence": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2150.0, 2270.0].",
+                  "value": true,
+                  "witnesses": [
+                    [
+                      "B1",
+                      "B2",
+                      "B3",
+                      "B4"
+                    ]
+                  ]
+                },
+                {
+                  "claim_id": "answer",
+                  "proposition": "answer",
+                  "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+                  "value": true,
+                  "witnesses": [
+                    [
+                      "A_first_4"
+                    ],
+                    [
+                      "B_first_4"
+                    ]
+                  ]
+                }
+              ],
+              "explanation": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2270.0, 2300.0]. The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2150.0, 2270.0]. At least one eligible recording window satisfies all four specified numerical comparisons."
+            },
+            "origin": "generated"
+          },
+          "operator": "identity",
+          "quantity": "",
+          "record_id": "ppg_dalia-S1-e0-d2-alternative/explanation/v1",
+          "record_type": "explanation",
+          "session_id": "session_1",
+          "source_ids": [
+            "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+            "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+            "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+          ],
+          "subject_id": "S1",
+          "supersedes_id": null,
+          "support_mode": "AND",
+          "unit": "",
+          "value": null,
+          "version": 1
+        },
+        "include_withdrawn_for_revision_drawing": false,
+        "observation_provenance": {
+          "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181660",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505370",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2270.0,
+                "event_start_seconds": 2150.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2271.0,
+                "logical_id": "ppg_dalia/S1/2150-2270/motion/raw",
+                "metadata": {
+                  "channel": "motion",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 32,
+                  "sample_start": 68800,
+                  "sample_stop": 72640
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2150-2270/motion/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2150-2270/eda_iqr/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181659",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505371",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2270.0,
+                "event_start_seconds": 2150.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2271.0,
+                "logical_id": "ppg_dalia/S1/2150-2270/eda/raw",
+                "metadata": {
+                  "channel": "eda",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 4,
+                  "sample_start": 8600,
+                  "sample_stop": 9080
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2150-2270/eda/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2150-2270/eda_median/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181659",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505372",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2270.0,
+                "event_start_seconds": 2150.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2271.0,
+                "logical_id": "ppg_dalia/S1/2150-2270/eda/raw",
+                "metadata": {
+                  "channel": "eda",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 4,
+                  "sample_start": 8600,
+                  "sample_stop": 9080
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2150-2270/eda/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181659",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505373",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2270.0,
+                "event_start_seconds": 2150.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2271.0,
+                "logical_id": "ppg_dalia/S1/2150-2270/eda/raw",
+                "metadata": {
+                  "channel": "eda",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 4,
+                  "sample_start": 8600,
+                  "sample_stop": 9080
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2150-2270/eda/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181663",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505374",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2300.0,
+                "event_start_seconds": 2270.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2301.0,
+                "logical_id": "ppg_dalia/S1/2270-2300/motion/raw",
+                "metadata": {
+                  "channel": "motion",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 32,
+                  "sample_start": 72640,
+                  "sample_stop": 73600
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2270-2300/motion/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2270-2300/eda_iqr/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181662",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505376",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2300.0,
+                "event_start_seconds": 2270.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2301.0,
+                "logical_id": "ppg_dalia/S1/2270-2300/eda/raw",
+                "metadata": {
+                  "channel": "eda",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 4,
+                  "sample_start": 9080,
+                  "sample_stop": 9200
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2270-2300/eda/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2270-2300/eda_median/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181662",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505377",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2300.0,
+                "event_start_seconds": 2270.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2301.0,
+                "logical_id": "ppg_dalia/S1/2270-2300/eda/raw",
+                "metadata": {
+                  "channel": "eda",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 4,
+                  "sample_start": 9080,
+                  "sample_stop": 9200
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2270-2300/eda/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ],
+          "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1": [
+            {
+              "database_element_id": "4:dd1e886e-45c2-4037-81fc-f9c88d60b234:181662",
+              "edge_id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505378",
+              "record": {
+                "dataset_id": "ppg_dalia",
+                "event_end_seconds": 2300.0,
+                "event_start_seconds": 2270.0,
+                "evidence_state": "available",
+                "ingested_at_seconds": 2301.0,
+                "logical_id": "ppg_dalia/S1/2270-2300/eda/raw",
+                "metadata": {
+                  "channel": "eda",
+                  "file_sha256": "e4a35dfe711368d447a2a383e5dd98191594928ccb2ca8deeeda06cd6e628c14",
+                  "path": "data/raw/ppg_dalia/recordings/PPG_FieldStudy/S1/S1.pkl",
+                  "rate_hz": 4,
+                  "sample_start": 9080,
+                  "sample_stop": 9200
+                },
+                "operator": "identity",
+                "quantity": "",
+                "record_id": "ppg_dalia/S1/2270-2300/eda/raw",
+                "record_type": "observation",
+                "session_id": "session_1",
+                "source_ids": [],
+                "subject_id": "S1",
+                "supersedes_id": null,
+                "support_mode": "AND",
+                "unit": "",
+                "value": null,
+                "version": 1
+              }
+            }
+          ]
+        },
+        "omitted_types": [
+          "subject",
+          "sensor",
+          "observation",
+          "explanation",
+          "assessment",
+          "review"
+        ]
+      }
+    }
+  },
+  "direct_schedule_source": {
+    "field": "scheduled_ids",
+    "method": "B2",
+    "recorded_ids": [
+      "A_first_4"
+    ],
+    "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/B2"
+  },
+  "equation_labels": [
+    "eq:ontology",
+    "eq:construction",
+    "eq:core",
+    "eq:reviewview",
+    "eq:support",
+    "eq:locality",
+    "eq:exposure"
+  ],
+  "exposure": {
+    "denominator": 1,
+    "numerator": 0,
+    "xi": 0.0
+  },
+  "format": "classic_equation_analysis_v1",
+  "full_schedule_source": {
+    "field": "scheduled_ids",
+    "method": "M1",
+    "recorded_ids": [
+      "A_first_4",
+      "answer"
+    ]
+  },
+  "full_scope": {
+    "backend_note": "Backend traversal also reaches explanation membership; it is excluded from theorem claim reachability.",
+    "dependency_edges": [
+      {
+        "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505336",
+        "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "target": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+        "type": "DEPENDS_ON"
+      },
+      {
+        "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505337",
+        "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "target": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+        "type": "DEPENDS_ON"
+      },
+      {
+        "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505338",
+        "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "target": "ppg_dalia/S1/2270-2300/eda_median/v1",
+        "type": "DEPENDS_ON"
+      },
+      {
+        "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505339",
+        "source": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "target": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+        "type": "DEPENDS_ON"
+      },
+      {
+        "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505340",
+        "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+        "target": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+        "type": "DEPENDS_ON"
+      },
+      {
+        "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505341",
+        "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+        "target": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+        "type": "DEPENDS_ON"
+      },
+      {
+        "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505342",
+        "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+        "target": "ppg_dalia/S1/2150-2270/eda_median/v1",
+        "type": "DEPENDS_ON"
+      },
+      {
+        "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505343",
+        "source": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+        "target": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+        "type": "DEPENDS_ON"
+      },
+      {
+        "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505344",
+        "source": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+        "target": "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+        "type": "DEPENDS_ON"
+      },
+      {
+        "id": "5:dd1e886e-45c2-4037-81fc-f9c88d60b234:505345",
+        "source": "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+        "target": "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+        "type": "DEPENDS_ON"
+      }
+    ],
+    "dependency_filter": "ClaimVersion DEPENDS_ON ClaimVersion/FeatureVersion only; versions remain separate, all revised-identity versions seed U.",
+    "dependency_node_ids": [
+      "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/B_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+      "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+      "ppg_dalia/S1/2150-2270/eda_median/v1",
+      "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+      "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+      "ppg_dalia/S1/2270-2300/cardiac_missing_fraction/v1",
+      "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+      "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+      "ppg_dalia/S1/2270-2300/eda_median/v1",
+      "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1"
+    ],
+    "recorded_backend_reachable_records": 3,
+    "stored_edges": 83,
+    "stored_nodes": 26,
+    "visible_database_nodes": 26,
+    "visible_record_nodes": 24
+  },
+  "knowledge_times": {
+    "after": 2331.01,
+    "before": 2301.01
+  },
+  "oracle": {
+    "after": {
+      "A_first_1": false,
+      "A_first_2": false,
+      "A_first_4": false,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "before": {
+      "A_first_1": true,
+      "A_first_2": true,
+      "A_first_4": true,
+      "B_first_1": true,
+      "B_first_2": true,
+      "B_first_4": true,
+      "answer": true
+    },
+    "source": "immutable event/task oracle; no database assessments"
+  },
+  "predicates": {
+    "after": {
+      "A1": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2331.01,
+        "numerical_comparison": false,
+        "resolved_record_id": "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+        "resolved_value": 4.214302,
+        "test": {
+          "initial_value": 5.374855999999999,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/eda_median",
+          "margin": 0.52678775,
+          "observation_ids": [
+            "ppg_dalia/S1/2270-2300/eda/raw"
+          ],
+          "operator": "ge",
+          "quantity": "eda_median",
+          "source_id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+          "threshold": 4.74108975,
+          "unit": "uS"
+        },
+        "truth": false
+      },
+      "A2": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2331.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+        "resolved_value": 0.5207980000000001,
+        "test": {
+          "initial_value": 0.5207980000000001,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/eda_iqr",
+          "margin": 0.04613940000000003,
+          "observation_ids": [
+            "ppg_dalia/S1/2270-2300/eda/raw"
+          ],
+          "operator": "ge",
+          "quantity": "eda_iqr",
+          "source_id": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+          "threshold": 0.41525460000000025,
+          "unit": "uS"
+        },
+        "truth": true
+      },
+      "A3": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2331.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+        "resolved_value": 0.21871439562534606,
+        "test": {
+          "initial_value": 0.21871439562534606,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd",
+          "margin": 0.02187143956253461,
+          "observation_ids": [
+            "ppg_dalia/S1/2270-2300/motion/raw"
+          ],
+          "operator": "ge",
+          "quantity": "acceleration_magnitude_sd",
+          "source_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+          "threshold": 0.19684295606281144,
+          "unit": "g"
+        },
+        "truth": true
+      },
+      "A4": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2331.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+        "resolved_value": 0.0,
+        "test": {
+          "initial_value": 0.0,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction",
+          "margin": 0.05,
+          "observation_ids": [
+            "ppg_dalia/S1/2270-2300/eda/raw"
+          ],
+          "operator": "le",
+          "quantity": "eda_missing_fraction",
+          "source_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+          "threshold": 0.05,
+          "unit": "fraction"
+        },
+        "truth": true
+      },
+      "B1": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2331.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2150-2270/eda_median/v1",
+        "resolved_value": 5.2678775,
+        "test": {
+          "initial_value": 5.2678775,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/eda_median",
+          "margin": 0.52678775,
+          "observation_ids": [
+            "ppg_dalia/S1/2150-2270/eda/raw"
+          ],
+          "operator": "ge",
+          "quantity": "eda_median",
+          "source_id": "ppg_dalia/S1/2150-2270/eda_median/v1",
+          "threshold": 4.74108975,
+          "unit": "uS"
+        },
+        "truth": true
+      },
+      "B2": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2331.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+        "resolved_value": 0.4613940000000003,
+        "test": {
+          "initial_value": 0.4613940000000003,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/eda_iqr",
+          "margin": 0.04613940000000003,
+          "observation_ids": [
+            "ppg_dalia/S1/2150-2270/eda/raw"
+          ],
+          "operator": "ge",
+          "quantity": "eda_iqr",
+          "source_id": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+          "threshold": 0.41525460000000025,
+          "unit": "uS"
+        },
+        "truth": true
+      },
+      "B3": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2331.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+        "resolved_value": 0.3417050664970838,
+        "test": {
+          "initial_value": 0.3417050664970838,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd",
+          "margin": 0.02187143956253461,
+          "observation_ids": [
+            "ppg_dalia/S1/2150-2270/motion/raw"
+          ],
+          "operator": "ge",
+          "quantity": "acceleration_magnitude_sd",
+          "source_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+          "threshold": 0.19684295606281144,
+          "unit": "g"
+        },
+        "truth": true
+      },
+      "B4": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2331.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+        "resolved_value": 0.0,
+        "test": {
+          "initial_value": 0.0,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction",
+          "margin": 0.05,
+          "observation_ids": [
+            "ppg_dalia/S1/2150-2270/eda/raw"
+          ],
+          "operator": "le",
+          "quantity": "eda_missing_fraction",
+          "source_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+          "threshold": 0.05,
+          "unit": "fraction"
+        },
+        "truth": true
+      }
+    },
+    "before": {
+      "A1": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2301.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+        "resolved_value": 5.374855999999999,
+        "test": {
+          "initial_value": 5.374855999999999,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/eda_median",
+          "margin": 0.52678775,
+          "observation_ids": [
+            "ppg_dalia/S1/2270-2300/eda/raw"
+          ],
+          "operator": "ge",
+          "quantity": "eda_median",
+          "source_id": "ppg_dalia/S1/2270-2300/eda_median/v1",
+          "threshold": 4.74108975,
+          "unit": "uS"
+        },
+        "truth": true
+      },
+      "A2": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2301.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+        "resolved_value": 0.5207980000000001,
+        "test": {
+          "initial_value": 0.5207980000000001,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/eda_iqr",
+          "margin": 0.04613940000000003,
+          "observation_ids": [
+            "ppg_dalia/S1/2270-2300/eda/raw"
+          ],
+          "operator": "ge",
+          "quantity": "eda_iqr",
+          "source_id": "ppg_dalia/S1/2270-2300/eda_iqr/v1",
+          "threshold": 0.41525460000000025,
+          "unit": "uS"
+        },
+        "truth": true
+      },
+      "A3": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2301.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+        "resolved_value": 0.21871439562534606,
+        "test": {
+          "initial_value": 0.21871439562534606,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd",
+          "margin": 0.02187143956253461,
+          "observation_ids": [
+            "ppg_dalia/S1/2270-2300/motion/raw"
+          ],
+          "operator": "ge",
+          "quantity": "acceleration_magnitude_sd",
+          "source_id": "ppg_dalia/S1/2270-2300/acceleration_magnitude_sd/v1",
+          "threshold": 0.19684295606281144,
+          "unit": "g"
+        },
+        "truth": true
+      },
+      "A4": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2301.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+        "resolved_value": 0.0,
+        "test": {
+          "initial_value": 0.0,
+          "interval": [
+            2270.0,
+            2300.0
+          ],
+          "logical_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction",
+          "margin": 0.05,
+          "observation_ids": [
+            "ppg_dalia/S1/2270-2300/eda/raw"
+          ],
+          "operator": "le",
+          "quantity": "eda_missing_fraction",
+          "source_id": "ppg_dalia/S1/2270-2300/eda_missing_fraction/v1",
+          "threshold": 0.05,
+          "unit": "fraction"
+        },
+        "truth": true
+      },
+      "B1": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2301.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2150-2270/eda_median/v1",
+        "resolved_value": 5.2678775,
+        "test": {
+          "initial_value": 5.2678775,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/eda_median",
+          "margin": 0.52678775,
+          "observation_ids": [
+            "ppg_dalia/S1/2150-2270/eda/raw"
+          ],
+          "operator": "ge",
+          "quantity": "eda_median",
+          "source_id": "ppg_dalia/S1/2150-2270/eda_median/v1",
+          "threshold": 4.74108975,
+          "unit": "uS"
+        },
+        "truth": true
+      },
+      "B2": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2301.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+        "resolved_value": 0.4613940000000003,
+        "test": {
+          "initial_value": 0.4613940000000003,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/eda_iqr",
+          "margin": 0.04613940000000003,
+          "observation_ids": [
+            "ppg_dalia/S1/2150-2270/eda/raw"
+          ],
+          "operator": "ge",
+          "quantity": "eda_iqr",
+          "source_id": "ppg_dalia/S1/2150-2270/eda_iqr/v1",
+          "threshold": 0.41525460000000025,
+          "unit": "uS"
+        },
+        "truth": true
+      },
+      "B3": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2301.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+        "resolved_value": 0.3417050664970838,
+        "test": {
+          "initial_value": 0.3417050664970838,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd",
+          "margin": 0.02187143956253461,
+          "observation_ids": [
+            "ppg_dalia/S1/2150-2270/motion/raw"
+          ],
+          "operator": "ge",
+          "quantity": "acceleration_magnitude_sd",
+          "source_id": "ppg_dalia/S1/2150-2270/acceleration_magnitude_sd/v1",
+          "threshold": 0.19684295606281144,
+          "unit": "g"
+        },
+        "truth": true
+      },
+      "B4": {
+        "checks": {
+          "available": true,
+          "dataset": true,
+          "interval": true,
+          "quantity": true,
+          "record_known": true,
+          "session": true,
+          "subject": true,
+          "unit": true
+        },
+        "knowledge_time": 2301.01,
+        "numerical_comparison": true,
+        "resolved_record_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+        "resolved_value": 0.0,
+        "test": {
+          "initial_value": 0.0,
+          "interval": [
+            2150.0,
+            2270.0
+          ],
+          "logical_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction",
+          "margin": 0.05,
+          "observation_ids": [
+            "ppg_dalia/S1/2150-2270/eda/raw"
+          ],
+          "operator": "le",
+          "quantity": "eda_missing_fraction",
+          "source_id": "ppg_dalia/S1/2150-2270/eda_missing_fraction/v1",
+          "threshold": 0.05,
+          "unit": "fraction"
+        },
+        "truth": true
+      }
+    }
+  },
+  "revision_arrival_time": 2331.0,
+  "revision_logical_ids": [
+    "ppg_dalia/S1/2270-2300/eda_median"
+  ],
+  "scope": "structure_study_v1/ppg_dalia-S1-e0-d2-alternative/generated/route_loss/M1",
+  "sets": {
+    "A_delta": [
+      "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+    ],
+    "B_delta": [
+      "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+    ],
+    "D_delta": [
+      "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4"
+    ],
+    "R_delta": [
+      "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/answer",
+      "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+      "ppg_dalia/S1/2270-2300/eda_median/v1"
+    ],
+    "U_delta": [
+      "ppg_dalia/S1/2270-2300/eda_median/structure-route_loss-v2",
+      "ppg_dalia/S1/2270-2300/eda_median/v1"
+    ],
+    "full_scheduled_claims": [
+      "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+    ],
+    "reachable_claims": [
+      "ppg_dalia-S1-e0-d2-alternative/claim/A_first_4",
+      "ppg_dalia-S1-e0-d2-alternative/claim/answer"
+    ]
+  },
+  "support": {
+    "after": {
+      "A_first_4": false,
+      "B_first_4": true,
+      "answer": true
+    },
+    "before": {
+      "A_first_4": true,
+      "B_first_4": true,
+      "answer": true
+    }
+  },
+  "witness_audit": [
+    {
+      "claim_id": "A_first_4",
+      "complete_family": true,
+      "grounded": true,
+      "proposition": "A_first_4",
+      "prose_audit": {
+        "interpretation_term": false,
+        "scope": "limited literal audit; additional prose interpretations are not certified",
+        "unmatched_numbers": []
+      },
+      "sentence": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2270.0, 2300.0].",
+      "sound_witnesses": [
+        true
+      ]
+    },
+    {
+      "claim_id": "B_first_4",
+      "complete_family": true,
+      "grounded": true,
+      "proposition": "B_first_4",
+      "prose_audit": {
+        "interpretation_term": false,
+        "scope": "limited literal audit; additional prose interpretations are not certified",
+        "unmatched_numbers": []
+      },
+      "sentence": "The eda_median is greater than or equal to 4.74108975 uS, the eda_iqr is greater than or equal to 0.4152546 uS, the acceleration_magnitude_sd is greater than or equal to 0.19684295606281144 g, and the eda_missing_fraction is less than or equal to 0.05 fraction during the interval [2150.0, 2270.0].",
+      "sound_witnesses": [
+        true
+      ]
+    },
+    {
+      "claim_id": "answer",
+      "complete_family": true,
+      "grounded": true,
+      "proposition": "answer",
+      "prose_audit": {
+        "interpretation_term": false,
+        "scope": "limited literal audit; additional prose interpretations are not certified",
+        "unmatched_numbers": []
+      },
+      "sentence": "At least one eligible recording window satisfies all four specified numerical comparisons.",
+      "sound_witnesses": [
+        true,
+        true
+      ]
+    }
+  ]
+}

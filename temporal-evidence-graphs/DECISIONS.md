@@ -277,3 +277,31 @@ This instruction supersedes the earlier two-document presentation decisions.
 - Reuse all completed experiments; perform zero new inference calls. Preserve
   primary 183/1,210 and separate normalized 208/1,294 direct misses, full zero
   misses, database parity and the original zero adequate replacements.
+
+
+## 2026-09-29 — classic ontology-instance addition
+
+- Preserve Figures 1–3 and completed experiments. Reuse the selected primary
+  PPG-DaLiA S1 depth-two alternative program and actual retained Neo4j export;
+  no new generation, database replay or paid resource.
+- Draw 14 individual records/18 relations, including both EDA windows and old/new
+  A1. Keep two motion windows expandable; do not add administrative objects to
+  inflate node count. Hide feature-provenance duplicates and SUPPORTS mirrors
+  through the recorded relation filter.
+- Separate extraction, equation analysis and spring rendering. Compute support
+  using admitted witnesses, required changes using the independent event/task
+  oracle, and direct scheduling from saved B2 replay. Use only claim dependency
+  edges for locality. Keep the current core definition and explicitly select the
+  structural explanation by logical ID.
+- Preserve CA as a declared ancestor in the current core, although withdrawn from
+  display. Mark old A1 and observation windows as review context. Two claims are
+  reachable; only CA changes support; the root survives and exposure remains zero.
+- Add a Classic network dashboard mode alongside Structured. Reuse typed views,
+  details, state/focus/witness controls and fixed union coordinates. Render each
+  primitive citation separately; labels identify complete AND/OR witness groups.
+- Keep the official template and one paper. The addition yields 20 main pages
+  plus one reference page, within the conference's 12–20 main-page range:
+  https://bdcc-conf.eai-conferences.org/2026/call-for-papers/
+- Save separate `classic_network_v1` analysis, visual maps, predicate/set values,
+  source/code hashes and browser evidence; preserve scientific history and all
+  frozen result namespaces.

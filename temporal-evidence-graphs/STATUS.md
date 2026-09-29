@@ -1,19 +1,26 @@
 # Study status
 
-## Single-paper and review-network revision — complete (100%)
+## Classic ontology-instance addition — complete (100%)
 
 The authoritative [paper](paper/semantic_structure_revision.pdf) has
-18 main pages and 1 reference page. The two spacious labeled networks come from
+20 main pages and 1 reference page, with six figures. The structured networks come from
 actual WESAD S11 and PPG-DaLiA S1 Neo4j scopes and share their typed view objects,
 fixed layouts and renderer with the existing dashboard. The default build produces
 one paper; the previous two-document package is historical material in the archive.
 
-All 70 tests pass, including graph identity, temporal visibility, original
+All 76 tests pass, including graph identity, temporal visibility, original
 citations, witness grouping, partial views, publication/dashboard equality and
 interactive selection/expansion. The validation record checks 529 unique actual
 Neo4j export scopes plus a fresh WESAD duplicate export. Network labels are at least
-9.13 points at final printed width. Browser screenshots and full PDF inspection
+9 points at final printed width. Browser screenshots and full PDF inspection
 are recorded. No new GPU inference or paid resource was needed.
+
+The new classic Figure 4 shows 14 stored records and 18 labeled relations from
+`ppg_dalia-S1-e0-d2-alternative`. Its eight feature inputs are individually drawn;
+CA loses support, CB and the root survive, and exposure is 0/1. The same typed
+view drives the dashboard's optional Classic network layout. Original Figures
+1–3 and all result-plot assets are unchanged. Read the
+[addition report](CLASSIC_NETWORK_ADDITION.md) for the computed sets and artifacts.
 
 The frozen minimum-v1 inputs/results, 240-case generated structural study and
 separate admission-normalization replication are unchanged. Read the

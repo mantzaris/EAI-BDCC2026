@@ -36,9 +36,11 @@ def assessment_sidecar(graph, time):
     return answer
 
 
-def core(graph, case_id, knowledge_time, include_withdrawn=False):
+def core(graph, case_id, knowledge_time, include_withdrawn=False, *, explanation_logical_id=None):
     rs=records(graph,knowledge_time); current=latest(rs)
-    candidates=[r for r in current.values() if r["record_type"]=="explanation" and r["metadata"].get("case_id")==case_id]
+    candidates=[r for r in current.values() if r["record_type"]=="explanation" and
+        (r["metadata"].get("case_id")==case_id or
+         explanation_logical_id is not None and r["logical_id"]==explanation_logical_id)]
     if not candidates:
         return {"scope":graph["scope"],"case_id":case_id,"knowledge_time":knowledge_time,"nodes":[],"edges":[],"sidecars":{},"counts":{"nodes":0,"edges":0}}
     explanation=max(candidates,key=lambda r:r["version"])

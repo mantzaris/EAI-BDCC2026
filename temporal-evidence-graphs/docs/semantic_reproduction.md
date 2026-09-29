@@ -35,6 +35,36 @@ current paper. Only `paper/semantic_structure_revision.pdf` is a submission outp
 The saved pre-inference gate is historical evidence; final validation checks it
 without overwriting its timestamp.
 
+## Rebuild only the classic-network addition
+
+The existing graphs and result plots need not be redrawn. Preserve Figures 1–3
+byte-for-byte while rebuilding the new figure, its equation annotations and paper:
+
+```sh
+PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.classic_example
+PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.analyze
+PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.publication
+PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.figures --manifest-only
+PYTHONPATH=src .venv/bin/python -m pytest -q --junitxml=artifacts/analysis/review_views_v1/pytest.xml
+bash paper/build.sh
+PYTHONPATH=src .venv/bin/python scripts/check_semantic_manuscripts.py
+```
+
+`classic_example` reads the retained Neo4j export, candidate and replay without
+changing them. `analyze` refreshes descriptive-analysis/code hashes; original
+scores are unchanged. `figures --manifest-only` refreshes the six-figure index.
+The full figure command above also includes the classic mode automatically.
+
+`artifacts/analysis/classic_network_v1/` contains the independent equation analysis,
+before/after typed views, predicate evaluations, witness lists, full/visible sets,
+layout, manifests and UI evidence. `paper/generated/classic_network/` supplies
+case-derived numbers and the instantiated witness expression. The new figure is
+`artifacts/figures/semantic_analysis_v1/ontology_instance_network.{pdf,svg,png}`.
+Its manifest records every graphical object's stored ID, relation filter, source
+hash, annotation and coordinate. No new model generation or database replay is
+needed. The optional browser capture uses the same local setup documented in
+[review_network_views.md](review_network_views.md).
+
 ## Actual Neo4j exports
 
 Published exports came from the retained RunPod Neo4j instance, not reconstructed

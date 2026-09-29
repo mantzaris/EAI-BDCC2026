@@ -124,11 +124,22 @@ def structural():
     fig.legend(handles=depth_handles+route_handles,ncol=3,frameon=False,fontsize=11.5,loc="lower center",bbox_to_anchor=(.5,-.015))
     fig.subplots_adjust(wspace=.45,bottom=.35,top=.87);save(fig,"structural_theory_test");return True
 
-def run():
-    ontology();actual_graphs();fidelity();complete=structural()
+def manifest():
+    names=['ontology_construction','real_revision_network','structural_witness_network',
+           'ontology_instance_network','semantic_fidelity','structural_theory_test']
+    complete=all((OUT/(name+'.'+ext)).exists() for name in names for ext in ('pdf','svg','png'))
     write_json(OUT/"manifest.json",{"complete_main_set":complete,"script_sha256":digest_file(__file__),
-        "inputs":{str(p):digest_file(p) for p in sorted(DATA.glob("*.json"))},
-        "figures":["ontology_construction","real_revision_network","structural_witness_network","semantic_fidelity"]+(["structural_theory_test"] if complete else []),
-        "layout":"Graphviz union layouts and stored/derived object mappings in per-network manifests; dashboard uses identical review views"})
+        "inputs":{str(p):digest_file(p) for p in sorted(DATA.glob("*.json"))} |
+                 {'artifacts/analysis/classic_network_v1/manifest.json':digest_file('artifacts/analysis/classic_network_v1/manifest.json')},
+        "figures":names,
+        "layout":"Graphviz dot and seeded spring union layouts; stored/derived mappings in per-network manifests; dashboard uses identical typed views"})
 
-if __name__=="__main__":run()
+def run():
+    from temporal_evidence.semantic.classic_example import run as classic
+    ontology();actual_graphs();classic();fidelity();structural();manifest()
+
+if __name__=="__main__":
+    import argparse
+    parser=argparse.ArgumentParser();parser.add_argument('--manifest-only',action='store_true')
+    args=parser.parse_args()
+    manifest() if args.manifest_only else run()
