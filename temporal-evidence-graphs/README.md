@@ -9,6 +9,7 @@ preserved structured diagrams, with individually visible ontology instances and
 computed support/revision annotations.
 
 - [Revised main paper](paper/semantic_structure_revision.pdf)
+- [Complete LaTeX manuscript](paper/main.tex)
 - [Prose revision and preservation checks](PROSE_REVISION.md)
 - [Classic ontology-instance addition](CLASSIC_NETWORK_ADDITION.md)
 - [Graph-view revision and validation](GRAPH_VIEW_REVISION.md)
@@ -43,15 +44,20 @@ summary for uncertainty, exclusions and the full outcome crosswalk.
 From this directory, using the existing environment:
 
 ```sh
-PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.publication --prose-only
 bash paper/build.sh
-PYTHONPATH=src .venv/bin/python scripts/check_prose_revision.py
+.venv/bin/python scripts/check_consolidated_manuscript.py
 ```
 
-This is the current manuscript-only workflow. It preserves experimental artifacts
-and compares equations, numbers, citations, figures and prose length with the
-completed paper at `c62001f`. Its record is
-[paper/prose_revision/validation.json](paper/prose_revision/validation.json).
+Edit `paper/main.tex` directly. It contains all prose, equations, tables, result
+macros and bibliography entries. The build needs no section files, generated TeX,
+BibTeX run or Python generator. The official class and six figure PDFs remain
+external assets. Former fragments and generated files are retained as provenance.
+
+The consolidation checker compares the complete source and rendered pages with
+the completed prose revision at `9543daf`. It also builds in a clean directory
+containing only the main source, class and figures. Its record is
+[paper/source_consolidation/validation.json](paper/source_consolidation/validation.json).
+The earlier [prose checks](paper/prose_revision/validation.json) remain historical.
 
 For a full analysis reproduction from saved outputs, the original workflow remains:
 
@@ -70,6 +76,8 @@ The full-analysis checker validates refreshed analysis/code manifests. The older
 check_manuscript.py belongs to the archived manuscript. Analysis uses saved answers and exports,
 without repeating original GPU calls. [STATUS.md](STATUS.md) records completion;
 [DECISIONS.md](DECISIONS.md) records choices. No conference submission is performed.
+Analysis generators still produce provenance files. They do not overwrite the
+complete manuscript; any future result changes must be incorporated into `main.tex` explicitly.
 
 ## Dashboard and original experiment
 

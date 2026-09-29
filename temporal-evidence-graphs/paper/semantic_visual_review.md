@@ -1,6 +1,23 @@
 # Single-paper PDF and dashboard review
 
-## Current prose revision
+## Current complete main.tex
+
+The source consolidation preserves the full rendered paper from `9543daf`.
+The current PDF has 20 main pages and one reference page. Its SHA-256 is
+`31ffe541a9c54bf34ba1dcec19d19ef9032a8e1935e9c793adb378a7e65eda51`.
+All 21 pages are pixel-identical at 144 dpi to the previously inspected prose
+revision. Extracted text, page breaks, table positions and references also match.
+
+A separate clean directory containing only `main.tex`, the official `llncs.cls`
+and six figure PDFs builds the identical pages with two pdfLaTeX passes.
+It contains no section files, generated TeX, bibliography database or BBL file.
+All fonts are embedded, with no overfull boxes, oversized floats or unresolved
+references. Three explicit spaces preserve the old generated-table input
+boundaries without changing their positions. The current record is
+`paper/source_consolidation/validation.json`. No scientific or experimental
+artifact changed.
+
+## Historical prose revision at 9543daf
 
 Reviewed on 29 September 2026 against the completed paper at `c62001f`. The
 authoritative output is `paper/semantic_structure_revision.pdf`, with **20 main

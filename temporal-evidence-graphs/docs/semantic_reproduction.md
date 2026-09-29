@@ -4,11 +4,34 @@ Run from temporal-evidence-graphs/. Saved prepared events, candidates, database
 exports and replays suffice for all scoring, figures and PDF builds. The
 following commands perform no neural inference and do not modify minimum_v1.
 
-## Current prose revision only
+## Current complete LaTeX manuscript
+
+Edit `paper/main.tex` directly. All manuscript text, equations, tables, result
+macros and the formatted bibliography are inline. No `input`, `include` or
+external bibliography command remains. The official LLNCS class, standard TeX
+packages and six figure PDFs are the only external typesetting assets.
+
+```sh
+bash paper/build.sh
+.venv/bin/python scripts/check_consolidated_manuscript.py
+```
+
+The checker compares the source against the expanded manuscript at `9543daf`.
+It compiles a clean copy containing only `main.tex`, `llncs.cls` and the figure
+PDFs, without section/generated files or a `.bib`/`.bbl` file. It verifies all
+21 pages against the previous PDF by text and by pixels at 144 dpi. Results are
+recorded in `paper/source_consolidation/validation.json`.
+
+The section fragments, generated TeX and `references.bib` remain as provenance.
+They are no longer build inputs. Publication generators continue to create their
+original reproducibility outputs, but do not change the authoritative `main.tex`.
+
+## Preserved prose-revision workflow at 9543daf
 
 The language revision preserves the completed experiments and figure assets.
-From the existing environment, regenerate publication text, build the single PDF
-and compare it with the completed `c62001f` manuscript:
+At commit `9543daf`, the following commands regenerate publication text, build
+the single PDF and compare it with the completed `c62001f` manuscript. This
+historical checker expects the former multi-file source structure:
 
 ```sh
 PYTHONPATH=src .venv/bin/python -m temporal_evidence.semantic.publication --prose-only
@@ -18,14 +41,14 @@ PYTHONPATH=src .venv/bin/python scripts/check_prose_revision.py
 
 The checker also requires TeXcount, supplied by the existing TeX installation.
 `--prose-only` writes publication files without writing analysis artifacts.
-The current record is `paper/prose_revision/validation.json`, with manual review
+The preserved record is `paper/prose_revision/validation.json`, with manual review
 in `paper/semantic_visual_review.md` and examples in `PROSE_REVISION.md`.
 The PDF remains 20 main pages plus one reference page. Approximate prose rises
 from 5,500 to 5,634 words (+2.44%), counting body text and captions with TeXcount.
 
 The original analysis and implementation validation records remain frozen at
 their completed source versions. In particular, the archived full-analysis
-checker expects the old publication-generator hash. The current prose checker
+checker expects the old publication-generator hash. The historical prose checker
 validates the revised generator and manuscript against those unchanged results.
 Do not refresh experimental manifests just to validate a language edit.
 

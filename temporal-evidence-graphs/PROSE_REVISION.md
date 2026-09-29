@@ -1,5 +1,11 @@
 # Prose revision
 
+This records the completed language edit at `9543daf`. The manuscript has since
+been consolidated into [paper/main.tex](paper/main.tex) without changing the
+rendered paper. The reproduction commands below describe the former multi-file
+source structure. Use the [current build instructions](docs/semantic_reproduction.md)
+for the complete source.
+
 The authoritative [paper](paper/semantic_structure_revision.pdf) has been edited
 throughout for clearer definitions, shorter sentences and more direct explanations.
 The comparison baseline is the completed manuscript at `c62001f`.

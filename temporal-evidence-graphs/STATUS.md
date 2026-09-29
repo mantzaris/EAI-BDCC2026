@@ -1,5 +1,15 @@
 # Study status
 
+## Complete main.tex — complete (100%)
+
+The authoritative [LaTeX source](paper/main.tex) now contains the entire paper,
+including generated tables, macros and all 13 bibliography entries. It has no
+external LaTeX content inputs. A clean build with only this source, the official
+class and six figure PDFs reproduces all 21 pages pixel-for-pixel at 144 dpi.
+The paper still has 20 main pages and one reference page. Experimental artifacts
+and scientific content are unchanged. The
+[consolidation check](paper/source_consolidation/validation.json) records validation.
+
 ## Prose revision — complete (100%)
 
 The current [paper](paper/semantic_structure_revision.pdf) retains 20 main pages

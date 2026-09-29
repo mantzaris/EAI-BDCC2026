@@ -9,8 +9,11 @@ single PDF has 20 main pages plus one reference page. Its new Figure 4 exposes
 Figures 1–3 and the completed experimental outcomes are preserved.
 [Reproduction commands](docs/semantic_reproduction.md) cover scoring, actual database
 exports, shared dashboard views, figures, frozen inputs and the single PDF build. Final page and integrity
-checks for the prose revision are recorded in
-[paper/prose_revision/validation.json](paper/prose_revision/validation.json).
+checks for the complete `paper/main.tex` source are recorded in
+[paper/source_consolidation/validation.json](paper/source_consolidation/validation.json).
+The isolated build needs no section files, generated TeX or external bibliography,
+and its 21 rendered pages match the preceding paper exactly. The earlier prose
+revision is recorded in [paper/prose_revision/validation.json](paper/prose_revision/validation.json).
 [PROSE_REVISION.md](PROSE_REVISION.md) describes the language changes, unchanged
 science and 2.44% prose increase. The earlier implementation and analysis checks
 remain frozen in artifacts/manifests/semantic_manuscript_validation.json.

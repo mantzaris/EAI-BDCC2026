@@ -320,3 +320,15 @@ This instruction supersedes the earlier two-document presentation decisions.
   `paper/prose_revision/`. Earlier scientific validation stays frozen.
 - Adjust paragraph boundaries and float pagination without changing fonts,
   margins, spacing or figure dimensions. Inspect the compiled PDF, not only TeX.
+
+## 2026-09-29: complete LaTeX in main.tex
+
+- Make `paper/main.tex` the complete authoritative source. Inline all 20 formerly
+  included files and the 13 formatted bibliography entries. Keep the official
+  class and six figure PDFs external; retain the old fragments as provenance.
+- Remove generated-file prerequisites from the default build. It requires no
+  BibTeX pass, Python generator, section file or generated TeX file.
+- Preserve the final prose and every result. Record source equivalence and an
+  isolated clean build, comparing all 21 rendered pages at 144 dpi with `9543daf`.
+- Edit `main.tex` for future manuscript changes. Reproduction generators keep
+  writing their provenance outputs and do not overwrite the complete manuscript.
