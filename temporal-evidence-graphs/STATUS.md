@@ -1,6 +1,6 @@
 # Study status
 
-Updated: 2026-09-28 (local). Overall completion: **45%** (estimated against the eight stage gates).
+Updated: 2026-09-28 (local). Overall completion: **50%** (estimated against the eight stage gates).
 
 | Stage | State |
 |---|---|
@@ -9,12 +9,12 @@ Updated: 2026-09-28 (local). Overall completion: **45%** (estimated against the 
 | 2 GPU generation and five conditions | All five conditions executed on GPU; format failures found in development and retained |
 | 3 Real data adapters | Development unit/provenance audit completed; fixed splits and 100 prepared episodes rebuilt; replay arrays separately hashed |
 | 4 Freeze and development pilot | Complete: v4 passed, all source/episode hashes frozen and verified locally |
-| 5 Locked experiments | Running: 150/3,600 cases saved at 01:22 UTC; at most 2,880 repairs |
+| 5 Locked experiments | Running; 639/3,600 cases backed up locally at approximately 01:44 UTC; at most 2,880 repairs |
 | 6 Analysis and interface | Analysis pipeline ready; functional isolated review dashboard with tested actions; systems/audit queued |
-| 7 Manuscript package | Methods/design and related work drafted; source-generated design figures; results pending |
+| 7 Manuscript package | Full draft structure and generated-table/figure pipeline ready; final numerical results and PDF pending |
 
 All changes are committed and pushed to `main`, without branches, as instructed.
-The held-out run started at 2026-09-29 01:14:46 UTC. Forty-four tests pass.
+The held-out run started at 2026-09-29 01:14:46 UTC. Forty-five tests pass.
 Sixty prepared base episodes are held out; forty are for development. Protocol hash:
 `a22b68b4e3d33c7cbcaa253a6af27232a574a69692b5dcb793191ee1d2ceef63`.
 The user confirmed continuing with the current pod.
@@ -36,6 +36,14 @@ Stage times are logged in `artifacts/manifests/execution_stages.jsonl`.
 Frozen experimental source is unchanged; dashboard/analysis/manuscript files are
 outside that runtime boundary. The dashboard AppTest exercised a correction and
 confirmed two withdrawals with two supported claims retained.
+The final reporting gate audits all 720 matched evidence/prompt groups and request
+start/finish accounting. Publication numbers require complete experiments.
+
+Operational note: the already-running launcher's handoff guard expects the older
+API-module command spelling, while this server uses `vllm serve`. The launcher
+source now accepts both verified entrypoints and provides `--audit-only`; if the
+running instance stops at that guard after the systems benchmark, resume just the
+handoff/audit with the corrected source. Do not repeat the completed model study.
 
 Next operational check (on the pod in `/workspace/temporal-evidence-graphs`):
 

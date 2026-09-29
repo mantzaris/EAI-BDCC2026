@@ -1,0 +1,429 @@
+{
+  "case": {
+    "case_id": "wesad-S6-e0-delayed-c2-B3",
+    "checkpoint": 2,
+    "dataset": "wesad",
+    "episode_id": "wesad-S6-e0",
+    "family": "revision_impact",
+    "knowledge_time": 1856.0,
+    "method": "B3",
+    "split": "test",
+    "subject": "S6",
+    "variant": "delayed"
+  },
+  "completed_at": "2026-09-29T01:23:02.114146+00:00",
+  "database_update_seconds": 0.004554216982796788,
+  "display": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "C1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1765.0,
+        "event_start_seconds": 1735.0,
+        "evidence_ids": [
+          "wesad/S6/1735-1765/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 0.208734 uS.",
+        "subject_id": "S6",
+        "unit": "uS",
+        "value": 0.208734
+      },
+      {
+        "claim_id": "C2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1765.0,
+        "event_start_seconds": 1735.0,
+        "evidence_ids": [
+          "wesad/S6/1735-1765/acceleration_magnitude_sd/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "acceleration_magnitude_sd",
+        "sentence": "The acceleration magnitude variability is approximately equal to 1.320661 1/64g.",
+        "subject_id": "S6",
+        "unit": "1/64g",
+        "value": 1.320661
+      }
+    ],
+    "explanation": "The EDA median is approximately equal to 0.208734 uS. The acceleration magnitude variability is approximately equal to 1.320661 1/64g.",
+    "unresolved_evidence_ids": []
+  },
+  "end_to_end_seconds": 59.14553150697611,
+  "evidence_hash": "c392089eee7758f3cd211fb64a85fef096e29d1d13395237a6843da136a86c3d",
+  "final_candidate": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "C1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1765.0,
+        "event_start_seconds": 1735.0,
+        "evidence_ids": [
+          "wesad/S6/1735-1765/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 0.208734 uS.",
+        "subject_id": "S6",
+        "unit": "uS",
+        "value": 0.208734
+      },
+      {
+        "claim_id": "C2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1765.0,
+        "event_start_seconds": 1735.0,
+        "evidence_ids": [
+          "wesad/S6/1735-1765/acceleration_magnitude_sd/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "acceleration_magnitude_sd",
+        "sentence": "The acceleration magnitude variability is approximately equal to 1.320661 1/64g.",
+        "subject_id": "S6",
+        "unit": "1/64g",
+        "value": 1.320661
+      }
+    ],
+    "explanation": "The EDA median is approximately equal to 0.208734 uS. The acceleration magnitude variability is approximately equal to 1.320661 1/64g.",
+    "unresolved_evidence_ids": []
+  },
+  "initial": {
+    "case_id": "wesad-S6-e0-delayed-c2-B3",
+    "event": "finished",
+    "http_status": 200,
+    "phase": "initial",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "Claim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "claim_type": {
+                "enum": [
+                  "numeric_observation",
+                  "trend",
+                  "comparison",
+                  "evidence_conflict",
+                  "missing_evidence",
+                  "revision_effect"
+                ],
+                "title": "Claim Type",
+                "type": "string"
+              },
+              "depends_on_claim_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Depends On Claim Ids",
+                "type": "array"
+              },
+              "event_end_seconds": {
+                "title": "Event End Seconds",
+                "type": "number"
+              },
+              "event_start_seconds": {
+                "title": "Event Start Seconds",
+                "type": "number"
+              },
+              "evidence_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Evidence Ids",
+                "type": "array"
+              },
+              "operator": {
+                "enum": [
+                  "approximately_equal",
+                  "difference",
+                  "greater_than",
+                  "less_than",
+                  "missing",
+                  "disagrees",
+                  "remains_supported",
+                  "revised"
+                ],
+                "title": "Operator",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "subject_id": {
+                "title": "Subject Id",
+                "type": "string"
+              },
+              "unit": {
+                "title": "Unit",
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Value"
+              }
+            },
+            "required": [
+              "claim_id",
+              "claim_type",
+              "subject_id",
+              "quantity",
+              "event_start_seconds",
+              "event_end_seconds",
+              "operator",
+              "value",
+              "unit",
+              "evidence_ids",
+              "depends_on_claim_ids",
+              "sentence"
+            ],
+            "title": "Claim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "answer_status": {
+            "enum": [
+              "answered",
+              "partially_answered",
+              "insufficient_evidence"
+            ],
+            "title": "Answer Status",
+            "type": "string"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/Claim"
+            },
+            "maxItems": 3,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "unresolved_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolved Evidence Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claims",
+          "answer_status",
+          "explanation",
+          "unresolved_evidence_ids"
+        ],
+        "title": "Answer",
+        "type": "object"
+      },
+      "max_tokens": 1536,
+      "messages": [
+        {
+          "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nThe top-level JSON object has exactly four required keys, in this order: claims,\nanswer_status, explanation, unresolved_evidence_ids. After closing the claims array,\nwrite the remaining three keys. answer_status is answered, partially_answered, or\ninsufficient_evidence; explanation is a string; unresolved_evidence_ids is an array\nof unavailable evidence IDs, or []. Each claim has all of these fields: claim_id,\nclaim_type, subject_id, quantity, event_start_seconds, event_end_seconds, operator,\nvalue, unit, evidence_ids, depends_on_claim_ids, sentence. Never pad with whitespace.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nKeep every claim's event_start_seconds and event_end_seconds equal to the requested\ntarget interval, including comparisons whose earlier operand covers another interval.\nReport only requested facts; the baseline is an operand, not an additional claim.\nUse one short sentence per claim and compact JSON. Round reported numbers to six\nsignificant digits. A revision_effect claim uses revised for an explicitly revised\nfeature; an unchanged feature can be reported as an ordinary numeric_observation.\ndepends_on_claim_ids contains only claim_id values of earlier claims, never evidence IDs.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"evidence\":[{\"event_end_seconds\":1735.0,\"event_start_seconds\":1615.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1736.0,\"quantity\":\"eda_median\",\"record_id\":\"wesad/S6/1615-1735/eda_median/v1\",\"subject_id\":\"S6\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":0.226639,\"version\":1},{\"event_end_seconds\":1765.0,\"event_start_seconds\":1735.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1766.0,\"quantity\":\"acceleration_magnitude_sd\",\"record_id\":\"wesad/S6/1735-1765/acceleration_magnitude_sd/v1\",\"subject_id\":\"S6\",\"supersedes_id\":null,\"unit\":\"1/64g\",\"value\":1.3206609128511828,\"version\":1},{\"event_end_seconds\":1765.0,\"event_start_seconds\":1735.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1766.0,\"quantity\":\"eda_clipping_fraction\",\"record_id\":\"wesad/S6/1735-1765/eda_clipping_fraction/v1\",\"subject_id\":\"S6\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.008333333333333333,\"version\":1},{\"event_end_seconds\":1765.0,\"event_start_seconds\":1735.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1766.0,\"quantity\":\"eda_iqr\",\"record_id\":\"wesad/S6/1735-1765/eda_iqr/v1\",\"subject_id\":\"S6\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":0.0025580000000000047,\"version\":1},{\"event_end_seconds\":1765.0,\"event_start_seconds\":1735.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1826.0,\"quantity\":\"eda_median\",\"record_id\":\"wesad/S6/1735-1765/eda_median/v1\",\"subject_id\":\"S6\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":0.208734,\"version\":1},{\"event_end_seconds\":1765.0,\"event_start_seconds\":1735.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1766.0,\"quantity\":\"eda_missing_fraction\",\"record_id\":\"wesad/S6/1735-1765/eda_missing_fraction/v1\",\"subject_id\":\"S6\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.0,\"version\":1},{\"event_end_seconds\":1765.0,\"event_start_seconds\":1735.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1766.0,\"quantity\":\"pulse_frequency_bpm\",\"record_id\":\"wesad/S6/1735-1765/pulse_frequency_bpm/v1\",\"subject_id\":\"S6\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":68.0,\"version\":1},{\"event_end_seconds\":1765.0,\"event_start_seconds\":1735.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":1766.0,\"quantity\":\"respiration_frequency_per_min\",\"record_id\":\"wesad/S6/1735-1765/respiration_frequency_per_min/v1\",\"subject_id\":\"S6\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":18.0,\"version\":1}],\"knowledge_time\":1856.0,\"previous_display\":{\"answer_status\":\"answered\",\"claims\":[{\"claim_id\":\"C1\",\"claim_type\":\"numeric_observation\",\"depends_on_claim_ids\":[],\"event_end_seconds\":1765.0,\"event_start_seconds\":1735.0,\"evidence_ids\":[\"wesad/S6/1615-1735/eda_median/v1\"],\"operator\":\"approximately_equal\",\"quantity\":\"eda_median\",\"sentence\":\"The EDA median is approximately equal to 0.226639 uS.\",\"subject_id\":\"S6\",\"unit\":\"uS\",\"value\":0.226639},{\"claim_id\":\"C2\",\"claim_type\":\"numeric_observation\",\"depends_on_claim_ids\":[],\"event_end_seconds\":1765.0,\"event_start_seconds\":1735.0,\"evidence_ids\":[\"wesad/S6/1735-1765/acceleration_magnitude_sd/v1\"],\"operator\":\"approximately_equal\",\"quantity\":\"acceleration_magnitude_sd\",\"sentence\":\"The acceleration magnitude variability is approximately equal to 1.320661 1/64g.\",\"subject_id\":\"S6\",\"unit\":\"1/64g\",\"value\":1.320661}],\"explanation\":\"The EDA median is approximately equal to 0.226639 uS. The acceleration magnitude variability is approximately equal to 1.320661 1/64g.\",\"unresolved_evidence_ids\":[]},\"question\":\"Using the currently available versions, give the EDA median (identify an explicit revision if present) and acceleration magnitude variability for the target window. Identify missing evidence without inventing values.\",\"subject_id\":\"S6\",\"target_interval\":[1735.0,1765.0]}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260928,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\"claims\": [{\"claim_id\": \"C1\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"S6\", \"quantity\": \"eda_median\", \"event_start_seconds\": 1735.0, \"event_end_seconds\": 1765.0, \"operator\": \"approximately_equal\", \"value\": 0.208734, \"unit\": \"uS\", \"evidence_ids\": [\"wesad/S6/1735-1765/eda_median/v1\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA median is approximately equal to 0.208734 uS.\"}, {\"claim_id\": \"C2\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"S6\", \"quantity\": \"acceleration_magnitude_sd\", \"event_start_seconds\": 1735.0, \"event_end_seconds\": 1765.0, \"operator\": \"approximately_equal\", \"value\": 1.320661, \"unit\": \"1/64g\", \"evidence_ids\": [\"wesad/S6/1735-1765/acceleration_magnitude_sd/v1\"], \"depends_on_claim_ids\": [], \"sentence\": \"The acceleration magnitude variability is approximately equal to 1.320661 1/64g.\"}], \"answer_status\": \"answered\", \"explanation\": \"The EDA median is approximately equal to 0.208734 uS. The acceleration magnitude variability is approximately equal to 1.320661 1/64g.\", \"unresolved_evidence_ids\": []}",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790644976,
+      "id": "chatcmpl-b9e4cd822fbc49acb47f2784e4d9186c",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 370,
+        "prompt_tokens": 1697,
+        "prompt_tokens_details": null,
+        "total_tokens": 2067
+      }
+    },
+    "seconds": 5.37129646493122,
+    "started_at": "2026-09-29T01:22:56.719720+00:00",
+    "truncated": false
+  },
+  "paragraph_discrepancies": [],
+  "persistent_before": {
+    "wesad-S6-e0-delayed-c0-B3/claim/C2": {
+      "claim": {
+        "claim_id": "C2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1765.0,
+        "event_start_seconds": 1735.0,
+        "evidence_ids": [
+          "wesad/S6/1735-1765/acceleration_magnitude_sd/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "acceleration_magnitude_sd",
+        "sentence": "The acceleration magnitude variability is approximately equal to 1.320661 1/64g.",
+        "subject_id": "S6",
+        "unit": "1/64g",
+        "value": 1.3206609128511828
+      },
+      "created_at": 1766.0,
+      "current_evidence_ids": [
+        "wesad/S6/1735-1765/acceleration_magnitude_sd/v1"
+      ],
+      "last_transition": null,
+      "state": "supported"
+    },
+    "wesad-S6-e0-delayed-c1-B3/claim/C2": {
+      "claim": {
+        "claim_id": "C2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1765.0,
+        "event_start_seconds": 1735.0,
+        "evidence_ids": [
+          "wesad/S6/1735-1765/acceleration_magnitude_sd/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "acceleration_magnitude_sd",
+        "sentence": "The acceleration magnitude variability is approximately equal to 1.320661 1/64g.",
+        "subject_id": "S6",
+        "unit": "1/64g",
+        "value": 1.320661
+      },
+      "created_at": 1796.0,
+      "current_evidence_ids": [
+        "wesad/S6/1735-1765/acceleration_magnitude_sd/v1"
+      ],
+      "last_transition": null,
+      "state": "supported"
+    }
+  },
+  "query": {
+    "dataset_id": "wesad",
+    "event_end_seconds": 1765.0,
+    "event_start_seconds": 1735.0,
+    "family": "revision_impact",
+    "freshness_seconds": null,
+    "knowledge_time": 1856.0,
+    "question": "Using the currently available versions, give the EDA median (identify an explicit revision if present) and acceleration magnitude variability for the target window. Identify missing evidence without inventing values.",
+    "session_id": "session_1",
+    "subject_id": "S6"
+  },
+  "raw_candidate": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "C1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1765.0,
+        "event_start_seconds": 1735.0,
+        "evidence_ids": [
+          "wesad/S6/1735-1765/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 0.208734 uS.",
+        "subject_id": "S6",
+        "unit": "uS",
+        "value": 0.208734
+      },
+      {
+        "claim_id": "C2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 1765.0,
+        "event_start_seconds": 1735.0,
+        "evidence_ids": [
+          "wesad/S6/1735-1765/acceleration_magnitude_sd/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "acceleration_magnitude_sd",
+        "sentence": "The acceleration magnitude variability is approximately equal to 1.320661 1/64g.",
+        "subject_id": "S6",
+        "unit": "1/64g",
+        "value": 1.320661
+      }
+    ],
+    "explanation": "The EDA median is approximately equal to 0.208734 uS. The acceleration magnitude variability is approximately equal to 1.320661 1/64g.",
+    "unresolved_evidence_ids": []
+  },
+  "repair": null,
+  "retrieval_seconds": 0.00160485808737576,
+  "revisions": [
+    {
+      "kind": "ordinary_ingestion",
+      "records": 1,
+      "seconds": 0.0007154850754886866
+    }
+  ],
+  "seconds": 5.37129646493122,
+  "status": "completed",
+  "validation": [
+    {
+      "claim_id": "C1",
+      "reasons": [],
+      "state": "supported"
+    },
+    {
+      "claim_id": "C2",
+      "reasons": [],
+      "state": "supported"
+    }
+  ]
+}

@@ -18,6 +18,7 @@ from temporal_evidence.io import append_jsonl, read_json, utc_now, write_json
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--primary-server-pid", type=int, required=True)
+    parser.add_argument("--audit-only", action="store_true", help="Resume only the model handoff/audit after completed main and systems runs")
     args = parser.parse_args()
     journal = Path("artifacts/manifests/execution_stages.jsonl")
 
@@ -44,24 +45,31 @@ def main():
         for name in ("gpu_placement.json", "server_launch.json"):
             shutil.copyfile(Path("artifacts/manifests")/name, target/name)
 
-    save_pilot_proofs("pilot_v3")
     command = [sys.executable, "-m", "temporal_evidence.cli"]
-    stage("final_development_pilot", *command, "pilot", "--run-id", "pilot_v4")
-    save_pilot_proofs("pilot_v4")
-    stage("final_live_core_validation", *command, "validate-core", "--graph")
-    stage("development_evaluation", *command, "evaluate", "--run-id", "pilot_v4")
-    stage("protocol_freeze", *command, "freeze-manifest")
-    stage("matched_held_out_run", *command, "run", "--resume")
-    stage("independent_evaluation", *command, "evaluate")
-    stage("paired_analysis", *command, "analyze")
-    stage("isolated_streaming_benchmark", *command, "benchmark-streaming")
+    if not args.audit_only:
+        save_pilot_proofs("pilot_v3")
+        stage("final_development_pilot", *command, "pilot", "--run-id", "pilot_v4")
+        save_pilot_proofs("pilot_v4")
+        stage("final_live_core_validation", *command, "validate-core", "--graph")
+        stage("development_evaluation", *command, "evaluate", "--run-id", "pilot_v4")
+        stage("protocol_freeze", *command, "freeze-manifest")
+        stage("matched_held_out_run", *command, "run", "--resume")
+        stage("independent_evaluation", *command, "evaluate")
+        stage("paired_analysis", *command, "analyze")
+        stage("isolated_streaming_benchmark", *command, "benchmark-streaming")
+    else:
+        assert read_json("artifacts/runs/minimum_v1/completion.json")["accounted_cases"] == 3600
+        systems = read_json("artifacts/streaming/streaming_v1/summary.json")
+        assert len(systems["cells"]) == 6 and systems["logical_parity"]
 
     # Stop only the primary API server explicitly supplied by the operator. Its
     # normal shutdown joins the GPU workers; never send a system-wide kill.
     process = Path(f"/proc/{args.primary_server_pid}")
     if process.exists():
         process_command = (process/"cmdline").read_bytes().replace(b"\0", b" ")
-        assert b"vllm.entrypoints.openai.api_server" in process_command and b"Qwen3-8B" in process_command
+        primary_entrypoint = (b"vllm.entrypoints.openai.api_server" in process_command
+                              or b"/vllm serve " in process_command)
+        assert primary_entrypoint and b"Qwen3-8B" in process_command
         os.kill(args.primary_server_pid, signal.SIGTERM)
         for _ in range(60):
             if not process.exists():

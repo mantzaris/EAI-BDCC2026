@@ -120,12 +120,12 @@ def figure_tables(report,directory):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    plt.rcParams.update({"font.size":10,"pdf.fonttype":42,"svg.fonttype":"none"})
+    plt.rcParams.update({"font.size":11,"pdf.fonttype":42,"svg.fonttype":"none"})
     figures=Path("artifacts/figures");figures.mkdir(parents=True,exist_ok=True)
     colors=["#747474","#e69f00","#56b4e9","#0072b2","#009e73"]
     for names,title in [(("case_error","fact_recall"),"reliability"),
                         (("correction_completeness","collateral_revision"),"correction")]:
-        fig,axes=plt.subplots(2,3,figsize=(10.5,5.2),sharey="row")
+        fig,axes=plt.subplots(2,3,figsize=(7.2,4.6),sharey="row")
         for col,source in enumerate(SOURCES):
             group=[row for row in report["summary"] if row["dataset"]==source]
             for ri,metric in enumerate(names):
@@ -150,4 +150,5 @@ def figure_tables(report,directory):
     lines += [r"\bottomrule",r"\end{tabular}"]
     (directory/"reliability_table.tex").write_text("\n".join(lines)+"\n")
     write_json(figures/f"{report['run_id']}_manifest.json",{"input":str(directory/"summary.json"),
-        "sha256":digest_file(directory/"summary.json"),"script":"src/temporal_evidence/analysis/summarize.py"})
+        "sha256":digest_file(directory/"summary.json"),"script":"src/temporal_evidence/analysis/summarize.py",
+        "script_sha256":digest_file(__file__)})

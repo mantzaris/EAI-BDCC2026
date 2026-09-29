@@ -143,3 +143,21 @@
   delayed replacements can also be examined for staleness.
 - Rerun the complete development pilot as `pilot_v4` after that systems-only fix,
   then freeze all source hashes. No held-out generation occurred before this fix.
+
+## 2026-09-28 — Frozen run and reporting boundary
+
+- Pilot v4 passed with 100 initial cases, 52 repairs, no initial truncations or final
+  failures, and 20 interactive requests. The frozen held-out run started at
+  2026-09-29 01:14:46 UTC with protocol hash
+  `a22b68b4e3d33c7cbcaa253a6af27232a574a69692b5dcb793191ee1d2ceef63`.
+- Development of the dashboard, manuscript and reporting scripts continues outside
+  the frozen runtime. No prompt, threshold, case, inference setting or runtime
+  predicate is changed after freezing. Local verification checks every frozen hash.
+- The dashboard appends isolated ReviewEvent and explanation versions. Scripted
+  examples are labeled automated demonstrations; no human study is conducted.
+  A reviewer-supplied correction is not independently certified by the interface.
+- Add a descriptive completion-time check for the separate systems workload, using
+  its recorded completion event index. Remap cited versions to the latest known
+  numerical values and report replacements that were adequate for their request
+  snapshot but stale at completion. Preserve the frozen request-snapshot adequacy
+  and deadline metrics unchanged. This is additional reporting, not a tuned metric.

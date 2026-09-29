@@ -25,13 +25,13 @@ def architecture():
     ax.axis("off")
     boxes = {
         "source": (0, 2.7, "Immutable\nrecordings"),
-        "features": (2.1, 2.7, "Completed\nwindow features"),
-        "store": (4.2, 2.7, "Versioned\nevidence store"),
+        "features": (2.1, 2.7, "Windowed\nfeatures"),
+        "store": (4.2, 2.7, "Evidence\nversions"),
         "maintenance": (6.3, 2.7, "Revision\npropagation"),
         "question": (0, 1.35, "Scoped\nquestion"),
-        "generator": (2.1, 1.35, "CUDA candidate\ngeneration"),
-        "check": (4.2, 1.35, "Checks + one\nrepair attempt"),
-        "display": (6.3, 1.35, "Versioned\ndisplayed text"),
+        "generator": (2.1, 1.35, "CUDA claims\n(candidates)"),
+        "check": (4.2, 1.35, "Validate\n+ one repair"),
+        "display": (6.3, 1.35, "Displayed\ntext versions"),
         "oracle": (1.05, 0, "Independent\nevaluation"),
         "review": (5.25, 0, "Review actions\n+ history"),
     }
@@ -42,7 +42,7 @@ def architecture():
                               facecolor=face, edgecolor="#345266", linewidth=1,
                               linestyle="--" if key in {"oracle", "review"} else "-")
         ax.add_patch(patch)
-        ax.text(x+width/2, y+height/2, label, ha="center", va="center", fontsize=11)
+        ax.text(x+width/2, y+height/2, label, ha="center", va="center", fontsize=11.5)
     def edge(a, b, start="right", end="left", label=None):
         x, y, _ = boxes[a]; u, v, _ = boxes[b]
         points = {"right": (x+width, y+height/2), "bottom": (x+width/2, y), "top": (x+width/2, y+height)}
@@ -70,10 +70,11 @@ def symbolic_graph(core):
     positions = {"a": (0, 1.9), "b": (0, .6), "alternative": (0, -1),
                  "difference": (1.8, 1.7), "direct_claim": (3.6, 2.7),
                  "downstream_claim": (3.6, 1.35), "or_claim": (3.6, -.05), "unaffected": (3.6, -1.45)}
-    names = {"a": "Target a", "b": "Earlier b", "alternative": "Alternative", "difference": "a − b",
+    names = {"a": "Target a", "b": "Earlier b", "alternative": "Alternate", "difference": "a − b",
              "direct_claim": "Direct", "downstream_claim": "Downstream",
              "or_claim": "OR claim", "unaffected": "Earlier-value"}
-    figure, axes = plt.subplots(1, 2, figsize=(8.0, 4.1))
+    figure, axes = plt.subplots(1, 2, figsize=(6.8, 4.3))
+    figure.subplots_adjust(wspace=.17)
     for after, ax in enumerate(axes):
         ax.set(xlim=(-.95, 4.65), ylim=(-2.05, 3.3)); ax.axis("off")
         ax.set_title("After correction" if after else "Before correction", fontsize=13, pad=15)
@@ -84,19 +85,21 @@ def symbolic_graph(core):
             value = revision.value if after and identifier == "a" else assessments.get(identifier, {}).get("value", record.value) if after and identifier == "difference" else record.value
             label = f"{names[identifier]}\n{value:g}"
             if record.record_type == "claim":
-                label += " · retain" if state == "supported" else " · withdraw"
+                label += "\nretain" if state == "supported" else "\nwithdraw"
             color = "#f6d9cd" if state != "supported" else "#dcece7" if record.record_type == "claim" else "#e8edf2"
-            text = ax.text(x, y, label, ha="center", va="center", fontsize=10.5,
-                           bbox={"boxstyle": "round,pad=.4", "facecolor": color, "edgecolor": "#60717a", "linewidth": .8})
-            patches[identifier] = text.get_bbox_patch()
-        figure.canvas.draw()
+            width = 1.65 if record.record_type == "claim" else 1.05 if identifier == "difference" else 1.45
+            height = 1.0 if record.record_type == "claim" else .72
+            patch = FancyBboxPatch((x-width/2,y-height/2),width,height,boxstyle="round,pad=.02",
+                                  facecolor=color,edgecolor="#60717a",linewidth=.8,zorder=3)
+            ax.add_patch(patch)
+            ax.text(x, y, label, ha="center", va="center", fontsize=11,zorder=4)
+            patches[identifier] = patch
         for identifier, position in positions.items():
             for dependency in records[identifier].source_ids:
                 if dependency in positions:
                     ax.add_patch(FancyArrowPatch(position, positions[dependency], patchA=patches[identifier],
-                        patchB=patches[dependency], arrowstyle="->", mutation_scale=10, color="#8a9194", linewidth=1,
-                        shrinkA=3, shrinkB=3, zorder=0))
-    figure.subplots_adjust(wspace=.17)
+                        patchB=patches[dependency], arrowstyle="->", mutation_scale=13, color="#8a9194", linewidth=1,
+                        shrinkA=3, shrinkB=3, zorder=2))
     save(figure, "symbolic_correction")
 
 
