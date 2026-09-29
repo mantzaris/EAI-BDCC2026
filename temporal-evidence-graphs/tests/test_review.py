@@ -12,6 +12,8 @@ def test_review_correction_preserves_alternative_and_restores_immutable_history(
     assert workspace.states()["downstream_claim"] == "contradicted"
     assert workspace.states()["or_claim"] == "supported"
     assert workspace.states()["unaffected"] == "supported"
+    graph = workspace.neighborhood_dot("a/review/v2")
+    assert "3 synthetic_unit" in graph and "Recorded value: 1" in graph
     assert "target EDA median is 2" not in first["metadata"]["after"]
     assert "independent source supports 2" in first["metadata"]["after"]
     workspace.act("accept_correction", "a", "Restore original evidence", 2, actor="automated_demo")

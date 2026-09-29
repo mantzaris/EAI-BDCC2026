@@ -4,7 +4,7 @@ import json
 import os
 import pandas as pd
 import streamlit as st
-from temporal_evidence.dashboard.review import ReviewWorkspace
+from temporal_evidence.dashboard.review import ReviewWorkspace, is_derived
 
 st.set_page_config(page_title="Evidence review", page_icon="◈", layout="wide")
 st.title("Evidence review")
@@ -70,6 +70,9 @@ try:
             with right:
                 st.subheader("Review action")
                 actions = {"Reject evidence": "reject_evidence", "Accept correction": "accept_correction"} if record.record_type == "feature" else {"Mark interpretation unresolved": "mark_unresolved"}
+                if is_derived(record):
+                    actions = {"Reject derivation": "reject_evidence"}
+                    st.caption("This value is computed from its inputs. Correct an input to change the derived value.")
                 # Select outside the form so correction fields update immediately.
                 action_label = st.selectbox("Action", list(actions))
                 with st.form("review_action"):
@@ -84,6 +87,7 @@ try:
                         st.error(str(error))
 
         st.subheader("Feature values and versions")
+        st.caption("The table preserves recorded versions. Derived nodes in the graph show their value under the current evidence.")
         features = [r for r in workspace.records().values() if r.record_type == "feature"]
         quantities = sorted({r.quantity for r in features})
         if quantities:

@@ -1,6 +1,6 @@
 # Study status
 
-Updated: 2026-09-28 (local). Overall completion: **55%** (estimated against the eight stage gates).
+Updated: 2026-09-28 (local). Overall completion: **60%** (estimated against the eight stage gates).
 
 | Stage | State |
 |---|---|
@@ -9,12 +9,12 @@ Updated: 2026-09-28 (local). Overall completion: **55%** (estimated against the 
 | 2 GPU generation and five conditions | All five conditions executed on GPU; format failures found in development and retained |
 | 3 Real data adapters | Development unit/provenance audit completed; fixed splits and 100 prepared episodes rebuilt; replay arrays separately hashed |
 | 4 Freeze and development pilot | Complete: v4 passed, all source/episode hashes frozen and verified locally |
-| 5 Locked experiments | Running; 1,144/3,600 cases backed up locally at approximately 02:10 UTC; at most 2,880 repairs |
+| 5 Locked experiments | Running; 1,814/3,600 cases backed up locally at approximately 02:45 UTC; at most 2,880 repairs |
 | 6 Analysis and interface | Analysis pipeline ready; functional isolated review dashboard with tested actions; systems/audit queued |
 | 7 Manuscript package | Full draft structure and generated-table/figure pipeline ready; final numerical results and PDF pending |
 
 All changes are committed and pushed to `main`, without branches, as instructed.
-The held-out run started at 2026-09-29 01:14:46 UTC. Forty-five tests pass.
+The held-out run started at 2026-09-29 01:14:46 UTC. Forty-seven tests pass.
 Sixty prepared base episodes are held out; forty are for development. Protocol hash:
 `a22b68b4e3d33c7cbcaa253a6af27232a574a69692b5dcb793191ee1d2ceef63`.
 The user confirmed continuing with the current pod.
@@ -43,7 +43,7 @@ Operational note: the already-running launcher's handoff guard expects the older
 API-module command spelling, while this server uses `vllm serve`. The launcher
 source now accepts both verified entrypoints and provides `--audit-only`; if the
 running instance stops at that guard after the systems benchmark, resume just the
-handoff/audit with the corrected source. Do not repeat the completed model study.
+handoff/audit with the corrected source. The dedicated `scripts/finish_outputs.py` coordinator is already waiting to do this, collect database counts, and back up final artifacts. Do not start another coordinator or repeat the completed model study.
 
 Next operational check (on the pod in `/workspace/temporal-evidence-graphs`):
 

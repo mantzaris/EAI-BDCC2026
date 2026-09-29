@@ -1,0 +1,439 @@
+{
+  "case": {
+    "case_id": "ppg_dalia-S12-e1-clean-c0-B1",
+    "checkpoint": 0,
+    "dataset": "ppg_dalia",
+    "episode_id": "ppg_dalia-S12-e1",
+    "family": "evidence_sufficiency",
+    "knowledge_time": 5936.0,
+    "method": "B1",
+    "split": "test",
+    "subject": "S12",
+    "variant": "clean"
+  },
+  "completed_at": "2026-09-29T02:10:40.605124+00:00",
+  "database_update_seconds": 0.011282510124146938,
+  "display": {
+    "answer_status": "partially_answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 5935.0,
+        "event_start_seconds": 5905.0,
+        "evidence_ids": [
+          "ppg_dalia/S12/5905-5935/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 2.137637 uS during the window from 5905.0 to 5935.0 seconds.",
+        "subject_id": "S12",
+        "unit": "uS",
+        "value": 2.137637
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 5935.0,
+        "event_start_seconds": 5905.0,
+        "evidence_ids": [
+          "ppg_dalia/S12/5905-5935/eda_missing_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The EDA missing-sample fraction is approximately equal to 0.0 fraction during the window from 5905.0 to 5935.0 seconds.",
+        "subject_id": "S12",
+        "unit": "fraction",
+        "value": 0.0
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_type": "missing_evidence",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 5935.0,
+        "event_start_seconds": 5905.0,
+        "evidence_ids": [
+          "ppg_dalia/S12/5905-5935/pulse_frequency_bpm/v1"
+        ],
+        "operator": "missing",
+        "quantity": "pulse_frequency_bpm",
+        "sentence": "The pulse frequency is missing during the window from 5905.0 to 5935.0 seconds.",
+        "subject_id": "S12",
+        "unit": "per_min",
+        "value": null
+      }
+    ],
+    "explanation": "The EDA median is approximately equal to 2.137637 uS during the window from 5905.0 to 5935.0 seconds. The EDA missing-sample fraction is approximately equal to 0.0 fraction during the window from 5905.0 to 5935.0 seconds. The pulse frequency is missing during the window from 5905.0 to 5935.0 seconds.",
+    "unresolved_evidence_ids": [
+      "ppg_dalia/S12/5905-5935/respiration_frequency_per_min/v1"
+    ]
+  },
+  "end_to_end_seconds": 49.22601342690177,
+  "evidence_hash": "1f152e7f5a019043a3b1f5248d1dfa26a86ac5bcdf23de5b618cb3e1b65809da",
+  "final_candidate": {
+    "answer_status": "partially_answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 5935.0,
+        "event_start_seconds": 5905.0,
+        "evidence_ids": [
+          "ppg_dalia/S12/5905-5935/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 2.137637 uS during the window from 5905.0 to 5935.0 seconds.",
+        "subject_id": "S12",
+        "unit": "uS",
+        "value": 2.137637
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 5935.0,
+        "event_start_seconds": 5905.0,
+        "evidence_ids": [
+          "ppg_dalia/S12/5905-5935/eda_missing_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The EDA missing-sample fraction is approximately equal to 0.0 fraction during the window from 5905.0 to 5935.0 seconds.",
+        "subject_id": "S12",
+        "unit": "fraction",
+        "value": 0.0
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_type": "missing_evidence",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 5935.0,
+        "event_start_seconds": 5905.0,
+        "evidence_ids": [
+          "ppg_dalia/S12/5905-5935/pulse_frequency_bpm/v1"
+        ],
+        "operator": "missing",
+        "quantity": "pulse_frequency_bpm",
+        "sentence": "The pulse frequency is missing during the window from 5905.0 to 5935.0 seconds.",
+        "subject_id": "S12",
+        "unit": "per_min",
+        "value": null
+      }
+    ],
+    "explanation": "The EDA median is approximately equal to 2.137637 uS during the window from 5905.0 to 5935.0 seconds. The EDA missing-sample fraction is approximately equal to 0.0 fraction during the window from 5905.0 to 5935.0 seconds. The pulse frequency is missing during the window from 5905.0 to 5935.0 seconds.",
+    "unresolved_evidence_ids": [
+      "ppg_dalia/S12/5905-5935/respiration_frequency_per_min/v1"
+    ]
+  },
+  "initial": {
+    "case_id": "ppg_dalia-S12-e1-clean-c0-B1",
+    "event": "finished",
+    "http_status": 200,
+    "phase": "initial",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "Claim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "claim_type": {
+                "enum": [
+                  "numeric_observation",
+                  "trend",
+                  "comparison",
+                  "evidence_conflict",
+                  "missing_evidence",
+                  "revision_effect"
+                ],
+                "title": "Claim Type",
+                "type": "string"
+              },
+              "depends_on_claim_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Depends On Claim Ids",
+                "type": "array"
+              },
+              "event_end_seconds": {
+                "title": "Event End Seconds",
+                "type": "number"
+              },
+              "event_start_seconds": {
+                "title": "Event Start Seconds",
+                "type": "number"
+              },
+              "evidence_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Evidence Ids",
+                "type": "array"
+              },
+              "operator": {
+                "enum": [
+                  "approximately_equal",
+                  "difference",
+                  "greater_than",
+                  "less_than",
+                  "missing",
+                  "disagrees",
+                  "remains_supported",
+                  "revised"
+                ],
+                "title": "Operator",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "subject_id": {
+                "title": "Subject Id",
+                "type": "string"
+              },
+              "unit": {
+                "title": "Unit",
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Value"
+              }
+            },
+            "required": [
+              "claim_id",
+              "claim_type",
+              "subject_id",
+              "quantity",
+              "event_start_seconds",
+              "event_end_seconds",
+              "operator",
+              "value",
+              "unit",
+              "evidence_ids",
+              "depends_on_claim_ids",
+              "sentence"
+            ],
+            "title": "Claim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "answer_status": {
+            "enum": [
+              "answered",
+              "partially_answered",
+              "insufficient_evidence"
+            ],
+            "title": "Answer Status",
+            "type": "string"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/Claim"
+            },
+            "maxItems": 3,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "unresolved_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolved Evidence Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claims",
+          "answer_status",
+          "explanation",
+          "unresolved_evidence_ids"
+        ],
+        "title": "Answer",
+        "type": "object"
+      },
+      "max_tokens": 1536,
+      "messages": [
+        {
+          "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nThe top-level JSON object has exactly four required keys, in this order: claims,\nanswer_status, explanation, unresolved_evidence_ids. After closing the claims array,\nwrite the remaining three keys. answer_status is answered, partially_answered, or\ninsufficient_evidence; explanation is a string; unresolved_evidence_ids is an array\nof unavailable evidence IDs, or []. Each claim has all of these fields: claim_id,\nclaim_type, subject_id, quantity, event_start_seconds, event_end_seconds, operator,\nvalue, unit, evidence_ids, depends_on_claim_ids, sentence. Never pad with whitespace.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nKeep every claim's event_start_seconds and event_end_seconds equal to the requested\ntarget interval, including comparisons whose earlier operand covers another interval.\nReport only requested facts; the baseline is an operand, not an additional claim.\nUse one short sentence per claim and compact JSON. Round reported numbers to six\nsignificant digits. A revision_effect claim uses revised for an explicitly revised\nfeature; an unchanged feature can be reported as an ordinary numeric_observation.\ndepends_on_claim_ids contains only claim_id values of earlier claims, never evidence IDs.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"evidence\":[{\"event_end_seconds\":5905.0,\"event_start_seconds\":5785.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":5906.0,\"quantity\":\"eda_median\",\"record_id\":\"ppg_dalia/S12/5785-5905/eda_median/v1\",\"subject_id\":\"S12\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":1.6371385,\"version\":1},{\"event_end_seconds\":5935.0,\"event_start_seconds\":5905.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":5936.0,\"quantity\":\"acceleration_magnitude_sd\",\"record_id\":\"ppg_dalia/S12/5905-5935/acceleration_magnitude_sd/v1\",\"subject_id\":\"S12\",\"supersedes_id\":null,\"unit\":\"g\",\"value\":0.2875039121309305,\"version\":1},{\"event_end_seconds\":5935.0,\"event_start_seconds\":5905.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":5936.0,\"quantity\":\"eda_clipping_fraction\",\"record_id\":\"ppg_dalia/S12/5905-5935/eda_clipping_fraction/v1\",\"subject_id\":\"S12\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.008333333333333333,\"version\":1},{\"event_end_seconds\":5935.0,\"event_start_seconds\":5905.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":5936.0,\"quantity\":\"eda_iqr\",\"record_id\":\"ppg_dalia/S12/5905-5935/eda_iqr/v1\",\"subject_id\":\"S12\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":0.31356800000000007,\"version\":1},{\"event_end_seconds\":5935.0,\"event_start_seconds\":5905.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":5936.0,\"quantity\":\"eda_median\",\"record_id\":\"ppg_dalia/S12/5905-5935/eda_median/v1\",\"subject_id\":\"S12\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":2.137637,\"version\":1},{\"event_end_seconds\":5935.0,\"event_start_seconds\":5905.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":5936.0,\"quantity\":\"eda_missing_fraction\",\"record_id\":\"ppg_dalia/S12/5905-5935/eda_missing_fraction/v1\",\"subject_id\":\"S12\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.0,\"version\":1},{\"event_end_seconds\":5935.0,\"event_start_seconds\":5905.0,\"evidence_state\":\"missing\",\"ingested_at_seconds\":5936.0,\"quantity\":\"pulse_frequency_bpm\",\"record_id\":\"ppg_dalia/S12/5905-5935/pulse_frequency_bpm/v1\",\"subject_id\":\"S12\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":null,\"version\":1},{\"event_end_seconds\":5935.0,\"event_start_seconds\":5905.0,\"evidence_state\":\"missing\",\"ingested_at_seconds\":5936.0,\"quantity\":\"respiration_frequency_per_min\",\"record_id\":\"ppg_dalia/S12/5905-5935/respiration_frequency_per_min/v1\",\"subject_id\":\"S12\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":null,\"version\":1}],\"knowledge_time\":5936.0,\"question\":\"Which requested measurements are available? Give the window's EDA median and its missing-sample fraction, identifying unavailable values explicitly.\",\"subject_id\":\"S12\",\"target_interval\":[5905.0,5935.0]}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260928,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\"claims\": [{\"claim_id\": \"claim_1\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"S12\", \"quantity\": \"eda_median\", \"event_start_seconds\": 5905.0, \"event_end_seconds\": 5935.0, \"operator\": \"approximately_equal\", \"value\": 2.137637, \"unit\": \"uS\", \"evidence_ids\": [\"ppg_dalia/S12/5905-5935/eda_median/v1\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA median is approximately equal to 2.137637 uS during the window from 5905.0 to 5935.0 seconds.\"}, {\"claim_id\": \"claim_2\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"S12\", \"quantity\": \"eda_missing_fraction\", \"event_start_seconds\": 5905.0, \"event_end_seconds\": 5935.0, \"operator\": \"approximately_equal\", \"value\": 0.0, \"unit\": \"fraction\", \"evidence_ids\": [\"ppg_dalia/S12/5905-5935/eda_missing_fraction/v1\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA missing-sample fraction is approximately equal to 0.0 fraction during the window from 5905.0 to 5935.0 seconds.\"}, {\"claim_id\": \"claim_3\", \"claim_type\": \"missing_evidence\", \"subject_id\": \"S12\", \"quantity\": \"pulse_frequency_bpm\", \"event_start_seconds\": 5905.0, \"event_end_seconds\": 5935.0, \"operator\": \"missing\", \"value\": null, \"unit\": \"per_min\", \"evidence_ids\": [\"ppg_dalia/S12/5905-5935/pulse_frequency_bpm/v1\"], \"depends_on_claim_ids\": [], \"sentence\": \"The pulse frequency is missing during the window from 5905.0 to 5935.0 seconds.\"}], \"answer_status\": \"partially_answered\", \"explanation\": \"The EDA median is approximately equal to 2.137637 uS during the window from 5905.0 to 5935.0 seconds. The EDA missing-sample fraction is approximately equal to 0.0 fraction during the window from 5905.0 to 5935.0 seconds. The pulse frequency is missing during the window from 5905.0 to 5935.0 seconds.\", \"unresolved_evidence_ids\": [\"ppg_dalia/S12/5905-5935/respiration_frequency_per_min/v1\"]}",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790647831,
+      "id": "chatcmpl-257eb03be2b04846a2412c38db59ec2c",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 631,
+        "prompt_tokens": 1380,
+        "prompt_tokens_details": null,
+        "total_tokens": 2011
+      }
+    },
+    "seconds": 8.894742641132325,
+    "started_at": "2026-09-29T02:10:31.709413+00:00",
+    "truncated": false
+  },
+  "paragraph_discrepancies": [],
+  "persistent_before": {},
+  "query": {
+    "dataset_id": "ppg_dalia",
+    "event_end_seconds": 5935.0,
+    "event_start_seconds": 5905.0,
+    "family": "evidence_sufficiency",
+    "freshness_seconds": null,
+    "knowledge_time": 5936.0,
+    "question": "Which requested measurements are available? Give the window's EDA median and its missing-sample fraction, identifying unavailable values explicitly.",
+    "session_id": "session_1",
+    "subject_id": "S12"
+  },
+  "raw_candidate": {
+    "answer_status": "partially_answered",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 5935.0,
+        "event_start_seconds": 5905.0,
+        "evidence_ids": [
+          "ppg_dalia/S12/5905-5935/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 2.137637 uS during the window from 5905.0 to 5935.0 seconds.",
+        "subject_id": "S12",
+        "unit": "uS",
+        "value": 2.137637
+      },
+      {
+        "claim_id": "claim_2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 5935.0,
+        "event_start_seconds": 5905.0,
+        "evidence_ids": [
+          "ppg_dalia/S12/5905-5935/eda_missing_fraction/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_missing_fraction",
+        "sentence": "The EDA missing-sample fraction is approximately equal to 0.0 fraction during the window from 5905.0 to 5935.0 seconds.",
+        "subject_id": "S12",
+        "unit": "fraction",
+        "value": 0.0
+      },
+      {
+        "claim_id": "claim_3",
+        "claim_type": "missing_evidence",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 5935.0,
+        "event_start_seconds": 5905.0,
+        "evidence_ids": [
+          "ppg_dalia/S12/5905-5935/pulse_frequency_bpm/v1"
+        ],
+        "operator": "missing",
+        "quantity": "pulse_frequency_bpm",
+        "sentence": "The pulse frequency is missing during the window from 5905.0 to 5935.0 seconds.",
+        "subject_id": "S12",
+        "unit": "per_min",
+        "value": null
+      }
+    ],
+    "explanation": "The EDA median is approximately equal to 2.137637 uS during the window from 5905.0 to 5935.0 seconds. The EDA missing-sample fraction is approximately equal to 0.0 fraction during the window from 5905.0 to 5935.0 seconds. The pulse frequency is missing during the window from 5905.0 to 5935.0 seconds.",
+    "unresolved_evidence_ids": [
+      "ppg_dalia/S12/5905-5935/respiration_frequency_per_min/v1"
+    ]
+  },
+  "repair": null,
+  "retrieval_seconds": 0.0014967687893658876,
+  "revisions": [
+    {
+      "kind": "ordinary_ingestion",
+      "records": 168,
+      "seconds": 0.007420748006552458
+    }
+  ],
+  "seconds": 8.894742641132325,
+  "status": "completed",
+  "validation": [
+    {
+      "claim_id": "claim_1",
+      "reasons": [],
+      "state": "supported"
+    },
+    {
+      "claim_id": "claim_2",
+      "reasons": [],
+      "state": "supported"
+    },
+    {
+      "claim_id": "claim_3",
+      "reasons": [],
+      "state": "supported"
+    }
+  ]
+}

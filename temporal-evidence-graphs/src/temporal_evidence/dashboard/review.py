@@ -19,6 +19,10 @@ def sentence(record):
     return record.metadata.get("claim", {}).get("sentence", record.metadata.get("sentence", record.record_id))
 
 
+def is_derived(record):
+    return record.record_type == "feature" and record.operator in {"difference", "identity"} and bool(record.source_ids)
+
+
 class ReviewWorkspace:
     def __init__(self, identifier="symbolic", path=".local/review.sqlite", backend="sqlite", uri="bolt://127.0.0.1:7687"):
         self.identifier = identifier
@@ -84,6 +88,8 @@ class ReviewWorkspace:
             if record.record_type not in {"claim", "feature"}:
                 continue
             state = states.get(record.record_id, record.evidence_state)
+            if is_derived(record):
+                state = support_state(record.record_id, records)[0]
             roots = [r.record_id for r in records.values() if r.logical_id == record.logical_id]
             impact = self.store.dependents_many(roots, float("inf"), True)
             claims = {records[key].logical_id for key in impact if records[key].record_type == "claim"}
@@ -136,6 +142,8 @@ class ReviewWorkspace:
         if action == "reject_evidence" and previous.record_type == "feature":
             changes = {"evidence_state": "invalidated"}
         elif action == "accept_correction" and previous.record_type == "feature":
+            if is_derived(previous):
+                raise ValueError("Correct an input of this derived feature, or reject the derivation")
             if value is None or not math.isfinite(value):
                 raise ValueError("A finite corrected value is required")
             changes = {"value": float(value), "evidence_state": "available"}
@@ -186,12 +194,19 @@ class ReviewWorkspace:
                 continue
             record = records[identifier]
             state = states.get(identifier, record.evidence_state)
+            value = record.value
+            if is_derived(record):
+                state, value = support_state(identifier, records)
             short_id = record.logical_id.rsplit("/", 1)[-1].replace("_", " ")
             if len(short_id) > 28:
                 short_id = short_id[:25] + "…"
             label = f"{record.record_type.title()}: {short_id}\nv{record.version} · {state}"
-            if record.value is not None:
-                label += f"\n{record.value:.6g} {record.unit}"
+            if value is not None:
+                label += f"\n{value:.6g} {record.unit}"
+            if is_derived(record) and value != record.value:
+                if value is None:
+                    label += "\nCurrent value unavailable"
+                label += f"\nRecorded value: {record.value:g}"
             color = "#fae1db" if state in {"invalidated", "unsupported", "contradicted", "needs_review"} else "#e3f1ed"
             lines.append(f"{json.dumps(identifier)} [label={json.dumps(label,ensure_ascii=False)},fillcolor={json.dumps(color)},penwidth={2.5 if identifier == center else 1},tooltip={json.dumps(sentence(record),ensure_ascii=False)}];")
         for source, target in edges:
