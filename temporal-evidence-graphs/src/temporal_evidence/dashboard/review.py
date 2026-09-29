@@ -176,20 +176,24 @@ class ReviewWorkspace:
                     target = latest[records[identifier].logical_id].record_id
                     edges.append((record.record_id, target))
         for _ in range(hops):
-            selected |= {target for source, target in edges if source in selected}
-            selected |= {source for source, target in edges if target in selected}
+            neighbors = {target for source, target in edges if source in selected}
+            neighbors |= {source for source, target in edges if target in selected}
+            selected |= neighbors
         states = self.states()
-        lines = ['digraph { rankdir=LR; node [shape=box,style="rounded,filled",fontname="Arial"];']
+        lines = ['digraph { rankdir=TB; nodesep=0.25; ranksep=0.4; node [shape=box,style="rounded,filled",fontname="Arial",fontsize=12]; edge [fontname="Arial",fontsize=10];']
         for identifier in sorted(selected):
             if identifier not in records:
                 continue
             record = records[identifier]
             state = states.get(identifier, record.evidence_state)
-            label = f"{record.record_type}: {record.quantity or 'explanation'}\nv{record.version} · {state}"
+            short_id = record.logical_id.rsplit("/", 1)[-1].replace("_", " ")
+            if len(short_id) > 28:
+                short_id = short_id[:25] + "…"
+            label = f"{record.record_type.title()}: {short_id}\nv{record.version} · {state}"
             if record.value is not None:
                 label += f"\n{record.value:.6g} {record.unit}"
             color = "#fae1db" if state in {"invalidated", "unsupported", "contradicted", "needs_review"} else "#e3f1ed"
-            lines.append(f"{json.dumps(identifier)} [label={json.dumps(label)},fillcolor={json.dumps(color)}];")
+            lines.append(f"{json.dumps(identifier)} [label={json.dumps(label,ensure_ascii=False)},fillcolor={json.dumps(color)},penwidth={2.5 if identifier == center else 1},tooltip={json.dumps(sentence(record),ensure_ascii=False)}];")
         for source, target in edges:
             if source in selected and target in selected:
                 label = records[source].support_mode if records[source].record_type == "claim" else "requires"

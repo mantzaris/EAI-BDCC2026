@@ -1,6 +1,6 @@
 # Study status
 
-Updated: 2026-09-28 (local). Overall completion: **50%** (estimated against the eight stage gates).
+Updated: 2026-09-28 (local). Overall completion: **55%** (estimated against the eight stage gates).
 
 | Stage | State |
 |---|---|
@@ -9,7 +9,7 @@ Updated: 2026-09-28 (local). Overall completion: **50%** (estimated against the 
 | 2 GPU generation and five conditions | All five conditions executed on GPU; format failures found in development and retained |
 | 3 Real data adapters | Development unit/provenance audit completed; fixed splits and 100 prepared episodes rebuilt; replay arrays separately hashed |
 | 4 Freeze and development pilot | Complete: v4 passed, all source/episode hashes frozen and verified locally |
-| 5 Locked experiments | Running; 639/3,600 cases backed up locally at approximately 01:44 UTC; at most 2,880 repairs |
+| 5 Locked experiments | Running; 1,144/3,600 cases backed up locally at approximately 02:10 UTC; at most 2,880 repairs |
 | 6 Analysis and interface | Analysis pipeline ready; functional isolated review dashboard with tested actions; systems/audit queued |
 | 7 Manuscript package | Full draft structure and generated-table/figure pipeline ready; final numerical results and PDF pending |
 

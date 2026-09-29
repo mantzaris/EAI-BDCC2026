@@ -1,0 +1,429 @@
+{
+  "case": {
+    "case_id": "wesad-S7-e1-correction-c0-B0",
+    "checkpoint": 0,
+    "dataset": "wesad",
+    "episode_id": "wesad-S7-e1",
+    "family": "current_evidence",
+    "knowledge_time": 3926.0,
+    "method": "B0",
+    "split": "test",
+    "subject": "S7",
+    "variant": "correction"
+  },
+  "completed_at": "2026-09-29T01:45:49.159281+00:00",
+  "database_update_seconds": 0.008898538071662188,
+  "display": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "C1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_ids": [
+          "wesad/S7/3895-3925/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 7.522889 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": 7.522889
+      },
+      {
+        "claim_id": "C2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 3895.0,
+        "event_start_seconds": 3775.0,
+        "evidence_ids": [
+          "wesad/S7/3775-3895/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 7.9997 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": 7.9997
+      },
+      {
+        "claim_id": "C3",
+        "claim_type": "trend",
+        "depends_on_claim_ids": [
+          "C1",
+          "C2"
+        ],
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_ids": [
+          "wesad/S7/3895-3925/eda_median/v1",
+          "wesad/S7/3775-3895/eda_median/v1"
+        ],
+        "operator": "difference",
+        "quantity": "eda_median",
+        "sentence": "The signed change from the median over the immediately preceding 120 seconds is difference of -1.470189 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": -1.470189
+      }
+    ],
+    "explanation": "The EDA median is approximately equal to 7.522889 uS. The EDA median is approximately equal to 7.9997 uS. The signed change from the median over the immediately preceding 120 seconds is difference of -1.470189 uS.",
+    "unresolved_evidence_ids": []
+  },
+  "end_to_end_seconds": 25.919691625982523,
+  "evidence_hash": "032635175ec361fefbb3287ee46bf74a310f7795328a45885a635b5453744d99",
+  "final_candidate": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "C1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_ids": [
+          "wesad/S7/3895-3925/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 7.522889 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": 7.522889
+      },
+      {
+        "claim_id": "C2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 3895.0,
+        "event_start_seconds": 3775.0,
+        "evidence_ids": [
+          "wesad/S7/3775-3895/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 7.9997 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": 7.9997
+      },
+      {
+        "claim_id": "C3",
+        "claim_type": "trend",
+        "depends_on_claim_ids": [
+          "C1",
+          "C2"
+        ],
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_ids": [
+          "wesad/S7/3895-3925/eda_median/v1",
+          "wesad/S7/3775-3895/eda_median/v1"
+        ],
+        "operator": "difference",
+        "quantity": "eda_median",
+        "sentence": "The signed change from the median over the immediately preceding 120 seconds is difference of -1.470189 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": -1.470189
+      }
+    ],
+    "explanation": "The EDA median is approximately equal to 7.522889 uS. The EDA median is approximately equal to 7.9997 uS. The signed change from the median over the immediately preceding 120 seconds is difference of -1.470189 uS.",
+    "unresolved_evidence_ids": []
+  },
+  "initial": {
+    "case_id": "wesad-S7-e1-correction-c0-B0",
+    "event": "finished",
+    "http_status": 200,
+    "phase": "initial",
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "guided_json": {
+        "$defs": {
+          "Claim": {
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "title": "Claim Id",
+                "type": "string"
+              },
+              "claim_type": {
+                "enum": [
+                  "numeric_observation",
+                  "trend",
+                  "comparison",
+                  "evidence_conflict",
+                  "missing_evidence",
+                  "revision_effect"
+                ],
+                "title": "Claim Type",
+                "type": "string"
+              },
+              "depends_on_claim_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Depends On Claim Ids",
+                "type": "array"
+              },
+              "event_end_seconds": {
+                "title": "Event End Seconds",
+                "type": "number"
+              },
+              "event_start_seconds": {
+                "title": "Event Start Seconds",
+                "type": "number"
+              },
+              "evidence_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Evidence Ids",
+                "type": "array"
+              },
+              "operator": {
+                "enum": [
+                  "approximately_equal",
+                  "difference",
+                  "greater_than",
+                  "less_than",
+                  "missing",
+                  "disagrees",
+                  "remains_supported",
+                  "revised"
+                ],
+                "title": "Operator",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "sentence": {
+                "title": "Sentence",
+                "type": "string"
+              },
+              "subject_id": {
+                "title": "Subject Id",
+                "type": "string"
+              },
+              "unit": {
+                "title": "Unit",
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Value"
+              }
+            },
+            "required": [
+              "claim_id",
+              "claim_type",
+              "subject_id",
+              "quantity",
+              "event_start_seconds",
+              "event_end_seconds",
+              "operator",
+              "value",
+              "unit",
+              "evidence_ids",
+              "depends_on_claim_ids",
+              "sentence"
+            ],
+            "title": "Claim",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "answer_status": {
+            "enum": [
+              "answered",
+              "partially_answered",
+              "insufficient_evidence"
+            ],
+            "title": "Answer Status",
+            "type": "string"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/$defs/Claim"
+            },
+            "maxItems": 3,
+            "title": "Claims",
+            "type": "array"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "unresolved_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolved Evidence Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claims",
+          "answer_status",
+          "explanation",
+          "unresolved_evidence_ids"
+        ],
+        "title": "Answer",
+        "type": "object"
+      },
+      "max_tokens": 1536,
+      "messages": [
+        {
+          "content": "You describe recorded physiological signal features, not diagnoses or causes.\nUse only supplied evidence from the requested subject and interval. A feature's value\ndescribes the available recording, not hidden physiological truth. Motion alone does\nnot prove failure or stress. Invalidated or missing values cannot support a number.\nReturn JSON matching the supplied schema, with at most 3 concise claims. Never invent\nIDs. Include explicit evidence_ids for numbers; claim dependencies must point only to\nearlier claims in this response. Do not refer to invisible updates or reference labels.\nThe top-level JSON object has exactly four required keys, in this order: claims,\nanswer_status, explanation, unresolved_evidence_ids. After closing the claims array,\nwrite the remaining three keys. answer_status is answered, partially_answered, or\ninsufficient_evidence; explanation is a string; unresolved_evidence_ids is an array\nof unavailable evidence IDs, or []. Each claim has all of these fields: claim_id,\nclaim_type, subject_id, quantity, event_start_seconds, event_end_seconds, operator,\nvalue, unit, evidence_ids, depends_on_claim_ids, sentence. Never pad with whitespace.\nFor numeric_observation use approximately_equal; for trend/comparison use difference\n(target minus earlier baseline) and cite both operands; for missing_evidence use\nmissing and value null. Describe uncertainty when appropriate. Each sentence must\ninclude its stated numeric value and unit, without additional interpretations.\nThe explanation must be exactly the claim sentences joined by single spaces.\nKeep every claim's event_start_seconds and event_end_seconds equal to the requested\ntarget interval, including comparisons whose earlier operand covers another interval.\nReport only requested facts; the baseline is an operand, not an additional claim.\nUse one short sentence per claim and compact JSON. Round reported numbers to six\nsignificant digits. A revision_effect claim uses revised for an explicitly revised\nfeature; an unchanged feature can be reported as an ordinary numeric_observation.\ndepends_on_claim_ids contains only claim_id values of earlier claims, never evidence IDs.\nUse partially_answered or insufficient_evidence when required information is absent.\n",
+          "role": "system"
+        },
+        {
+          "content": "{\"evidence\":[{\"event_end_seconds\":3895.0,\"event_start_seconds\":3775.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":3896.0,\"quantity\":\"eda_median\",\"record_id\":\"wesad/S7/3775-3895/eda_median/v1\",\"subject_id\":\"S7\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":7.9997,\"version\":1},{\"event_end_seconds\":3925.0,\"event_start_seconds\":3895.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":3926.0,\"quantity\":\"acceleration_magnitude_sd\",\"record_id\":\"wesad/S7/3895-3925/acceleration_magnitude_sd/v1\",\"subject_id\":\"S7\",\"supersedes_id\":null,\"unit\":\"1/64g\",\"value\":2.342731115915499,\"version\":1},{\"event_end_seconds\":3925.0,\"event_start_seconds\":3895.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":3926.0,\"quantity\":\"eda_clipping_fraction\",\"record_id\":\"wesad/S7/3895-3925/eda_clipping_fraction/v1\",\"subject_id\":\"S7\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.008333333333333333,\"version\":1},{\"event_end_seconds\":3925.0,\"event_start_seconds\":3895.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":3926.0,\"quantity\":\"eda_iqr\",\"record_id\":\"wesad/S7/3895-3925/eda_iqr/v1\",\"subject_id\":\"S7\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":0.06300300000000014,\"version\":1},{\"event_end_seconds\":3925.0,\"event_start_seconds\":3895.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":3926.0,\"quantity\":\"eda_median\",\"record_id\":\"wesad/S7/3895-3925/eda_median/v1\",\"subject_id\":\"S7\",\"supersedes_id\":null,\"unit\":\"uS\",\"value\":7.522889,\"version\":1},{\"event_end_seconds\":3925.0,\"event_start_seconds\":3895.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":3926.0,\"quantity\":\"eda_missing_fraction\",\"record_id\":\"wesad/S7/3895-3925/eda_missing_fraction/v1\",\"subject_id\":\"S7\",\"supersedes_id\":null,\"unit\":\"fraction\",\"value\":0.0,\"version\":1},{\"event_end_seconds\":3925.0,\"event_start_seconds\":3895.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":3926.0,\"quantity\":\"pulse_frequency_bpm\",\"record_id\":\"wesad/S7/3895-3925/pulse_frequency_bpm/v1\",\"subject_id\":\"S7\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":64.0,\"version\":1},{\"event_end_seconds\":3925.0,\"event_start_seconds\":3895.0,\"evidence_state\":\"available\",\"ingested_at_seconds\":3926.0,\"quantity\":\"respiration_frequency_per_min\",\"record_id\":\"wesad/S7/3895-3925/respiration_frequency_per_min/v1\",\"subject_id\":\"S7\",\"supersedes_id\":null,\"unit\":\"per_min\",\"value\":16.0,\"version\":1}],\"knowledge_time\":3926.0,\"question\":\"For the requested window, give the EDA median and the signed change from the median over the immediately preceding 120 seconds.\",\"subject_id\":\"S7\",\"target_interval\":[3895.0,3925.0]}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen/Qwen3-8B",
+      "seed": 20260928,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.8
+    },
+    "response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "{\"claims\": [{\"claim_id\": \"C1\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"S7\", \"quantity\": \"eda_median\", \"event_start_seconds\": 3895.0, \"event_end_seconds\": 3925.0, \"operator\": \"approximately_equal\", \"value\": 7.522889, \"unit\": \"uS\", \"evidence_ids\": [\"wesad/S7/3895-3925/eda_median/v1\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA median is approximately equal to 7.522889 uS.\"}, {\"claim_id\": \"C2\", \"claim_type\": \"numeric_observation\", \"subject_id\": \"S7\", \"quantity\": \"eda_median\", \"event_start_seconds\": 3775.0, \"event_end_seconds\": 3895.0, \"operator\": \"approximately_equal\", \"value\": 7.9997, \"unit\": \"uS\", \"evidence_ids\": [\"wesad/S7/3775-3895/eda_median/v1\"], \"depends_on_claim_ids\": [], \"sentence\": \"The EDA median is approximately equal to 7.9997 uS.\"}, {\"claim_id\": \"C3\", \"claim_type\": \"trend\", \"subject_id\": \"S7\", \"quantity\": \"eda_median\", \"event_start_seconds\": 3895.0, \"event_end_seconds\": 3925.0, \"operator\": \"difference\", \"value\": -1.470189, \"unit\": \"uS\", \"evidence_ids\": [\"wesad/S7/3895-3925/eda_median/v1\", \"wesad/S7/3775-3895/eda_median/v1\"], \"depends_on_claim_ids\": [\"C1\", \"C2\"], \"sentence\": \"The signed change from the median over the immediately preceding 120 seconds is difference of -1.470189 uS.\"}], \"answer_status\": \"answered\", \"explanation\": \"The EDA median is approximately equal to 7.522889 uS. The EDA median is approximately equal to 7.9997 uS. The signed change from the median over the immediately preceding 120 seconds is difference of -1.470189 uS.\", \"unresolved_evidence_ids\": []}",
+            "function_call": null,
+            "reasoning_content": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1790646341,
+      "id": "chatcmpl-1147f61f1d164867b050e2683a75e32c",
+      "kv_transfer_params": null,
+      "model": "Qwen/Qwen3-8B",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "service_tier": null,
+      "system_fingerprint": null,
+      "usage": {
+        "completion_tokens": 558,
+        "prompt_tokens": 1364,
+        "prompt_tokens_details": null,
+        "total_tokens": 1922
+      }
+    },
+    "seconds": 7.916131105041131,
+    "started_at": "2026-09-29T01:45:41.241227+00:00",
+    "truncated": false
+  },
+  "paragraph_discrepancies": [],
+  "persistent_before": {},
+  "query": {
+    "dataset_id": "wesad",
+    "event_end_seconds": 3925.0,
+    "event_start_seconds": 3895.0,
+    "family": "current_evidence",
+    "freshness_seconds": null,
+    "knowledge_time": 3926.0,
+    "question": "For the requested window, give the EDA median and the signed change from the median over the immediately preceding 120 seconds.",
+    "session_id": "session_1",
+    "subject_id": "S7"
+  },
+  "raw_candidate": {
+    "answer_status": "answered",
+    "claims": [
+      {
+        "claim_id": "C1",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_ids": [
+          "wesad/S7/3895-3925/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 7.522889 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": 7.522889
+      },
+      {
+        "claim_id": "C2",
+        "claim_type": "numeric_observation",
+        "depends_on_claim_ids": [],
+        "event_end_seconds": 3895.0,
+        "event_start_seconds": 3775.0,
+        "evidence_ids": [
+          "wesad/S7/3775-3895/eda_median/v1"
+        ],
+        "operator": "approximately_equal",
+        "quantity": "eda_median",
+        "sentence": "The EDA median is approximately equal to 7.9997 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": 7.9997
+      },
+      {
+        "claim_id": "C3",
+        "claim_type": "trend",
+        "depends_on_claim_ids": [
+          "C1",
+          "C2"
+        ],
+        "event_end_seconds": 3925.0,
+        "event_start_seconds": 3895.0,
+        "evidence_ids": [
+          "wesad/S7/3895-3925/eda_median/v1",
+          "wesad/S7/3775-3895/eda_median/v1"
+        ],
+        "operator": "difference",
+        "quantity": "eda_median",
+        "sentence": "The signed change from the median over the immediately preceding 120 seconds is difference of -1.470189 uS.",
+        "subject_id": "S7",
+        "unit": "uS",
+        "value": -1.470189
+      }
+    ],
+    "explanation": "The EDA median is approximately equal to 7.522889 uS. The EDA median is approximately equal to 7.9997 uS. The signed change from the median over the immediately preceding 120 seconds is difference of -1.470189 uS.",
+    "unresolved_evidence_ids": []
+  },
+  "repair": null,
+  "retrieval_seconds": 0.0015102289617061615,
+  "revisions": [
+    {
+      "kind": "ordinary_ingestion",
+      "records": 168,
+      "seconds": 0.007154254009947181
+    }
+  ],
+  "seconds": 7.916131105041131,
+  "status": "completed",
+  "validation": []
+}

@@ -20,7 +20,8 @@ with st.sidebar:
         if not directories:
             st.info("No saved cases are available in this checkout yet.")
             st.stop()
-        run = st.selectbox("Run", directories, format_func=lambda p: p.name, index=len(directories)-1)
+        preferred = next((i for i,p in enumerate(directories) if p.name == "minimum_v1"), len(directories)-1)
+        run = st.selectbox("Run", directories, format_func=lambda p: p.name, index=preferred)
         cases = sorted(p for p in (run/"cases").glob("*.json") if p.stem.endswith(("-M1", "-B3")))
         source = st.selectbox("Source", ["synthetic", "wesad", "ppg_dalia"])
         cases = [p for p in cases if p.stem.startswith(source+"-")]

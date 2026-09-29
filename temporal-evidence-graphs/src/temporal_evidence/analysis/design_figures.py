@@ -70,9 +70,9 @@ def symbolic_graph(core):
     positions = {"a": (0, 1.9), "b": (0, .6), "alternative": (0, -1),
                  "difference": (1.8, 1.7), "direct_claim": (3.6, 2.7),
                  "downstream_claim": (3.6, 1.35), "or_claim": (3.6, -.05), "unaffected": (3.6, -1.45)}
-    names = {"a": "Target a", "b": "Earlier b", "alternative": "Alternate", "difference": "a − b",
-             "direct_claim": "Direct", "downstream_claim": "Downstream",
-             "or_claim": "OR claim", "unaffected": "Earlier-value"}
+    names = {"a": "Target a", "b": "Prior b", "alternative": "Other", "difference": "a − b",
+             "direct_claim": "Direct", "downstream_claim": "Indirect",
+             "or_claim": "OR claim", "unaffected": "Baseline"}
     figure, axes = plt.subplots(1, 2, figsize=(6.8, 4.3))
     figure.subplots_adjust(wspace=.17)
     for after, ax in enumerate(axes):

@@ -55,9 +55,9 @@ def audit_integrity():
     assert all(len(rows) == 5 and len(set(rows)) == 1 for rows in groups.values())
     assert all(count == 240 for count in counts.values()) and len(counts) == 15
     journal = read_journal("artifacts/runs/minimum_v1/requests.jsonl")
-    starts = {(row["case_id"],row["phase"]) for row in journal if row["event"] == "started"}
-    finishes = {(row["case_id"],row["phase"]) for row in journal if row["event"] == "finished"}
-    assert attempts == starts == finishes
+    starts = Counter((row["case_id"],row["phase"]) for row in journal if row["event"] == "started")
+    finishes = Counter((row["case_id"],row["phase"]) for row in journal if row["event"] == "finished")
+    assert starts == finishes == Counter({key:1 for key in attempts}), "Missing or duplicate request journal events"
     result = {"passed":True,"protocol_hash":claimed_hash,"accounted_cases":len(paths),
               "matched_groups":len(groups),"matched_evidence_and_initial_prompts":True,
               "request_attempts":len(attempts),"all_requests_accounted":True,"statuses":dict(statuses),
