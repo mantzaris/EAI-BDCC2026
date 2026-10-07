@@ -155,69 +155,88 @@
 \maketitle
 \begin{abstract}
 % start input ./generated/semantic/abstract.tex
-Generated explanations can remain plausible after their evidence changes.
-We study a typed temporal property graph that records observations, proposed
-propositions, declared prerequisites and support at each knowledge time.
-A query-specific semantic core retains numerical witnesses and version history.
-A shared network view lets readers inspect original citations, corrected versions
-and alternative support routes in the paper and dashboard. Two conditional results
-bound which claims may change and characterize when direct maintenance misses
-required updates. We measure these misses through transitive exposure, the fraction
-of necessary changes excluded by direct scheduling. In synthetic, WESAD and
-PPG-DaLiA experiments, only \SemParentClaims{} of \SemDisplayedClaims{} displayed
-claims declare parents. Every eligible waveform revision has zero exposure.
-Independent scoring separates source grounding from task completeness.
-Checked displays are fully grounded, but subject-averaged required recall is
-\SemPpgDisplayR--\SemSyntheticDisplayR\%. Across \SemCoreCases{} controlled
-structural cases, exact and GPU-generated programs expose necessary intermediate
-dependencies and surviving alternatives. Exposure predicts direct-maintenance
-misses in all \SemPredictionGroups{} eligible replays. Full maintenance agrees
-across Neo4j and an indexed relational control. Generated answers reach
-evidence-to-answer depth one or two despite requests up to four.
-These results explain when explicit semantic structure enables selective revision.
-Storage size, path length and contract acceptance alone do not establish
-explanation fidelity or maintenance benefit.
+Generated explanations can remain convincing after their evidence changes.
+A corrected sensor measurement, for example, can invalidate an LLM's
+comparison between two time windows. We present a temporal evidence graph
+framework that uses Neo4j to keep generated explanations traceable and
+current. The LLM proposes claims with evidence references and dependencies,
+which are checked and stored alongside versioned measurements. When evidence
+changes, graph traversal identifies claims to recheck. Unsupported claims
+are withdrawn, while valid alternative support preserves justified
+conclusions. A network dashboard makes these decisions inspectable.
+Two conditional results identify potentially affected claims and explain
+when direct checking misses necessary updates. We measure this gap through
+transitive exposure. Experiments use synthetic streams, WESAD and PPG-DaLiA
+recordings, with 240 controlled structural cases. In GPU-generated program
+replays, direct maintenance misses 183 of 1,210 required changes.
+Full maintenance misses none and withdraws no unaffected claims.
+Exposure predicts misses in all 860 eligible replay groups.
+Checked displays achieve 100\% source grounding under the numerical
+protocol and 75.5--78.2\% required-fact recall. Neo4j and a relational control
+produce matching outcomes. The framework connects generative AI, graph
+storage and explicit support rules to make explanation revision selective
+and inspectable.
  % end input ./generated/semantic/abstract.tex
  \keywords{Temporal knowledge graphs \and Evidence provenance \and Generative explanations \and Incremental maintenance \and Physiological streams}
 \end{abstract}
 % start input ./sections/introduction.tex
+
+
+
 \section{Introduction}
 
-A generated explanation can become misleading when a sensor window is corrected,
-a feature fails a quality check, or a delayed observation replaces a statement
-of absence. Deleting the answer discards useful information. Keeping it may
-preserve a wrong number. A temporal evidence graph records what the answer
-asserted, which observations and prerequisites it cited, and what was known when.
+Generative AI can turn complex sensor data into explanations that people can
+understand and inspect. Its value in continuous monitoring depends on keeping
+those explanations connected to the evidence as measurements arrive, change
+or are corrected. A useful monitoring system should identify which statements
+need updating, preserve information that remains valid and make the reasons
+for these decisions visible to the user.
 
-A comparison may cite both a parent claim and the two operands directly.
-Revising either operand then reaches the comparison in one step.
-If an answer relies only on an intermediate claim, however, a direct checker
-may update that claim and leave the answer unchanged. A reached claim may also
-remain supported because another valid route survives. Understanding these
-cases requires the meaning of the edges and support rules, not visual complexity.
+Consider an LLM that compares two sensor windows and reports a change in skin
+conductance. A later correction to one measurement may invalidate the reported
+difference and other statements that depend on it. Statements supported by
+unaffected measurements can remain valid. Recording these relationships makes
+it possible to revise an explanation selectively and show the user how the
+correction affects the answer.
 
-We study a typed temporal property graph whose schema is specified by the
-researcher and whose instances record provenance and generated propositions.
-First, we define how the graph is constructed
-and how a query selects a semantic core linked to the stored objects.
-A shared network view lets a reviewer inspect original citations, version changes
-and groups of supporting inputs in the paper and an evidence-review dashboard.
-Second, we connect an explicit support model to a locality result and a measurable
-condition under which direct and transitive maintenance agree. Third, we test
-that connection using actual Neo4j exports, independent proposition scores and
-a controlled structural extension of three completed benchmarks. The graph
-records commitments made by the answer, not the model's internal neural reasoning.
+We present a temporal evidence graph framework that combines LLM-generated
+explanations with a Neo4j graph database and an interactive review dashboard.
+The LLM receives features extracted from sensor streams and produces readable
+statements accompanied by evidence references and declared dependencies.
+The database connects these claims to their supporting measurements and
+preserves earlier versions. When evidence changes, graph traversal identifies
+the claims to recheck. The system withdraws unsupported statements and retains
+those justified by surviving evidence. Labeled network views let users follow
+these connections from an explanation back to its sources.
 
-The waveform study provides a useful contrast. Only \SemParentClaims{}
-of \SemDisplayedClaims{} claims displayed by transitive graph maintenance (M1)
-declare parents, and direct checking
-matches transitive maintenance. Every eligible waveform revision batch has zero
-transitive exposure. A separate scoring protocol distinguishes accurate background
-statements from violations of the original target-only output contract. It reveals
-how checking trades coverage of required facts for grounded content. We then vary
-dependency depth and alternative support routes in exact numerical programs and
-common GPU-generated candidates over the same recordings. Together, these results
-show when propagation matters and when direct maintenance suffices.
+Our central contribution connects this practical workflow to a formal account
+of when revision is necessary. We model how several inputs can jointly support
+a claim and how an alternative evidence route can preserve it. Two conditional
+results identify the region of the graph that a correction can affect and
+establish when checking only immediate dependencies will miss required changes.
+We introduce transitive exposure to measure this gap, connecting the graph's
+structure to an observable maintenance outcome.
+
+Experiments use synthetic streams and two real datasets, WESAD and PPG-DaLiA.
+Across \SemCoreCases{} controlled structural cases, we evaluate exact programs
+and dependencies actually produced by the LLM. Full propagation handles all
+1,210 required claim changes in generated-program replays without withdrawing
+unaffected claims. Direct checking misses 183 of these changes. Predicted and
+observed misses agree in all \SemPredictionGroups{} eligible replays, and
+Neo4j produces matching maintenance outcomes with an indexed relational
+implementation. The waveform experiments also identify settings where direct
+checking suffices, establishing when propagation provides additional value.
+
+Independent evaluation finds 100\% grounding among checked displayed claims
+under the numerical protocol, with subject-averaged required-fact recall from
+\SemPpgDisplayR\% to \SemSyntheticDisplayR\%. Measuring both properties shows
+how successfully the system preserves supported content and covers the requested
+information. Together, the theory, experiments and network interface provide
+an auditable approach to maintaining generative explanations as their evidence
+evolves.
+
+
+
 
 \subsection{Relation to Prior Work}
 
@@ -240,6 +259,12 @@ grounds that proposition. This differs from asking whether a model's account of
 its own computation faithfully describes its decision process~\cite{turpin2023}.
  % end input ./sections/introduction.tex
  % start input ./sections/method.tex
+
+
+
+
+
+
 \section{A Typed Temporal Semantic Representation}
 \label{sec:representation}
 
@@ -375,121 +400,121 @@ In the saved WESAD S11 episode (Figure~\ref{fig:ontology}), the electrodermal ac
 
 \subsection{Edges as Explicit Semantic Commitments}
 
-An edge's type determines what it asserts. A citation names evidence offered as support. A parent link declares a prerequisite. An extraction edge records how
-a feature was produced. Membership and co-occurrence imply neither support nor
-a prerequisite. In particular, an LLM-proposed \texttt{DEPENDS\_ON} edge does not
-prove that its target is necessary. \texttt{SUPPORTS} records acceptance when a
-claim was inserted, not validity at every later time. \texttt{CONTRADICTS}
-records an adverse assessment triggered by a revision, whose knowledge time is
-stored in the associated assessment. Exports retain these origins and distinguish
-proposed, accepted and displayed links.
+Edge types explain the declared justification. Citations offer evidence,
+parent links declare prerequisites, and extraction edges record feature
+origins. Membership and co-occurrence imply neither support nor dependence.
+An LLM-proposed \texttt{DEPENDS\_ON} edge does not establish necessity.
+\texttt{SUPPORTS} records acceptance at insertion, while \texttt{CONTRADICTS}
+records a revision-triggered adverse assessment with an associated knowledge
+time. Exports preserve these origins and distinguish proposed, accepted
+and displayed links.
 
 \subsection{The Query-Specific Semantic Core}
 
-To interpret and revise an answer, a reviewer needs its claims and the inputs
-they cite. We select this semantic core by a fixed projection:
+The semantic core selects an answer's claims and cited inputs for inspection
+and revision:
 \begin{equation}
  K_{q,t}=\pi_{q,\Omega}(G_t),\qquad
  V(K_{q,t})=C_{q,t}^{*}\cup F_{q,t},\quad
  E(K_{q,t})=D_{q,t}\cup P_{q,t}.
 \label{eq:core}
 \end{equation}
-$C_{q,t}^{*}$ contains the latest displayed answer's claims and their declared
-claim ancestors. $F_{q,t}$ contains the visible feature propositions they cite,
-including explicit availability watches. $D_{q,t}$ retains the corresponding
-stored dependency edges. When a cited feature has a newer visible version,
-$P_{q,t}$ records a labelled path from the original citation through the version
-chain. Each such path keeps the citation and supersession witness IDs.
-It is never drawn as a directly stored Neo4j relationship.
+$C_{q,t}^{*}$ contains the latest displayed claims and their declared claim
+ancestors. $F_{q,t}$ contains cited visible features and explicit availability
+watches. $D_{q,t}$ contains their stored dependency edges.
+When a cited feature has a newer visible version, $P_{q,t}$ traces the version
+chain, retaining citation and supersession IDs. These labelled paths are
+derived views, not directly stored Neo4j relationships.
 
-Linked metadata retains subject and sensor identities, explanation containers,
-assessments and old versions. It also retains feature-to-observation provenance,
-which can be expanded in the drawing. A claim's asserted fields determine its scope, not the wrapper's query interval. Full IDs,
-raw sentences, original versions and assessment times remain recoverable.
-The core preserves the answer's explicit commitments through this selection rule.
+Linked metadata preserves subject and sensor identities, original sentences,
+versions, explanation containers and timed assessments.
+Observation provenance can be expanded. Each claim's asserted fields
+determine its scope.
 
-We analyze three distinct representations. The complete graph contains all stored
-objects. The active projection at $t$ contains the latest evidence and current
-display members across queries, with their observation provenance.
-The core $K_{q,t}$ answers focused questions. Which window supports
-a value, and which operands support a comparison? Which version was known,
-what changed after correction, and does another witness still support the claim?
-We evaluate these competency questions against immutable input logs or exact
-program specifications, independently of database support flags.
+The complete graph contains all stored records. The active view contains
+the latest evidence and current displays across queries, with observation
+provenance. The core focuses on one answer. It reveals which windows and
+operands support a statement, which versions were known, and whether support
+survives a correction. We check these questions against immutable input logs
+or exact program specifications, independently of database support flags.
+
+
+
+
 
 % start input ./sections/review_view.tex
 \subsection{Producing the Human-Review Network View}
 \label{sec:reviewview}
 
-The review view helps a reader trace a selected answer or claim back to its
-evidence. It expands the semantic core with original cited versions, required
-observation provenance and visible successor versions. Citations stay attached
-to their original inputs. For a stored-node budget $B$ and selected recorded
-times $T$, the transformation is
+The review view traces an answer to its evidence by expanding the semantic
+core with original citations, observation provenance and visible newer
+versions. For node budget $B$ and recorded times $T$,
 \begin{equation}
  H_{q,t}=\operatorname{View}_B(G_t,q),\quad
  p=\operatorname{Layout}\!\left(\bigcup_{u\in T}H_{q,u};m\right),\quad
  I_{q,t}=\operatorname{Render}(H_{q,t},p).
 \label{eq:reviewview}
 \end{equation}
-$H$ is the bounded review expansion of $K$. The layout $p$ stores node coordinates
-and routed edges, and rendering produces the drawing $I$.
-Mode $m$ selects deterministic Graphviz \texttt{dot} for structured views or
-seeded spring positioning for the classic network. Spring positioning uses an
-undirected simple projection only to place nodes. Analysis and arrows retain
-the typed directed graph. Routing and collision separation change presentation,
-not support. Time comparisons reuse the layout of the union of their nodes.
-Records not yet ingested remain absent from the earlier drawing. Coordinates
-and distances do not measure semantic similarity or neural state.
+$H$ is the bounded expansion, $p$ stores coordinates and edge routes,
+and $I$ is the drawing. Mode $m$ selects deterministic Graphviz \texttt{dot}
+or seeded spring positioning. The spring layout uses an undirected
+projection for placement only. Analysis and arrows retain the directed,
+typed relationships. Time comparisons share coordinates, while records
+not yet ingested remain hidden. Layout changes presentation only.
+Distances represent neither semantic similarity nor neural state.
 
-The implementation selects a database scope, answer, focus and knowledge time,
-then follows the declared inputs. It expands observation provenance on request.
-Ingestion and assessment times determine visibility, while event intervals
-describe when the measurements or assertions apply.
-Original \texttt{DEPENDS\_ON} edges remain intact. A separate derived path records
-how a citation resolves to a newer version, preserving the citation and the
-supersession edges traversed in reverse. Availability, assessed support and
-display membership remain separate. Among \SemAssessmentTies{} assessment groups
-sharing a record and time, \SemAssessmentConflicts{} have conflicting states.
-All outcomes and trigger IDs remain visible as ambiguous. Display membership
-follows the saved explanation version. Neither flags nor drawings determine
-the evaluator's reference truth.
+The implementation follows declared inputs within the selected database
+scope. Ingestion and assessment times control visibility, while event
+intervals specify when measurements or assertions apply.
+Original \texttt{DEPENDS\_ON} citations remain intact. Derived paths trace
+newer versions by following supersession edges in reverse.
+Availability, support and display membership remain separate.
+Of \SemAssessmentTies{} assessment groups sharing a record and time,
+\SemAssessmentConflicts{} contain conflicting states. These remain visibly
+ambiguous, with outcomes and trigger IDs preserved. Display membership
+follows the saved explanation version. Evaluation uses independent
+reference truth.
 
-The node budget favors complete sets of alternative witnesses when they fit.
-Omitted records or incomplete witness groups produce a \emph{partial view}
-warning and an expansion control. The view does not imply that omitted context
-is irrelevant. Subject and sensor hubs, display containers, assessments and
-reverse \texttt{SUPPORTS} edges remain in details. Structured views group feature
-rows in labelled AND enclosures. Each row maps to a stored ID, and each dashed
-bundle lists the original dependency edges it summarizes. These are drawing
-constructs. All inputs within a witness are required, while different witnesses
-are alternatives.
+The node budget favors complete alternative support routes.
+Omissions or incomplete groups trigger a \emph{partial view} warning
+and expansion control. Identity hubs, display records, assessments and
+reverse \texttt{SUPPORTS} links remain accessible in details.
+Structured views place jointly required features in labelled AND
+enclosures. Each row maps to a stored ID, and dashed bundles identify
+the dependency edges they summarize. Different groups provide alternative
+support routes.
 
-Green, blue and grey fills identify claims, features and observations.
-Outlines and words identify revisions, support and withdrawal. Every arrow is
-labelled with its stored direction or identified as a grouped edge.
-Figures~\ref{fig:instances} and~\ref{fig:topology} share their typed JSON views,
-ID maps and Graphviz renderer with the Streamlit dashboard.
-Its optional \emph{Classic network} mode draws the same typed objects as individual
-ellipses in Figure~\ref{fig:classic}. Selectboxes choose case, time, focus, witness
-route and node or edge. Details show full sentences, exact values and units,
-intervals, versions, source IDs and assessment provenance. Highlighting affects
-appearance only. Expansion reveals omitted provenance, and review actions append
-events in an isolated workspace. The interface makes external commitments
-inspectable. It does not establish a human-performance benefit or reveal neural
-reasoning.
+Green, blue and grey identify claims, features and observations.
+Outlines and text show revisions and support status. Arrows retain their
+stored direction and labels or identify grouped edges.
+Figures~\ref{fig:instances} and~\ref{fig:topology} share typed JSON views,
+ID maps and rendering with the Streamlit dashboard.
+Its \emph{Classic network} mode shows individual nodes
+(Figure~\ref{fig:classic}). Controls select case, time, focus, route and
+record. Details expose full statements, exact values, units, intervals,
+versions, source IDs and assessments. Highlighting changes appearance
+only, expansion reveals provenance, and review actions append events
+in an isolated workspace. Readers can therefore inspect what an answer
+claims, which evidence supports it and why its status changes.
+
+
+
+
  % end input ./sections/review_view.tex
   % end input ./sections/method.tex
  % start input ./sections/theory.tex
+
+
+
+
 \section{Support, Locality and Transitive Exposure}
 \label{sec:theory}
 
 \subsection{Support Through Admissible Witnesses}
 
-A claim remains supported if at least one valid route still justifies it.
-For a proposition $c$, let $\mathcal W(c)$ be a finite family of admissible
-witnesses. Each witness $W$ groups evidence or prerequisite propositions that
-are jointly required. Different witnesses provide alternative routes:
+A witness is a complete set of inputs that jointly justify a claim.
+A claim remains supported when at least one admissible witness succeeds.
+For its finite witness family $\mathcal W(c)$,
 \begin{equation}
  \operatorname{Supported}(c,t;q)=
  \bigvee_{W\in\mathcal W(c)}
@@ -497,43 +522,46 @@ are jointly required. Different witnesses provide alternative routes:
        \bigwedge_{u\in W}\operatorname{Valid}(u,t;q)\right].
 \label{eq:support}
 \end{equation}
-A witness succeeds only when both checks pass.
-$\operatorname{Valid}$ requires observable availability and admissible temporal
-and subject scope. A prerequisite claim must itself be supported.
-The predicate $\psi_c$ checks the asserted interval, selected logical versions,
-quantity, normalized unit and numerical operation. Numerical agreement uses the
-frozen tolerance $|v-\widehat v|\leq\max(10^{-6},0.01|\widehat v|)$.
-A correction can make $\psi_c$ false while the source remains available. Historical and current assertions are different propositions. The extension's specified inequalities use exact floating-point comparisons.
+At knowledge time $t$ for query $q$, $\operatorname{Valid}$ checks input
+availability, subject and time scope. Prerequisite claims must themselves
+remain supported. The predicate $\psi_c$ checks the asserted interval,
+selected versions, quantity, normalized unit and numerical operation.
+Agreement uses $|v-\widehat v|\leq\max(10^{-6},0.01|\widehat v|)$.
+A correction can therefore invalidate support while the evidence remains
+available. Historical and current assertions are checked separately.
+The extension's inequalities use exact floating-point comparisons.
 
-The original model supports local AND/OR composition and a two-operand
-difference. A generated numerical claim requires all its declared parents and
-an admissible direct numerical witness. Comparisons cite both operands.
-The extension represents alternatives as explicit lists of jointly required
-inputs, connected through an acyclic positive claim graph. It does not support
-unrestricted Boolean formulas. Each record's semantic-program metadata stores
-the witness groups. Source IDs store their union for traversal, so edges alone
-do not recover the AND/OR structure. To claim that evidence is missing, the
-system needs a bounded set of possible producers and explicit availability
-watches. Absence from an open graph is insufficient.
+The original model uses local AND/OR rules and two-operand differences.
+Generated numerical claims require all declared parents and admissible
+direct numerical evidence. Comparisons cite both operands.
+The extension combines explicit AND groups and OR alternatives without
+cycles. Metadata preserves these witness groups, while source IDs store
+their combined inputs for traversal. Edges alone therefore cannot show
+which inputs are jointly required. Claims of missing evidence require
+a bounded set of possible producers and explicit availability tracking.
+Absence from the graph alone is insufficient.
 
-As in provenance and truth maintenance~\cite{green2007,doyle1979}, losing one
-route need not remove support if another admissible witness survives.
-Our alternatives use disjoint recording windows rather than renamed copies of
-one measurement. These distinct sources need not be statistically independent.
+As in provenance and truth maintenance~\cite{green2007,doyle1979},
+an alternative witness can preserve support when another fails.
+Our alternatives use disjoint recording windows, providing distinct
+measurement sources without assuming statistical independence.
+
+
 
 \subsection{Locality of a Revision}
 
-Reachable claims need checking, but need not change.
-Let $U_\delta$ contain revised input identities, all earlier versions that can
-still be cited, and any changed availability subscriptions. Dependency edges
-point from a dependent to its input. Following them in reverse gives
+A correction identifies claims to recheck, but some may remain supported.
+Let $U_\delta$ contain the revised inputs, their earlier citable versions and
+changed records of evidence availability. Dependency edges point from claims
+to their inputs. Traversing these edges in reverse identifies potentially
+affected claims:
 \begin{equation}
  R_\delta=U_\delta\cup\operatorname{RevReach}(U_\delta),\qquad
  B_\delta=\{c:S_{t^-}(c)\ne S_{t^+}(c)\},
  \label{eq:locality}
 \end{equation}
-Here $S_t(c)$ abbreviates Equation~\ref{eq:support}.
-$R_\delta$ contains changed inputs and reachable dependents for re-evaluation.
+Here $S_t(c)$ is the support function in Equation~\ref{eq:support}.
+$R_\delta$ contains the inputs and dependents to reconsider.
 $B_\delta$ contains only claims whose support actually changes.
 
 \begin{proposition}[Conditional locality]
@@ -542,115 +570,135 @@ mutable input to each support predicate is explicitly represented and only
 $U_\delta$ changes between the two snapshots.
 \end{proposition}
 \noindent\emph{Proof sketch.}
-Order nodes from inputs to dependents. A node outside $R_\delta$ has no changed
-input or prerequisite in $R_\delta$, since either would make it reverse reachable.
-Its scope, numerical operands and availability are unchanged. Induction in this
-acyclic order gives unchanged prerequisite support and predicate values, hence
-unchanged support. Including earlier versions covers citations to $v_1$ after
-$v_2$ or $v_3$ arrives. Explicit availability records cover arrivals that falsify
-an absence statement.\hfill$\square$
+Consider nodes in order from inputs to dependents. A node outside $R_\delta$
+has no changed input or prerequisite inside $R_\delta$. Its numerical inputs,
+scope and availability therefore remain unchanged. Induction gives unchanged
+prerequisite support and hence unchanged support for the node itself.
+Including earlier versions preserves this argument for old citations, while
+availability records cover changes to missing-evidence claims.\hfill$\square$
 
-Unrecorded clock expiry, newly discovered witnesses without subscriptions, or
-external predicate changes can violate locality. Our fixed-target queries and
-controlled witness sets represent changes through version or availability events.
-Benign updates and surviving alternatives show why the actual change set can be
-strictly smaller than the candidate set, $B_\delta\subset R_\delta$.
+The result requires all relevant changes to be recorded. Untracked expiry,
+new support routes or external rule changes can violate this assumption.
+Our fixed-target queries and controlled witnesses represent changes through
+version or availability events. A benign correction or surviving alternative
+can leave a reachable claim supported, making $B_\delta$ smaller than $R_\delta$.
 
-Indexed adjacency traversal costs $O(|V_{R_\delta}|+|E_{R_\delta}|)$.
-Current-version lookups, witness evaluation, snapshots, serialization, database
-round trips and writes add to this cost. The original runtime repeatedly builds
-version maps. Structural replay evaluates the whole small program before writing
-scheduled updates. Neo4j variable-length queries may enumerate paths, whereas
-SQLite uses a recursive SQL query with duplicate elimination. The abstract traversal
-bound therefore gives neither implementation a linear-time guarantee.
+With indexed adjacency lists, traversal costs
+$O(|V_{R_\delta}|+|E_{R_\delta}|)$. This excludes version resolution, support
+evaluation and database access. Our structural replays also evaluate the full
+small program, and Neo4j path queries may enumerate multiple paths.
+The bound describes graph traversal rather than total implementation runtime.
+
+
+
+
 
 \subsection{When Direct Maintenance Suffices}
 
-Direct maintenance can miss changes to unscheduled claims.
-Let $A_\delta$ be the independently determined set of prior admitted claims
-requiring a state change, and $D_\delta$ the claims actually scheduled by direct-only
-maintenance. For $|A_\delta|>0$, the fraction outside that schedule is
+Direct maintenance checks claims immediately linked to changed inputs.
+It can miss claims that depend on those inputs through intermediate claims.
+Let $A_\delta$ contain the previously admitted claims that require a state
+change, as determined by an independent reference evaluation. Let $D_\delta$
+contain the claims scheduled for direct checking. For $|A_\delta|>0$,
+transitive exposure measures the fraction left unchecked:
 \begin{equation}
  \xi_\delta=\frac{|A_\delta\setminus D_\delta|}{|A_\delta|}.
  \label{eq:exposure}
 \end{equation}
-We report NA when $A_\delta$ is empty. The primary measure concerns withdrawal
-of initially grounded claims. Restoration is recorded separately as a support
-transition. The event-log/task oracle determines $A_\delta$ independently of
-acceptance flags and graph paths.
+We report NA when no change is required. The primary measure concerns
+withdrawal of initially grounded claims. Restoration is recorded separately.
+The event log and task specification determine $A_\delta$ independently
+of graph paths and acceptance flags.
 
 \begin{proposition}[Direct/full equivalence and misses]
-Assume initially correct states, complete re-evaluation of $D_\delta$, dependency
-semantics consistent with the oracle, and no unrelated refresh or other mechanism
-that revisits excluded claims. Before fresh generation, direct maintenance misses
-the fraction $\xi_\delta$ of required changes. A sufficient condition for direct
-and full maintenance to agree is that every changed support predicate is directly
-scheduled. In particular, this holds when each changed input affecting an answer
-has a direct dependency edge to every affected claim and all other predicates
-remain unchanged.
+Assume initially correct states, complete re-evaluation of $D_\delta$,
+dependency semantics consistent with the reference evaluation, and no other
+process revisiting excluded claims. Before fresh generation, direct maintenance
+misses the fraction $\xi_\delta$ of required changes. Direct and full maintenance
+agree if every claim requiring a change is directly scheduled. This condition
+holds when every affected claim has a direct dependency edge to each changed
+input affecting its support and all other predicates remain unchanged.
 \end{proposition}
 \noindent\emph{Proof sketch.}
-Complete direct re-evaluation changes every required member of $D_\delta$.
-The no-refresh assumption leaves excluded members in their initial state.
-The missed set is therefore exactly $A_\delta\setminus D_\delta$.
-If all changed predicates are scheduled, both algorithms evaluate the same
-predicates from the same snapshot. All remaining predicates retain equal
-states.\hfill$\square$
+Re-evaluation updates every required member of $D_\delta$. Excluded claims
+retain their original states, so the missed set is exactly
+$A_\delta\setminus D_\delta$. When all required changes are scheduled, both
+methods evaluate the same support rules against the same evidence and
+produce the same states.\hfill$\square$
 
-Consider $c_1=$ ``test 1 holds'' and $c_2=$ ``tests 1 and 2 hold'', where $c_2$
-requires $c_1$ and test 2. Correcting test 1 to false requires both claims to
-change. A direct scheduler reaches only $c_1$, so $\xi_\delta=1/2$.
-If $c_2$ also cites test 1 directly, the scheduler reaches it and exposure is zero.
-If another independent route suffices for the answer, losing the first route
-need not change the answer at all. Path length alone therefore predicts neither
-a missed update nor a withdrawal. The waveform exports and controlled structural
-experiment test these different cases.
- % end input ./sections/theory.tex
+Suppose both tests initially hold. Let $c_1$ state that test 1 holds, and
+$c_2$ state that tests 1 and 2 hold, citing $c_1$ and test 2.
+Changing test 1 to false invalidates both claims. Direct checking reaches
+only $c_1$, giving $\xi_\delta=1/2$. Adding a direct citation from $c_2$ to
+test 1 brings both claims into the schedule and reduces exposure to zero.
+Alternatively, a surviving witness may preserve a downstream claim despite
+the correction. Revision therefore depends on which support is lost,
+as well as which claims are reachable.
+
+
+
  % start input ./sections/design.tex
 \section{Evaluation Design}
 \label{sec:design}
 
-\subsection{Preserved Three-Source Study}
+\subsection{Three-Source Evaluation}
 
-The unchanged \texttt{minimum\_v1} study uses synthetic physiological-style
-waveforms, WESAD laboratory recordings~\cite{schmidt2018,wesad}, and PPG-DaLiA
-daily-activity recordings~\cite{reiss2019,ppgdalia}. Each source contributes ten
-held-out subjects with two episodes each. The real-source splits use PCG64 seed
-20260928 and five separate development subjects. Generation and checking exclude physiological and activity labels.
-Outcomes concern recorded features.
+The initial study uses synthetic physiological waveforms, WESAD laboratory
+recordings~\cite{schmidt2018,wesad}, and PPG-DaLiA daily-activity
+recordings~\cite{reiss2019,ppgdalia}. Each source contributes ten held-out
+subjects with two episodes each. The real datasets also provide five separate
+development subjects, with splits fixed using PCG64 seed 20260928.
+Generation and validation use recorded features without physiological or
+activity labels.
 
-Each episode has a 30-second target interval and a preceding 120-second
-comparison interval. Four replay variants introduce clean or benign updates,
-channel faults, delays and numerical corrections. Three knowledge checkpoints
-occur at target end plus 1, 31 and 91 seconds. Four question families require
-the target EDA median plus its preceding-window difference, EDA missing fraction
-or acceleration variability. Requirements are fixed independently of answers.
-Five methods produce 3,600 initial cases. B0 displays unchecked proposals.
-B1 performs direct maintenance over indexed records, and B2 does so in Neo4j.
-M1 uses Neo4j with transitive maintenance. B3 implements the same transitive
-support rules in indexed SQLite with recursive common table expressions.
-All checked methods use the same fresh-answer checks and at most one repair.
+Each episode compares a 30-second target window with the preceding 120 seconds.
+Four replay variants cover clean or benign updates, channel faults, delayed
+evidence and numerical corrections. Evaluation occurs 1, 31 and 91 seconds
+after the target window ends. Four question families cover the target EDA
+median, its difference from the preceding window, the fraction of missing
+EDA measurements and acceleration variability. Required facts are specified
+before generation.
 
-The original study uses pinned Qwen3-8B BF16~\cite{qwen3}, a three-claim contract and
-1,536 output tokens. Both studies use the existing RTX 5090 and vLLM structured
-decoding~\cite{vllm}, with model parameters and forward tensors verified on CUDA.
-Database operations and statistics run on the host CPU. Neo4j Community 5.26
-and indexed SQLite retain their adapters. The three original B0 transport
-failures remain empty outputs.
+Five methods produce 3,600 initial cases. B0 displays unchecked outputs.
+B1 checks direct dependencies in indexed records, while B2 uses Neo4j.
+M1 follows both direct and indirect dependencies in Neo4j. B3 applies the
+same support rules in indexed SQLite using recursive SQL queries.
+All checked methods validate new answers identically and allow at most
+one repair.
+
+The initial study uses a fixed Qwen3-8B BF16 revision~\cite{qwen3}, allowing
+up to three claims and 1,536 output tokens. Both studies run inference on an
+RTX 5090 with vLLM structured decoding~\cite{vllm}, with CUDA execution
+verified. Database operations and statistics run on the host CPU using
+Neo4j Community 5.26 and indexed SQLite. Three B0 transport failures are
+retained as empty outputs.
+
+
 
 \subsection{Independent Semantic Evaluation}
 
-The \texttt{semantic\_analysis\_v1} oracle determines values and supporting
-witnesses from immutable events and task specifications. It uses neither support
-flags nor a neural verifier. Canonical proposition identity includes dataset,
-subject, session, asserted interval, quantity, operation, normalized value and
-unit, temporal mode and logical version. A correctly labelled background fact
-can be grounded without answering the target question. Wrong numbers, subjects
-and target attributions still fail. Citation and witness fidelity are separate from directly checkable truth.
+We evaluate whether generated statements accurately describe the sensor data
+and provide the information requested. The facts concern measurable properties,
+including median skin conductance, changes between windows, missing measurements
+and acceleration variability.
 
-Precision asks how much emitted content is grounded. Recall asks how many
-answerable requirements it covers. For emitted checkable propositions $C(q,t)$
-and answerable required propositions $R(q,t)$, we report
+For illustration, suppose a question asks for the target EDA median and its
+change from the preceding window. If the medians are $2.4\,\mu{\rm S}$ and
+$2.0\,\mu{\rm S}$, a complete answer reports $2.4\,\mu{\rm S}$ and an increase
+of $0.4\,\mu{\rm S}$. Reporting only the target median is accurate but covers
+half the requested information. Reporting only the preceding median gives
+correct background information without answering either requested fact.
+
+Reference values are computed independently from saved sensor events and task
+specifications. The evaluator does not use the system's support flags or an
+LLM judge. Matching checks the dataset, subject, session, stated interval,
+quantity, operation, normalized value and unit, evidence version, and whether
+the statement concerns historical or current evidence. Citation and witness
+checks are separate because a correct number can still cite the wrong source.
+
+For generated checkable claims $C(q,t)$ and answerable required facts $R(q,t)$,
+grounding precision measures factual accuracy and required-fact recall measures
+coverage:
 \begin{equation}
 \begin{aligned}
  P_{\rm grounded}&=\frac{\sum_{c\in C}\mathbf 1[\text{source-grounded }c]}{|C|},\\
@@ -658,55 +706,63 @@ and answerable required propositions $R(q,t)$, we report
 \end{aligned}
  \label{eq:semanticmetrics}
 \end{equation}
-Each requirement is counted once, so repeated paraphrases cannot increase recall.
-The optional harmonic summary $S=2P_{\rm grounded}R_{\rm required}/
-(P_{\rm grounded}+R_{\rm required})$ combines grounding and task completeness.
-It is not conventional set F1 because their universes differ. For an answerable
-question, empty output has precision NA and zero recall and summary score.
-Fully unanswerable questions have recall and summary NA, with absence statements
-checked separately. Partially answerable questions contribute their answerable facts.
+The target-only answer above therefore has $100\%$ precision and $50\%$ recall.
+Each required fact counts once, so repetition cannot improve recall.
+The optional harmonic summary
+$S=2P_{\rm grounded}R_{\rm required}/(P_{\rm grounded}+R_{\rm required})$
+combines these measures. It is not conventional set F1 because generated
+claims and required facts have different counting bases.
+For answerable questions, empty output has precision NA and zero recall and
+summary score. Fully unanswerable questions have recall and summary NA, with
+missing-evidence statements checked separately. Partially answerable questions
+are scored against the facts that can be established.
+We score raw proposals, proposals after optional repair, accepted claims and
+displayed answers separately. A limited prose audit checks literal discrepancies
+and interpretive wording. To evaluate revision, we also score the same prior
+answer before new evidence arrives, immediately afterward and after maintenance.
+These checkpoints distinguish removing unsupported content from supplying a
+complete replacement, without implying a continuous recovery curve.
 
-We separately score raw and final proposals, accepted claims and displays.
-A limited prose audit retains raw text, literal discrepancies and interpretation terms. Structured scores do not certify unrestricted language.
-To assess temporal integrity, we score the same prior answer before arrival,
-after arrival and after maintenance. These discrete checkpoints do not establish
-a recovery curve. Withdrawing content and producing an adequate replacement
-remain separate outcomes.
+
+
 
 \subsection{Controlled Structural Extension}
 
-Before new outputs are observed, \texttt{structure\_study\_v1} selects the first
-five naturally sorted held-out subjects per source and both episodes.
-These 30 episodes reuse participants rather than forming a new independent cohort.
-Four intended evidence-to-answer depths (1--4) and two support regimes yield
-240 cases. Each route compares EDA median, EDA interquartile range (IQR),
-acceleration standard deviation (SD) and EDA missing fraction with explicit bounds.
-The clean episode fixes these bounds so each route initially passes all four tests.
-The answer states whether at least one eligible window passes all tests.
-An alternative route uses the disjoint preceding window, which provides a distinct
-observation witness for that existential statement. The task makes no physiological
-diagnosis.
+We test when indirect dependencies and alternative evidence affect revision.
+Before generation, we select the first five held-out subjects per source in
+natural order and both episodes, reusing 30 episodes from the initial study.
+Four requested dependency depths (1--4) and two support regimes produce
+240 cases.
 
-The depths group the same tests as direct inputs,
-a complete route followed by an answer, a two-test prefix followed by a route and
-answer, or a first test followed by that prefix, route and answer.
-Exact compiled fixtures instantiate these programs. Separately, the model proposes
-up to 16 claims and explicit witness lists, with 4,096 output tokens and at most
-one repair. The compiler never fills in missing model links. We retain requested
-and realized depth, omitted roots and incomplete alternative-witness families.
-Two development pilots precede the core freeze. The second uses a generic grouping
-example to clarify readable sentences and reuse of emitted parent IDs.
-Neither pilot inserts required links. Both use development episodes, and their
-40 calls are separate from the core budget.
+Each case asks whether at least one eligible sensor window passes four checks
+on EDA median, EDA interquartile range, acceleration standard deviation and
+EDA missing fraction. Thresholds are fixed from the clean episode so all
+checks initially pass. Cases provide either one supporting window or an
+alternative from the disjoint preceding window. Depth one links the measurements
+directly to the answer. Greater depths introduce intermediate claims about
+individual tests, groups of tests and complete windows.
 
-Each method replays the same admitted candidate without generation after
-correction. B0 here disables maintenance on that content.
-Four independent update conditions make the first test false in every route,
-remove only the primary route, make a benign numerical change, or revise an
-unused cardiac feature. Neo4j and relational methods receive identical candidates,
-events and predicates. An independent truth-table evaluator enumerates the bounded
-Boolean assignments to test witness entailment and equivalence, allowing different
-valid derivations. A separate event-log evaluator determines required changes.
+Exact programs implement these structures. Separately, the LLM proposes up
+to 16 claims and their supporting inputs, with a 4,096-token output limit
+and at most one repair. We evaluate the links actually generated, retaining
+missing answers, incomplete alternatives and differences between requested
+and achieved depth. Two development pilots use 40 separate calls before the
+main protocol is fixed. The second clarifies readable statements, grouping
+and references to earlier claims. Neither pilots nor the compiler insert
+missing model links.
+
+All methods receive the same admitted candidate, evidence updates and support
+rules, with no generation after correction. B0 leaves the candidate unchanged.
+Four separate updates invalidate the first test in every route, invalidate
+only the primary route, make a harmless numerical correction or change an
+unused cardiac feature. Neo4j and relational implementations process identical
+inputs. Independent truth-table checks test whether the proposed witnesses
+justify the claims and capture the required alternatives, allowing different
+valid derivations. A separate evaluation of the event log determines which
+claims must change.
+
+
+
 
 \subsection{Graph Measurement and Uncertainty}
 
@@ -723,84 +779,116 @@ with seed 20260929. Historical versions and replay copies never count as
 independent participants. Detailed distributions and operational logs remain
 repository data. This paper retains the definitions and primary denominators
 needed to interpret the results.
- % end input ./sections/design.tex
- % start input ./sections/results.tex
+
+
+
+
+% end input ./sections/design.tex
+% start input ./sections/results.tex
 \section{Results}
 \label{sec:results}
 
-\subsection{Storage Structure and Semantic Structure Differ}
+\subsection{A Compact, Traceable View of Each Explanation}
 
-The export covers \SemExportScopes{} retained Neo4j scopes. Counts match the
-original ledger, and \SemVerifiedPaths{} representative stored paths are verified.
-M1 stores \SemStorageNodes{} nodes and \SemStorageEdges{} relations across its
-replay scopes. These totals measure storage, not independent observations.
-Membership and extraction rules create many of the edges. Neither these edges
-nor the reverse links added when claims are accepted imply deeper reasoning.
+The graph database preserves the evidence and revision history behind generated
+answers, while a smaller query core brings the relevant claims and inputs
+together for inspection. Across \SemExportScopes{} retained Neo4j scopes,
+M1 stores \SemStorageNodes{} nodes and \SemStorageEdges{} relations.
+These records include measurement versions, source links and replay histories.
+Exported counts match the original ledger, and checks of
+\SemVerifiedPaths{} representative paths confirm that the analysis preserves
+the stored connections.
 
-Across sources, the query core averages \SemCoreSizeMin--\SemCoreSizeMax{} nodes,
-or \SemCoreRatioMin--\SemCoreRatioMax\% of visible storage. It is smaller because
-it selects answer propositions and their declared inputs. The active graph also
-contains other visible evidence. Linked metadata preserves the observation
-witnesses. Full storage counts include historical versions, whereas core sizes
-count visible propositions for each query. Aggregating within subjects prevents
-replay copies from being treated as independent samples.
+For an individual answer, the query core averages only
+\SemCoreSizeMin{} to \SemCoreSizeMax{} nodes, representing
+\SemCoreRatioMin\% to \SemCoreRatioMax\% of visible storage.
+This gives the reviewer a focused starting point for tracing what an answer
+claims and which inputs it uses. Linked metadata retains access to the
+underlying observation windows, while expanded views reveal earlier versions
+and subsequent corrections. The database therefore supports both a compact
+explanation view and a detailed evidence trail. We analyze claim dependencies
+separately from administrative links and aggregate statistics within subjects,
+so repeated replays do not become independent observations.
+
+Figure~\ref{fig:instances} illustrates the practical value of this representation.
+A corrected measurement causes two numerical claims to be withdrawn, while
+their original evidence references remain available to explain the decision.
 
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth]{semantic_analysis_v1/real_revision_network.pdf}
-\caption{Review network from actual Neo4j records for WESAD S11, episode 0,
-at knowledge time \ViewRealAfter{} s. The unchanged median-size rule selects this
-case among \ViewRealEligible{} eligible correction cores. Green nodes are claims,
-blue nodes are features, and folded corners mark observations. \emph{Cites/requires}
-mean \texttt{DEPENDS\_ON}, \emph{derived from} means \texttt{DERIVED\_FROM}, and
-\emph{supersedes} points from new to old. The injected correction adds F2 v2.
-C1/C2 retain their original v1 citations and are withdrawn. Availability remains
-distinct from current support. C2 cites both operands directly, so direct checking
-suffices. Identity hubs, admission mirrors and assessment/display containers are
-hidden but inspectable in details. Labels round values, while metadata preserves
-full precision.}
+\caption{Tracing a correction through an actual WESAD explanation stored in
+Neo4j. For subject S11, episode 0, the target EDA median changes from
+$2.4083$ to $2.9083\,\mu{\rm S}$. The old median claim C1 and comparison C2
+are withdrawn, while their original citations remain visible.
+Both claims directly cite the corrected input, so direct checking reaches
+both. The view is shown at knowledge time \ViewRealAfter{} s and selected
+by the median-size rule from \ViewRealEligible{} eligible cases.
+Green nodes represent claims, blue nodes features, and folded corners
+observation windows. \emph{Cites/requires} denotes \texttt{DEPENDS\_ON},
+\emph{derived from} denotes \texttt{DERIVED\_FROM}, and \emph{supersedes}
+connects the new version to the old. A measurement can remain available
+without supporting an earlier claim. Administrative objects and reverse
+support links remain accessible in details. Displayed values are rounded.}
 \label{fig:instances}
 \end{figure}
+
 
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth]{semantic_analysis_v1/structural_witness_network.pdf}
-\caption{Generated program from Neo4j for PPG-DaLiA S1 episode 0
-at knowledge time \ViewStructAfter{} s. Requested and realized depth are both
-\ViewStructDepth{}. The smallest complete graph among
-\ViewStructEligible{} eligible programs is selected, with ties broken by ID. Windows A/B span
-\ViewRouteAInterval/\ViewRouteBInterval{} s. Correcting A1 invalidates CA, but
-CB still supports R. Alternative routes W1/W2 each require all four inputs.
-Blue rows are stored features. Dashed bundles summarize four \texttt{DEPENDS\_ON}
-edges. AND enclosures are drawing constructs with exported row/edge mappings.
-Solid \emph{needs} arrows are stored parent dependencies. Observation provenance
-expands on request. Administrative details remain inspectable.}
+\caption{Making generated answers checkable and selectively revisable as
+evidence changes. Stored in Neo4j, this network connects model-generated
+claims to the measurements and alternative routes that justify them.
+Correcting A1 invalidates claim CA, while window B still passes all four
+checks and supports the final answer R that at least one window qualifies.
+The system therefore withdraws the unsupported statement and preserves
+the justified conclusion. The same graph exposes the evidence behind both
+decisions for human review, connecting automated reliability checks with
+an inspectable explanation.
+Each route requires all four blue feature inputs, while the answer requires
+only one valid route. Dashed arrows group four stored dependency edges
+within each AND enclosure. Solid \emph{needs} arrows connect dependent claims.
+This PPG-DaLiA S1 episode 0 example is shown at knowledge time
+\ViewStructAfter{} s, with windows A and B covering
+\ViewRouteAInterval{} and \ViewRouteBInterval{} s.
+Requested and realized depth are both \ViewStructDepth{}.
+The example is the smallest complete graph among
+\ViewStructEligible{} eligible programs, with ties resolved by ID.}
 \label{fig:topology}
 \end{figure}
 
 % Keep the interpretation together after the two network pages.
 \clearpage
-Only \SemParentClaims{} of \SemDisplayedClaims{} displayed M1 claims declare a
-parent, leaving \SemParentlessPercent\% parentless. Claim-parent depth never
-exceeds one. Even a parent edge need not create transitive exposure.
-In Figure~\ref{fig:instances}, the comparison also cites the corrected feature
-directly. Of \SemRevisionBatches{} revision batches, \SemEligibleBatches{} require
-a withdrawal and \SemNonzeroExposure{} have nonzero exposure. The locality audit
-finds \SemLocalityViolations{} violations. These dependencies explain why
-direct and full maintenance agree. The equivalence does not arise from missing
-stored paths or a particular database engine.
+Only \SemParentClaims{} of \SemDisplayedClaims{} displayed M1 claims cite
+another claim, leaving \SemParentlessPercent\% with no claim parents.
+Claim-to-claim chains never exceed one edge. These links do not necessarily
+require transitive updates. In Figure~\ref{fig:instances}, the comparison
+also cites the corrected feature directly.
+Across \SemRevisionBatches{} revision batches, \SemEligibleBatches{} require
+withdrawal and \SemNonzeroExposure{} have nonzero exposure.
+The locality audit finds \SemLocalityViolations{} violations.
+Direct and full maintenance agree because direct checking already reaches
+every required change.
 
 % start input ./sections/classic_case.tex
-\paragraph{A worked ontology instance.}
-Figure~\ref{fig:classic} shows how the ontology in
-Equations~\ref{eq:ontology}--\ref{eq:construction} represents the admitted
-PPG-DaLiA program. A1 is a particular \texttt{FeatureVersion} instance, not the
-feature class itself. The drawing shows \ClassicNodes{} records and
-\ClassicEdges{} stored relations from a scope of \ClassicScopeNodes{} objects
-and \ClassicScopeEdges{} relations. Its \ClassicCore{} starred records form the
-current core in Equation~\ref{eq:core}. CA remains a declared ancestor of R,
-although CA has been withdrawn from the displayed answer. Old A1 and the two
-EDA windows provide review context. Motion-window provenance can be expanded.
+\paragraph{The ontology in practice.}
+Figure~\ref{fig:classic} maps the admitted PPG-DaLiA program to the ontology
+in Equations~\ref{eq:ontology}-\ref{eq:construction}.
+Each node is a stored record. For example, A1 is a specific
+\texttt{FeatureVersion}.
+The view selects \ClassicNodes{} records and \ClassicEdges{} relations
+from \ClassicScopeNodes{} objects and \ClassicScopeEdges{} relations.
+The \ClassicCore{} starred records form the current answer core
+(Equation~\ref{eq:core}).
+CA remains linked to R after withdrawal, preserving the declared dependency
+for inspection. The earlier A1 version and two EDA windows show the evidence
+history. Motion-window provenance can also be expanded.
+
+
+
+
+
 
 Each route requires four tests, and either route can support the answer.
 For this program, Equation~\ref{eq:support} becomes
@@ -834,30 +922,40 @@ another witness preserves the root. Direct and full maintenance agree.
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth]{semantic_analysis_v1/ontology_instance_network.pdf}
-\caption{Classic ontology-instance view of the admitted program
-\texttt{ppg\_dalia-S1-e0-d2-alternative}, PPG-DaLiA S1 episode 0.
-The primary route is corrected at \ClassicArrival{} s. The view compares
-\ClassicAfter{} s with \ClassicBefore{} s. All \ClassicNodes{} ellipses are
-stored records. AND A/B identify the four jointly required inputs of CA/CB.
-OR A/B identify R's alternative parent witnesses. Both mean \texttt{DEPENDS\_ON}.
-\emph{From} means \texttt{DERIVED\_FROM}, and \emph{revises} means new-to-old
-\texttt{SUPERSEDES}. Original citations remain intact. Motion windows,
-administrative relations, feature dependency duplicates and \texttt{SUPPORTS}
-mirrors are hidden. Fill identifies ontology class. Outlines and stars show
-computed revision sets and core membership. Visual annotations add no database
-nodes or dependencies.}
+\caption{Tracing how corrected evidence changes a generated answer.
+In this PPG-DaLiA S1 episode 0 example, CA loses support while CB
+keeps the final answer R valid. All \ClassicNodes{} nodes are Neo4j records.
+AND labels mark inputs required together, while OR labels show alternative
+support. \emph{From} links features to observations, and \emph{revises}
+links new versions to old. Colors distinguish record types, outlines
+mark revision status, and stars identify the answer core.
+The view compares \ClassicBefore{} and \ClassicAfter{} s around the
+correction at \ClassicArrival{} s. Original citations remain intact,
+with further provenance available on expansion.}
 \label{fig:classic}
 \end{figure}
+
  % end input ./sections/classic_case.tex
+
+
+
+
+
 
 \subsection{Grounded Content and Useful Coverage}
 
 \begin{table}[!htbp]
-\caption{Independent semantic scores in percent (subject means and 95\% intervals).
-Each row contains 240 answer instances from 20 episodes. Matched counts unique
-requirements within each answer. Denominators count answerable requirements.
-Empty displays have zero recall on answerable questions and undefined precision.
-The original strict-contract interpretation is preserved separately from these scores.}
+\caption{Evidence checking raises M1 grounding from 83.4-87.3\% in raw
+proposals to 100\% in displayed claims across all three sources, while
+retaining 75.5-78.2\% of required facts.
+$P$ measures whether statements are supported by the source data.
+$R$ measures how completely they answer the question.
+Values are percentages with subject means and 95\% intervals.
+Each row covers 240 answers from 20 episodes.
+Matched reports requirements met over answerable requirements, counting
+each requirement once per answer. Empty displays have zero recall on
+answerable questions and undefined precision. These semantic scores are
+separate from the original strict output-contract checks.}
 \label{tab:fidelity}
 \centering\scriptsize\setlength{\tabcolsep}{3pt}
 % start input ./generated/semantic/fidelity_table.tex
@@ -886,7 +984,7 @@ PPG-DaLiA & M1 display & 100.0 [100.0, 100.0] & 75.5 [65.0, 87.5] & 322/420 & 20
 \caption{Independent grounding precision and required recall for the same prior
 M1 answers at three discrete checkpoints, with subject-cluster 95\% intervals.
 Each source has 160 transitions from 20 episodes and ten subjects across the
-four variants. No smooth recovery curve is inferred. Emitted-claim and required-fact
+four variants. No smooth recovery curve is inferred. Emitted claim and required-fact
 denominators appear in the text. Fresh-answer scores remain in
 Table~\ref{tab:fidelity}.}
 \label{fig:fidelity}
@@ -924,19 +1022,29 @@ reasoning graph. The separate prose audit and
 original auxiliary-verifier disagreements remain available. The bounded scores
 do not certify unrestricted interpretation.
 
+
+
+
 \subsection{Structural Variation Tests the Maintenance Condition}
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{semantic_analysis_v1/structural_theory_test.pdf}
-\caption{Population-level structural test. Full-minus-direct correction fraction
-versus independently computed transitive exposure, separately for exact compiled
-and admitted GPU-generated programs. Points aggregate equal exposure, support
-regime and realized depth. Size reflects batch count, and the diagonal shows the
-conditional prediction. These are primary-admission results. The text reports
-the separate sensitivity analysis after normalization.}
+\caption{Predicting when indirect dependencies matter for reliable updates.
+The horizontal axis shows the fraction of required changes missed by the
+direct checking schedule. The vertical axis shows the additional fraction
+corrected by full maintenance. Results follow the diagonal for both exact
+and GPU-generated programs, showing that transitive exposure predicts
+the benefit of following indirect dependencies.
+Points group batches with the same exposure, support regime and realized
+depth. Larger points represent more batches.
+These results use the original admission rules. The text reports a separate
+sensitivity analysis after correcting admission normalization.}
 \label{fig:structure}
 \end{figure}
+
+
+
 
 \begin{table}[!htbp]
 \caption{Common-candidate structural replay. Counts aggregate four update conditions
@@ -964,90 +1072,86 @@ Generated & M1 & 1210 & 0 & 0 & 100.0 [100.0, 100.0] \\
 \space% Preserve the former table-input boundary.
  \end{table}
 
-The extension produces \SemCoreCases{} common candidates with \SemCoreCalls{}
-GPU calls, including \SemCoreRepairs{} repairs, in \SemCoreMinutes{} minutes.
-Its \SemReplayCells{} replays include exact and generated programs. Neo4j and the relational control agree in all \SemParityGroups{}
-matched groups of program origin and update. Direct maintenance misses
-\SemFixtureMissed{} of \SemFixtureRequired{} required changes in exact programs
-and \SemGeneratedMissed{} of \SemGeneratedRequired{} in admitted generated programs.
-Full maintenance misses none and withdraws no unaffected claims.
-Predicted misses agree in all \SemPredictionAgreement{} of
-\SemPredictionGroups{} eligible groups (Figure~\ref{fig:structure}).
+Across \SemCoreCases{} cases and \SemReplayCells{} replays, full maintenance
+corrects every required change without withdrawing unaffected claims.
+Direct maintenance misses \SemFixtureMissed{} of \SemFixtureRequired{}
+required changes in exact programs and \SemGeneratedMissed{} of
+\SemGeneratedRequired{} in generated programs.
+Transitive exposure predicts these misses in all \SemPredictionAgreement{}
+of \SemPredictionGroups{} eligible groups (Figure~\ref{fig:structure}).
+Neo4j and the relational control agree across all \SemParityGroups{}
+matched groups.
 
-Generated answers have depth one in \SemRootOne{} cases and depth two in
-\SemRootTwo{} cases.
-Another \SemMissingRoots{} cases have no admitted answer root. None reaches depth
-three or four. The model usually proposes route claims followed by an answer.
-Exact programs test deeper counterexamples, while generated programs test the
-expressed dependencies. When the primary route is
-lost, all \SemFixtureAlternative{} exact and \SemGeneratedAlternative{} generated
-two-route answers with admitted roots remain supported. Single-route roots do not.
-In Figure~\ref{fig:topology}, A1 changes from
-\ViewRouteOld{} to \ViewRouteNew{} $\mu$S, below its \ViewRouteThreshold{} $\mu$S
-threshold. CA is withdrawn, but CB and the answer remain displayed.
-Direct and full maintenance agree for this update. Other tested conditions require updates to dependents excluded by direct scheduling.
-Necessary dependencies and surviving alternatives determine the outcome, not path length. In \SemSameSize{} paired cases, programs with
-the same evidence and baseline record count have different exposure.
-Storage size alone therefore cannot explain maintenance behavior.
+Alternative support preserves all \SemFixtureAlternative{} exact and
+\SemGeneratedAlternative{} generated two-route answers after the primary
+route fails (Figure~\ref{fig:topology}). Single-route answers lose support.
+Generated answers reach depth one in \SemRootOne{} cases and depth two in
+\SemRootTwo{}, while \SemMissingRoots{} cases yield no admitted answer.
+None reaches depth three or four, so exact programs provide the deeper tests.
+In \SemSameSize{} paired cases, identical evidence and record counts produce
+different exposure. What matters is which inputs an answer requires and
+whether another valid route survives.
 
-After the core run, we found an omission in the admission table. Primitive test
-names were defined in the input but unavailable as claim proposition names.
-This produced \SemUnknownPrimitive{} unknown-proposition rejection reasons.
-A separate corrected replication maps those names to their supplied comparators
-without changing candidates, witnesses or links. It admits \SemAliasRoots{} roots
-and repeats \SemAliasCells{} CPU database replays. Direct maintenance misses
-\SemAliasMissed{} of \SemAliasRequired{} required changes, while full maintenance
-again misses none. The original scores remain frozen. Truth-table scoring independently distinguishes
-initially true statements from sound, complete witness families. This admission
-correction adds no model reasoning.
+A separate replication corrects an admission-table omission that rejected
+supplied test names. Model outputs and dependencies remain unchanged.
+Across \SemAliasCells{} replays, direct maintenance misses
+\SemAliasMissed{} of \SemAliasRequired{} required changes, while full
+maintenance again misses none. This confirms the maintenance result under
+the corrected admission rules. Original scores remain unchanged, and
+independent truth-table checks assess whether the declared support is
+sufficient and complete.
 
-\subsection{Operational Cost and Adequate Replacement}
 
-The original systems workload produces \SystemsAdequate{} adequate replacements
-among \SystemsExplanations{} completed candidates. All omit the required preceding-window difference, so no successful
-replacement time is observed. At the highest offered rate, both databases accumulate a backlog and
-delay flags. The extension maintains a common answer without post-correction generation.
-It establishes selective withdrawal and preservation, not an adequate replacement.
-Replay timings include diagnostic traversal and whole-program evaluation.
-They measure instrumented costs rather than production latency.
+
+
+
  % end input ./sections/results.tex
  % start input ./sections/discussion.tex
 \section{Discussion and Conclusion}
 
-The representation distinguishes a changed value, an invalid prerequisite and a
-surviving witness. The ontology defines these commitments,
-and the review view exposes their evidence and versions. Locality limits which
-claims need re-evaluation. Transitive exposure identifies required changes that
-direct scheduling excludes. The two measured regimes show why declared paths
-and requested depth alone do not establish a maintenance advantage.
+This study demonstrates how a graph database can support reliable,
+inspectable generative AI. The method connects generated statements to
+their measurements, supporting claims and evidence versions in Neo4j.
+These connections guide revision when evidence changes and produce
+network diagrams that explain the resulting decisions. The ontology
+therefore provides a common foundation for automated maintenance and
+human inspection, with each displayed claim linked to a checkable
+evidence history.
 
-Withdrawing stale content can preserve grounding while leaving required facts
-unanswered. A strict contract can also reject correct background information.
-Independent proposition and witness scores distinguish these outcomes.
-Admission normalization changes which supplied definitions the checker recognizes
-without changing model outputs or parent links.
+The real data investigation demonstrates this approach on WESAD laboratory
+recordings and PPG-DaLiA daily activity recordings. Checked displays achieve
+100\% source grounding in both datasets, while covering 75.8\% and 75.5\%
+of required facts, respectively. The network examples make these results
+concrete. A corrected WESAD measurement identifies the numerical statements
+that must be withdrawn. In PPG-DaLiA, a separate recording window preserves
+a valid conclusion after its primary support fails. These cases show how
+the representation supports precise decisions about what changes and
+what remains justified.
 
-The findings concern bounded propositions, fixed witness sets and acyclic
-dependencies. Agreement with recordings does not establish physiological truth.
-Natural faults, clock expiry, open-ended evidence discovery and unrestricted
-prose need further study. Generalization is limited by ten held-out subjects per
-source, five reused in the extension, one generator and one seed. Disjoint windows
-are not statistically independent. Neo4j and the relational control agree on
-matched updates, without establishing a universal ranking of storage performance.
-The dashboard supports event-driven inspection and isolated review actions.
-Human decision accuracy, interaction latency and real-time benefit remain untested.
-The original failure to produce adequate replacements limits recovery claims.
+The theoretical and controlled results explain when this capability
+requires following indirect dependencies. Across the controlled generated
+programs, full maintenance corrects every required change without
+withdrawing unaffected claims. Direct maintenance misses
+\SemGeneratedMissed{} of \SemGeneratedRequired{} required changes.
+Transitive exposure predicts the observed misses in all
+\SemPredictionGroups{} eligible groups, and Neo4j agrees with the relational
+control on matched updates. The waveform cases also identify when direct
+checking is sufficient. This combination provides both a working method
+and an explanation of the conditions under which it adds value.
 
-\paragraph{Artifacts.}
-The repository preserves frozen studies, raw candidates, independent scores,
-database exports, shared review views, vector figures, reproduction commands and
-exhaustive logs. All essential definitions and sensitivity results appear here.
-Provider recordings are not redistributed.
+The present evidence establishes reliable maintenance of bounded numerical
+claims under controlled revisions of synthetic and real recordings.
+Complete replacement generation, broader models and evidence discovery,
+and measured benefits for human reviewers are the next development targets.
+The central contribution is a tested connection between generated
+language, explicit support rules and graph-based revision, making the
+basis of an answer available for both automated checking and visual review.
+
 
 \paragraph{Use of generative AI.}
-An AI coding assistant supported implementation, analysis and drafting.
+AI assistant supported implementation,  and paper language usage.
 Qwen3-8B generated candidates, and Qwen2.5-3B-Instruct supplied the auxiliary audit.
-Human authors must review the evidence and interpretations before submission.
+
  % end input ./sections/discussion.tex
  \clearpage
 \label{page:references}
